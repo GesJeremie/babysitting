@@ -1,15 +1,24 @@
-<a href="#">Ajouter mon annonce</a>
+<h2>Listing offers</h2>
 
-<h1><%= gettext "Votre Baby Sitter sur %{town}", town: town(@town) %></h1>
-<h2><%= gettext "Simple, gratuit et efficace. Trouvez la personne qui correspond à vos besoins." %></h2>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Firstname</th>
+      <th>Lastname</th>
+      <th>Day birthday</th>
+      <th>Day month</th>
+      <th>Day year</th>
+      <th>Description</th>
+      <th>Search</th>
+      <th>Token</th>
+      <th>Phone</th>
+      <th>Email</th>
 
-
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
 <%= for offer <- @offers do %>
-  
-  <h3><%= fullname(offer.firstname, offer.lastname) %></h3>
-  <h4><%= offer.day_birthday %></h4>
-  <p><%= word_limit(offer.description) %></p>
-
     <tr>
       <td><%= offer.firstname %></td>
       <td><%= offer.lastname %></td>
@@ -29,3 +38,7 @@
       </td>
     </tr>
 <% end %>
+  </tbody>
+</table>
+
+<%= link "New offer", to: offer_path(@conn, :new) %>
