@@ -1,6 +1,5 @@
 defmodule Babysitting.Router do
   use Babysitting.Web, :router
-  use Babysitting.Plug.Website
 
   pipeline :browser do
     plug :accepts, ["html"]
