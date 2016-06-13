@@ -5,11 +5,6 @@ defmodule Babysitting.OfferController do
 
   plug :scrub_params, "offer" when action in [:create, :update]
 
-  def index(conn, _params) do
-    offers = Repo.all(Offer)
-    render(conn, "index.html", offers: offers)
-  end
-
   def new(conn, _params) do
     changeset = Offer.changeset(%Offer{})
     render(conn, "new.html", changeset: changeset)

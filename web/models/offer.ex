@@ -18,7 +18,7 @@ defmodule Babysitting.Offer do
     timestamps
   end
 
-  @required_fields ~w(tenant_id firstname lastname phone day_birthday month_birthday year_birthday description avatar token search status)
+  @required_fields ~w(tenant_id firstname lastname phone day_birthday month_birthday year_birthday description avatar)
   @optional_fields ~w()
 
   @doc """
