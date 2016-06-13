@@ -1,16 +1,21 @@
 tenants = [
-  %{
-  :name => "Paris",
-  :domain => "www.babysittingparis.fr",
-  :slug => "paris"
+  %Babysitting.Tenant{
+    :name => "Paris",
+    :domain => "www.babysittingparis.dev",
+    :slug => "paris"
   },
-  %{
-  :name => "Bordeaux",
-  :domain => "www.babysittingbordeaux.fr",
-  :slug => "bordeaux"
+  %Babysitting.Tenant{
+    :name => "Bordeaux",
+    :domain => "www.babysittingbordeaux.dev",
+    :slug => "bordeaux"
   },
-  %{
-  :name => "London",
-  :domain => "www.babysittinglondon.co.uk",
-  :slug => "london"
-  }]
+  %Babysitting.Tenant{
+    :name => "London",
+    :domain => "www.babysittinglondon.co.uk.dev",
+    :slug => "london"
+  }
+]
+
+# Seed tenants
+tenants 
+  |> Enum.map(fn (x) ->  Babysitting.Repo.insert!(x) end)

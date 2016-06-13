@@ -7,7 +7,7 @@ defmodule Babysitting.PageController do
 
   def home(conn, _params) do
     
-    town = App.host(conn)
+    town = "paris"
     offers = Repo.all(Offer)
 
     render conn, "home.html", %{

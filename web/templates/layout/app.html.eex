@@ -18,7 +18,7 @@
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
 
     -->
-    <title><%= title(@conn) %></title>
+    <title>Hello</title>
   </head>
 
   <body>
