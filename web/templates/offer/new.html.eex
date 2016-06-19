@@ -1,4 +1,60 @@
-<h2><%= gettext "Ajouter une nouvelle annonce" %></h2>
+<div class="container">
+  <%= form_for @changeset, offer_path(@conn, :create), fn f -> %>
+
+    <div class="form__container">
+        <h2 class="form__title"><i class="icon-user"></i> A propos de vous</h2>
+        <div class="row">
+          <div class="grid-4">
+            <%= text_input f, :firstname, placeholder: "Prénom" %>
+          </div>
+          <div class="grid-4">
+            <%= text_input f, :lastname, placeholder: "Nom de famille" %>
+          </div>
+          <div class="grid-4">
+            <%= text_input f, :birthday, placeholder: "Date de naissance" %>
+          </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="form__container">
+        <h2 class="form__title"><i class="icon-file"></i> Votre annonce</h2>
+        <p class="form__description"><%= gettext("Dites-en plus sur vous, votre parcours scolaire, vos disponibilités et en quoi vous êtes une super baby sitter !") %></p>
+        <%= textarea f, :description, class: "form-control" %>
+    </div>
+
+    <div class="form__container">
+        <h2 class="form__title"><i class="icon-contact"></i> Contact</h2>
+        <p class="form__description"><%= gettext("Permet aux parents de vous contacter suite à la lecture de votre annonce.") %></p>
+        <div class="row">
+          <div class="grid-6">
+            <%= text_input f, :email, placeholder: "Email" %>
+          </div>
+          <div class="grid-6">
+            <%= text_input f, :phone, placeholder: "Téléphone" %>
+          </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <div class="form__container">
+        <h2 class="form__title"><i class="icon-lock"></i> Sécurité</h2>
+        <p class="form__description"><%= gettext("Le mot de passe que vous saisissez ici vous permettra d'éditer votre annonce par la suite.") %></p>
+        <div class="row">
+          <div class="grid-6">
+            <%= text_input f, :password, placeholder: "Mot de passe" %>
+          </div>
+          <div class="grid-6">
+            <%= text_input f, :password_confirmation, placeholder: "Confirmation mot de passe" %>
+          </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+
+    <button type="submit" class="form__submit">Ajouter mon annonce</button>
+  <% end %>
+
+</div>
 
 <%= form_for @changeset, offer_path(@conn, :create), fn f -> %>
 
@@ -60,5 +116,3 @@
   </div>
 <% end %>
 
-
-<%= link "Back", to: offer_path(@conn, :index) %>

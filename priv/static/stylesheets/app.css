@@ -2046,5 +2046,33 @@ a {
     margin-left: 1em;
     margin-right: 1em; }
 
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.form__container {
+  margin-top: 2em;
+  padding: 1.5em;
+  background-color: #F9FAFC;
+  border: 1px solid #E1E2E4;
+  border-radius: 5px; }
+  /* line 10, /Users/jeremie/code/babysitting/front/styles/app/components/_form.sass */
+  .form__container input, .form__container textarea {
+    border: 0;
+    outline: 0;
+    padding: 1em;
+    border: 1px solid #E1E2E4;
+    width: 100%;
+    font-size: 0.8em;
+    border-radius: 3px;
+    margin-top: 0.3em; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.form__title {
+  font-size: 1.4em;
+  color: #4c4f52;
+  font-weight: bold;
+  margin-bottom: 0.3em; }
+  /* line 26, /Users/jeremie/code/babysitting/front/styles/app/components/_form.sass */
+  .form__title i {
+    vertical-align: middle; }
+
 
 /*# sourceMappingURL=app.css.map*/

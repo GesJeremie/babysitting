@@ -7,7 +7,7 @@ defmodule Babysitting.PageController do
 
   def home(conn, _params) do
     tenant = App.current_tenant(conn)
-    IO.inspect tenant
+
     offers = Offer 
     |> Offer.from_current_tenant(conn)
     |> Repo.all

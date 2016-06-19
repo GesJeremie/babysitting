@@ -31,6 +31,9 @@
   </head>
 
   <body id="csstyle">
+    <%= render Babysitting.PartialsView, "navbar.html", assigns %>
     <%= render @view_module, @view_template, assigns %>
+    <%= render Babysitting.PartialsView, "footer.html", assigns %>
+
   </body>
 </html>
