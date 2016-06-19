@@ -6,13 +6,13 @@ defmodule Babysitting.PageController do
   alias Babysitting.Offer
 
   def home(conn, _params) do
-    tenant_name = App.current_tenant(conn).name
+    tenant = App.current_tenant(conn)
     offers = Offer 
     |> Offer.from_current_tenant(conn)
     |> Repo.all
 
     render conn, "home.html", %{
-      tenant_name: tenant_name,
+      tenant: tenant,
       offers: offers
     }
   end

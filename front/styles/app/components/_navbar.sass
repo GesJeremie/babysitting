@@ -13,18 +13,22 @@
       float: left
 
       &:hover
-        a
+        a.navbar__link
           background-color: lighten($color-primary, 5%)
 
-    a
-      color: white
-      font-weight: normal
-      height: 100%
-      padding-left: 1em
-      padding-right: 1em
-      display: inline-block
-      transition: background-color 0.2s
+  +part(link)
+    color: white
+    font-weight: normal
+    height: 100%
+    padding-left: 1em
+    padding-right: 1em
+    display: inline-block
+    transition: background-color 0.2s
 
+  +part(sublinks)
+    li
+      width: 100%
+      background-color: white
 
   +part(logo)
     position: absolute

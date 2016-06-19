@@ -7,7 +7,7 @@ defmodule Babysitting.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug Babysitting.Plug.Website
+    plug Babysitting.Plug.Tenant
   end
 
   pipeline :api do

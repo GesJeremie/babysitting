@@ -5,14 +5,22 @@
       <div class="row">
         <div class="grid-3">
           <div class="navbar__logo">
-            <a href="#"><img src="/images/tenants/bordeaux/logo.png" /></a>
+            <a href="#"><img src="/images/tenants/<%= @tenant.slug %>/logo.png" /></a>
           </div>
         </div>
         <div class="grid-7">
-          <ul class="navbar__links">
-            <li><a href="#">Facebook</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">A propos</a></li>
+          <ul id="navbar" class="navbar__links">
+            <li><a class="navbar__link" href="#">Facebook</a></li>
+            <li><a class="navbar__link" href="#">Contact</a></li>
+            <li><a class="navbar__link" href="#">A propos</a></li>
+            <li>
+              <a class="navbar__link" href="#">Villes <i class="fa fa-caret-down"></i></a>
+              <ul class="navbar__sublinks">
+                <%= for tenant <- Babysitting.Helpers.App.tenants(@conn) do %>
+                  <li><a href="http://<%= tenant.domain %>"><%= tenant.name %></a></li>
+                <% end %>
+              </ul>
+            </li>
           </ul>
         </div>
         <div class="grid-2">
@@ -26,10 +34,10 @@
 </div>
 
 <div class="hero">
-  <div class="hero__container">
+  <div class="hero__container" style="background-image: url('/images/tenants/<%= @tenant.slug %>/cover.jpg')">
     <div class="hero__overlay"></div>
-    <h2 class="hero__title">Votre baby sitter sur Bordeaux</h2>
-    <p class="hero__description">Simple, gratuit et efficace. Trouvez la personne qui correspond à vos besoins.</p>
+    <h2 class="hero__title"><%= gettext "Votre Baby Sitter sur %{tenant_name}", tenant_name: @tenant.name %></h2>
+    <p class="hero__description"><%= gettext "Simple, gratuit et efficace. Trouvez la personne qui correspond à vos besoins." %></p>
   </div>
 </div>
 
@@ -61,7 +69,6 @@
 
 <a href="<%= offer_path(@conn, :new) %>">Ajouter mon annonce</a>
 
-<h1><%= gettext "Votre Baby Sitter sur %{tenant_name}", tenant_name: @tenant_name %></h1>
 <h2><%= gettext "Simple, gratuit et efficace. Trouvez la personne qui correspond à vos besoins." %></h2>
 
 
