@@ -12,7 +12,8 @@
     "lodash": "~3.9.0",
     "reset-css": "^2.0.2011012603",
     "animatedmodal": "https://github.com/joaopereirawd/animatedModal.js.git",
-    "animate.css": "^3.5.2"
+    "animate.css": "^3.5.2",
+    "jquery.inputmask": "^3.3.1"
   },
   "overrides": {
     "jq-dropdown": {
@@ -24,6 +25,11 @@
     "animatedmodal": {
       "main": [
         "animatedModal.js"
+      ]
+    },
+    "jquery.inputmask": {
+      "main": [
+        "dist/jquery.inputmask.bundle.js"
       ]
     }
   }

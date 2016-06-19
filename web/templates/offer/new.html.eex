@@ -1,3 +1,7 @@
+<div id="app"
+    data-controller="offer.new"
+></div>
+
 <div class="container">
   <%= form_for @changeset, offer_path(@conn, :create), fn f -> %>
 

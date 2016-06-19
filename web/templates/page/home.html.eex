@@ -17,7 +17,7 @@
       <div class="grid-6">
         <h3 class="empty__title"><%= gettext("En attente d'annonces") %></h3>
         <p class="empty__description"><%= gettext("Pour le moment aucune annonce n'est disponible. Si vous êtes baby sitter vous pouvez ajouter votre annonce maintenant !") %></p>
-        <a class="empty__button" href="<%= offer_path(@conn, :new) %>"><%= gettext("Ajouter mon annonce") %></a>
+        <a class="empty__button" href="<%= offer_path(@conn, :new) %>"><%= gettext("Ajouter mon annonce gratuitement") %></a>
       </div>
     </div>
     <div class="clear"></div>

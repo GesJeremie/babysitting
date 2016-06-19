@@ -190,6 +190,41 @@ Example = (function(superClass) {
 module.exports = Example;
 });
 
+;require.register("controllers/offer/new.coffee", function(exports, require, module) {
+var Controller, OfferNew,
+  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
+
+Controller = require('core/controller');
+
+OfferNew = (function(superClass) {
+  extend(OfferNew, superClass);
+
+  function OfferNew() {
+    this.initBirthdayMask = bind(this.initBirthdayMask, this);
+    return OfferNew.__super__.constructor.apply(this, arguments);
+  }
+
+  OfferNew.prototype.before = function() {
+    return this.initBirthdayMask();
+  };
+
+  OfferNew.prototype.run = function() {};
+
+  OfferNew.prototype.initBirthdayMask = function() {
+    return console.log($('#offer_birthday').inputmask('99/99/9999', {
+      placeholder: "jj/mm/aaaa"
+    }));
+  };
+
+  return OfferNew;
+
+})(Controller);
+
+module.exports = OfferNew;
+});
+
 ;require.register("helpers.coffee", function(exports, require, module) {
 _.mixin({
   isBatman: function(name) {
