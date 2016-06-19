@@ -6,6 +6,7 @@ defmodule Babysitting.Repo.Migrations.CreateTenant do
       add :name, :string
       add :domain, :string
       add :slug, :string
+      add :facebook, :string
 
       timestamps
     end

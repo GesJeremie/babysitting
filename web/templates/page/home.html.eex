@@ -43,9 +43,9 @@
         </div>
       </div>
       <div class="grid-6">
-        <h3 class="empty__title">En attente d'annonces</h3>
-        <p class="empty__description">Pour le moment aucune annonce n'est disponible. Si vous êtes baby sitter vous pouvez ajouter votre annonce maintenant !</p>
-        <a class="empty__button" href="#">Ajouter mon annonce</a>
+        <h3 class="empty__title"><%= gettext("En attente d'annonces") %></h3>
+        <p class="empty__description"><%= gettext("Pour le moment aucune annonce n'est disponible. Si vous êtes baby sitter vous pouvez ajouter votre annonce maintenant !") %></p>
+        <a class="empty__button" href="#"><%= gettext("Ajouter mon annonce") %></a>
       </div>
     </div>
     <div class="clear"></div>
@@ -55,15 +55,15 @@
 <div class="footer__container">
   
   <div class="footer__links">
-    <a href="#">Facebook</a>
+    <a target="_blank" href="<%= @tenant.facebook %>">Facebook</a>
     |
-    <a href="#">Légale</a>
+    <a href="#"><%= gettext("Légale") %></a>
     |
-    <a href="#">Contact</a>
+    <a href="#"><%= gettext("Contact") %></a>
     |
-    <a href="#">Presse</a>
+    <a href="#"><%= gettext("Presse") %></a>
     |
-    <a href="#">FAQ</a>
+    <a href="#"><%= gettext("FAQ") %></a>
   </div>
 </div>
 

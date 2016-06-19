@@ -14,17 +14,20 @@ tenants = [
   %Babysitting.Tenant{
     :name => "Paris",
     :domain => "www.babysittingparis.fr",
-    :slug => "paris"
+    :slug => "paris",
+    :facebook => "https://www.facebook.com/parisBabySitting/"
   },
   %Babysitting.Tenant{
     :name => "Bordeaux",
     :domain => "www.babysittingbordeaux.fr",
-    :slug => "bordeaux"
+    :slug => "bordeaux",
+    :facebook => "https://www.facebook.com/babySittingBordeaux"
   },
   %Babysitting.Tenant{
     :name => "London",
     :domain => "www.babysittinglondon.co.uk",
-    :slug => "london"
+    :slug => "london",
+    :facebook => "https://www.facebook.com/Baby-Sitting-London-552729038239860"
   }
 ]
 
