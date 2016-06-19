@@ -30,7 +30,7 @@
     <title>Hello</title>
   </head>
 
-  <body>
+  <body id="csstyle">
     <%= render @view_module, @view_template, assigns %>
   </body>
 </html>

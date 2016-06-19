@@ -44,7 +44,7 @@
       <div class="offer__container">
         <div class="row">
           <div class="grid-3">
-            <div class="offer__avatar" style="background-image: url('{{ offer.avatar }}')"></div>
+            <div class="offer__avatar" style="background-image: url('http://www.babysittingbordeaux.fr/uploads/avatars/medium/5757ef6323cc0.jpeg')"></div>
           </div>
           <div class="grid-9">
             <div class="offer__name">Ges Jeremie</div>
@@ -56,6 +56,7 @@
               <a class="offer__button"><i class="fa fa-phone"></i> Voir le numéro de téléphone</a>
           </div>
         </div>
+        <div class="clear"></div>
       </div>
     </div>
   </div>

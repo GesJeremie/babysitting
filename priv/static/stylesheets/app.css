@@ -1602,6 +1602,11 @@ html.default {
   width: 95%;
   margin: 0 auto; }
 
+/* line 85, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+#csstyle .\+spacer {
+  height: 1em;
+  content: " "; }
+
 @font-face {
   font-family: "ProximaNova";
   font-weight: normal;
