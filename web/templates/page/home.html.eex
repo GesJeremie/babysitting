@@ -10,8 +10,6 @@
         </div>
         <div class="grid-6">
           <ul id="navbar" class="navbar__links">
-            <li><a class="navbar__link" href="#">Facebook</a></li>
-            <li><a class="navbar__link" href="#">Contact</a></li>
             <li><a class="navbar__link" href="#">A propos</a></li>
             <li>
               <a id="trigger-modal" class="navbar__link" href="#animatedModal">Villes</a>
@@ -36,7 +34,40 @@
   </div>
 </div>
 
+<div class="container">
+  <div class="empty__container --home">
+    <div class="row">
+      <div class="grid-4">
+        <div class="empty__artwork">
+          <img src="/images/teddy.png" />
+        </div>
+      </div>
+      <div class="grid-6">
+        <h3 class="empty__title">En attente d'annonces</h3>
+        <p class="empty__description">Pour le moment aucune annonce n'est disponible. Si vous êtes baby sitter vous pouvez ajouter votre annonce maintenant !</p>
+        <a class="empty__button" href="#">Ajouter mon annonce</a>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>
 
+<div class="footer__container">
+  
+  <div class="footer__links">
+    <a href="#">Facebook</a>
+    |
+    <a href="#">Légale</a>
+    |
+    <a href="#">Contact</a>
+    |
+    <a href="#">Presse</a>
+    |
+    <a href="#">FAQ</a>
+  </div>
+</div>
+
+<%#
 <div class="offer">
   <div class="container">
     <div class="offer__list">
@@ -61,6 +92,7 @@
     </div>
   </div>
 </div>
+%>
 
 
     <div id="animatedModal">
@@ -84,34 +116,3 @@
           </div>
         </div>
     </div>
-
-
-<a href="<%= offer_path(@conn, :new) %>">Ajouter mon annonce</a>
-
-<h2><%= gettext "Simple, gratuit et efficace. Trouvez la personne qui correspond à vos besoins." %></h2>
-
-
-<%= for offer <- @offers do %>
-  
-  <h3><%= fullname(offer.firstname, offer.lastname) %></h3>
-  <h4><%= offer.day_birthday %></h4>
-  <p><%= word_limit(offer.description) %></p>
-
-    <tr>
-      <td><%= offer.firstname %></td>
-      <td><%= offer.lastname %></td>
-      <td><%= offer.day_birthday %></td>
-      <td><%= offer.month_birthday %></td>
-      <td><%= offer.year_birthday %></td>
-      <td><%= offer.description %></td>
-      <td><%= offer.search %></td>
-      <td><%= offer.token %></td>
-      <td><%= offer.phone %></td>
-
-      <td class="text-right">
-        <%= link "Show", to: offer_path(@conn, :show, offer), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: offer_path(@conn, :edit, offer), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: offer_path(@conn, :delete, offer), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
-<% end %>
