@@ -8,22 +8,17 @@
             <a href="#"><img src="/images/tenants/<%= @tenant.slug %>/logo.png" /></a>
           </div>
         </div>
-        <div class="grid-7">
+        <div class="grid-6">
           <ul id="navbar" class="navbar__links">
             <li><a class="navbar__link" href="#">Facebook</a></li>
             <li><a class="navbar__link" href="#">Contact</a></li>
             <li><a class="navbar__link" href="#">A propos</a></li>
             <li>
-              <a class="navbar__link" href="#">Villes <i class="fa fa-caret-down"></i></a>
-              <ul class="navbar__sublinks">
-                <%= for tenant <- Babysitting.Helpers.App.tenants(@conn) do %>
-                  <li><a href="http://<%= tenant.domain %>"><%= tenant.name %></a></li>
-                <% end %>
-              </ul>
+              <a id="trigger-modal" class="navbar__link" href="#animatedModal">Villes</a>
             </li>
           </ul>
         </div>
-        <div class="grid-2">
+        <div class="grid-3">
           <div class="navbar__button">
             <a href="#">Ajouter mon annonce !</a>
           </div>
@@ -65,6 +60,29 @@
     </div>
   </div>
 </div>
+
+
+    <div id="animatedModal">
+        <div class="close-animatedModal"> 
+            <div class="town__back"><i class="icon-reload"></i></div>
+        </div>
+            
+        <div class="modal-content">
+          <div class="container">
+            <div class="town__container">
+            <%= for tenant <- Babysitting.Helpers.App.tenants(@conn) do %>
+                <div class="grid-4">
+                  <a href="http://<%= tenant.domain %>" class="town__picture" style="background-image: url('/images/tenants/<%= tenant.slug %>/cover.jpg')">
+                    <span class="town__title"><%= tenant.name %></span>
+                  </a>
+                </div>
+              <% end %>
+              <div class="clear"></div>
+              <div class="town__more"><a href="mailto:babysitting-group@gmail.com"><%= gettext("Envie de voir apparaître votre ville ci-dessus ? Envoyez nous un email") %></a></div>
+            </div>
+          </div>
+        </div>
+    </div>
 
 
 <a href="<%= offer_path(@conn, :new) %>">Ajouter mon annonce</a>

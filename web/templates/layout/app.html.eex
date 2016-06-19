@@ -7,9 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
-    
-    <!-- App -->
+    <link href="https://file.myfontastic.com/m8mmAajfNjnQR6AVvSEyMo/icons.css" rel="stylesheet">
+
     <script src="<%= static_path(@conn, "/javascripts/vendor.js") %>"></script>
     <script src="<%= static_path(@conn, "/javascripts/app.js") %>"></script>
     <script>require('initialize')</script>

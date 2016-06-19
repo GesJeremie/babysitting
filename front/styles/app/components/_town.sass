@@ -1,0 +1,39 @@
++component(town)
+  
+  +part(container)
+    margin-top: 4em
+
+  +part(picture)
+    height: 10em
+    display: block
+    background-size: cover
+    background-repeat: no-repeat
+    text-align: center
+    margin-bottom: 1em
+
+    &:hover
+      .town__title
+        border-bottom: 2px solid white
+
+    img
+      width: 100%
+      height: 100%
+
+  +part(back)
+    font-size: 2em
+    text-align: center
+    cursor: pointer
+    margin-top: 1em
+
+  +part(title)
+    color: white
+    text-decoration: none
+    font-weight: bold
+    padding-top: 3em
+    display: inline-block
+    font-size: 1.4em
+
+  +part(more)
+    text-align: center
+    a
+      color: #686c70

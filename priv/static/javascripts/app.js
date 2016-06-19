@@ -149,7 +149,11 @@ var __makeRelativeRequire = function(require, mappings, pref) {
   }
 };
 require.register("boot.coffee", function(exports, require, module) {
-
+$("#trigger-modal").animatedModal({
+  color: '#F0F1F5',
+  animatedIn: 'lightSpeedIn',
+  animatedOut: 'bounceOutDown'
+});
 });
 
 ;require.register("config.coffee", function(exports, require, module) {
