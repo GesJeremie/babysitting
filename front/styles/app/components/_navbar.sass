@@ -1,0 +1,49 @@
++component(navbar)
+  
+  +part(container)
+    background-color: $color-primary
+    height: 4em
+    padding-left: 1em
+    position: relative
+
+  
+  +part(links)
+    line-height: 4em
+    li
+      float: left
+
+      &:hover
+        a
+          background-color: lighten($color-primary, 5%)
+
+    a
+      color: white
+      font-weight: normal
+      height: 100%
+      padding-left: 1em
+      padding-right: 1em
+      display: inline-block
+      transition: background-color 0.2s
+
+
+  +part(logo)
+    position: absolute
+    top: 0.5em
+
+  +part(button)
+    line-height: 4em
+    a
+      border: 2px solid white
+      padding: 
+        top: 8px
+        bottom: 8px
+        right: 10px
+        left: 10px
+      text-transform: capitalize
+      font-size: 15px
+      border-radius: 5px
+      text-align: center
+      color: white
+
+      &:hover, &:focus, &:active
+        background-color: rgba(255,255,255,0.2)

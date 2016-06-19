@@ -1,0 +1,27 @@
+// ===========================================================
+// Grid
+// ===========================================================
+//
+// @see http://gridle.org/
+//
+// Setup the grid system with gridle
+//
+
+// Dependency
+@import 'vendor/gridle/gridle'
+
+// Setting up the grid
++gridle_setup((context: 12, gutter-width: 10px, direction: ltr, debug: true))
+
+// Generate css classes (to use in the html)
++gridle_generate_classes()
+
+// Setup the static container
+.container
+  max-width : 960px
+  margin : 0 auto
+
+// Setup the fluid container
+.container-fluid
+  width: 95%
+  margin: 0 auto

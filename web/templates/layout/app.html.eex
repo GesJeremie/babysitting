@@ -7,6 +7,14 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <!-- App -->
+    <script src="<%= static_path(@conn, "/javascripts/vendor.js") %>"></script>
+    <script src="<%= static_path(@conn, "/javascripts/app.js") %>"></script>
+    <script>require('initialize')</script>
+
+    <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/stylesheets/vendor.css") %>">
+    <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/stylesheets/app.css") %>">
+
     <!-- 
     <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
     <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>

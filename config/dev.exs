@@ -13,6 +13,7 @@ config :babysitting, Babysitting.Endpoint,
   check_origin: false,
   watchers: []
 
+
 # Watch static and templates for browser reloading.
 config :babysitting, Babysitting.Endpoint,
   live_reload: [

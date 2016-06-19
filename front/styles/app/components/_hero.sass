@@ -1,0 +1,36 @@
++component(hero)
+  +part(container)
+    position: relative
+    background-color: darken($color-primary, 3%)
+    width: 100%
+    min-height: 20em
+    text-align: center
+    background-image: url('/images/tenants/bordeaux/cover.png')
+    background-size: cover
+    background-position: center center
+
+  +part(overlay)
+    position: absolute
+    display: block
+    top: 0
+    left: 0
+    right: 0
+    bottom: 0
+    content: ''
+    background-image: url('https://www-assets.carwow.co.uk/assets/beta-responsive/1x1-black-layer-41d38ffd1f9a359560152772ab4100f0.png')
+
+  +part(title)
+    position: relative
+    z-index: 2
+    color: white
+    font-size: 20px
+    font-weight: bold
+    font-size: 40px
+    padding-top: 4em
+    text-transform: capitalize
+
+  +part(description)
+    color: white
+    position: relative
+    margin-top: 0.5em
+    font-size: 22px
