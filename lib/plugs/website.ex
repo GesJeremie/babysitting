@@ -2,23 +2,20 @@ defmodule Babysitting.Plug.Website do
   
   import Plug.Conn
 
+  alias Babysitting.Repo
+  alias Babysitting.Tenant
+
   def init(default), do: default
 
   def call(conn, _) do
 
-    # Fetch domain name and strip www.
-    host = conn.host |> String.replace("www.", "")
+    host = conn.host
+    tenants = Repo.all(Tenant)
 
-    # Match the right website
-    website =
-      case host do 
-        "babysittingbordeaux.dev" -> "bordeaux"
-        "babysittingparis.dev" -> "paris"
-        _others -> false
-      end
+    # Find current tenant
+    current_tenant =  Enum.reject(tenants, fn(tenant) -> host != tenant.domain end) |> Enum.at(0)
 
-    # Set a private variable in the connexion
-    conn |> put_private(:website, website)
+    conn |> put_private(:current_tenant, current_tenant)
 
   end
 

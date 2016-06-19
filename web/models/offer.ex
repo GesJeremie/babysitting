@@ -1,5 +1,6 @@
 defmodule Babysitting.Offer do
   use Babysitting.Web, :model
+  alias Babysitting.Helpers.App
 
   schema "offers" do
     field :tenant_id, :integer
@@ -31,4 +32,10 @@ defmodule Babysitting.Offer do
     model
     |> cast(params, @required_fields, @optional_fields)
   end
+
+  def from_current_tenant(query, conn) do
+    from offer in query,
+      where: offer.tenant_id == ^App.current_tenant(conn).id
+  end
+
 end

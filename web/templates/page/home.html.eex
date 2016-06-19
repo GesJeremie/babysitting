@@ -1,6 +1,6 @@
-<a href="#">Ajouter mon annonce</a>
+<a href="<%= offer_path(@conn, :new) %>">Ajouter mon annonce</a>
 
-<h1><%= gettext "Votre Baby Sitter sur %{town}", town: town(@town) %></h1>
+<h1><%= gettext "Votre Baby Sitter sur %{tenant_name}", tenant_name: @tenant_name %></h1>
 <h2><%= gettext "Simple, gratuit et efficace. Trouvez la personne qui correspond à vos besoins." %></h2>
 
 
@@ -14,13 +14,12 @@
       <td><%= offer.firstname %></td>
       <td><%= offer.lastname %></td>
       <td><%= offer.day_birthday %></td>
-      <td><%= offer.day_month %></td>
-      <td><%= offer.day_year %></td>
+      <td><%= offer.month_birthday %></td>
+      <td><%= offer.year_birthday %></td>
       <td><%= offer.description %></td>
       <td><%= offer.search %></td>
       <td><%= offer.token %></td>
       <td><%= offer.phone %></td>
-      <td><%= offer.email %></td>
 
       <td class="text-right">
         <%= link "Show", to: offer_path(@conn, :show, offer), class: "btn btn-default btn-xs" %>
