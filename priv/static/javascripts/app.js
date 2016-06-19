@@ -202,12 +202,17 @@ OfferNew = (function(superClass) {
   extend(OfferNew, superClass);
 
   function OfferNew() {
+    this.setCharsCount = bind(this.setCharsCount, this);
+    this.changeCharsCount = bind(this.changeCharsCount, this);
+    this.initCharsCount = bind(this.initCharsCount, this);
     this.initBirthdayMask = bind(this.initBirthdayMask, this);
     return OfferNew.__super__.constructor.apply(this, arguments);
   }
 
   OfferNew.prototype.before = function() {
-    return this.initBirthdayMask();
+    this.initBirthdayMask();
+    this.initCharsCount();
+    return this.on('keyup', '#offer_description', this.changeCharsCount);
   };
 
   OfferNew.prototype.run = function() {};
@@ -216,6 +221,27 @@ OfferNew = (function(superClass) {
     return console.log($('#offer_birthday').inputmask('99/99/9999', {
       placeholder: "jj/mm/aaaa"
     }));
+  };
+
+  OfferNew.prototype.initCharsCount = function() {
+    return this.setCharsCount(0);
+  };
+
+  OfferNew.prototype.changeCharsCount = function() {
+    var count;
+    count = $('#offer_description').val().length;
+    return this.setCharsCount(count);
+  };
+
+  OfferNew.prototype.setCharsCount = function(number) {
+    var $chars;
+    $chars = $('#chars');
+    $chars.html('Nombre de caractères: ' + number);
+    if (number < $chars.data('min')) {
+      return $chars.css('color', '#E3000E');
+    } else {
+      return $chars.css('color', '#71BA51');
+    }
   };
 
   return OfferNew;

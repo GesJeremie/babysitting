@@ -25,6 +25,7 @@
         <h2 class="form__title"><i class="icon-file"></i> Votre annonce</h2>
         <p class="form__description"><%= gettext("Dites-en plus sur vous, votre parcours scolaire, vos disponibilités et en quoi vous êtes une super baby sitter !") %></p>
         <%= textarea f, :description, class: "form-control" %>
+        <span id="chars" class="form__chars" data-min="280"></span>
     </div>
 
     <div class="form__container">
