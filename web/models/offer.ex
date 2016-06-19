@@ -6,8 +6,10 @@ defmodule Babysitting.Offer do
     field :tenant_id, :integer
     field :firstname, :string
     field :lastname, :string
+    field :email, :string
+    field :password, :string
     field :phone, :string
-    field :day_birthday, :integer
+    field :day_birthday, :string
     field :month_birthday, :string
     field :year_birthday, :string
     field :description, :string

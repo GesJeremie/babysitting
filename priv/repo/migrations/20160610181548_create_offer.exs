@@ -4,10 +4,12 @@ defmodule Babysitting.Repo.Migrations.CreateOffer do
   def change do
     create table(:offers) do
       add :tenant_id, :integer
+      add :email, :string
+      add :password, :string
       add :firstname, :string
       add :lastname, :string
       add :phone, :string
-      add :day_birthday, :integer
+      add :day_birthday, :string
       add :month_birthday, :string
       add :year_birthday, :string
       add :description, :text
