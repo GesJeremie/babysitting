@@ -3,7 +3,7 @@ defmodule Babysitting.LayoutView do
   alias Babysitting.Helpers.App
 
   def title(conn) do
-    "Baby Sitting " <> App.host(conn)
+    "Baby Sitting " <> App.current_tenant(conn).name
   end
   
 end

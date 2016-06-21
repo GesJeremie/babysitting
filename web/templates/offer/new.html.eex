@@ -56,68 +56,8 @@
         <div class="clear"></div>
     </div>
 
-    <button type="submit" class="form__submit">Ajouter mon annonce</button>
+    <div class="+spacer"></div>
+    <button type="submit" class="button --primary --large"><i class="icon-zap"></i> Ajouter mon annonce</button>
   <% end %>
 
 </div>
-
-<%= form_for @changeset, offer_path(@conn, :create), fn f -> %>
-
-  <%= if @changeset.action do %>
-      <p><%= gettext "Ooops, des erreurs se sont glissés dans le formulaire !" %></p>
-  <% end %>
-
-  <div class="form-group">
-    <%= label f, :firstname, class: "control-label" %>
-    <%= text_input f, :firstname, class: "form-control" %>
-    <%= error_tag f, :firstname %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :lastname, class: "control-label" %>
-    <%= text_input f, :lastname, class: "form-control" %>
-    <%= error_tag f, :lastname %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :day_birthday, class: "control-label" %>
-    <%= number_input f, :day_birthday, class: "form-control" %>
-    <%= error_tag f, :day_birthday %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :day_month, class: "control-label" %>
-    <%= number_input f, :day_month, class: "form-control" %>
-    <%= error_tag f, :day_month %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :day_year, class: "control-label" %>
-    <%= number_input f, :day_year, class: "form-control" %>
-    <%= error_tag f, :day_year %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :description, class: "control-label" %>
-    <%= textarea f, :description, class: "form-control" %>
-    <%= error_tag f, :description %>
-  </div>
-
-
-  <div class="form-group">
-    <%= label f, :phone, class: "control-label" %>
-    <%= text_input f, :phone, class: "form-control" %>
-    <%= error_tag f, :phone %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :email, class: "control-label" %>
-    <%= text_input f, :email, class: "form-control" %>
-    <%= error_tag f, :email %>
-  </div>
-
-  <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
-  </div>
-<% end %>
-

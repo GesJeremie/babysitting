@@ -1,0 +1,38 @@
++component(button)
+  background-color: $color-default
+  color: white
+  text-transform: capitalize
+  padding: 0.5em
+  padding-left: 0.8em
+  padding-right: 0.8em
+  display: inline-block
+  border-radius: 5px 
+  font-weight: normal
+  letter-spacing: 0.4px
+  font-size: 0.8em
+  border: 0
+  outline: 0
+  cursor: pointer
+
+  i
+    vertical-align: middle
+
+  +option(primary)
+    background-color: $color-primary
+
+  +option(danger)
+    background-color: $color-danger
+
+  +option(warning)
+    background-color: #FFB836
+  
+  +option(muted)
+    cursor: not-allowed
+    opacity: 0.5
+
+  +option(large)
+    padding: 0.8em 1em
+
+  +option(small)
+    padding: 0.5em 0.7em
+    font-size: 0.73em
