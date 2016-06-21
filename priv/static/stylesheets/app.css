@@ -1,3 +1,8 @@
+/*
+ * Paris: #44BBFF
+ * Bordeaux: #F85066
+ * London: #AA99BA
+ */
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 @import url(https://fonts.googleapis.com/css?family=Lato:400,700,300,300italic,400italic,700italic,900,900italic&subset=latin,latin-ext);
 /* line 30, /Users/jeremie/code/babysitting/front/styles/vendor/gridle/_silent-classes.scss */
@@ -1671,7 +1676,7 @@ a {
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .hero__container {
   position: relative;
-  background-color: #f74159;
+  background-color: #a290b4;
   width: 100%;
   min-height: 20em;
   text-align: center;
@@ -1710,7 +1715,7 @@ a {
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .navbar__container {
-  background-color: #F85066;
+  background-color: #AA99BA;
   height: 4em;
   padding-left: 1em;
   position: relative; }
@@ -1723,7 +1728,7 @@ a {
     float: left; }
     /* line 16, /Users/jeremie/code/babysitting/front/styles/app/components/_navbar.sass */
     .navbar__links li:hover a.navbar__link {
-      background-color: #f9697b; }
+      background-color: #b7a8c4; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .navbar__link {
@@ -1845,8 +1850,8 @@ a {
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .offer__button {
-  border: 2px solid #F85066;
-  background-color: #F85066;
+  border: 2px solid #AA99BA;
+  background-color: #AA99BA;
   padding-top: 8px;
   padding-bottom: 8px;
   padding-right: 10px;
@@ -1861,7 +1866,7 @@ a {
   outline: 0; }
   /* line 92, /Users/jeremie/code/babysitting/front/styles/app/components/_offer.sass */
   .offer__button:hover, .offer__button:focus, .offer__button:active {
-    background-color: #f73751; }
+    background-color: #9d8ab0; }
   /* line 95, /Users/jeremie/code/babysitting/front/styles/app/components/_offer.sass */
   .offer__button:disabled {
     opacity: 0.2;
@@ -1996,7 +2001,7 @@ a {
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .empty__button {
-  background-color: #F85066;
+  background-color: #AA99BA;
   color: white;
   padding: 0.5em;
   padding-left: 1em;
