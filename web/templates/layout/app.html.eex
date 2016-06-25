@@ -15,18 +15,7 @@
 
     <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/stylesheets/vendor.css") %>">
     <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/stylesheets/app.css") %>">
-
-    <!-- 
-    <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-    <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-
-    <main role="main">
-      <%= render @view_module, @view_template, assigns %>
-    </main>
-
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
-
-    -->
+    
     <title><%= title(@conn) %></title>
   </head>
 

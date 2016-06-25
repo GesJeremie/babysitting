@@ -10,15 +10,15 @@
         </div>
         <div class="grid-6">
           <ul id="navbar" class="navbar__links">
-            <li><a class="navbar__link" href="#">A propos</a></li>
+            <li><a class="navbar__link" href="#"><%= gettext "About" %></a></li>
             <li>
-              <a id="trigger-modal" class="navbar__link" href="#animatedModal">Villes</a>
+              <a id="trigger-modal" class="navbar__link" href="#animatedModal"><%= gettext "Towns" %></a>
             </li>
           </ul>
         </div>
         <div class="grid-3">
           <div class="navbar__button">
-            <a href="<%= offer_path(@conn, :new) %>">Ajouter mon annonce !</a>
+            <a href="<%= offer_path(@conn, :new) %>"><%= gettext "Add my classified!" %></a>
           </div>
         </div>
       </div>
@@ -43,7 +43,7 @@
             </div>
           <% end %>
           <div class="clear"></div>
-          <div class="town__more"><a href="mailto:babysitting-group@gmail.com"><%= gettext("Envie de voir apparaître votre ville ci-dessus ? Envoyez nous un email") %></a></div>
+          <div class="town__more"><a href="mailto:babysitting-group@gmail.com"><%= gettext "Want to see your town listed ? Send us an email" %></a></div>
         </div>
       </div>
     </div>

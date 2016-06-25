@@ -3,11 +3,11 @@
   <div class="footer__links">
     <a target="_blank" href="<%= facebook_link(@conn) %>">Facebook</a>
     |
-    <a href="#"><%= gettext("Légale") %></a>
+    <a href="#"><%= gettext("Legal") %></a>
     |
     <a href="#"><%= gettext("Contact") %></a>
     |
-    <a href="#"><%= gettext("Presse") %></a>
+    <a href="#"><%= gettext("Press") %></a>
     |
     <a href="#"><%= gettext("FAQ") %></a>
   </div>

@@ -9,28 +9,28 @@
         <h2 class="form__title"><i class="icon-user"></i> A propos de vous</h2>
         <div class="row">
           <div class="grid-4">
-            <%= text_input f, :firstname, placeholder: "Prénom" %>
+            <%= text_input f, :firstname, placeholder: gettext "Firstname" %>
           </div>
           <div class="grid-4">
-            <%= text_input f, :lastname, placeholder: "Nom de famille" %>
+            <%= text_input f, :lastname, placeholder: gettext "Lastname" %>
           </div>
           <div class="grid-4">
-            <%= text_input f, :birthday, placeholder: "Date de naissance" %>
+            <%= text_input f, :birthday, placeholder: gettext "Birthday" %>
           </div>
         </div>
         <div class="clear"></div>
     </div>
 
     <div class="form__container">
-        <h2 class="form__title"><i class="icon-file"></i> Votre annonce</h2>
-        <p class="form__description"><%= gettext("Dites-en plus sur vous, votre parcours scolaire, vos disponibilités et en quoi vous êtes une super baby sitter !") %></p>
+        <h2 class="form__title"><i class="icon-file"></i> <%= gettext "Your classified" %></h2>
+        <p class="form__description"><%= gettext "Tell us more about you, your scholarship, your schedule and why you are an awesome baby sitter" %></p>
         <%= textarea f, :description, class: "form-control" %>
         <span id="chars" class="form__chars" data-min="280"></span>
     </div>
 
     <div class="form__container">
         <h2 class="form__title"><i class="icon-contact"></i> Contact</h2>
-        <p class="form__description"><%= gettext("Permet aux parents de vous contacter suite à la lecture de votre annonce.") %></p>
+        <p class="form__description"><%= gettext "Basic informations for the parents to reach you"  %></p>
         <div class="row">
           <div class="grid-6">
             <%= text_input f, :email, placeholder: "Email" %>
@@ -44,20 +44,20 @@
 
     <div class="form__container">
         <h2 class="form__title"><i class="icon-lock"></i> Sécurité</h2>
-        <p class="form__description"><%= gettext("Le mot de passe que vous saisissez ici vous permettra d'éditer votre annonce par la suite.") %></p>
+        <p class="form__description"><%= gettext "With this password you will be able to edit your classified in the future" %></p>
         <div class="row">
           <div class="grid-6">
-            <%= text_input f, :password, placeholder: "Mot de passe" %>
+            <%= text_input f, :password, placeholder: gettext "Password" %>
           </div>
           <div class="grid-6">
-            <%= text_input f, :password_confirmation, placeholder: "Confirmation mot de passe" %>
+            <%= text_input f, :password_confirmation, placeholder: "Password confirmation" %>
           </div>
         </div>
         <div class="clear"></div>
     </div>
 
     <div class="+spacer"></div>
-    <button type="submit" class="button --primary --large"><i class="icon-zap"></i> Ajouter mon annonce</button>
+    <button type="submit" class="button --primary --large"><i class="icon-zap"></i> <%= gettext "Add my classified" %></button>
   <% end %>
 
 </div>

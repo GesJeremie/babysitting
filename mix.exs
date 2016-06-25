@@ -19,7 +19,7 @@ defmodule Babysitting.Mixfile do
   def application do
     [mod: {Babysitting, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :ex_machina]]
+                    :phoenix_ecto, :postgrex]]
   end
 
   # Specifies which paths to compile per environment.
@@ -36,8 +36,7 @@ defmodule Babysitting.Mixfile do
      {:phoenix_html, "~> 2.4"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
-     {:cowboy, "~> 1.0"},
-     {:ex_machina, "~> 1.0.0-beta.1", github: "thoughtbot/ex_machina"}]
+     {:cowboy, "~> 1.0"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
