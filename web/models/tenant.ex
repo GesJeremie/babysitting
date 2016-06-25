@@ -6,6 +6,7 @@ defmodule Babysitting.Tenant do
     field :domain, :string
     field :slug, :string
     field :facebook, :string
+    field :locale, :string
     timestamps
   end
 

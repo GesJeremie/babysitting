@@ -1,0 +1,100 @@
+## This file is a PO Template file.
+##
+## `msgid`s here are often extracted from source code.
+## Add new translations manually only if they're dynamic
+## translations that can't be statically extracted.
+##
+## Run `mix gettext.extract` to bring this file up to
+## date. Leave `msgstr`s empty as changing them here as no
+## effect: edit them in PO (`.po`) files instead.
+msgid ""
+msgstr ""
+"Language: INSERT LANGUAGE HERE\n"
+
+#: web/templates/partials/navbar.html.eex:13
+msgid "About"
+msgstr ""
+
+#: web/templates/page/home.html.eex:20
+msgid "Add my classifed for free"
+msgstr ""
+
+#: web/templates/offer/new.html.eex:60
+msgid "Add my classified"
+msgstr ""
+
+#: web/templates/partials/navbar.html.eex:21
+msgid "Add my classified!"
+msgstr ""
+
+#: web/templates/offer/new.html.eex:33
+msgid "Basic informations for the parents to reach you"
+msgstr ""
+
+#: web/templates/offer/new.html.eex:18
+msgid "Birthday"
+msgstr ""
+
+#: web/templates/partials/footer.html.eex:8
+msgid "Contact"
+msgstr ""
+
+#: web/templates/partials/footer.html.eex:12
+msgid "FAQ"
+msgstr ""
+
+#: web/templates/offer/new.html.eex:12
+msgid "Firstname"
+msgstr ""
+
+#: web/templates/offer/new.html.eex:15
+msgid "Lastname"
+msgstr ""
+
+#: web/templates/partials/footer.html.eex:6
+msgid "Legal"
+msgstr ""
+
+#: web/templates/page/home.html.eex:19
+msgid "No classified available yet. If you are a baby sitter you can add your classifed right now !"
+msgstr ""
+
+#: web/templates/offer/new.html.eex:50
+msgid "Password"
+msgstr ""
+
+#: web/templates/partials/footer.html.eex:10
+msgid "Press"
+msgstr ""
+
+#: web/templates/page/home.html.eex:5
+msgid "Simple, free and effective. Find your next baby sitter."
+msgstr ""
+
+#: web/templates/offer/new.html.eex:26
+msgid "Tell us more about you, your scholarship, your schedule and why you are an awesome baby sitter"
+msgstr ""
+
+#: web/templates/partials/navbar.html.eex:15
+msgid "Towns"
+msgstr ""
+
+#: web/templates/page/home.html.eex:18
+msgid "Waiting for classified"
+msgstr ""
+
+#: web/templates/partials/navbar.html.eex:46
+msgid "Want to see your town listed ? Send us an email"
+msgstr ""
+
+#: web/templates/offer/new.html.eex:47
+msgid "With this password you will be able to edit your classified in the future"
+msgstr ""
+
+#: web/templates/page/home.html.eex:4
+msgid "Your Baby Sitter in %{tenant_name}"
+msgstr ""
+
+#: web/templates/offer/new.html.eex:25
+msgid "Your classified"
+msgstr ""
