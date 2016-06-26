@@ -1,5 +1,6 @@
 defmodule Babysitting.Offer do
   use Babysitting.Web, :model
+  use Arc.Ecto.Model
   alias Babysitting.Helpers.App
 
   schema "offers" do
@@ -10,7 +11,7 @@ defmodule Babysitting.Offer do
     field :phone, :string
     field :birthday, :string
     field :description, :string
-    field :avatar, :string
+    field :avatar, Babysitting.Avatar.Type
     field :token, :string
     field :search, :string
     field :status, :boolean, default: true
@@ -30,14 +31,19 @@ defmodule Babysitting.Offer do
   @required_fields ~w(firstname lastname email password password_confirmation phone birthday description)
   @optional_fields ~w()
 
+  @required_file_fields ~w(avatar)
+  @optional_file_fields ~w()
+
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> cast_attachments(params, @required_file_fields, @optional_file_fields)
   end
 
   def create_changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
+    |> cast_attachments(params, @required_file_fields, @optional_file_fields)
     |> validate_length(:description, min: 280)
     |> validate_format(:email, ~r/@/)
     |> validate_length(:password, min: 6)
