@@ -2121,6 +2121,10 @@ a {
   .form__checkbox.\--inline input {
     vertical-align: middle; }
 
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.form__chars {
+  font-size: 0.8em; }
+
 /* line 32, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .button {
   background-color: #536270;

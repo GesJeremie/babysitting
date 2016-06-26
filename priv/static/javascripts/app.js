@@ -234,10 +234,12 @@ OfferNew = (function(superClass) {
   };
 
   OfferNew.prototype.setCharsCount = function(number) {
-    var $chars;
+    var $chars, minimum, text;
     $chars = $('#chars');
-    $chars.html('Nombre de caractères: ' + number);
-    if (number < $chars.data('min')) {
+    minimum = $chars.data('min');
+    text = $chars.data('text-number') + ': ' + number + ' (' + $chars.data('text-minimum') + ': ' + minimum + ')';
+    $chars.html(text);
+    if (number < minimum) {
       return $chars.css('color', '#E3000E');
     } else {
       return $chars.css('color', '#71BA51');

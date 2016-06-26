@@ -45,13 +45,16 @@ class OfferNew extends Controller
   setCharsCount: (number) => 
 
     $chars = $('#chars')
+    minimum = $chars.data('min')
 
-    $chars.html('Nombre de caractères: ' + number)
+    text = $chars.data('text-number') + ': ' + number + ' (' + $chars.data('text-minimum') + ': ' + minimum + ')'
 
-    if number < $chars.data('min')
-      $chars.css('color', '#E3000E')
+    $chars.html text
+
+    if number < minimum
+      $chars.css('color', '#E3000E') # Red
     else
-      $chars.css('color', '#71BA51')
+      $chars.css('color', '#71BA51') # Green
 
 
 
