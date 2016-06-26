@@ -19,6 +19,8 @@ defmodule Babysitting.Offer do
     field :status, :string
 
     timestamps
+
+    field :password_confirmation, :string, virtual: true
   end
 
   @required_fields ~w(tenant_id firstname lastname phone day_birthday month_birthday year_birthday description avatar)

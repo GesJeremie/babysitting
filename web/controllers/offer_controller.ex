@@ -11,12 +11,13 @@ defmodule Babysitting.OfferController do
   end
 
   def create(conn, %{"offer" => offer_params}) do
+
     changeset = Offer.changeset(%Offer{}, offer_params)
 
     case Repo.insert(changeset) do
       {:ok, _offer} ->
         conn
-        |> put_flash(:info, "Offer created successfully.")
+        |> put_flash(:info, gettext "Offer created successfully.")
         |> redirect(to: offer_path(conn, :index))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)

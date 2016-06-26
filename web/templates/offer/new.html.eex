@@ -10,12 +10,15 @@
         <div class="row">
           <div class="grid-4">
             <%= text_input f, :firstname, placeholder: gettext "Firstname" %>
+            <span class="form__help --error"><%= error_tag f, :firstname %></span>
           </div>
           <div class="grid-4">
             <%= text_input f, :lastname, placeholder: gettext "Lastname" %>
+            <span class="form__help --error"><%= error_tag f, :lastname %></span>
           </div>
           <div class="grid-4">
             <%= text_input f, :birthday, placeholder: gettext "Birthday" %>
+            <span class="form__help --error"><%= error_tag f, :birthday %></span>
           </div>
         </div>
         <div class="clear"></div>
@@ -31,6 +34,7 @@
 
         <label><%= gettext "Avatar" %></label>
         <%= file_input f, :avatar %>
+        <span class="form__help --error"><%= error_tag f, :avatar %></span>
     </div>
 
     <div class="form__container">
@@ -39,9 +43,11 @@
         <div class="row">
           <div class="grid-6">
             <%= text_input f, :email, placeholder: "Email" %>
+            <span class="form__help --error"><%= error_tag f, :email %></span>
           </div>
           <div class="grid-6">
             <%= text_input f, :phone, placeholder: "Téléphone" %>
+            <span class="form__help --error"><%= error_tag f, :phone %></span>
           </div>
         </div>
         <div class="clear"></div>
@@ -53,9 +59,11 @@
         <div class="row">
           <div class="grid-6">
             <%= text_input f, :password, placeholder: gettext "Password" %>
+            <span class="form__help --error"><%= error_tag f, :password %></span>
           </div>
           <div class="grid-6">
             <%= text_input f, :password_confirmation, placeholder: "Password confirmation" %>
+            <span class="form__help --error"><%= error_tag f, :password_confirmation %></span>
           </div>
         </div>
         <div class="clear"></div>
