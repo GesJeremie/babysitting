@@ -1,5 +1,6 @@
 +component(form)
-  
+
+
   +part(container)
     margin-top: 2em
     padding: 1.5em
@@ -7,15 +8,26 @@
     border: 1px solid #E1E2E4
     border-radius: 5px
 
+    label
+      font-weight: bold
+      display: block
+
     input, textarea
-      border: 0
-      outline: 0
-      padding: 1em
-      border: 1px solid #E1E2E4
+      display: block
       width: 100%
-      font-size: 0.8em
+      padding: 1em
+      border: 0
+      border: 2px solid #E7E7E7
       border-radius: 3px
-      margin-top: 0.3em
+      font-size: 0.8em
+      outline: 0
+
+      &:active, &:focus
+        border-color: darken(#E7E7E7, 8%)
+
+  +part(description)
+    color: $color-text-grey
+    margin-bottom: 0.3em
 
   +part(title)
     font-size: 1.4em
@@ -26,3 +38,29 @@
     i
       vertical-align: middle
     
+  +part(under-label)
+    color: $color-text-grey
+    font-size: 0.8em
+    display: block
+
+  +part(help)
+    font-size: 0.8em
+    display: block
+    i
+      vertical-align: middle
+
+    +option(error)
+      color: $color-danger
+
+  +part(error)
+    border: 2px solid $color-danger !important
+
+  +part(checkbox)
+
+    +option(inline)
+      vertical-align: middle
+      font-size: 0.8em
+      input
+        vertical-align: middle
+
+
