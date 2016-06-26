@@ -29,6 +29,11 @@ defmodule Babysitting.Offer do
   @required_fields ~w(firstname lastname email password password_confirmation phone birthday description avatar token search status)
   @optional_fields ~w()
 
+  def changeset(model, params \\ :empty) do
+    model
+    |> cast(params, @required_fields, @optional_fields)
+  end
+
   def create_changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
@@ -38,15 +43,26 @@ defmodule Babysitting.Offer do
     |> validate_confirmation(:password)
     |> unique_constraint(:email)
     |> hash_password
+    |> make_token
   end
 
   @doc """
   Crypt the password given by the user
   """
   def hash_password(changeset) do
-    password = get_change(changeset, :password)
+    password = changeset.params["password"]
     hashed = Comeonin.Bcrypt.hashpwsalt(password)
-    put_change(changeset, :password, hashed)
+
+    changeset
+    |> put_change(:password, hashed)
+  end
+
+  @doc """
+  Generate an unique token for the offer
+  """
+  def make_token(changeset) do
+    changeset
+    |> put_change(:token, UUID.uuid1())
   end
 
   @doc """

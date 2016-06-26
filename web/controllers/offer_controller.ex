@@ -6,7 +6,7 @@ defmodule Babysitting.OfferController do
   plug :scrub_params, "offer" when action in [:create, :update]
 
   def new(conn, _params) do
-    changeset = Offer.create_changeset(%Offer{})
+    changeset = Offer.changeset(%Offer{})
     render(conn, "new.html", changeset: changeset)
   end
 
