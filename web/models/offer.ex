@@ -37,6 +37,16 @@ defmodule Babysitting.Offer do
     |> validate_length(:password, min: 6)
     |> validate_confirmation(:password)
     |> unique_constraint(:email)
+    |> hash_password
+  end
+
+  @doc """
+  Crypt the password given by the user
+  """
+  def hash_password(changeset) do
+    password = get_change(changeset, :password)
+    hashed = Comeonin.Bcrypt.hashpwsalt(password)
+    put_change(changeset, :password, hashed)
   end
 
   @doc """

@@ -1,4 +1,5 @@
-%{"connection": {:hex, :connection, "1.0.2", "f4a06dd3ecae4141aa66f94ce92ea4c4b8753069472814932f1cadbc3078ab80", [:mix], []},
+%{"comeonin": {:hex, :comeonin, "1.6.0", "65d3217bf171feb2600ac639089d1316c5438407a30dfbe9f465d75500db2171", [:mix, :make, :make], [{:comeonin_i18n, "~> 0.1", [hex: :comeonin_i18n, optional: true]}]},
+  "connection": {:hex, :connection, "1.0.2", "f4a06dd3ecae4141aa66f94ce92ea4c4b8753069472814932f1cadbc3078ab80", [:mix], []},
   "cowboy": {:hex, :cowboy, "1.0.4", "a324a8df9f2316c833a470d918aaf73ae894278b8aa6226ce7a9bf699388f878", [:rebar, :make], [{:cowlib, "~> 1.0.0", [hex: :cowlib, optional: false]}, {:ranch, "~> 1.0", [hex: :ranch, optional: false]}]},
   "cowlib": {:hex, :cowlib, "1.0.2", "9d769a1d062c9c3ac753096f868ca121e2730b9a377de23dec0f7e08b1df84ee", [:make], []},
   "db_connection": {:hex, :db_connection, "0.2.5", "3e5e28019e0ec744345568d22a2f5206109bff0e2571f4d7819e0d14cf955f3e", [:mix], [{:sbroker, "~> 0.7", [hex: :sbroker, optional: true]}, {:poolboy, "~> 1.5", [hex: :poolboy, optional: true]}, {:connection, "~> 1.0.2", [hex: :connection, optional: false]}]},
@@ -15,4 +16,5 @@
   "poison": {:hex, :poison, "2.1.0", "f583218ced822675e484648fa26c933d621373f01c6c76bd00005d7bd4b82e27", [:mix], []},
   "poolboy": {:hex, :poolboy, "1.5.1", "6b46163901cfd0a1b43d692657ed9d7e599853b3b21b95ae5ae0a777cf9b6ca8", [:rebar], []},
   "postgrex": {:hex, :postgrex, "0.11.1", "f48af70c0a58b9bfd1aaa456ec4273624554cfb837726b6a7f0701da4a94b2dd", [:mix], [{:decimal, "~> 1.0", [hex: :decimal, optional: false]}, {:db_connection, "~> 0.2", [hex: :db_connection, optional: false]}, {:connection, "~> 1.0", [hex: :connection, optional: false]}]},
-  "ranch": {:hex, :ranch, "1.2.1", "a6fb992c10f2187b46ffd17ce398ddf8a54f691b81768f9ef5f461ea7e28c762", [:make], []}}
+  "ranch": {:hex, :ranch, "1.2.1", "a6fb992c10f2187b46ffd17ce398ddf8a54f691b81768f9ef5f461ea7e28c762", [:make], []},
+  "uuid": {:hex, :uuid, "1.1.4", "36c7734e4c8e357f2f67ba57fb61799d60c20a7f817b104896cca64b857e3686", [:mix], []}}
