@@ -2,15 +2,17 @@ defmodule Babysitting.OfferContact do
   use Babysitting.Web, :model
 
   schema "offer_contacts" do
-    field :offer_id, :integer
     field :email, :string
     field :message, :string
     field :phone, :string
 
     timestamps
+
+    # Relations
+    belongs_to :offer, Babysitting.Offer
   end
 
-  @required_fields ~w(offer_id email message phone)
+  @required_fields ~w(email message phone)
   @optional_fields ~w()
 
   @doc """

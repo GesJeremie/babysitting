@@ -6,13 +6,13 @@ defmodule Babysitting.OfferController do
   plug :scrub_params, "offer" when action in [:create, :update]
 
   def new(conn, _params) do
-    changeset = Offer.changeset(%Offer{})
+    changeset = Offer.create_changeset(%Offer{})
     render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"offer" => offer_params}) do
 
-    changeset = Offer.changeset(%Offer{}, offer_params)
+    changeset = Offer.create_changeset(%Offer{}, offer_params)
 
     case Repo.insert(changeset) do
       {:ok, _offer} ->

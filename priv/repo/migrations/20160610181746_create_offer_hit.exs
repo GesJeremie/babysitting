@@ -3,7 +3,7 @@ defmodule Babysitting.Repo.Migrations.CreateOfferHit do
 
   def change do
     create table(:offer_hits) do
-      add :offer_id, :integer
+      add :offer_id, references(:offers)
       add :ip, :string
 
       timestamps

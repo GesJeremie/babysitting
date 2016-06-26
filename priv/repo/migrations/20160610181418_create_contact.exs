@@ -3,7 +3,7 @@ defmodule Babysitting.Repo.Migrations.CreateContact do
 
   def change do
     create table(:contacts) do
-      add :tenant_id, :integer
+      add :tenant_id, references(:tenants)
       add :email, :string
       add :message, :text
 

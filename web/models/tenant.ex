@@ -7,7 +7,11 @@ defmodule Babysitting.Tenant do
     field :slug, :string
     field :facebook, :string
     field :locale, :string
+
     timestamps
+
+    has_many :offers, Babysitting.Offer
+    has_many :contacts, Babysitting.Contact
   end
 
   @required_fields ~w(name domain slug)

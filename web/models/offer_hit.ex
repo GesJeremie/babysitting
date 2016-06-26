@@ -2,10 +2,13 @@ defmodule Babysitting.OfferHit do
   use Babysitting.Web, :model
 
   schema "offer_hits" do
-    field :offer_id, :integer
     field :ip, :string
 
     timestamps
+
+    # Relations
+    belongs_to :offer, Babysitting.Offer
+
   end
 
   @required_fields ~w(offer_id ip)

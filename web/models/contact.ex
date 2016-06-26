@@ -2,14 +2,16 @@ defmodule Babysitting.Contact do
   use Babysitting.Web, :model
 
   schema "contacts" do
-    field :tenant_id, :integer
     field :email, :string
     field :message, :string
 
     timestamps
+
+    belongs_to :tenant, Babysitting.Tenant
+
   end
 
-  @required_fields ~w(tenant_id email message)
+  @required_fields ~w(email message)
   @optional_fields ~w()
 
   @doc """
