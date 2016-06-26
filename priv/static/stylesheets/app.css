@@ -1937,10 +1937,10 @@ a {
   background-repeat: no-repeat;
   text-align: center;
   margin-bottom: 1em; }
-  /* line 15, /Users/jeremie/code/babysitting/front/styles/app/components/_town.sass */
-  .town__picture:hover .town__title {
-    border-bottom: 2px solid white; }
-  /* line 18, /Users/jeremie/code/babysitting/front/styles/app/components/_town.sass */
+  /* line 14, /Users/jeremie/code/babysitting/front/styles/app/components/_town.sass */
+  .town__picture:hover {
+    opacity: 0.8; }
+  /* line 16, /Users/jeremie/code/babysitting/front/styles/app/components/_town.sass */
   .town__picture img {
     width: 100%;
     height: 100%; }
@@ -1964,7 +1964,7 @@ a {
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .town__more {
   text-align: center; }
-  /* line 38, /Users/jeremie/code/babysitting/front/styles/app/components/_town.sass */
+  /* line 36, /Users/jeremie/code/babysitting/front/styles/app/components/_town.sass */
   .town__more a {
     color: #686c70; }
 
