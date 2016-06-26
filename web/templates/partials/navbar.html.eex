@@ -37,7 +37,7 @@
         <div class="town__container">
         <%= for tenant <- Babysitting.Helpers.App.tenants(@conn) do %>
             <div class="grid-4">
-              <a href="http://<%= tenant.domain %>" class="town__picture" style="background-image: url('/images/tenants/<%= tenant.slug %>/cover.jpg')">
+              <a href="http://<%= tenant.domain %>" class="town__picture" style="background-image: url('/images/tenants/<%= tenant.slug %>/thumbnail.jpg')">
                 <span class="town__title"><%= tenant.name %></span>
               </a>
             </div>
