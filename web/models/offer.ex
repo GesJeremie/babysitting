@@ -13,7 +13,8 @@ defmodule Babysitting.Offer do
     field :avatar, :string
     field :token, :string
     field :search, :string
-    field :status, :string
+    field :status, :boolean, default: true
+    field :valid, :boolean, default: false
 
     timestamps
 
@@ -26,7 +27,7 @@ defmodule Babysitting.Offer do
 
   end
 
-  @required_fields ~w(firstname lastname email password password_confirmation phone birthday description avatar token search status)
+  @required_fields ~w(firstname lastname email password password_confirmation phone birthday description)
   @optional_fields ~w()
 
   def changeset(model, params \\ :empty) do
@@ -44,17 +45,15 @@ defmodule Babysitting.Offer do
     |> unique_constraint(:email)
     |> hash_password
     |> make_token
+    |> make_search
   end
 
   @doc """
   Crypt the password given by the user
   """
   def hash_password(changeset) do
-    password = changeset.params["password"]
-    hashed = Comeonin.Bcrypt.hashpwsalt(password)
-
     changeset
-    |> put_change(:password, hashed)
+    |> update_change(:password, &Comeonin.Bcrypt.hashpwsalt/1)
   end
 
   @doc """
@@ -63,6 +62,21 @@ defmodule Babysitting.Offer do
   def make_token(changeset) do
     changeset
     |> put_change(:token, UUID.uuid1())
+  end
+
+
+  @doc """
+  Generate a string "search" as keywords to avoid useless "join" in the future
+  """
+  def make_search(changeset) do
+    with {:ok, firstname} <- fetch_change(changeset, :firstname),
+         {:ok, lastname} <- fetch_change(changeset, :lastname),
+         {:ok, description} <- fetch_change(changeset, :description) do
+      put_change(changeset, :search, firstname <> " " <> lastname <> " " <> description)
+    else
+      :error ->
+        changeset
+    end
   end
 
   @doc """

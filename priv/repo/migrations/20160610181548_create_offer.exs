@@ -14,10 +14,13 @@ defmodule Babysitting.Repo.Migrations.CreateOffer do
       add :avatar, :string
       add :token, :string
       add :search, :text
-      add :status, :string
+      add :status, :boolean
+      add :valid, :boolean
 
       timestamps
     end
+
+    create unique_index(:offers, [:email])
 
   end
 end
