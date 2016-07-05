@@ -2107,7 +2107,8 @@ a {
     vertical-align: middle; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
   .form__help.\--error {
-    color: #ed5153; }
+    color: #ed5153;
+    padding-left: 0.2em; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .form__error {
@@ -2117,7 +2118,7 @@ a {
 .form__checkbox.\--inline {
   vertical-align: middle;
   font-size: 0.8em; }
-  /* line 63, /Users/jeremie/code/babysitting/front/styles/app/components/_form.sass */
+  /* line 64, /Users/jeremie/code/babysitting/front/styles/app/components/_form.sass */
   .form__checkbox.\--inline input {
     vertical-align: middle; }
 
