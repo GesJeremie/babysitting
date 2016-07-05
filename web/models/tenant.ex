@@ -10,11 +10,11 @@ defmodule Babysitting.Tenant do
 
     timestamps
 
-    has_many :offers, Babysitting.Offer
+    has_many :ads, Babysitting.Ad
     has_many :contacts, Babysitting.Contact
   end
 
-  @required_fields ~w(name domain slug)
+  @required_fields ~w(name domain slug facebook locale)
   @optional_fields ~w()
 
   @doc """

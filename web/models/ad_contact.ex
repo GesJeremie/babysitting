@@ -1,17 +1,18 @@
-defmodule Babysitting.OfferHit do
+defmodule Babysitting.AdContact do
   use Babysitting.Web, :model
 
-  schema "offer_hits" do
-    field :ip, :string
+  schema "ad_contacts" do
+    field :email, :string
+    field :message, :string
+    field :phone, :string
 
     timestamps
 
     # Relations
-    belongs_to :offer, Babysitting.Offer
-
+    belongs_to :ad, Babysitting.Ad
   end
 
-  @required_fields ~w(offer_id ip)
+  @required_fields ~w(email message phone)
   @optional_fields ~w()
 
   @doc """

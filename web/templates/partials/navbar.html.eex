@@ -18,7 +18,7 @@
         </div>
         <div class="grid-3">
           <div class="navbar__button">
-            <a href="<%= offer_path(@conn, :new) %>"><%= gettext "Add my classified!" %></a>
+            <a href="<%= ad_path(@conn, :new) %>"><%= gettext "Add my classified!" %></a>
           </div>
         </div>
       </div>

@@ -18,7 +18,7 @@ defmodule Babysitting.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :home
-    resources "/offers", OfferController
+    resources "/ads", AdController
   end
 
   # Other scopes may use custom stacks.

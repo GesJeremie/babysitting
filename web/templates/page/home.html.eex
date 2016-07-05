@@ -17,7 +17,7 @@
       <div class="grid-6">
         <h3 class="empty__title"><%= gettext "Waiting for classified" %></h3>
         <p class="empty__description"><%= gettext "No classified available yet. If you are a baby sitter you can add your classifed right now !" %></p>
-        <a class="empty__button" href="<%= offer_path(@conn, :new) %>"><%= gettext "Add my classifed for free" %></a>
+        <a class="empty__button" href="<%= ad_path(@conn, :new) %>"><%= gettext "Add my classifed for free" %></a>
       </div>
     </div>
     <div class="clear"></div>

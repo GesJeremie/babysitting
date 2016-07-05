@@ -3,18 +3,18 @@ defmodule Babysitting.PageController do
 
   # Aliases
   alias Babysitting.Helpers.App
-  alias Babysitting.Offer
+  alias Babysitting.Ad
 
   def home(conn, _params) do
     tenant = App.current_tenant(conn)
 
-    offers = Offer 
-    |> Offer.from_current_tenant(conn)
+    ads = Ad 
+    |> Ad.from_current_tenant(conn)
     |> Repo.all
 
     render conn, "home.html", %{
       tenant: tenant,
-      offers: offers
+      ads: ads
     }
   end
 end

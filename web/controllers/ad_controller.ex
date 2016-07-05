@@ -1,31 +1,31 @@
-defmodule Babysitting.OfferController do
+defmodule Babysitting.AdController do
   use Babysitting.Web, :controller
 
-  alias Babysitting.Offer
+  alias Babysitting.Ad
 
-  plug :scrub_params, "offer" when action in [:create, :update]
+  plug :scrub_params, "ad" when action in [:create, :update]
 
   def new(conn, _params) do
-    changeset = Offer.changeset(%Offer{})
+    changeset = Ad.changeset(%Ad{})
     render(conn, "new.html", changeset: changeset)
   end
 
-  def create(conn, %{"offer" => offer_params}) do
+  def create(conn, %{"ad" => ad_params}) do
 
-    changeset = Offer.create_changeset(%Offer{}, offer_params)
+    changeset = Ad.create_changeset(%Ad{}, ad_params)
 
     IO.inspect changeset
     case Repo.insert(changeset) do
       {:ok, _offer} ->
         conn
         |> put_flash(:info, gettext "Offer created successfully.")
-        |> redirect(to: offer_path(conn, :index))
+        |> redirect(to: ad_path(conn, :index))
       {:error, changeset} ->
-        IO.inspect changeset.errors
         render(conn, "new.html", changeset: changeset)
     end
   end
 
+  """
   def show(conn, %{"id" => id}) do
     offer = Repo.get!(Offer, id)
     render(conn, "show.html", offer: offer)
@@ -62,4 +62,6 @@ defmodule Babysitting.OfferController do
     |> put_flash(:info, "Offer deleted successfully.")
     |> redirect(to: offer_path(conn, :index))
   end
+  """
+
 end

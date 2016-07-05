@@ -13,7 +13,8 @@
     "reset-css": "^2.0.2011012603",
     "animatedmodal": "https://github.com/joaopereirawd/animatedModal.js.git",
     "animate.css": "^3.5.2",
-    "jquery.inputmask": "^3.3.1"
+    "jquery.inputmask": "^3.3.1",
+    "autosize": "^3.0.15"
   },
   "overrides": {
     "jq-dropdown": {

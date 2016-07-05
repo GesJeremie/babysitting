@@ -1,9 +1,9 @@
-defmodule Babysitting.Offer do
+defmodule Babysitting.Ad do
   use Babysitting.Web, :model
   use Arc.Ecto.Model
   alias Babysitting.Helpers.App
 
-  schema "offers" do
+  schema "ads" do
     field :firstname, :string
     field :lastname, :string
     field :email, :string
@@ -23,8 +23,7 @@ defmodule Babysitting.Offer do
 
     # Relations
     belongs_to :tenant, Babysitting.Tenant
-    has_many :offer_contacts, Babysitting.OfferContact
-    has_many :offer_hits, Babysitting.OfferHit
+    has_many :ad_contacts, Babysitting.AdContact
 
   end
 

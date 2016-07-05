@@ -1,8 +1,8 @@
-defmodule Babysitting.Repo.Migrations.CreateOffer do
+defmodule Babysitting.Repo.Migrations.CreateAd do
   use Ecto.Migration
 
   def change do
-    create table(:offers) do
+    create table(:ads) do
       add :tenant_id, references(:tenants)
       add :email, :string
       add :password, :string
@@ -16,11 +16,12 @@ defmodule Babysitting.Repo.Migrations.CreateOffer do
       add :search, :text
       add :status, :boolean
       add :valid, :boolean
+      add :reason, :text
 
       timestamps
     end
 
-    create unique_index(:offers, [:email])
+    create unique_index(:ads, [:email])
 
   end
 end
