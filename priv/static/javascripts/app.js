@@ -165,6 +165,70 @@ module.exports = {
 };
 });
 
+;require.register("controllers/ad/new.coffee", function(exports, require, module) {
+var AdNew, Controller,
+  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
+
+Controller = require('core/controller');
+
+AdNew = (function(superClass) {
+  extend(AdNew, superClass);
+
+  function AdNew() {
+    this.setCharsCount = bind(this.setCharsCount, this);
+    this.changeCharsCount = bind(this.changeCharsCount, this);
+    this.initCharsCount = bind(this.initCharsCount, this);
+    this.initBirthdayMask = bind(this.initBirthdayMask, this);
+    return AdNew.__super__.constructor.apply(this, arguments);
+  }
+
+  AdNew.prototype.before = function() {
+    return this.on('keyup', '#ad_description', this.changeCharsCount);
+  };
+
+  AdNew.prototype.run = function() {
+    this.initBirthdayMask();
+    return this.initCharsCount();
+  };
+
+  AdNew.prototype.initBirthdayMask = function() {
+    return $('#ad_birthday').inputmask('99/99/9999', {
+      placeholder: "jj/mm/aaaa"
+    });
+  };
+
+  AdNew.prototype.initCharsCount = function() {
+    return this.setCharsCount(0);
+  };
+
+  AdNew.prototype.changeCharsCount = function() {
+    var count;
+    count = $('#ad_description').val().length;
+    return this.setCharsCount(count);
+  };
+
+  AdNew.prototype.setCharsCount = function(number) {
+    var $chars, minimum, text;
+    $chars = $('#chars');
+    minimum = $chars.data('min');
+    text = $chars.data('text-number') + ': ' + number + ' (' + $chars.data('text-minimum') + ': ' + minimum + ')';
+    $chars.html(text);
+    if (number < minimum) {
+      return $chars.css('color', '#E3000E');
+    } else {
+      return $chars.css('color', '#71BA51');
+    }
+  };
+
+  return AdNew;
+
+})(Controller);
+
+module.exports = AdNew;
+});
+
 ;require.register("controllers/example-controller.coffee", function(exports, require, module) {
 var Controller, Example,
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
@@ -188,69 +252,6 @@ Example = (function(superClass) {
 })(Controller);
 
 module.exports = Example;
-});
-
-;require.register("controllers/offer/new.coffee", function(exports, require, module) {
-var Controller, OfferNew,
-  bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
-  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
-  hasProp = {}.hasOwnProperty;
-
-Controller = require('core/controller');
-
-OfferNew = (function(superClass) {
-  extend(OfferNew, superClass);
-
-  function OfferNew() {
-    this.setCharsCount = bind(this.setCharsCount, this);
-    this.changeCharsCount = bind(this.changeCharsCount, this);
-    this.initCharsCount = bind(this.initCharsCount, this);
-    this.initBirthdayMask = bind(this.initBirthdayMask, this);
-    return OfferNew.__super__.constructor.apply(this, arguments);
-  }
-
-  OfferNew.prototype.before = function() {
-    this.initBirthdayMask();
-    this.initCharsCount();
-    return this.on('keyup', '#offer_description', this.changeCharsCount);
-  };
-
-  OfferNew.prototype.run = function() {};
-
-  OfferNew.prototype.initBirthdayMask = function() {
-    return console.log($('#offer_birthday').inputmask('99/99/9999', {
-      placeholder: "jj/mm/aaaa"
-    }));
-  };
-
-  OfferNew.prototype.initCharsCount = function() {
-    return this.setCharsCount(0);
-  };
-
-  OfferNew.prototype.changeCharsCount = function() {
-    var count;
-    count = $('#offer_description').val().length;
-    return this.setCharsCount(count);
-  };
-
-  OfferNew.prototype.setCharsCount = function(number) {
-    var $chars, minimum, text;
-    $chars = $('#chars');
-    minimum = $chars.data('min');
-    text = $chars.data('text-number') + ': ' + number + ' (' + $chars.data('text-minimum') + ': ' + minimum + ')';
-    $chars.html(text);
-    if (number < minimum) {
-      return $chars.css('color', '#E3000E');
-    } else {
-      return $chars.css('color', '#71BA51');
-    }
-  };
-
-  return OfferNew;
-
-})(Controller);
-
-module.exports = OfferNew;
 });
 
 ;require.register("helpers.coffee", function(exports, require, module) {

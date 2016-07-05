@@ -1,5 +1,5 @@
 <div id="app"
-    data-controller="offer.new"
+    data-controller="ad.new"
 ></div>
 
 <div class="container">

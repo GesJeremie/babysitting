@@ -2,7 +2,7 @@
 Controller = require 'core/controller'
 
 
-class OfferNew extends Controller
+class AdNew extends Controller
 
   ##
   # Before
@@ -14,10 +14,7 @@ class OfferNew extends Controller
   ##
   before: ->
 
-    @initBirthdayMask()
-    @initCharsCount()
-
-    @on 'keyup', '#offer_description', @changeCharsCount
+    @on 'keyup', '#ad_description', @changeCharsCount
 
   ##
   # Run
@@ -28,20 +25,35 @@ class OfferNew extends Controller
   ##
   run: ->
 
+    @initBirthdayMask()
+    @initCharsCount()
+
+  ##
+  # Init the mark birthday to help the user to format correctly his answer
+  ##
   initBirthdayMask: =>
 
-    console.log $('#offer_birthday').inputmask('99/99/9999', {placeholder: "jj/mm/aaaa"})
+    $('#ad_birthday').inputmask('99/99/9999', {placeholder: "jj/mm/aaaa"})
 
+  ##
+  # Set the counter of chars to his initial state
+  ##
   initCharsCount: =>
 
     @setCharsCount(0)
 
+  ##
+  # When the description change
+  ##
   changeCharsCount: =>
 
-    count = $('#offer_description').val().length
+    count = $('#ad_description').val().length
 
     @setCharsCount(count)
 
+  ##
+  # Set a new state for the counter
+  ##
   setCharsCount: (number) => 
 
     $chars = $('#chars')
@@ -59,4 +71,4 @@ class OfferNew extends Controller
 
 
 # Export
-module.exports = OfferNew
+module.exports = AdNew
