@@ -60,11 +60,11 @@
         <p class="form__description"><%= gettext "With this password you will be able to edit your classified in the future" %></p>
         <div class="row">
           <div class="grid-6">
-            <%= text_input f, :password, placeholder: gettext "Password" %>
+            <%= password_input f, :password, placeholder: gettext "Password" %>
             <span class="form__help --error"><%= error_tag f, :password %></span>
           </div>
           <div class="grid-6">
-            <%= text_input f, :password_confirmation, placeholder: "Password confirmation" %>
+            <%= password_input f, :password_confirmation, placeholder: "Password confirmation" %>
             <span class="form__help --error"><%= error_tag f, :password_confirmation %></span>
           </div>
         </div>
