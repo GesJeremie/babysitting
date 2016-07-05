@@ -27,6 +27,7 @@ class AdNew extends Controller
 
     @initBirthdayMask()
     @initCharsCount()
+    @initAutosize()
 
   ##
   # Init the mark birthday to help the user to format correctly his answer
@@ -68,7 +69,11 @@ class AdNew extends Controller
     else
       $chars.css('color', '#71BA51') # Green
 
-
+  ##
+  # Will autoresize the description when the user write his description
+  ##
+  initAutosize: =>
+    autosize($('#ad_description'))
 
 # Export
 module.exports = AdNew

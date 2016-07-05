@@ -177,6 +177,7 @@ AdNew = (function(superClass) {
   extend(AdNew, superClass);
 
   function AdNew() {
+    this.initAutosize = bind(this.initAutosize, this);
     this.setCharsCount = bind(this.setCharsCount, this);
     this.changeCharsCount = bind(this.changeCharsCount, this);
     this.initCharsCount = bind(this.initCharsCount, this);
@@ -190,7 +191,8 @@ AdNew = (function(superClass) {
 
   AdNew.prototype.run = function() {
     this.initBirthdayMask();
-    return this.initCharsCount();
+    this.initCharsCount();
+    return this.initAutosize();
   };
 
   AdNew.prototype.initBirthdayMask = function() {
@@ -220,6 +222,10 @@ AdNew = (function(superClass) {
     } else {
       return $chars.css('color', '#71BA51');
     }
+  };
+
+  AdNew.prototype.initAutosize = function() {
+    return autosize($('#ad_description'));
   };
 
   return AdNew;
