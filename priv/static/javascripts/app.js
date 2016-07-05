@@ -202,7 +202,9 @@ AdNew = (function(superClass) {
   };
 
   AdNew.prototype.initCharsCount = function() {
-    return this.setCharsCount(0);
+    var length;
+    length = $('#ad_description').val().length;
+    return this.setCharsCount(length);
   };
 
   AdNew.prototype.changeCharsCount = function() {

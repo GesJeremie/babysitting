@@ -41,7 +41,9 @@ class AdNew extends Controller
   ##
   initCharsCount: =>
 
-    @setCharsCount(0)
+    length = $('#ad_description').val().length
+
+    @setCharsCount(length)
 
   ##
   # When the description change
