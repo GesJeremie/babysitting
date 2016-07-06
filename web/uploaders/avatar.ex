@@ -25,7 +25,11 @@ defmodule Babysitting.Avatar do
 
   # Override the storage directory:
   def storage_dir(version, {file, scope}) do
-     "uploads/offer/avatars/#{scope.id}"
+    "uploads/ads/avatars/#{uniq_id(scope.email)}"
+  end
+
+  defp uniq_id(string) do
+    :crypto.hash(:md5, string) |> Base.encode16
   end
 
   # Provide a default URL if there hasn't been a file uploaded
