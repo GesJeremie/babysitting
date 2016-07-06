@@ -27,7 +27,7 @@ defmodule Babysitting.Ad do
 
   end
 
-  @required_fields ~w(firstname lastname email password password_confirmation phone birthday description)
+  @required_fields ~w(tenant_id firstname lastname email password password_confirmation phone birthday description)
   @optional_fields ~w()
 
   @required_file_fields ~w(avatar)
@@ -68,7 +68,6 @@ defmodule Babysitting.Ad do
     changeset
     |> put_change(:token, UUID.uuid1())
   end
-
 
   @doc """
   Generate a string "search" as keywords to avoid useless "join" in the future

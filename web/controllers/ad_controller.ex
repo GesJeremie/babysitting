@@ -2,6 +2,7 @@ defmodule Babysitting.AdController do
   use Babysitting.Web, :controller
 
   alias Babysitting.Ad
+  alias Babysitting.Helpers.App
 
   plug :scrub_params, "ad" when action in [:create, :update]
 
@@ -12,14 +13,16 @@ defmodule Babysitting.AdController do
 
   def create(conn, %{"ad" => ad_params}) do
 
+    # Fill the params with the current tenant id
+    ad_params = ad_params |> Map.put("tenant_id", App.current_tenant(conn).id)
+
     changeset = Ad.create_changeset(%Ad{}, ad_params)
 
-    IO.inspect changeset
     case Repo.insert(changeset) do
       {:ok, _offer} ->
         conn
-        |> put_flash(:info, gettext "Offer created successfully.")
-        |> redirect(to: ad_path(conn, :index))
+        |> put_flash(:info, gettext "Ad created successfully.")
+        |> redirect(to: page_path(conn, :home))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end

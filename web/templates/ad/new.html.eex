@@ -41,7 +41,7 @@
 
     <div class="form__container">
         <h2 class="form__title"><i class="icon-contact"></i> Contact</h2>
-        <p class="form__description"><%= gettext "Basic informations for the parents to reach you"  %></p>
+        <p class="form__description"><%= gettext "Basic informations for the parents to reach you."  %></p>
         <div class="row">
           <div class="grid-6">
             <%= text_input f, :email, placeholder: "Email" %>
