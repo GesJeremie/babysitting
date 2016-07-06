@@ -45,6 +45,7 @@ defmodule Babysitting.Ad do
     |> cast_attachments(params, @required_file_fields, @optional_file_fields)
     |> validate_length(:description, min: 280)
     |> validate_format(:email, ~r/\A[^@]+@([^@\.]+\.)+[^@\.]+\z/)
+    |> validate_format(:birthday, ~r/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/)
     |> validate_length(:password, min: 6)
     |> validate_confirmation(:password)
     |> unique_constraint(:email)
