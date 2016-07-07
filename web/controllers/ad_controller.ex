@@ -14,20 +14,27 @@ defmodule Babysitting.AdController do
 
   def create(conn, %{"ad" => ad_params}) do
 
+    current_tenant = App.current_tenant(conn)
+
     # Fill the params with the current tenant id
-    ad_params = ad_params |> Map.put("tenant_id", App.current_tenant(conn).id)
+    ad_params = ad_params |> Map.put("tenant_id", current_tenant.id)
 
     changeset = Ad.create_changeset(%Ad{}, ad_params)
 
     case Repo.insert(changeset) do
       {:ok, ad} ->
 
-        Ifttt.send_event("new_user", Ad.fullname(ad), App.current_tenant(conn).name)
+        Ifttt.send_event("ad.new.created", Ad.fullname(ad), current_tenant.name)
+        Keenex.add_event("ad.new", %{type: "created", ad: ad, tenant: %{id: current_tenant.id, name: current_tenant.name}})
 
         conn
         |> put_flash(:info, gettext "Ad created successfully.")
         |> redirect(to: page_path(conn, :home))
+
       {:error, changeset} ->
+
+        Keenex.add_event("ad.new", %{type: "failed", ad: changeset.changes, tenant: App.current_tenant(conn).name})
+
         render(conn, "new.html", changeset: changeset)
     end
   end
