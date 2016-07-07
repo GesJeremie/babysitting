@@ -22,10 +22,7 @@ defmodule Babysitting.AdController do
     case Repo.insert(changeset) do
       {:ok, ad} ->
 
-        fullname = ad.firstname <> " " <> ad.lastname
-        IO.inspect fullname
-
-        Ifttt.send_event("new_user", fullname, App.current_tenant(conn).name)
+        Ifttt.send_event("new_user", Ad.fullname(ad), App.current_tenant(conn).name)
 
         conn
         |> put_flash(:info, gettext "Ad created successfully.")

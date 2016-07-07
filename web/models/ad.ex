@@ -84,6 +84,10 @@ defmodule Babysitting.Ad do
     end
   end
 
+  def fullname(ad) do
+    String.capitalize(ad.firstname) <> " " <> String.capitalize(ad.lastname)
+  end
+
   @doc """
   Filter offer by the current tenant
   """
