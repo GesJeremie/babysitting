@@ -19,7 +19,7 @@ defmodule Babysitting.Mixfile do
   def application do
     [mod: {Babysitting, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex]]
+                    :phoenix_ecto, :postgrex, :httpoison]]
   end
 
   # Specifies which paths to compile per environment.
@@ -42,7 +42,8 @@ defmodule Babysitting.Mixfile do
      {:arc, "0.2.0"},
      {:cowboy, "~> 1.0"},
      {:mailgun, "~> 0.1.2"},
-     {:poison, "~> 2.1", override: true}]
+     {:poison, "~> 2.1", override: true},
+     {:httpoison, "~> 0.9.0"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

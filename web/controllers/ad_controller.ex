@@ -3,6 +3,7 @@ defmodule Babysitting.AdController do
 
   alias Babysitting.Ad
   alias Babysitting.Helpers.App
+  alias Babysitting.Helpers.Ifttt
 
   plug :scrub_params, "ad" when action in [:create, :update]
 
@@ -19,7 +20,13 @@ defmodule Babysitting.AdController do
     changeset = Ad.create_changeset(%Ad{}, ad_params)
 
     case Repo.insert(changeset) do
-      {:ok, _offer} ->
+      {:ok, ad} ->
+
+        fullname = ad.firstname <> " " <> ad.lastname
+        IO.inspect fullname
+
+        Ifttt.send_event("new_user", fullname, App.current_tenant(conn).name)
+
         conn
         |> put_flash(:info, gettext "Ad created successfully.")
         |> redirect(to: page_path(conn, :home))
