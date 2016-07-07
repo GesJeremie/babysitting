@@ -2,8 +2,7 @@ defmodule Babysitting.AdController do
   use Babysitting.Web, :controller
 
   alias Babysitting.Ad
-  alias Babysitting.Helpers.App
-  alias Babysitting.Helpers.Ifttt
+  alias Babysitting.Helpers.{App, Ifttt, Mailer}
 
   plug :scrub_params, "ad" when action in [:create, :update]
 
@@ -24,8 +23,12 @@ defmodule Babysitting.AdController do
     case Repo.insert(changeset) do
       {:ok, ad} ->
 
+        # Trigger some events
         Ifttt.send_event("ad.new.created", Ad.fullname(ad), current_tenant.name)
-        Keenex.add_event("ad.new", %{type: "created", ad: ad, tenant: %{id: current_tenant.id, name: current_tenant.name}})
+        Keenex.add_event("ad.new", %{type: "created", ad: %{id: ad.id, email: ad.email}, tenant: %{id: current_tenant.id, name: current_tenant.name}})
+
+        # Send email to the new user
+        Mailer.send_welcome(ad.email)
 
         conn
         |> put_flash(:info, gettext "Ad created successfully.")
