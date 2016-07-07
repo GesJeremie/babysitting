@@ -84,8 +84,8 @@ defmodule Babysitting.Ad do
     end
   end
 
-  def fullname(ad) do
-    String.capitalize(ad.firstname) <> " " <> String.capitalize(ad.lastname)
+  def fullname(%Ad{firstname: firstname, lastname: lastname}) do
+    String.capitalize(firstname) <> " " <> String.capitalize(lastname)
   end
 
   @doc """
