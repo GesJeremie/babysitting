@@ -7,14 +7,8 @@ defmodule Babysitting.Helpers.Ifttt do
 
     key = Application.get_env(:babysitting, :ifttt_key)
 
-    # I know. When I will see that again, I would be good enough in elixir
-    # to avoid it.
-    value1 = URI.encode(value1)
-    value2= URI.encode(value2)
-    value3 = URI.encode(value3)
+    request = "https://maker.ifttt.com/trigger/#{event}/with/key/#{key}"
 
-    request = "https://maker.ifttt.com/trigger/#{event}/with/key/#{key}?value1=#{value1}&value2=#{value2}&value3=#{value3}"
-
-    HTTPoison.get request
+    HTTPoison.get request, [], params: [value1: value1, value2: value2, value3: value3]
   end
 end
