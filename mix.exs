@@ -40,7 +40,9 @@ defmodule Babysitting.Mixfile do
      {:uuid, "~> 1.1" },
      {:arc_ecto, "~> 0.3.1"},
      {:arc, "0.2.0"},
-     {:cowboy, "~> 1.0"}]
+     {:cowboy, "~> 1.0"},
+     {:mailgun, "~> 0.1.2"},
+     {:poison, "~> 2.1", override: true}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
