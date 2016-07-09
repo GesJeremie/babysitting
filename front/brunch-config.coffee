@@ -55,6 +55,7 @@ exports.config =
       joinTo:
         'stylesheets/vendor.css': /^(vendor|bower_components)/
         'stylesheets/app.css': /^styles\/app/
+        'stylesheets/dashboard_admin.css': /^styles\/dashboard_admin/
 
 
       order:

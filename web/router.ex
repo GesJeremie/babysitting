@@ -14,16 +14,20 @@ defmodule Babysitting.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", Babysitting do
+  scope "/", Babysitting.App do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :home
     resources "/ads", AdController
   end
 
-  scope "/dashboard", Babysitting do
-    get "/", DashboardAdmin.AnalyticsController, :index
-    get "/ads", DashboardAdmin.AdController, :index
+  scope "/dashboard", Babysitting.DashboardAdmin do
+    get "/", AnalyticsController, :index
+    get "/ads", AdController, :index
+  end
+
+  scope "/user", Babysitting.DashboardUser do
+    
   end
 
   # Other scopes may use custom stacks.

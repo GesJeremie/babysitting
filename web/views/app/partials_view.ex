@@ -1,4 +1,4 @@
-defmodule Babysitting.PartialsView do
+defmodule Babysitting.App.PartialsView do
   use Babysitting.Web, :view
   alias Babysitting.Helpers.App
 

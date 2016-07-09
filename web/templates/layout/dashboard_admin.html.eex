@@ -14,7 +14,7 @@
     <script>require('initialize')</script>
 
     <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/stylesheets/vendor.css") %>">
-    <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/stylesheets/app.css") %>">
+    <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/stylesheets/dashboard_admin.css") %>">
     
     <title>Dashboard</title>
   </head>
