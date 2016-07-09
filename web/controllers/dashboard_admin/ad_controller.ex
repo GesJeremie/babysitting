@@ -10,17 +10,9 @@ defmodule Babysitting.DashboardAdmin.AdController do
     state = Dict.get(params, "state")
 
     ads = Ad
-
-    ads = case state do 
-      "valid" -> ads |> Ad.valid
-      "invalid" -> ads |> Ad.invalid
-      _ -> ads
-    end
-    
-    ads = ads
+      |> Ad.filter_by_state(state)
       |> Repo.all
       |> Repo.preload :tenant
-
 
     render(conn, "index.html", %{ads: ads})
   end

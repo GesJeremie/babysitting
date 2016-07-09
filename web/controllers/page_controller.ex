@@ -9,7 +9,7 @@ defmodule Babysitting.PageController do
     tenant = App.current_tenant(conn)
 
     ads = Ad 
-    |> Ad.from_current_tenant(conn)
+    |> Ad.of_current_tenant(conn)
     |> Repo.all
 
     render conn, "home.html", %{
