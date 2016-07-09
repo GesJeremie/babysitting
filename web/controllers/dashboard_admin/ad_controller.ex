@@ -5,10 +5,23 @@ defmodule Babysitting.DashboardAdmin.AdController do
 
   plug :put_layout, "dashboard_admin.html"
 
-  def index(conn, _params) do
-    ads = Repo.all(Ad) |> Repo.preload :tenant
+  def index(conn, params) do
 
-    IO.inspect ads
+    state = Dict.get(params, "state")
+
+    ads = Ad
+
+    ads = case state do 
+      "valid" -> ads |> Ad.valid
+      "invalid" -> ads |> Ad.invalid
+      _ -> ads
+    end
+    
+    ads = ads
+      |> Repo.all
+      |> Repo.preload :tenant
+
+
     render(conn, "index.html", %{ads: ads})
   end
 

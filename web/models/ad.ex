@@ -89,11 +89,39 @@ defmodule Babysitting.Ad do
   end
 
   @doc """
-  Filter offer by the current tenant
+  Filter ad by the current tenant
   """
-  def from_current_tenant(query, conn) do
-    from offer in query,
-      where: offer.tenant_id == ^App.current_tenant(conn).id
+  def current_tenant(query, conn) do
+    from ad in query,
+      where: ad.tenant_id == ^App.current_tenant(conn).id
   end
+
+  @doc """
+  Filter ad not valited
+  """
+  def invalid(query) do
+    from ad in query,
+      where: ad.valid == false
+  end
+
+  @doc """
+  Filter ad validated
+  """
+  def valid(query) do
+    from ad in query,
+      where: ad.valid == true
+  end
+
+  def inactive(query) do
+    from ad in query,
+      where: ad.status == false
+  end
+
+  def active(query) do
+    from ad in query,
+      where: ad.status == true
+  end
+
+
 
 end
