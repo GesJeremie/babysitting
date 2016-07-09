@@ -21,6 +21,11 @@ defmodule Babysitting.Router do
     resources "/ads", AdController
   end
 
+  scope "/dashboard", Babysitting do
+    get "/", DashboardAdmin.AnalyticsController, :index
+    get "/ads", DashboardAdmin.AdController, :index
+  end
+
   # Other scopes may use custom stacks.
   # scope "/api", Babysitting do
   #   pipe_through :api

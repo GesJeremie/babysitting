@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="row">
+    <div class="grid-1">Id</div>
+    <div class="grid-2">Name</div>
+    <div class="grid-3">Email</div>
+    <div class="grid-2">Phone</div>
+    <div class="grid-2">Tenant</div>
+    <div class="grid-2">Validated</div>
+  </div>
+</div>
+
+<div class="container">
+  <%= for ad <- @ads do %>
+  <div class="row">
+    <div class="grid-1"><%= ad.id %></div>
+    <div class="grid-2"><%= Babysitting.Ad.fullname(ad) %></div>
+    <div class="grid-3"><%= ad.email %></div>
+    <div class="grid-2"><%= ad.phone %></div>
+    <div class="grid-2"><%= ad.tenant.name %></div>
+    <div class="grid-2"><%= format_boolean(ad.valid) %></div>
+  </div>
+  <%= end %>
+</div>
