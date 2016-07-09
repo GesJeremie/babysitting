@@ -44,7 +44,8 @@ defmodule Babysitting.Mixfile do
      {:mailgun, "~> 0.1.2"},
      {:poison, "~> 2.1", override: true},
      {:httpoison, "~> 0.9.0"},
-     {:keenex, "~> 0.4"}]
+     {:keenex, "~> 0.4"},
+     {:html_entities, "~> 0.3"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.

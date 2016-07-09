@@ -6,12 +6,12 @@ defmodule Babysitting.Helpers.Mailer do
       domain: Application.get_env(:babysitting, :mailgun_domain),
       key: Application.get_env(:babysitting, :mailgun_key)
 
-  def send_welcome(email_address) do
+  def send_welcome(%{to: to, fullname: fullname, tenant: tenant}) do
 
-    send_email to: email_address,
+    send_email to: to,
                from: Application.get_env(:babysitting, :email_address),
-               subject: gettext("welcome"),
-               html: Phoenix.View.render_to_string(Babysitting.EmailView, "welcome.html", %{})
+               subject: gettext("Baby Sitting %{name} - Welcome", name: tenant.name),
+               html: Phoenix.View.render_to_string(Babysitting.EmailView, "welcome.html", %{fullname: fullname, tenant: tenant})
   end
 
 end

@@ -28,7 +28,7 @@ defmodule Babysitting.AdController do
         Keenex.add_event("ad.new", %{type: "created", ad: %{id: ad.id, email: ad.email}, tenant: %{id: current_tenant.id, name: current_tenant.name}})
 
         # Send email to the new user
-        Mailer.send_welcome(ad.email)
+        Mailer.send_welcome(%{to: ad.email, fullname: Ad.fullname(ad), tenant: current_tenant})
 
         conn
         |> put_flash(:info, gettext "Ad created successfully.")
