@@ -18,6 +18,13 @@ defmodule Babysitting.DashboardAdmin.AdController do
     render(conn, "index.html", %{ads: ads})
   end
 
+  def show(conn, %{"id" => id}) do
+    ad = Repo.get!(Ad, id)
+      |> Repo.preload(:tenant)
+      
+    render conn, "show.html", %{ad: ad}
+  end
+
   def validate(conn, %{"id" => id}) do
     ad = Repo.get!(Ad, id)
     ad_changed = %{ad | valid: true}

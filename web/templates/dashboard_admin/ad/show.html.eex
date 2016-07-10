@@ -1,0 +1,11 @@
+Avatar: <br/><img src="/<%= Babysitting.Avatar.url({@ad.avatar, @ad}, :thumb) %>" /><br/>
+Firstname: <%= @ad.firstname %><br/>
+Lastname: <%= @ad.lastname %><br/>
+Email: <%= @ad.email %><br/>
+Phone: <%= @ad.phone %><br/>
+Birthday <%= @ad.birthday %><br/>
+Description <%= @ad.description %><br/>
+Valid <%= @ad.valid %><br/>
+Status <%= @ad.status %><br/>
+Token: <%= @ad.token %><br/>
+Tenant: <%= @ad.tenant.name %> (id: <%= @ad.tenant.id %>)<br/>

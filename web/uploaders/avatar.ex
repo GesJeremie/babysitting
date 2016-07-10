@@ -5,7 +5,8 @@ defmodule Babysitting.Avatar do
   use Arc.Ecto.Definition
 
   @versions [:original, :thumb]
-
+  @acl :public_read
+  
    def __storage, do: Arc.Storage.Local
 
   # Whitelist file extensions:
