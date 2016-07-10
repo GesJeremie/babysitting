@@ -14,6 +14,13 @@ defmodule Babysitting.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :admin_layout do
+    plug :put_layout, {Babysitting.LayoutView, :dashboard_admin}
+  end
+
+  ##
+  # App
+  ##
   scope "/", Babysitting.App do
     pipe_through :browser # Use the default browser stack
 
@@ -21,11 +28,28 @@ defmodule Babysitting.Router do
     resources "/ads", AdController
   end
 
+  ##
+  # Dashboard Admin
+  ##
   scope "/dashboard", Babysitting.DashboardAdmin do
+    pipe_through [:browser, :admin_layout]
+
+    # Base
     get "/", AnalyticsController, :index
+
+    # Ads
     get "/ads", AdController, :index
+
+    # Auth
+    get "/auth", AuthController, :index
+    post "/auth/login", AuthController, :login
+    get "/auth/logout", AuthController, :logout
+
   end
 
+  ##
+  # Dashboard User
+  ##
   scope "/user", Babysitting.DashboardUser do
     
   end

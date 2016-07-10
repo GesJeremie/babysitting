@@ -4,6 +4,7 @@ defmodule Babysitting.DashboardAdmin.AdController do
   alias Babysitting.Ad
 
   plug :put_layout, "dashboard_admin.html"
+  plug Babysitting.Plug.IsAdmin
 
   def index(conn, params) do
 
@@ -12,7 +13,7 @@ defmodule Babysitting.DashboardAdmin.AdController do
     ads = Ad
       |> Ad.filter_by_state(state)
       |> Repo.all
-      |> Repo.preload :tenant
+      |> Repo.preload(:tenant)
 
     render(conn, "index.html", %{ads: ads})
   end

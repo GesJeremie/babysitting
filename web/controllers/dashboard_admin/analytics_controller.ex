@@ -1,6 +1,7 @@
 defmodule Babysitting.DashboardAdmin.AnalyticsController do
   use Babysitting.Web, :controller
-  alias Babysitting.Ad
+  
+  plug Babysitting.Plug.IsAdmin
 
   def index(conn, _params) do
     text conn, "AnalyticsController"
