@@ -25,7 +25,8 @@ defmodule Babysitting.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :home
-    resources "/ads", AdController
+    get "/ads/new", AdController, :new
+    post "/ads", AdController, :create
   end
 
   ##
@@ -39,6 +40,8 @@ defmodule Babysitting.Router do
 
     # Ads
     get "/ads", AdController, :index
+    get "/ads/validate/:id", AdController, :validate
+    get "/ads/invalidate/:id", AdController, :invalidate
 
     # Auth
     get "/auth", AuthController, :index

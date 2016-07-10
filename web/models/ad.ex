@@ -36,7 +36,6 @@ defmodule Babysitting.Ad do
   def changeset(model, params \\ :empty) do
     model
     |> cast(params, @required_fields, @optional_fields)
-    |> cast_attachments(params, @required_file_fields, @optional_file_fields)
   end
 
   def create_changeset(model, params \\ :empty) do
