@@ -1,0 +1,13 @@
+<h1><%= gettext("Thank you !") %></h1>
+<p><%= gettext("We are glad you used our service to post your ad. If you like our service, you should spread the world ... Like us on Facebook!") %></p>
+
+<div class="fb-page" data-href="<%= @current_tenant.facebook %>" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"></div>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&version=v2.6&appId=527465647462210";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>

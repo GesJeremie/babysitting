@@ -27,6 +27,8 @@ defmodule Babysitting.Router do
     get "/", PageController, :home
     get "/ads/new", AdController, :new
     post "/ads", AdController, :create
+    get "/ads/thankyou", AdController, :thankyou
+
   end
 
   ##

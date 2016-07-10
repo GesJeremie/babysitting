@@ -27,9 +27,6 @@ defmodule Babysitting.App.AdController do
         Ifttt.send_event("ad.new.created", Ad.fullname(ad), current_tenant.name)
         Keenex.add_event("ad.new", %{type: "created", ad: %{id: ad.id, email: ad.email}, tenant: %{id: current_tenant.id, name: current_tenant.name}})
 
-        # Send email to the new user
-        Mailer.send_welcome(%{to: ad.email, fullname: Ad.fullname(ad), tenant: current_tenant})
-
         conn
         |> put_flash(:info, gettext "Ad created successfully.")
         |> redirect(to: page_path(conn, :home))
@@ -40,6 +37,14 @@ defmodule Babysitting.App.AdController do
 
         render(conn, "new.html", changeset: changeset)
     end
+  end
+
+
+  def thankyou(conn, _params) do
+
+    current_tenant = App.current_tenant(conn)
+
+    render conn, "thankyou.html", %{current_tenant: current_tenant}
   end
 
   """
