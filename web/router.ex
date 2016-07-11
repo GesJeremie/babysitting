@@ -34,7 +34,7 @@ defmodule Babysitting.Router do
   ##
   # Dashboard Admin
   ##
-  scope "/dashboard", Babysitting.DashboardAdmin do
+  scope "/dashboard", Babysitting.DashboardAdmin, as: :admin do
     pipe_through [:browser, :admin_layout]
 
     # Base
@@ -56,8 +56,16 @@ defmodule Babysitting.Router do
   ##
   # Dashboard User
   ##
-  scope "/user", Babysitting.DashboardUser do
-    
+  scope "/user", Babysitting.DashboardUser, as: :user do
+    pipe_through [:browser]
+
+    # Base
+    get "/", AccountController, :index
+
+    # Auth
+    get "/auth", AuthController, :index
+    post "/auth/login", AuthController, :login
+    get "/auth/logout", AuthController, :logout
   end
 
   # Other scopes may use custom stacks.

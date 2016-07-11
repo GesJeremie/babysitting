@@ -1,7 +1,8 @@
 <div class="container">
   <%= get_flash(@conn, :error) %>
   
-  <%= form_for @conn, admin_auth_path(@conn, :login), [name: :login], fn f -> %>
+  <%= form_for @conn, user_auth_path(@conn, :login), [name: :login], fn f -> %>
+    <%= text_input f, :email %>
     <%= password_input f, :password %>
     <%= submit "login" %>
   <% end %>

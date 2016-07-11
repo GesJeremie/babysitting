@@ -167,6 +167,19 @@ defmodule Babysitting.Ad do
       where: ad.status == true
   end
 
+  @doc """
+  Global where filter
+  """
+  def where(query, field, condition) do
+    from ad in query,
+      where: field(ad, ^field) == ^condition
+  end
+
+  @doc """
+  Check if the query executed returned no result or not
+  """
+  def exists?([]), do: false
+  def exists?(result), do: true 
 
 
 end
