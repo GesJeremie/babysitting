@@ -29,7 +29,7 @@ defmodule Babysitting.App.AdController do
 
         conn
         |> put_flash(:info, gettext "Ad created successfully.")
-        |> redirect(to: page_path(conn, :home))
+        |> redirect(to: ad_path(conn, :thankyou))
 
       {:error, changeset} ->
 

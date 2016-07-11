@@ -10,7 +10,11 @@ defmodule Babysitting.App.PageController do
 
     ads = Ad 
     |> Ad.of_current_tenant(conn)
+    |> Ad.valid
+    |> Ad.active
     |> Repo.all
+
+    IO.inspect ads
 
     render conn, "home.html", %{
       tenant: tenant,

@@ -5,10 +5,5 @@ defmodule Babysitting.App.PageView do
     town |> String.capitalize
   end
 
-  def word_limit(string, limit \\ 50) do
-    string 
-      |> String.split(" ")
-      |> Enum.slice(0..1)
-  end
 
 end
