@@ -7,14 +7,36 @@
   </div>
 </div>
 
-<div class="container">
-  <%= for ad <- @ads do %>
-    <h1><%= ad.firstname %></h1>
-    <%= Babysitting.Ad.age(ad) %> <%= gettext("years old") %><br/>
-    <%= Babysitting.Ad.short_description(ad) %>
-    <hr>
-  <% end %>
-</div>
+<%= if length(@ads) > 0 do %>
+  <div class="container">
+    <%= for ad <- @ads do %>
+      <h1><%= ad.firstname %></h1>
+      <%= Babysitting.Ad.age(ad) %> <%= gettext("years old") %><br/>
+      <%= Babysitting.Ad.short_description(ad) %>
+      <hr>
+    <% end %>
+  </div>
+
+
+  <div class="container">
+    <div class="empty__container --home">
+      <div class="row">
+        <div class="grid-4">
+          <div class="empty__artwork">
+            <img src="/images/teddy.png" />
+          </div>
+        </div>
+        <div class="grid-8">
+          <h3 class="empty__title"><%= gettext "Want to see your classified in this list ?" %></h3>
+          <p class="empty__description"><%= gettext "If you are a baby sitter you can add your classifed right now !" %></p>
+          <a class="empty__button" href="<%= ad_path(@conn, :new) %>"><%= gettext "Add my classifed for free" %></a>
+        </div>
+      </div>
+      <div class="clear"></div>
+    </div>
+  </div>
+
+<% else %>
 
 <div class="container">
   <div class="empty__container --home">
@@ -33,6 +55,8 @@
     <div class="clear"></div>
   </div>
 </div>
+
+<% end %>
 
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
