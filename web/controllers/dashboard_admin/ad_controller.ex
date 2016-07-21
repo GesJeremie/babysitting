@@ -32,11 +32,11 @@ defmodule Babysitting.DashboardAdmin.AdController do
       {:ok, ad} ->
         conn
         |> put_flash(:info, "Ad validated successfully.")
-        |> redirect(to: ad_path(conn, :index))
+        |> redirect(to: admin_ad_path(conn, :index))
       {:error, changeset} ->
         conn
         |> put_flash(:error, "Impossible to validate the ad.")
-        |> redirect(to: ad_path(conn, :index))
+        |> redirect(to: admin_ad_path(conn, :index))
     end
 
 
@@ -50,11 +50,11 @@ defmodule Babysitting.DashboardAdmin.AdController do
       {:ok, ad} ->
         conn
         |> put_flash(:info, "Ad invalidated successfully.")
-        |> redirect(to: ad_path(conn, :index))
+        |> redirect(to: admin_ad_path(conn, :index))
       {:error, changeset} ->
         conn
         |> put_flash(:error, "Impossible to invalidate the ad.")
-        |> redirect(to: ad_path(conn, :index))
+        |> redirect(to: admin_ad_path(conn, :index))
     end
   end
 

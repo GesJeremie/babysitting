@@ -8,9 +8,9 @@ defmodule Babysitting.DashboardUser.AuthController do
 
   def login(conn, %{"login" => %{"email" => email, "password" => password}}) do
 
-    IO.inspect can_login_with?(email, password)
+    login = can_login_with?(email, password, conn)
 
-    text conn, "lol"
+    text conn, login
 
   end
 
@@ -21,8 +21,9 @@ defmodule Babysitting.DashboardUser.AuthController do
       |> redirect(to: "/")
   end
 
-  defp can_login_with?(email, password) do
+  defp can_login_with?(email, password, conn) do
     Ad
+      |> Ad.of_current_tenant(conn)
       |> Ad.where(:email, email)
       |> Ad.where(:password, password)
       |> Repo.all

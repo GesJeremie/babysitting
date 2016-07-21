@@ -23,11 +23,11 @@
     <div class="grid-3"><%= ad.email %></div>
     <div class="grid-2"><%= format_boolean(ad.valid) %></div>
     <div class="grid-4">
-      <a href="<%= ad_path(@conn, :show, ad.id) %>">Show</a>
+      <a href="<%= admin_ad_path(@conn, :show, ad.id) %>">Show</a>
       <%= if ad.valid do %>
-        <a href="<%= ad_path(@conn, :invalidate, ad.id) %>">Invalidate</a>
+        <a href="<%= admin_ad_path(@conn, :invalidate, ad.id) %>">Invalidate</a>
       <% else %>
-        <a href="<%= ad_path(@conn, :validate, ad.id) %>">Validate</a>
+        <a href="<%= admin_ad_path(@conn, :validate, ad.id) %>">Validate</a>
       <% end %>
     </div>
   </div>
