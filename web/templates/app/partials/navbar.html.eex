@@ -5,7 +5,7 @@
       <div class="row">
         <div class="grid-3">
           <div class="navbar__logo">
-            <a href="<%= page_path(@conn, :home) %>"><img src="<%= logo(@conn) %>" /></a>
+            <a href="<%= app_page_path(@conn, :home) %>"><img src="<%= logo(@conn) %>" /></a>
           </div>
         </div>
         <div class="grid-6">
@@ -18,7 +18,7 @@
         </div>
         <div class="grid-3">
           <div class="navbar__button">
-            <a href="<%= ad_path(@conn, :new) %>"><%= gettext "Add my classified!" %></a>
+            <a href="<%= app_ad_path(@conn, :new) %>"><%= gettext "Add my classified!" %></a>
           </div>
         </div>
       </div>

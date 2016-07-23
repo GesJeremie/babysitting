@@ -3,7 +3,7 @@
 ></div>
 
 <div class="container">
-  <%= form_for @changeset, ad_path(@conn, :create), [multipart: true], fn f -> %>
+  <%= form_for @changeset, app_ad_path(@conn, :create), [multipart: true], fn f -> %>
 
     <div class="form__container">
         <h2 class="form__title"><i class="icon-user"></i> A propos de vous</h2>

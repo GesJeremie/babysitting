@@ -21,7 +21,7 @@ defmodule Babysitting.Router do
   ##
   # App
   ##
-  scope "/", Babysitting.App do
+  scope "/", Babysitting.App, as: :app do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :home

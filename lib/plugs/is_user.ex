@@ -1,4 +1,4 @@
-defmodule Babysitting.Plug.IsAdmin do
+defmodule Babysitting.Plug.IsUser do
   
   import Plug.Conn
 
@@ -7,7 +7,7 @@ defmodule Babysitting.Plug.IsAdmin do
   def call(conn, _) do
     conn
       |> fetch_session
-      |> get_session(:is_admin)
+      |> get_session(:is_user)
       |> handle(conn)
   end
 
@@ -15,7 +15,7 @@ defmodule Babysitting.Plug.IsAdmin do
   
   defp handle(_, conn) do
     conn
-      |> Phoenix.Controller.redirect(to: Babysitting.Router.admin_auth_path(conn, :index))
+      |> Phoenix.Controller.redirect(to: Phoenix.Router.user_auth_path(conn, :index))
       |> halt
   end
 
