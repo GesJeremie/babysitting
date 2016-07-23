@@ -6,8 +6,13 @@ defmodule Babysitting.DashboardUser.AccountController do
   plug Babysitting.Plug.IsUser
 
 
-  def index(conn, _) do
-    ad = App.current_user(conn)
-    render conn, "index.html", %{ad: ad}
+  def status_on(conn) do
   end
+
+  def status_off(conn) do
+  end
+
+  defp switch_status(_) do
+  end
+
 end

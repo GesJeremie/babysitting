@@ -9,10 +9,10 @@ defmodule Babysitting.App.PageController do
     tenant = App.current_tenant(conn)
 
     ads = Ad 
-    |> Ad.of_current_tenant(conn)
-    |> Ad.valid
-    |> Ad.active
-    |> Repo.all
+      |> Ad.of_current_tenant(conn)
+      |> Ad.valid
+      |> Ad.active
+      |> Repo.all
 
     IO.inspect ads
 

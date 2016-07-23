@@ -1,0 +1,10 @@
+
+  <div class="container">
+      <%= gettext("Your classified") %>
+      <h1><%= @ad.firstname %></h1>
+      <%= Babysitting.Ad.age(@ad) %> <%= gettext("years old") %><br/>
+      <%= @ad.description %>
+      <br/>
+      <a href="#"><%= gettext("Edit") %></a>
+      <a href="#"><%= gettext("On") %></a> / <a href="#"><%= gettext("Off") %></a>
+  </div>
