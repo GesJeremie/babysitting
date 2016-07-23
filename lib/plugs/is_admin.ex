@@ -4,6 +4,9 @@ defmodule Babysitting.Plug.IsAdmin do
 
   def init(default), do: default
 
+  @doc """
+  Will redirect to the home page if it's not an admin
+  """
   def call(conn, _) do
     conn
       |> fetch_session

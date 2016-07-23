@@ -7,6 +7,9 @@ defmodule Babysitting.Plug.Tenant do
 
   def init(default), do: default
 
+  @doc """
+  Given the domain name, it initialize the current tenant associated
+  """
   def call(conn, _) do
 
     host = conn.host
@@ -18,6 +21,7 @@ defmodule Babysitting.Plug.Tenant do
     # Set the right locale for the current tenant
     Gettext.put_locale(Babysitting.Gettext, current_tenant.locale)
 
+    # Pass it to the connection as private
     conn 
       |> put_private(:current_tenant, current_tenant)
       |> put_private(:tenants, tenants)

@@ -6,17 +6,20 @@ defmodule Babysitting.App.AdController do
 
   plug :scrub_params, "ad" when action in [:create, :update]
 
+  @doc """
+  Display the form to create a new ad
+  """
   def new(conn, _params) do
     changeset = Ad.changeset(%Ad{})
     render(conn, "new.html", changeset: changeset)
   end
 
+  @doc """
+  Commit the form given
+  """
   def create(conn, %{"ad" => ad_params}) do
 
-    current_tenant = App.current_tenant(conn)
-
-    # Fill the params with the current tenant id
-    ad_params = ad_params |> Map.put("tenant_id", current_tenant.id)
+    ad_params = set_current_tenant(conn, ad_params)
 
     changeset = Ad.create_changeset(%Ad{}, ad_params)
 
@@ -45,6 +48,16 @@ defmodule Babysitting.App.AdController do
     current_tenant = App.current_tenant(conn)
 
     render conn, "thankyou.html", %{current_tenant: current_tenant}
+  end
+
+  defp trigger_events do
+    
+  end
+
+  defp set_current_tenant(conn, params) do
+    current_tenant = App.current_tenant(conn)
+    params 
+      |> Map.put("tenant_id", current_tenant.id)
   end
 
   """
