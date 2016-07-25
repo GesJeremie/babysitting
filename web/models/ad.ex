@@ -79,7 +79,7 @@ defmodule Babysitting.Ad do
          {:ok, description} <- fetch_change(changeset, :description) do
       put_change(changeset, :search, firstname <> " " <> lastname <> " " <> description)
     else
-      {:error} ->
+      :error ->
         changeset
     end
   end

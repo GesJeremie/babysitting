@@ -23,6 +23,22 @@ defmodule Babysitting.App.PageController do
     render conn, "about.html", %{}
   end
 
+  def legal(conn, _params) do
+    render conn, "legal.html", %{}
+  end
+
+  def contact(conn, _params) do
+    render conn, "contact.html", %{}
+  end
+
+  def press(conn, _params) do
+    render conn, "press.html", %{}
+  end
+
+  def faq(conn, _params) do
+    render conn, "faq.html", %{}
+  end
+
   defp fetch_ads(conn) do
     Ad 
       |> Ad.of_current_tenant(conn)

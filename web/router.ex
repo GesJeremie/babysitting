@@ -26,7 +26,11 @@ defmodule Babysitting.Router do
 
     get "/", PageController, :home
     get "/about", PageController, :about
-    
+    get "/legal", PageController, :legal
+    get "/contact", PageController, :contact
+    get "/press", PageController, :press
+    get "/faq", PageController, :faq
+
     get "/ads/new", AdController, :new
     post "/ads", AdController, :create
     get "/ads/thankyou", AdController, :thankyou

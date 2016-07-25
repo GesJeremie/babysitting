@@ -3,12 +3,12 @@
   <div class="footer__links">
     <a target="_blank" href="<%= facebook_link(@conn) %>">Facebook</a>
     |
-    <a href="#"><%= gettext("Legal") %></a>
+    <a href="<%= app_page_path(@conn, :legal) %>"><%= gettext("Legal") %></a>
     |
-    <a href="#"><%= gettext("Contact") %></a>
+    <a href="<%= app_page_path(@conn, :contact) %>"><%= gettext("Contact") %></a>
     |
-    <a href="#"><%= gettext("Press") %></a>
+    <a href="<%= app_page_path(@conn, :press) %>"><%= gettext("Press") %></a>
     |
-    <a href="#"><%= gettext("FAQ") %></a>
+    <a href="<%= app_page_path(@conn, :faq) %>"><%= gettext("FAQ") %></a>
   </div>
 </div>
