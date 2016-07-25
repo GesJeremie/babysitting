@@ -18,7 +18,11 @@ defmodule Babysitting.App.PageController do
       ads: ads
     }
   end
-  
+
+  def about(conn, _params) do
+    render conn, "about.html", %{}
+  end
+
   defp fetch_ads(conn) do
     Ad 
       |> Ad.of_current_tenant(conn)

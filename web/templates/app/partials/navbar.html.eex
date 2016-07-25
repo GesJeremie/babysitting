@@ -10,7 +10,7 @@
         </div>
         <div class="grid-6">
           <ul id="navbar" class="navbar__links">
-            <li><a class="navbar__link" href="#"><%= gettext "About" %></a></li>
+            <li><a class="navbar__link" href="<%= app_page_path(@conn, :about) %>"><%= gettext "About" %></a></li>
           </ul>
         </div>
         <div class="grid-3">
