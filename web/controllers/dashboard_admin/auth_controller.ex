@@ -1,44 +1,62 @@
 defmodule Babysitting.DashboardAdmin.AuthController do
+  
+  # Use
   use Babysitting.Web, :controller
   
+  # Module attributes
   @password_login "babysittingrocks"
 
+  @doc """
+  Display the login form
+  """
   def index(conn, _params) do
     render(conn, "index.html")
   end
 
+  @doc """
+  Try to login the user
+  """
   def login(conn, %{"login" => %{"password" => password}}) do
-
-    conn = conn |> fetch_session
-
-    if count_attempt_login(conn) <= 10 do
-      conn
-        |> attempt_login(password)
-    else 
-      conn 
-        |> redirect(to: "/")
+    case do
+      count_do_login(conn) <= 10 ->
+        conn
+          |> do_login(password)
+      _ ->
+        conn
+          |> redirect(to: app_page_path(conn, :home))
     end
-
   end
 
-  defp count_attempt_login(conn) do
-    (conn |> get_session(:count_attempt_login)) || 1
+  @doc """
+  Return the number of times the admin tried to login
+  """
+  defp count_do_login(conn) do
+    (conn |> fetch_session |> get_session(:count_attempt_login)) || 1
   end
 
-  defp attempt_login(conn, password) when password == @password_login do
+  @doc """
+  Login the user if right password provided
+  """
+  defp do_login(conn, password) when password == @password_login do
       conn
         |> put_session(:is_admin, true)
-        |> delete_session(:count_attempt_login)
-        |> redirect(to: "/dashboard")
+        |> delete_session(:count_do_login)
+        |> redirect(to: admin_analytics_path(conn, :index))
   end
 
-  defp attempt_login(conn, _) do
+  @doc """
+  Doesn't login the user ann keep in memory the attempt
+  """
+  defp do_login(conn, _) do
     conn
-      |> put_session(:count_attempt_login, count_attempt_login(conn) + 1)
+      |> put_session(:count_do_login, count_do_login(conn) + 1)
       |> put_flash(:error, "Impossible to connect with this password")
-      |> redirect(to: "/dashboard/auth")
+      |> redirect(to: admin_auth_path(conn, :index))
   end
 
+  @doc """
+  Logout the user
+  """
   def logout(conn, _params) do
     conn
       |> fetch_session

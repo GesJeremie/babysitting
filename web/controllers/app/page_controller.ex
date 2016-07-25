@@ -5,20 +5,25 @@ defmodule Babysitting.App.PageController do
   alias Babysitting.Helpers.App
   alias Babysitting.Ad
 
+  @doc """
+  Display the home page with the ads of 
+  the current tenant
+  """
   def home(conn, _params) do
     tenant = App.current_tenant(conn)
-
-    ads = Ad 
-      |> Ad.of_current_tenant(conn)
-      |> Ad.valid
-      |> Ad.active
-      |> Repo.all
-
-    IO.inspect ads
+    ads = fetch_ads(conn)
 
     render conn, "home.html", %{
       tenant: tenant,
       ads: ads
     }
+  end
+  
+  defp fetch_ads(conn) do
+    Ad 
+      |> Ad.of_current_tenant(conn)
+      |> Ad.valid
+      |> Ad.active
+      |> Repo.all
   end
 end
