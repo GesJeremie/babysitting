@@ -17,13 +17,12 @@ defmodule Babysitting.DashboardAdmin.AuthController do
   Try to login the user
   """
   def login(conn, %{"login" => %{"password" => password}}) do
-    case do
-      count_do_login(conn) <= 10 ->
-        conn
-          |> do_login(password)
-      _ ->
-        conn
-          |> redirect(to: app_page_path(conn, :home))
+    if count_do_login(conn) <= 10 do
+      conn
+        |> do_login(password)
+    else
+      conn
+        |> redirect(to: app_page_path(conn, :home))
     end
   end
 
