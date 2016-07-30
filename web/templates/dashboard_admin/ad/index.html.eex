@@ -20,7 +20,7 @@
   <div class="row">
     <div class="grid-1"><%= ad.id %></div>
     <div class="grid-2"><%= Babysitting.Ad.fullname(ad) %></div>
-    <div class="grid-3"><%= ad.email %></div>
+    <div class="grid-3"><%= ad.tenant.name %></div>
     <div class="grid-2"><%= format_boolean(ad.valid) %></div>
     <div class="grid-4">
       <a href="<%= admin_ad_path(@conn, :show, ad.id) %>">Show</a>
