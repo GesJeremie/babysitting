@@ -18,7 +18,7 @@ defmodule Babysitting.Plug.IsAdmin do
   
   defp handle(_, conn) do
     conn
-      |> Phoenix.Controller.redirect(to: Babysitting.Router.admin_auth_path(conn, :index))
+      |> Phoenix.Controller.redirect(to: Babysitting.Router.Helpers.admin_auth_path(conn, :index))
       |> halt
   end
 

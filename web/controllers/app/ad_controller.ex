@@ -32,12 +32,13 @@ defmodule Babysitting.App.AdController do
       {:ok, ad} ->
         conn
           |> trigger_success_events(ad)
-          |> put_flash(:info, gettext "Ad created successfully.")
+          |> put_flash(:info, gettext("Ad created successfully."))
           |> redirect(to: app_ad_path(conn, :thankyou))
 
       {:error, changeset} ->
         conn
           |> trigger_error_events(changeset)
+          |> put_flash(:error, gettext("Oops, some errors are present in the form."))
           |> render("new.html", changeset: changeset)
     end
   end

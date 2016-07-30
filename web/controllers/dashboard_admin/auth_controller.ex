@@ -4,7 +4,7 @@ defmodule Babysitting.DashboardAdmin.AuthController do
   use Babysitting.Web, :controller
   
   # Module attributes
-  @password_login "babysittingrocks"
+  @password_login Application.get_env(:babysitting, :admin_password)
 
   @doc """
   Display the login form

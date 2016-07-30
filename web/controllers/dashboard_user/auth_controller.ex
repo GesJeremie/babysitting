@@ -17,7 +17,7 @@ defmodule Babysitting.DashboardUser.AuthController do
     case can_login_with(email, password, conn) do 
       {:error} ->
         conn
-          |> put_flash(:error, gettext("Unable to connect this email / password"))
+          |> put_flash(:error, gettext("Unable to connect with this email / password"))
           |> redirect(to: user_auth_path(conn, :index))
       {:ok, id} ->
         conn

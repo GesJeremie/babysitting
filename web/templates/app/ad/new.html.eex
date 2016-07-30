@@ -2,6 +2,8 @@
     data-controller="ad.new"
 ></div>
 
+<%= get_flash(@conn, :error) %>
+
 <div class="container">
   <%= form_for @changeset, app_ad_path(@conn, :create), [multipart: true], fn f -> %>
 

@@ -18,7 +18,7 @@ defmodule Babysitting.Plug.IsUser do
   
   defp handle(_, conn) do
     conn
-      |> Phoenix.Controller.redirect(to: Phoenix.Router.user_auth_path(conn, :index))
+      |> Phoenix.Controller.redirect(to: Babysitting.Router.Helpers.user_auth_path(conn, :index))
       |> halt
   end
 
