@@ -15,6 +15,7 @@
 
     <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/stylesheets/vendor.css") %>">
     <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/stylesheets/app.css") %>">
+    <link href="https://file.myfontastic.com/jiBmkbvREKqK69TasUa4W/icons.css" rel="stylesheet">
     
     <title><%= title(@conn) %></title>
   </head>

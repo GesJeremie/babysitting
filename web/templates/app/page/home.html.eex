@@ -3,7 +3,9 @@
     <div class="hero__overlay"></div>
     <h2 class="hero__title"><%= gettext "Your Baby Sitter in %{tenant_name}", tenant_name: @tenant.name %></h2>
     <p class="hero__description"><%= gettext "Simple, free and effective. Find your next baby sitter." %></p>
-    <div class="fb-like" data-href="<%= @tenant.facebook %>" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+    <div class="facebook__container">
+      <div class="fb-like" data-href="<%= @tenant.facebook %>" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+    </div>
   </div>
 </div>
 
@@ -38,23 +40,23 @@
 
 <% else %>
 
-<div class="container">
-  <div class="empty__container --home">
-    <div class="row">
-      <div class="grid-4">
-        <div class="empty__artwork">
-          <img src="/images/teddy.png" />
+  <div class="container">
+    <div class="empty__container --home">
+      <div class="row">
+        <div class="grid-4">
+          <div class="empty__artwork">
+            <img src="/images/teddy.png" />
+          </div>
+        </div>
+        <div class="grid-6">
+          <h3 class="empty__title"><%= gettext "Waiting for classified" %></h3>
+          <p class="empty__description"><%= gettext "No classified available yet. If you are a baby sitter you can add your classifed right now !" %></p>
+          <a class="empty__button" href="<%= app_ad_path(@conn, :new) %>"><%= gettext "Add my classifed for free" %></a>
         </div>
       </div>
-      <div class="grid-6">
-        <h3 class="empty__title"><%= gettext "Waiting for classified" %></h3>
-        <p class="empty__description"><%= gettext "No classified available yet. If you are a baby sitter you can add your classifed right now !" %></p>
-        <a class="empty__button" href="<%= app_ad_path(@conn, :new) %>"><%= gettext "Add my classifed for free" %></a>
-      </div>
+      <div class="clear"></div>
     </div>
-    <div class="clear"></div>
   </div>
-</div>
 
 <% end %>
 
