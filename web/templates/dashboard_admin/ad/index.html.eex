@@ -7,9 +7,10 @@
   <div class="container-fluid">
     <div class="+spacer"></div>
     <div class="stack__container">
-      <a href="?state=waiting" class="stack__item">Waiting for validation</a>
-      <a href="?state=valid" class="stack__item">Validated</a>
-      <a href="?state=invalid" class="stack__item --active">Rejected</a>
+      <a href="?" class="stack__item <%= unless @state do %>--active<% end %>">All</a>
+      <a href="?state=waiting" class='stack__item <%= if @state == "waiting" do %>--active<% end %>'>Waiting for validation</a>
+      <a href="?state=valid" class='stack__item <%= if @state == "valid" do %>--active<% end %>''>Validated</a>
+      <a href="?state=invalid" class='stack__item <%= if @state == "invalid" do %>--active<% end %>'>Rejected</a>
     </div>
 
 
@@ -17,17 +18,17 @@
       <div class="listing__container">
         <div class="listing__result --header">
           <div class="listing__content">
-            <div class="grid-2">
+            <div class="grid-1">
               <h3 class="listing__header">ID</h3>
             </div>
             <div class="grid-2">
               <p class="listing__header">Name</p>
             </div>
-            <div class="grid-2">
-              <p class="listing__header">Tenant</p>
+            <div class="grid-3">
+              <p class="listing__header">Email</p>
             </div>
             <div class="grid-2">
-              <p class="listing__header">Validated</p>
+              <p class="listing__header">Tenant</p>
             </div>
             <div class="grid-4">
               <p class="listing__header">Actions</p>
@@ -39,23 +40,23 @@
 
             <div class="listing__result">
               <div class="listing__content">
-                <div class="grid-2">
+                <div class="grid-1">
                   <h3 class="listing__detail"><%= ad.id %></h3>
                 </div>
                 <div class="grid-2">
                   <p class="listing__detail"><%= Babysitting.Ad.fullname(ad) %></p>
                 </div>
-                <div class="grid-2">
-                  <p class="listing__detail"><%= ad.tenant.name %></p>
+                <div class="grid-3">
+                  <p class="listing__detail"><%= ad.email %></p>
                 </div>
                 <div class="grid-2">
-                  <p class="listing__detail"><%= format_boolean(ad.valid) %></p>
+                  <p class="listing__detail"><%= ad.tenant.name %></p>
                 </div>
                 <div class="grid-4">
                   <p class="listing__detail">
                     <a class="button --primary" href="<%= admin_ad_path(@conn, :show, ad.id) %>">Show</a>
                     <%= if ad.valid do %>
-                      <a class="button --danger" href="<%= admin_ad_path(@conn, :invalidate, ad.id) %>">Invalidate</a>
+                      <a class="button --danger" href="<%= admin_ad_path(@conn, :invalidate, ad.id) %>">Reject</a>
                     <% else %>
                       <a class="button --success" href="<%= admin_ad_path(@conn, :validate, ad.id) %>">Validate</a>
                     <% end %>

@@ -21,7 +21,7 @@ defmodule Babysitting.DashboardAdmin.AdController do
       |> Repo.all
       |> Repo.preload(:tenant)
 
-    render(conn, "index.html", %{ads: ads})
+    render(conn, "index.html", %{ads: ads, state: state})
   end
 
   @doc """

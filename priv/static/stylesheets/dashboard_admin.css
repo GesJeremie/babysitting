@@ -1836,6 +1836,11 @@ a {
     border: 1px solid #0092ec;
     color: white; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+  .button.\--success {
+    background-color: #27b481;
+    border: 1px solid #1e8a63;
+    color: white; }
+  /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
   .button.\--primary-transparent {
     background-color: transparent;
     border: 1px solid #0092ec;
