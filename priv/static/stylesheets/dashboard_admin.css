@@ -1612,6 +1612,18 @@ html.default {
   height: 1em;
   content: " "; }
 
+/* line 85, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+#csstyle .\+text-center {
+  text-align: center; }
+
+/* line 85, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+#csstyle .\+text-right {
+  text-align: right; }
+
+/* line 85, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+#csstyle .\+text-left {
+  text-align: left; }
+
 @font-face {
   font-family: "ProximaNova";
   font-weight: normal;
@@ -1658,7 +1670,21 @@ html {
 *, *:before, *:after {
   box-sizing: inherit; }
 
-/* line 64, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/_base.sass */
+/* line 63, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/_base.sass */
+#sidebar-wrapper {
+  position: fixed;
+  width: 15%;
+  height: 100%;
+  overflow-y: auto; }
+
+/* line 69, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/_base.sass */
+#content-wrapper {
+  width: 85%;
+  float: left;
+  margin-left: 15%;
+  margin-bottom: 3em; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/_base.sass */
 body {
   margin: 0;
   font-family: "ProximaNova";
@@ -1669,7 +1695,7 @@ body {
   font-weight: 300;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004); }
 
-/* line 76, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/_base.sass */
+/* line 88, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/_base.sass */
 a {
   text-decoration: none; }
 
@@ -1824,9 +1850,14 @@ a {
     background-color: #FFB836;
     color: white; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+  .button.\--warning-transparent {
+    background-color: transparent;
+    border: 1px solid #e99600;
+    color: #e99600; }
+  /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
   .button.\--auth {
     background-color: #FFB836;
-    color: #686c70; }
+    color: #4c4f52; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
   .button.\--muted {
     cursor: not-allowed;
@@ -1845,6 +1876,118 @@ a {
   .button.\--inline-form {
     padding: 0.5em;
     height: 2.5em; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.sidebar__container {
+  background: #f9fafc;
+  width: 100%;
+  height: 100%;
+  border-right: 1px solid #ebeff5; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.sidebar__signout {
+  text-align: center;
+  padding-top: 1em; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.sidebar__links {
+  padding-top: 1.9em; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.sidebar__link {
+  text-transform: uppercase; }
+  /* line 19, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_sidebar.sass */
+  .sidebar__link:hover {
+    background-color: #f2f4f9; }
+    /* line 22, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_sidebar.sass */
+    .sidebar__link:hover a {
+      border-left: 4px solid #FFB836; }
+  /* line 25, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_sidebar.sass */
+  .sidebar__link i {
+    vertical-align: middle;
+    font-size: 1.4em;
+    padding-left: 0.3em;
+    padding-right: 0.3em; }
+  /* line 31, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_sidebar.sass */
+  .sidebar__link a {
+    color: #4c4f52;
+    font-size: 0.85em;
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+    display: block;
+    padding: 1em;
+    border-left: 4px solid transparent; }
+    /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+    .sidebar__link a.\--active {
+      background-color: #f2f4f9;
+      border-left: 4px solid #FFB836; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.sidebar__logout {
+  background-color: #ed5153;
+  text-align: left;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0; }
+  /* line 53, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_sidebar.sass */
+  .sidebar__logout a {
+    color: white;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+    text-transform: uppercase;
+    font-size: 0.8em; }
+  /* line 64, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_sidebar.sass */
+  .sidebar__logout i {
+    vertical-align: middle;
+    font-size: 1.4em;
+    padding-left: 1em; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.navbar__container {
+  background: #606c88;
+  background: -webkit-linear-gradient(to left, #606c88, #3f4c6b);
+  background: linear-gradient(to left, #606c88, #3f4c6b);
+  height: 3em;
+  line-height: 3em; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.navbar__logo {
+  padding-left: 1em; }
+  /* line 10, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_navbar.sass */
+  .navbar__logo img {
+    width: 140px;
+    vertical-align: middle; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.navbar__signout {
+  padding-right: 1em;
+  text-align: right; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.header__container {
+  background-color: white;
+  min-height: 4.5em;
+  padding-left: 2em;
+  padding-top: 1.8em;
+  padding-bottom: 1.8em;
+  border-bottom: 2px solid #f2f4f9; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.header__title {
+  font-weight: normal;
+  text-transform: uppercase;
+  font-size: 1.4em;
+  color: #647387; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.header__description {
+  color: #A3B3C0;
+  font-size: 0.9em; }
 
 /* line 1, /Users/jeremie/code/babysitting/front/styles/hooks/_noty.sass */
 #noty_top_layout_container {

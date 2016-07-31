@@ -1612,6 +1612,18 @@ html.default {
   height: 1em;
   content: " "; }
 
+/* line 85, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+#csstyle .\+text-center {
+  text-align: center; }
+
+/* line 85, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+#csstyle .\+text-right {
+  text-align: right; }
+
+/* line 85, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+#csstyle .\+text-left {
+  text-align: left; }
+
 @font-face {
   font-family: "ProximaNova";
   font-weight: normal;

@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link href="https://file.myfontastic.com/m8mmAajfNjnQR6AVvSEyMo/icons.css" rel="stylesheet">
+    <link href="https://file.myfontastic.com/jiBmkbvREKqK69TasUa4W/icons.css" rel="stylesheet">
 
     <script src="<%= static_path(@conn, "/javascripts/vendor.js") %>"></script>
     <script src="<%= static_path(@conn, "/javascripts/app.js") %>"></script>
@@ -21,8 +21,6 @@
 
   <body id="csstyle">
     <%= render Babysitting.PartialsView, "flash.html", assigns %>
-
-    <a href="/dashboard/auth/logout">logout</a>
     
     <%= render @view_module, @view_template, assigns %>
   </body>

@@ -39,10 +39,16 @@
     +option(warning)
         background-color: $color-warning
         color: white
+
+    +option(warning-transparent)
+        background-color: transparent
+        border: 1px solid darken($color-warning, 15%)
+        color: darken($color-warning, 15%)
+    
     
     +option(auth)
         background-color: $color-warning
-        color: $color-text-dark
+        color: $color-dark
     
     +option(muted)
         cursor: not-allowed

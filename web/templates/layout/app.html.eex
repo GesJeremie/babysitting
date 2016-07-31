@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <link href="https://file.myfontastic.com/m8mmAajfNjnQR6AVvSEyMo/icons.css" rel="stylesheet">
+    <link href="https://file.myfontastic.com/jiBmkbvREKqK69TasUa4W/icons.css" rel="stylesheet">
 
     <script src="<%= static_path(@conn, "/javascripts/vendor.js") %>"></script>
     <script src="<%= static_path(@conn, "/javascripts/app.js") %>"></script>
@@ -15,7 +15,6 @@
 
     <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/stylesheets/vendor.css") %>">
     <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/stylesheets/app.css") %>">
-    <link href="https://file.myfontastic.com/jiBmkbvREKqK69TasUa4W/icons.css" rel="stylesheet">
     
     <title><%= title(@conn) %></title>
   </head>
