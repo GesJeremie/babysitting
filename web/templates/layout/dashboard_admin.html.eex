@@ -20,6 +20,8 @@
   </head>
 
   <body id="csstyle">
+    <%= render Babysitting.PartialsView, "flash.html", assigns %>
+
     <a href="/dashboard/auth/logout">logout</a>
     
     <%= render @view_module, @view_template, assigns %>

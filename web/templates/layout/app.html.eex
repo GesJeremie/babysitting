@@ -21,6 +21,7 @@
   </head>
 
   <body id="csstyle">
+    <%= render Babysitting.PartialsView, "flash.html", assigns %>
     <%= render Babysitting.App.PartialsView, "navbar.html", assigns %>
     <%= render @view_module, @view_template, assigns %>
     <%= render Babysitting.App.PartialsView, "footer.html", assigns %>

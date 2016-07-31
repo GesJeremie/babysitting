@@ -2,8 +2,6 @@
     data-controller="ad.new"
 ></div>
 
-<%= render Babysitting.PartialsView, "flash.html", assigns %>
-
 <div class="container">
   <%= form_for @changeset, app_ad_path(@conn, :create), [multipart: true], fn f -> %>
 

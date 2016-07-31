@@ -2173,22 +2173,22 @@ a {
 .facebook__container {
   padding-top: 1em; }
 
-/* line 1, /Users/jeremie/code/babysitting/front/styles/hooks/noty.sass */
+/* line 1, /Users/jeremie/code/babysitting/front/styles/hooks/_noty.sass */
 #noty_top_layout_container {
   display: inline-block !important;
   text-align: center !important; }
-  /* line 5, /Users/jeremie/code/babysitting/front/styles/hooks/noty.sass */
+  /* line 5, /Users/jeremie/code/babysitting/front/styles/hooks/_noty.sass */
   #noty_top_layout_container li {
     display: inline-block !important;
     background: none !important;
     border: 0 !important;
     font-family: "ProximaNova" !important;
     letter-spacing: 0.6px; }
-  /* line 13, /Users/jeremie/code/babysitting/front/styles/hooks/noty.sass */
+  /* line 13, /Users/jeremie/code/babysitting/front/styles/hooks/_noty.sass */
   #noty_top_layout_container .noty_type_success {
     color: white !important;
     background: #2CC990 !important; }
-  /* line 18, /Users/jeremie/code/babysitting/front/styles/hooks/noty.sass */
+  /* line 18, /Users/jeremie/code/babysitting/front/styles/hooks/_noty.sass */
   #noty_top_layout_container .noty_type_error {
     color: white !important;
     background: #ed5153 !important; }
