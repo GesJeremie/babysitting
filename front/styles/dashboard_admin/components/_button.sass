@@ -1,0 +1,67 @@
++component(button)
+    background-color: $color-grey
+    color: $color-text-dark-muted
+    text-transform: capitalize
+    padding: 0.5em
+    padding-left: 1em
+    padding-right: 1em
+    display: inline-block
+    border-radius: 3px
+    font-weight: normal
+    letter-spacing: 0.4px
+    font-size: 0.8em
+    border: 0
+    outline: 0
+    line-height: normal
+    white-space: nowrap
+    vertical-align: middle
+    cursor: pointer
+    i
+        vertical-align: middle
+    
+    +option(primary)
+        background-color: darken($color-blue, 5%)
+        border: 1px solid darken($color-blue, 15%)
+        color: white
+    
+
+    +option(primary-transparent)
+        background-color: transparent
+        border: 1px solid darken($color-blue, 15%)
+        color: darken($color-blue, 15%)
+    
+
+    +option(danger)
+        background-color: $color-danger
+        border: 1px solid darken($color-danger, 15%)
+        color: white
+    
+    +option(warning)
+        background-color: $color-warning
+        color: white
+    
+    +option(auth)
+        background-color: $color-warning
+        color: $color-text-dark
+    
+    +option(muted)
+        cursor: not-allowed
+        opacity: 0.5
+    
+    +option(large)
+        padding: 0.8em 1em
+    
+    +option(small)
+        padding: 0.5em 0.7em
+        font-size: 0.73em
+    
+    +option(expand)
+        width: 100%
+    
+    +option(inline-form)
+        padding: 0.5em
+        height: 2.5em
+    
+
+
+

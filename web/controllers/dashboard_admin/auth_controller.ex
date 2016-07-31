@@ -39,6 +39,7 @@ defmodule Babysitting.DashboardAdmin.AuthController do
   defp do_login(conn, password) when password == @password_login do
       conn
         |> put_session(:is_admin, true)
+        |> put_flash(:info, "Welcome back admin!")
         |> delete_session(:count_do_login)
         |> redirect(to: admin_analytics_path(conn, :index))
   end
