@@ -16,7 +16,7 @@ defmodule Babysitting.Ad do
     field :token, :string
     field :search, :string
     field :status, :boolean, default: true
-    field :valid, :boolean, default: false
+    field :valid, :boolean
 
     timestamps
 
@@ -127,16 +127,13 @@ defmodule Babysitting.Ad do
   @doc """
   Filter ad by the state provided
   """
-  def filter_by_state(query, state) do
-    case state do 
-      "valid" -> query |> valid
-      "invalid" -> query |> invalid
-      _ -> query
-    end
-  end
+  def filter_by_state(query, "valid"), do: valid(query)
+  def filter_by_state(query, "invalid"), do: invalid(query)
+  def filter_by_state(query, "waiting"), do: waiting(query)
+  def filter_by_state(query, _), do: query
 
   @doc """
-  Filter ad not valited
+  Filter ad not validated
   """
   def invalid(query) do
     from ad in query,
@@ -149,6 +146,14 @@ defmodule Babysitting.Ad do
   def valid(query) do
     from ad in query,
       where: ad.valid == true
+  end
+
+  @doc """
+  Filter ad waiting for validation
+  """
+  def waiting(query) do
+    from ad in query,
+      where: is_nil(ad.valid)
   end
 
   @doc """

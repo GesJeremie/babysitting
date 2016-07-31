@@ -12,7 +12,10 @@ defmodule Babysitting.DashboardAdmin.AdController do
   @doc """
   Display the ads
   """
-  def index(conn, %{"state" => state}) do
+  def index(conn, params) do
+
+    state = Map.get(params, "state")
+
     ads = Ad
       |> Ad.filter_by_state(state)
       |> Repo.all

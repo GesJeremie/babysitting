@@ -1,35 +1,77 @@
-<div class="container">
-  <%= get_flash(@conn, :info) %><br/>
-  <%= get_flash(@conn, :error) %><br/>
-  <a href="?state=invalid">Waiting for validation</a> /
-  <a href="?state=valid">Validated</a>
-</div>
-
-<div class="container">
-  <div class="row">
-    <div class="grid-1">Id</div>
-    <div class="grid-2">Name</div>
-    <div class="grid-2">Tenant</div>
-    <div class="grid-2">Validated</div>
-    <div class="grid-4">Actions</div>
+<div id="content-wrapper">
+  <div class="header__container">
+    <div class="header__title">Classified</div>
+    <div class="header__description">Every classified added.</div>
   </div>
-</div>
 
-<div class="container">
-  <%= for ad <- @ads do %>
-  <div class="row">
-    <div class="grid-1"><%= ad.id %></div>
-    <div class="grid-2"><%= Babysitting.Ad.fullname(ad) %></div>
-    <div class="grid-3"><%= ad.tenant.name %></div>
-    <div class="grid-2"><%= format_boolean(ad.valid) %></div>
-    <div class="grid-4">
-      <a href="<%= admin_ad_path(@conn, :show, ad.id) %>">Show</a>
-      <%= if ad.valid do %>
-        <a href="<%= admin_ad_path(@conn, :invalidate, ad.id) %>">Invalidate</a>
-      <% else %>
-        <a href="<%= admin_ad_path(@conn, :validate, ad.id) %>">Validate</a>
-      <% end %>
+  <div class="container-fluid">
+    <div class="+spacer"></div>
+    <div class="stack__container">
+      <a href="?state=waiting" class="stack__item">Waiting for validation</a>
+      <a href="?state=valid" class="stack__item">Validated</a>
+      <a href="?state=invalid" class="stack__item --active">Rejected</a>
     </div>
+
+
+    <div class="container">
+      <div class="listing__container">
+        <div class="listing__result --header">
+          <div class="listing__content">
+            <div class="grid-2">
+              <h3 class="listing__header">ID</h3>
+            </div>
+            <div class="grid-2">
+              <p class="listing__header">Name</p>
+            </div>
+            <div class="grid-2">
+              <p class="listing__header">Tenant</p>
+            </div>
+            <div class="grid-2">
+              <p class="listing__header">Validated</p>
+            </div>
+            <div class="grid-4">
+              <p class="listing__header">Actions</p>
+            </div>
+            <div class="clear"></div>
+          </div>
+
+          <%= for ad <- @ads do %>
+
+            <div class="listing__result">
+              <div class="listing__content">
+                <div class="grid-2">
+                  <h3 class="listing__detail"><%= ad.id %></h3>
+                </div>
+                <div class="grid-2">
+                  <p class="listing__detail"><%= Babysitting.Ad.fullname(ad) %></p>
+                </div>
+                <div class="grid-2">
+                  <p class="listing__detail"><%= ad.tenant.name %></p>
+                </div>
+                <div class="grid-2">
+                  <p class="listing__detail"><%= format_boolean(ad.valid) %></p>
+                </div>
+                <div class="grid-4">
+                  <p class="listing__detail">
+                    <a class="button --primary" href="<%= admin_ad_path(@conn, :show, ad.id) %>">Show</a>
+                    <%= if ad.valid do %>
+                      <a class="button --danger" href="<%= admin_ad_path(@conn, :invalidate, ad.id) %>">Invalidate</a>
+                    <% else %>
+                      <a class="button --success" href="<%= admin_ad_path(@conn, :validate, ad.id) %>">Validate</a>
+                    <% end %>
+                  </p>
+                </div>
+                <div class="clear"></div>
+              </div>
+            </div>
+
+          <% end %>
+        </div>
+
+      </div>
+    </div>
+
+
   </div>
-  <% end %>
+
 </div>

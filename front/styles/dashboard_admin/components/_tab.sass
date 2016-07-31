@@ -1,0 +1,35 @@
++component(tab)
+  
+  +part(container)
+    margin-top: 1em
+
+  +part(item)
+    position: relative
+    text-align: center
+    background-color: white
+    padding: 0.3em
+    border: 1px solid darken($color-grey, 8%)
+    overflow: hidden
+    cursor: pointer
+
+    +option(active)
+      border-top: 2px solid $color-warning
+
+  +part(title)
+    font-weight: bold
+    color: $color-text-dark-muted
+    z-index: 2
+
+  +part(description)
+    font-size: 0.7em
+    z-index: 2
+    color: $color-text-dark
+
+  +part(icon)
+    position: absolute
+    font-size: 4em
+    top: 10px
+    right: -20px
+    color: $color-text-grey
+    opacity: 0.3
+    z-index: 0
