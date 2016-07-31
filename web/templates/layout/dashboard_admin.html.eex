@@ -21,7 +21,11 @@
 
   <body id="csstyle">
     <%= render Babysitting.PartialsView, "flash.html", assigns %>
-    
+
+    <%= if (@view_module != "Babysitting.DashboardAdmin.AuthView") do %>
+      <%= render Babysitting.DashboardAdmin.PartialsView, "sidebar.html", assigns %>
+    <% end %>
+
     <%= render @view_module, @view_template, assigns %>
   </body>
 </html>
