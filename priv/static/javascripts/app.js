@@ -149,11 +149,29 @@ var __makeRelativeRequire = function(require, mappings, pref) {
   }
 };
 require.register("boot.coffee", function(exports, require, module) {
-$("#trigger-modal").animatedModal({
-  color: '#F0F1F5',
-  animatedIn: 'lightSpeedIn',
-  animatedOut: 'bounceOutDown'
-});
+var $flash, text, type;
+
+$.noty.defaults.timeout = 2500;
+
+$.noty.defaults.animation.open = 'animated flipInX';
+
+$.noty.defaults.animation.close = 'animated flipOutX';
+
+$.noty.defaults.maxVisible = 1;
+
+$.noty.defaults.killer = true;
+
+$.noty.defaults.dismissQueue = false;
+
+if ($('[data-flash]').length && $('[data-flash]').first().text() !== "") {
+  $flash = $('[data-flash').first();
+  type = $flash.data('flash');
+  text = $flash.html();
+  noty({
+    type: type,
+    text: text
+  });
+}
 });
 
 ;require.register("config.coffee", function(exports, require, module) {

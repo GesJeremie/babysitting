@@ -14,7 +14,8 @@
     "animatedmodal": "https://github.com/joaopereirawd/animatedModal.js.git",
     "animate.css": "^3.5.2",
     "jquery.inputmask": "^3.3.1",
-    "autosize": "^3.0.15"
+    "autosize": "^3.0.15",
+    "noty": "^2.3.8"
   },
   "overrides": {
     "jq-dropdown": {

@@ -2,7 +2,7 @@
     data-controller="ad.new"
 ></div>
 
-<%= get_flash(@conn, :error) %>
+<%= render Babysitting.PartialsView, "flash.html", assigns %>
 
 <div class="container">
   <%= form_for @changeset, app_ad_path(@conn, :create), [multipart: true], fn f -> %>
@@ -74,7 +74,7 @@
     </div>
 
     <div class="+spacer"></div>
-    <button type="submit" class="button --primary --large"><i class="icon-zap"></i> <%= gettext "Add my classified" %></button>
+    <button type="submit" class="button --primary --large"><i class="icon-file-add"></i> <%= gettext "Add my classified" %></button>
   <% end %>
 
 </div>

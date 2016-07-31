@@ -1,0 +1,2 @@
+<div data-flash="error" style="display: none"><%= get_flash(@conn, :error) %></div>
+<div data-flash="success" style="display: none"><%= get_flash(@conn, :info) %></div>
