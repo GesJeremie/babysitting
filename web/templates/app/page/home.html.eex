@@ -13,8 +13,8 @@
   <div class="container">
     <%= for ad <- @ads do %>
       <h1><%= ad.firstname %></h1>
-      <%= Babysitting.Ad.age(ad) %> <%= gettext("years old") %><br/>
-      <%= Babysitting.Ad.short_description(ad) %>
+      <%= age(ad) %> <%= gettext("years old") %><br/>
+      <%= short_description(ad) %>
       <hr>
     <% end %>
   </div>
