@@ -44,7 +44,7 @@
                   <h3 class="listing__detail"><%= ad.id %></h3>
                 </div>
                 <div class="grid-2">
-                  <p class="listing__detail"><%= Babysitting.Ad.fullname(ad) %></p>
+                  <p class="listing__detail"><%= fullname(ad) %></p>
                 </div>
                 <div class="grid-3">
                   <p class="listing__detail"><%= ad.email %></p>

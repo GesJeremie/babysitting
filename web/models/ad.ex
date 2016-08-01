@@ -85,38 +85,6 @@ defmodule Babysitting.Ad do
   end
 
   @doc """
-  Return full name
-  """
-  def fullname(ad) do
-    String.capitalize(ad.firstname) <> " " <> String.capitalize(ad.lastname)
-  end
-
-  @doc """
-  Return age
-  """
-  def age(ad) do 
-    [day, month, year] = ad.birthday |> String.split("/")
-    Date.today.year - String.to_integer(year)
-  end
-
-  @doc """
-  Return short description
-  """
-  def short_description(ad) do
-    length = String.length(ad.description)
-    short = ad.description
-      |> String.split(" ")
-      |> Enum.slice(0..50)
-      |> Enum.join(" ")
-
-    if length < 50 do
-      short
-    else
-      short <> " ..."
-    end
-  end
-
-  @doc """
   Filter ad by the current tenant
   """
   def of_current_tenant(query, conn) do

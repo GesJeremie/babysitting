@@ -1,0 +1,26 @@
++component(panel)
+
+  +part(container)
+    background-color: darken($color-grey, 3%)
+    padding: 1em
+    margin-top: 1em
+    margin-bottom: 1em
+    border-radius: 5px
+
+  +part(title)
+    font-weight: bold
+    font-size: 1.1em
+    color: $color-text-dark-muted
+
+    i
+      vertical-align: middle
+      padding-right: 0.3em
+
+  +part(description)
+    color: $color-text-grey
+
+  +part(content)
+    padding-top: 1em
+
+    strong
+      font-weight: bold
