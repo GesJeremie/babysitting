@@ -36,6 +36,16 @@ defmodule Babysitting.DashboardAdmin.AdController do
   end
 
   @doc """
+  Display a form to edit a specific ad
+  """
+  def edit(conn, %{"id" => id}) do
+    ad = Ad
+      |> Repo.get!(id)
+
+    render conn, "edit.html", %{ad: ad, changeset: Ad.changeset(ad)}
+  end
+
+  @doc """
   Validate the ad given
   """
   def validate(conn, %{"id" => id}) do

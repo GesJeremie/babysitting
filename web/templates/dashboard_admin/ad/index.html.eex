@@ -55,6 +55,7 @@
                 <div class="grid-4">
                   <p class="listing__detail">
                     <a class="button --primary" href="<%= admin_ad_path(@conn, :show, ad.id) %>">Show</a>
+                    <a class="button --warning" href="<%= admin_ad_path(@conn, :edit, ad.id) %>">Edit</a>
                     <%= if ad.valid do %>
                       <a class="button --danger" href="<%= admin_ad_path(@conn, :invalidate, ad.id) %>">Reject</a>
                     <% else %>

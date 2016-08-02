@@ -51,6 +51,7 @@ defmodule Babysitting.Router do
     get "/ads/:id/validate", AdController, :validate
     get "/ads/:id/invalidate", AdController, :invalidate
     get "/ads/:id/show", AdController, :show
+    get "/ads/:id/edit", AdController, :edit
 
     # Auth
     get "/auth", AuthController, :index

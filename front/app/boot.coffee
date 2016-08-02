@@ -27,3 +27,6 @@ if $('[data-flash]').length && $('[data-flash]').first().text() != ""
       text: text
     })
 
+# Autosize textarea
+if $('.js-autosize').length 
+  autosize($('.js-autosize'))

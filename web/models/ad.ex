@@ -54,6 +54,15 @@ defmodule Babysitting.Ad do
     |> make_search
   end
 
+  def update_changeset(model, params \\ :empty) do
+    model
+      |> cast(params, @required_fields, @optional_fields)
+      |> validate_length(:description, min: 280)
+      |> validate_format(:email, ~r/\A[^@]+@([^@\.]+\.)+[^@\.]+\z/)
+      |> validate_format(:birthday, ~r/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/)
+      |> make_search
+  end
+
   @doc """
   Crypt the password given by the user
   """

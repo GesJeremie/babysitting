@@ -1,0 +1,95 @@
+<%= form_for @changeset, app_ad_path(@conn, :update), fn f -> %>
+
+<div id="content-wrapper">
+  <div class="header__container">
+    <div class="grid-8">
+      <div class="header__title">Classified</div>
+      <div class="header__description">Edit ID <%= @ad.id %> - <%= fullname(@ad) %></div>
+    </div>
+    <div class="grid-4">
+      <div class="header__actions">
+        <a class="button --primary" href="<%= admin_ad_path(@conn, :index) %>"><i class="icon-back"></i> Back</a>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+  <div class="container-fluid">
+    
+      <div class="grid-4">
+        <div class="panel__container">
+          <div class="panel__title">Firstname</div>
+          <div class="panel__content">
+            <div class="form__container">
+                <%= text_input f, :firstname %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-4">
+        <div class="panel__container">
+          <div class="panel__title">Lastname</div>
+          <div class="panel__content">
+            <div class="form__container">
+                <%= text_input f, :lastname %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-4">
+        <div class="panel__container">
+          <div class="panel__title">Email</div>
+          <div class="panel__content">
+            <div class="form__container">
+                <%= text_input f, :email %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="clear"></div>
+
+      <div class="grid-6">
+        <div class="panel__container">
+          <div class="panel__title">Phone</div>
+          <div class="panel__content">
+            <div class="form__container">
+                <%= text_input f, :phone %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-6">
+        <div class="panel__container">
+          <div class="panel__title">Birthday</div>
+          <div class="panel__content">
+            <div class="form__container">
+                <%= text_input f, :birthday %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="clear"></div>
+
+      <div class="grid-12">
+        <div class="panel__container">
+          <div class="panel__title">Description</div>
+          <div class="panel__content">
+            <div class="form__container">
+                <%= textarea f, :description, class: "js-autosize" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <button type="submit" class="button --primary">Save changes</button>
+
+  </div>
+</div>
+
+<% end %>
+

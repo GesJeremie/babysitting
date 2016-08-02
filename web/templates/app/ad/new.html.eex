@@ -27,7 +27,7 @@
     <div class="form__container">
         <h2 class="form__title"><i class="icon-file"></i> <%= gettext "Your classified" %></h2>
         <p class="form__description"><%= gettext "Tell us more about you, your scholarship, your schedule and why you are an awesome baby sitter" %></p>
-        <%= textarea f, :description, class: "form-control" %>
+        <%= textarea f, :description %>
         <span class="form__help --error"><%= error_tag f, :description %></span>
         <span id="chars" data-text-number='<%= gettext "Nombre de caractères" %>' data-text-minimum='<%= gettext "Minimum" %>'  class="form__chars" data-min="280"></span>
 

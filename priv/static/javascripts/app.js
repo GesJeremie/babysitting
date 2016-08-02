@@ -172,6 +172,10 @@ if ($('[data-flash]').length && $('[data-flash]').first().text() !== "") {
     text: text
   });
 }
+
+if ($('.js-autosize').length) {
+  autosize($('.js-autosize'));
+}
 });
 
 ;require.register("config.coffee", function(exports, require, module) {
