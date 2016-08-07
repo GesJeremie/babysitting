@@ -6,7 +6,7 @@
 
     <ul class="sidebar__links">
       <li class="sidebar__link "><a href="<%= admin_analytics_path(@conn, :index) %>"><i class="icon-chart"></i> Analytics</a></li>
-      <li class="sidebar__link"><a href="<%= admin_ad_path(@conn, :index) %>"><i class="icon-file"></i> Classified</a></li>
+      <li class="sidebar__link"><a href="<%= admin_classified_path(@conn, :index) %>"><i class="icon-file"></i> Classified</a></li>
     </ul>
   </div>
 </div>

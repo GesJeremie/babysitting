@@ -9,12 +9,12 @@
   </div>
 </div>
 
-<%= if length(@ads) > 0 do %>
+<%= if length(@classifieds) > 0 do %>
   <div class="container">
-    <%= for ad <- @ads do %>
-      <h1><%= ad.firstname %></h1>
-      <%= age(ad) %> <%= gettext("years old") %><br/>
-      <%= short_description(ad) %>
+    <%= for classified <- @classifieds do %>
+      <h1><%= classified.firstname %></h1>
+      <%= age(classified) %> <%= gettext("years old") %><br/>
+      <%= short_description(classified) %>
       <hr>
     <% end %>
   </div>
@@ -31,7 +31,7 @@
         <div class="grid-8">
           <h3 class="empty__title"><%= gettext "Want to see your classified in this list ?" %></h3>
           <p class="empty__description"><%= gettext "If you are a baby sitter you can add your classifed right now !" %></p>
-          <a class="empty__button" href="<%= app_ad_path(@conn, :new) %>"><%= gettext "Add my classifed for free" %></a>
+          <a class="empty__button" href="<%= app_classified_path(@conn, :new) %>"><%= gettext "Add my classifed for free" %></a>
         </div>
       </div>
       <div class="clear"></div>
@@ -51,7 +51,7 @@
         <div class="grid-6">
           <h3 class="empty__title"><%= gettext "Waiting for classified" %></h3>
           <p class="empty__description"><%= gettext "No classified available yet. If you are a baby sitter you can add your classifed right now !" %></p>
-          <a class="empty__button" href="<%= app_ad_path(@conn, :new) %>"><%= gettext "Add my classifed for free" %></a>
+          <a class="empty__button" href="<%= app_classified_path(@conn, :new) %>"><%= gettext "Add my classifed for free" %></a>
         </div>
       </div>
       <div class="clear"></div>

@@ -3,19 +3,19 @@ defmodule Babysitting.App.PageController do
 
   # Aliases
   alias Babysitting.Helpers.App
-  alias Babysitting.Ad
+  alias Babysitting.Classified
 
   @doc """
-  Display the home page with the ads of 
+  Display the home page with the classifieds of
   the current tenant
   """
   def home(conn, _params) do
     tenant = App.current_tenant(conn)
-    ads = fetch_ads(conn)
+    classifieds = fetch_classifieds(conn)
 
     render conn, "home.html", %{
       tenant: tenant,
-      ads: ads
+      classifieds: classifieds
     }
   end
 
@@ -39,11 +39,11 @@ defmodule Babysitting.App.PageController do
     render conn, "faq.html", %{}
   end
 
-  defp fetch_ads(conn) do
-    Ad 
-      |> Ad.of_current_tenant(conn)
-      |> Ad.valid
-      |> Ad.active
+  defp fetch_classifieds(conn) do
+    Classified
+      |> Classified.of_current_tenant(conn)
+      |> Classified.valid
+      |> Classified.active
       |> Repo.all
   end
 end

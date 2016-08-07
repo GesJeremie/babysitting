@@ -4,7 +4,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   use Babysitting.Web, :controller
 
   # Aliases
-  alias Babysitting.Ad
+  alias Babysitting.Classified
 
   # Plugs
   plug Babysitting.Plug.IsAdmin
@@ -41,7 +41,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   """
   def edit(conn, %{"id" => id}) do
     classified = Repo.get!(Classified, id)
-    changeset = Classified.changeset(ad)
+    changeset = Classified.changeset(classified)
     render conn, "edit.html", %{classified: classified, changeset: changeset}
   end
 

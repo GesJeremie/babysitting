@@ -54,12 +54,12 @@
                 </div>
                 <div class="grid-4">
                   <p class="listing__detail">
-                    <a class="button --primary" href="<%= admin_ad_path(@conn, :show, ad.id) %>">Show</a>
-                    <a class="button --warning" href="<%= admin_ad_path(@conn, :edit, ad.id) %>">Edit</a>
+                    <a class="button --primary" href="<%= admin_classified_path(@conn, :show, classified.id) %>">Show</a>
+                    <a class="button --warning" href="<%= admin_classified_path(@conn, :edit, classified.id) %>">Edit</a>
                     <%= if classified.valid do %>
-                      <a class="button --danger" href="<%= admin_ad_path(@conn, :invalidate, ad.id) %>">Reject</a>
+                      <a class="button --danger" href="<%= admin_classified_path(@conn, :invalidate, classified.id) %>">Reject</a>
                     <% else %>
-                      <a class="button --success" href="<%= admin_ad_path(@conn, :validate, ad.id) %>">Validate</a>
+                      <a class="button --success" href="<%= admin_classified_path(@conn, :validate, classified.id) %>">Validate</a>
                     <% end %>
                   </p>
                 </div>

@@ -26,7 +26,7 @@ defmodule Babysitting.App.ClassifiedController do
     # Fill params with current tenant
     classified_params = set_current_tenant(conn, classified_params)
 
-    changeset = Classified.create_changeset(%Classified{}, ad_params)
+    changeset = Classified.create_changeset(%Classified{}, classified_params)
 
     case Repo.insert(changeset) do
       {:ok, classified} ->

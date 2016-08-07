@@ -15,7 +15,7 @@
         </div>
         <div class="grid-3">
           <div class="navbar__button">
-            <a href="<%= app_ad_path(@conn, :new) %>"><%= gettext "Add my classified!" %></a>
+            <a href="<%= app_classified_path(@conn, :new) %>"><%= gettext "Add my classified!" %></a>
           </div>
         </div>
       </div>

@@ -7,7 +7,7 @@
     </div>
     <div class="grid-4">
       <div class="header__actions">
-        <a class="button --primary" href="<%= admin_ad_path(@conn, :index) %>"><i class="icon-back"></i> Back</a>
+        <a class="button --primary" href="<%= admin_classified_path(@conn, :index) %>"><i class="icon-back"></i> Back</a>
       </div>
     </div>
     <div class="clear"></div>
