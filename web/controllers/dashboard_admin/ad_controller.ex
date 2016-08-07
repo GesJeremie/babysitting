@@ -8,6 +8,7 @@ defmodule Babysitting.DashboardAdmin.AdController do
 
   # Plugs
   plug Babysitting.Plug.IsAdmin
+  plug :scrub_params, "ad" when action in [:update]
 
   @doc """
   Display the ads
@@ -28,10 +29,10 @@ defmodule Babysitting.DashboardAdmin.AdController do
   Display a specific ad
   """
   def show(conn, %{"id" => id}) do
-    ad = Ad 
+    ad = Ad
       |> Repo.get!(id)
       |> Repo.preload(:tenant)
-      
+
     render conn, "show.html", %{ad: ad}
   end
 
@@ -39,10 +40,27 @@ defmodule Babysitting.DashboardAdmin.AdController do
   Display a form to edit a specific ad
   """
   def edit(conn, %{"id" => id}) do
-    ad = Ad
-      |> Repo.get!(id)
+    ad = Repo.get!(Ad, id)
+    changeset = Ad.changeset(ad)
+    render conn, "edit.html", %{ad: ad, changeset: changeset}
+  end
 
-    render conn, "edit.html", %{ad: ad, changeset: Ad.changeset(ad)}
+  @doc """
+  Update the ad
+  """
+  def update(conn, %{"id" => id, "ad" => ad_params}) do
+    ad = Repo.get!(Ad, id)
+    changeset = Ad.update_changeset(ad, ad_params)
+    case Repo.update(changeset) do
+      {:ok, ad} ->
+        conn
+          |> put_flash(:info, "Ad updated")
+          |> redirect(to: admin_ad_path(conn, :edit, ad))
+      {:error, changeset} ->
+        conn
+          |> put_flash(:error, "Some errors are present in the form")
+          |> render "edit.html", %{ad: ad, changeset: changeset}
+    end
   end
 
   @doc """

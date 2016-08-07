@@ -10,15 +10,15 @@
         <div class="row">
           <div class="grid-4">
             <%= text_input f, :firstname, placeholder: gettext "Firstname" %>
-            <span class="form__help --error"><%= error_tag f, :firstname %></span>
+            <%= error_tag f, :firstname %>
           </div>
           <div class="grid-4">
             <%= text_input f, :lastname, placeholder: gettext "Lastname" %>
-            <span class="form__help --error"><%= error_tag f, :lastname %></span>
+            <%= error_tag f, :lastname %>
           </div>
           <div class="grid-4">
             <%= text_input f, :birthday, placeholder: gettext "Birthday" %>
-            <span class="form__help --error"><%= error_tag f, :birthday %></span>
+            <%= error_tag f, :birthday %>
           </div>
         </div>
         <div class="clear"></div>
@@ -28,7 +28,7 @@
         <h2 class="form__title"><i class="icon-file"></i> <%= gettext "Your classified" %></h2>
         <p class="form__description"><%= gettext "Tell us more about you, your scholarship, your schedule and why you are an awesome baby sitter" %></p>
         <%= textarea f, :description %>
-        <span class="form__help --error"><%= error_tag f, :description %></span>
+        <%= error_tag f, :description %>
         <span id="chars" data-text-number='<%= gettext "Nombre de caractères" %>' data-text-minimum='<%= gettext "Minimum" %>'  class="form__chars" data-min="280"></span>
 
 
@@ -36,7 +36,7 @@
 
         <label><%= gettext "Avatar" %></label>
         <%= file_input f, :avatar %>
-        <span class="form__help --error"><%= error_tag f, :avatar %></span>
+        <%= error_tag f, :avatar %>
     </div>
 
     <div class="form__container">
@@ -45,11 +45,11 @@
         <div class="row">
           <div class="grid-6">
             <%= text_input f, :email, placeholder: "Email" %>
-            <span class="form__help --error"><%= error_tag f, :email %></span>
+            <%= error_tag f, :email %>
           </div>
           <div class="grid-6">
             <%= text_input f, :phone, placeholder: "Téléphone" %>
-            <span class="form__help --error"><%= error_tag f, :phone %></span>
+            <%= error_tag f, :phone %>
           </div>
         </div>
         <div class="clear"></div>
@@ -61,11 +61,11 @@
         <div class="row">
           <div class="grid-6">
             <%= password_input f, :password, placeholder: gettext "Password" %>
-            <span class="form__help --error"><%= error_tag f, :password %></span>
+            <%= error_tag f, :password %>
           </div>
           <div class="grid-6">
             <%= password_input f, :password_confirmation, placeholder: "Password confirmation" %>
-            <span class="form__help --error"><%= error_tag f, :password_confirmation %></span>
+            <%= error_tag f, :password_confirmation %>
           </div>
         </div>
         <div class="clear"></div>

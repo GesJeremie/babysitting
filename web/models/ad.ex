@@ -28,21 +28,30 @@ defmodule Babysitting.Ad do
 
   end
 
-  @required_fields ~w(tenant_id firstname lastname email password password_confirmation phone birthday description)
-  @optional_fields ~w()
+  @rules_create %{
+    :required_fields => ~w(tenant_id firstname lastname email password password_confirmation phone birthday description),
+    :optional_fields => ~w(),
+    :required_files => ~w(avatar),
+    :optional_files => ~w()
+  }
 
-  @required_file_fields ~w(avatar)
-  @optional_file_fields ~w()
+  @rules_update %{
+    :required_fields => ~w(firstname lastname email phone birthday description),
+    :optional_fields => ~w()
+  }
 
   def changeset(model, params \\ :empty) do
     model
-    |> cast(params, @required_fields, @optional_fields)
+    |> cast(params, [], [])
   end
 
+  @doc """
+  Changeset when you create a new ad
+  """
   def create_changeset(model, params \\ :empty) do
     model
-    |> cast(params, @required_fields, @optional_fields)
-    |> cast_attachments(params, @required_file_fields, @optional_file_fields)
+    |> cast(params, @rules_create.required_fields, @rules_create.optional_fields)
+    |> cast_attachments(params, @rules_create.required_files, @rules_create.optional_files)
     |> validate_length(:description, min: 280)
     |> validate_format(:email, ~r/\A[^@]+@([^@\.]+\.)+[^@\.]+\z/)
     |> validate_format(:birthday, ~r/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/)
@@ -54,9 +63,12 @@ defmodule Babysitting.Ad do
     |> make_search
   end
 
+  @doc """
+  Changeset when you update an ad
+  """
   def update_changeset(model, params \\ :empty) do
     model
-      |> cast(params, @required_fields, @optional_fields)
+      |> cast(params, @rules_update.required_fields, @rules_update.optional_fields)
       |> validate_length(:description, min: 280)
       |> validate_format(:email, ~r/\A[^@]+@([^@\.]+\.)+[^@\.]+\z/)
       |> validate_format(:birthday, ~r/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/)
@@ -161,7 +173,7 @@ defmodule Babysitting.Ad do
   Check if the query executed returned no result or not
   """
   def exists?([]), do: false
-  def exists?(result), do: true 
+  def exists?(result), do: true
 
 
 end

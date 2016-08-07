@@ -1,5 +1,7 @@
-<%= form_for @changeset, app_ad_path(@conn, :update), fn f -> %>
-
+<%= form_for @changeset, admin_ad_path(@conn, :update, @ad), fn f -> %>
+<%= if @changeset.action do %>
+  <% IO.inspect @changeset %>
+<% end %>
 <div id="content-wrapper">
   <div class="header__container">
     <div class="grid-8">
@@ -15,13 +17,14 @@
   </div>
 
   <div class="container-fluid">
-    
+
       <div class="grid-4">
         <div class="panel__container">
           <div class="panel__title">Firstname</div>
           <div class="panel__content">
             <div class="form__container">
                 <%= text_input f, :firstname %>
+                <%= error_tag f, :firstname %>
             </div>
           </div>
         </div>
@@ -33,6 +36,7 @@
           <div class="panel__content">
             <div class="form__container">
                 <%= text_input f, :lastname %>
+                <%= error_tag f, :lastname %>
             </div>
           </div>
         </div>
@@ -44,6 +48,7 @@
           <div class="panel__content">
             <div class="form__container">
                 <%= text_input f, :email %>
+                <%= error_tag f, :email %>
             </div>
           </div>
         </div>
@@ -57,6 +62,7 @@
           <div class="panel__content">
             <div class="form__container">
                 <%= text_input f, :phone %>
+                <%= error_tag f, :phone %>
             </div>
           </div>
         </div>
@@ -68,6 +74,7 @@
           <div class="panel__content">
             <div class="form__container">
                 <%= text_input f, :birthday %>
+                <%= error_tag f, :birthday %>
             </div>
           </div>
         </div>
@@ -81,6 +88,7 @@
           <div class="panel__content">
             <div class="form__container">
                 <%= textarea f, :description, class: "js-autosize" %>
+                <%= error_tag f, :description %>
             </div>
           </div>
         </div>
@@ -92,4 +100,3 @@
 </div>
 
 <% end %>
-

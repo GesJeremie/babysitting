@@ -1,11 +1,11 @@
 defmodule Babysitting.App.AdController do
-  
+
   # Use
   use Babysitting.Web, :controller
 
   # Aliases
   alias Babysitting.Ad
-  alias Babysitting.Helpers.{App, Ifttt, Mailer}
+  alias Babysitting.Helpers.{App, Ifttt, Mailer, Format}
 
   # Plugs
   plug :scrub_params, "ad" when action in [:create, :update]
@@ -60,10 +60,10 @@ defmodule Babysitting.App.AdController do
     current_tenant = App.current_tenant(conn)
 
     # Send events
-    Ifttt.send_event("ad.new.created", Ad.fullname(ad), current_tenant.name)
+    Ifttt.send_event("ad.new.created", Format.fullname(ad.firstname, ad.lastname), current_tenant.name)
     Keenex.add_event("ad.new", %{
-      type: "created", 
-      ad: %{id: ad.id, email: ad.email}, 
+      type: "created",
+      ad: %{id: ad.id, email: ad.email},
       tenant: %{id: current_tenant.id, name: current_tenant.name}
     })
     conn
@@ -78,11 +78,11 @@ defmodule Babysitting.App.AdController do
   end
 
   @doc """
-  Set the current tenant to the paramss
+  Set the current tenant to the params
   """
   defp set_current_tenant(conn, params) do
     current_tenant = App.current_tenant(conn)
-    params 
+    params
       |> Map.put("tenant_id", current_tenant.id)
   end
 
