@@ -3,7 +3,7 @@
   <div class="header__container">
     <div class="grid-8">
       <div class="header__title">Classified</div>
-      <div class="header__description">ID <%= @ad.id %> - <%= fullname(@ad) %></div>
+      <div class="header__description">ID <%= @classified.id %> - <%= fullname(@classified) %></div>
     </div>
     <div class="grid-4">
       <div class="header__actions">
@@ -14,11 +14,11 @@
   </div>
 
   <div class="container-fluid">
-    
+
     <div class="panel__container">
       <div class="panel__title">Tenant</div>
       <div class="panel__content">
-        <%= @ad.tenant.name %> (ID: <%= @ad.tenant.id %>)
+        <%= @classified.tenant.name %> (ID: <%= @classified.tenant.id %>)
       </div>
     </div>
 
@@ -26,7 +26,7 @@
       <div class="grid-2">
       <div class="">
         <div class="panel__content">
-          <img class="picture__circle" src="/<%= Babysitting.Avatar.url({@ad.avatar, @ad}, :thumb) %>" />
+          <img class="picture__circle" src="/<%= Babysitting.Avatar.url({@classified.avatar, @classified}, :thumb) %>" />
         </div>
       </div>
       </div>
@@ -34,7 +34,7 @@
         <div class="panel__container">
           <div class="panel__title">Firstname</div>
           <div class="panel__content">
-            <%= @ad.firstname %>
+            <%= @classified.firstname %>
           </div>
         </div>
       </div>
@@ -42,7 +42,7 @@
         <div class="panel__container">
           <div class="panel__title">Lastname</div>
           <div class="panel__content">
-            <%= @ad.lastname %>
+            <%= @classified.lastname %>
           </div>
         </div>
       </div>
@@ -50,7 +50,7 @@
         <div class="panel__container">
           <div class="panel__title">Birthday</div>
           <div class="panel__content">
-            <%= @ad.birthday %> (<%= age(@ad) %> years old)
+            <%= @classified.birthday %> (<%= age(@classified) %> years old)
           </div>
         </div>
       </div>
@@ -63,7 +63,7 @@
         <div class="panel__container">
           <div class="panel__title">Email</div>
           <div class="panel__content">
-            <%= @ad.email %>
+            <%= @classified.email %>
           </div>
         </div>
       </div>
@@ -71,7 +71,7 @@
         <div class="panel__container">
           <div class="panel__title">Phone</div>
           <div class="panel__content">
-            <%= @ad.phone %>
+            <%= @classified.phone %>
           </div>
         </div>
       </div>
@@ -79,7 +79,7 @@
         <div class="panel__container">
           <div class="panel__title">Valid</div>
           <div class="panel__content">
-            <%= valid(@ad) %>
+            <%= valid(@classified) %>
           </div>
         </div>
       </div>
@@ -87,7 +87,7 @@
         <div class="panel__container">
           <div class="panel__title">Status</div>
           <div class="panel__content">
-            <%= status(@ad) %>
+            <%= status(@classified) %>
           </div>
         </div>
       </div>
@@ -98,7 +98,7 @@
     <div class="panel__container">
       <div class="panel__title">Description</div>
       <div class="panel__content">
-        <%= text_to_html(@ad.description) %>
+        <%= text_to_html(@classified.description) %>
       </div>
     </div>
 

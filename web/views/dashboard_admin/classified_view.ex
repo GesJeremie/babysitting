@@ -1,4 +1,4 @@
-defmodule Babysitting.DashboardAdmin.AdView do
+defmodule Babysitting.DashboardAdmin.ClassifiedView do
   use Babysitting.Web, :view
   alias Babysitting.Helpers.{Date, Format}
 

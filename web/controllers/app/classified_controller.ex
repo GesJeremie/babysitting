@@ -1,39 +1,39 @@
-defmodule Babysitting.App.AdController do
+defmodule Babysitting.App.ClassifiedController do
 
   # Use
   use Babysitting.Web, :controller
 
   # Aliases
-  alias Babysitting.Ad
+  alias Babysitting.Classified
   alias Babysitting.Helpers.{App, Ifttt, Mailer, Format}
 
   # Plugs
-  plug :scrub_params, "ad" when action in [:create, :update]
+  plug :scrub_params, "classified" when action in [:create, :update]
 
   @doc """
-  Display the form to create a new ad
+  Display the form to create a new classified
   """
   def new(conn, _params) do
     conn
-      |> render("new.html", changeset: Ad.changeset(%Ad{}))
+      |> render("new.html", changeset: Classified.changeset(%Classified{}))
   end
 
   @doc """
   Commit the form given
   """
-  def create(conn, %{"ad" => ad_params}) do
+  def create(conn, %{"classified" => classified_params}) do
 
     # Fill params with current tenant
-    ad_params = set_current_tenant(conn, ad_params)
+    classified_params = set_current_tenant(conn, classified_params)
 
-    changeset = Ad.create_changeset(%Ad{}, ad_params)
+    changeset = Classified.create_changeset(%Classified{}, ad_params)
 
     case Repo.insert(changeset) do
-      {:ok, ad} ->
+      {:ok, classified} ->
         conn
-          |> trigger_success_events(ad)
-          |> put_flash(:info, gettext("Ad created successfully."))
-          |> redirect(to: app_ad_path(conn, :thankyou))
+          |> trigger_success_events(classified)
+          |> put_flash(:info, gettext("Classifed created successfully."))
+          |> redirect(to: app_classified_path(conn, :thankyou))
 
       {:error, changeset} ->
         conn
@@ -54,16 +54,16 @@ defmodule Babysitting.App.AdController do
   @doc """
   Trigger success events to third parties
   """
-  defp trigger_success_events(conn, ad) do
+  defp trigger_success_events(conn, classified) do
 
     # Fetch the current tenant
     current_tenant = App.current_tenant(conn)
 
     # Send events
-    Ifttt.send_event("ad.new.created", Format.fullname(ad.firstname, ad.lastname), current_tenant.name)
-    Keenex.add_event("ad.new", %{
+    Ifttt.send_event("classified.new.created", Format.fullname(classified.firstname, classified.lastname), current_tenant.name)
+    Keenex.add_event("classified.new", %{
       type: "created",
-      ad: %{id: ad.id, email: ad.email},
+      classified: %{id: classified.id, email: classified.email},
       tenant: %{id: current_tenant.id, name: current_tenant.name}
     })
     conn
@@ -73,7 +73,7 @@ defmodule Babysitting.App.AdController do
   Trigger error events to third parties
   """
   defp trigger_error_events(conn, changeset) do
-    Keenex.add_event("ad.new", %{type: "failed", ad: changeset.changes, tenant: App.current_tenant(conn).name})
+    Keenex.add_event("classified.new", %{type: "failed", classified: changeset.changes, tenant: App.current_tenant(conn).name})
     conn
   end
 

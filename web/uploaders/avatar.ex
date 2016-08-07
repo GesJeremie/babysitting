@@ -6,7 +6,7 @@ defmodule Babysitting.Avatar do
 
   @versions [:original, :thumb]
   @acl :public_read
-  
+
    def __storage, do: Arc.Storage.Local
 
   # Whitelist file extensions:
@@ -26,7 +26,7 @@ defmodule Babysitting.Avatar do
 
   # Override the storage directory:
   def storage_dir(version, {file, scope}) do
-    "uploads/ads/avatars/#{uniq_id(scope.email)}"
+    "uploads/classifieds/avatars/#{uniq_id(scope.email)}"
   end
 
   defp uniq_id(string) do

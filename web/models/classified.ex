@@ -1,10 +1,10 @@
-defmodule Babysitting.Ad do
+defmodule Babysitting.Classified do
   use Babysitting.Web, :model
   use Arc.Ecto.Model
   use Timex
   alias Babysitting.Helpers.App
 
-  schema "ads" do
+  schema "classifieds" do
     field :firstname, :string
     field :lastname, :string
     field :email, :string
@@ -24,7 +24,7 @@ defmodule Babysitting.Ad do
 
     # Relations
     belongs_to :tenant, Babysitting.Tenant
-    has_many :ad_contacts, Babysitting.AdContact
+    has_many :classified_contacts, Babysitting.ClassifiedContact
 
   end
 
@@ -46,7 +46,7 @@ defmodule Babysitting.Ad do
   end
 
   @doc """
-  Changeset when you create a new ad
+  Changeset when you create a new classified
   """
   def create_changeset(model, params \\ :empty) do
     model
@@ -64,7 +64,7 @@ defmodule Babysitting.Ad do
   end
 
   @doc """
-  Changeset when you update an ad
+  Changeset when you update an classified
   """
   def update_changeset(model, params \\ :empty) do
     model
@@ -106,15 +106,15 @@ defmodule Babysitting.Ad do
   end
 
   @doc """
-  Filter ad by the current tenant
+  Filter classified by the current tenant
   """
   def of_current_tenant(query, conn) do
-    from ad in query,
-      where: ad.tenant_id == ^App.current_tenant(conn).id
+    from classified in query,
+      where: classified.tenant_id == ^App.current_tenant(conn).id
   end
 
   @doc """
-  Filter ad by the state provided
+  Filter classified by the state provided
   """
   def filter_by_state(query, "valid"), do: valid(query)
   def filter_by_state(query, "invalid"), do: invalid(query)
@@ -122,51 +122,51 @@ defmodule Babysitting.Ad do
   def filter_by_state(query, _), do: query
 
   @doc """
-  Filter ad not validated
+  Filter classified not validated
   """
   def invalid(query) do
-    from ad in query,
-      where: ad.valid == false
+    from classified in query,
+      where: classified.valid == false
   end
 
   @doc """
-  Filter ad validated
+  Filter classified validated
   """
   def valid(query) do
-    from ad in query,
-      where: ad.valid == true
+    from classified in query,
+      where: classified.valid == true
   end
 
   @doc """
-  Filter ad waiting for validation
+  Filter classified waiting for validation
   """
   def waiting(query) do
-    from ad in query,
-      where: is_nil(ad.valid)
+    from classified in query,
+      where: is_nil(classified.valid)
   end
 
   @doc """
-  Filter ad inactive
+  Filter classified inactive
   """
   def inactive(query) do
-    from ad in query,
-      where: ad.status == false
+    from classified in query,
+      where: classified.status == false
   end
 
   @doc """
-  Filter ad active
+  Filter classified active
   """
   def active(query) do
-    from ad in query,
-      where: ad.status == true
+    from classified in query,
+      where: classified.status == true
   end
 
   @doc """
   Global where filter
   """
   def where(query, field, condition) do
-    from ad in query,
-      where: field(ad, ^field) == ^condition
+    from classified in query,
+      where: field(classified, ^field) == ^condition
   end
 
   @doc """

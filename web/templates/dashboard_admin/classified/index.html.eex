@@ -36,27 +36,27 @@
             <div class="clear"></div>
           </div>
 
-          <%= for ad <- @ads do %>
+          <%= for classified <- @classifieds do %>
 
             <div class="listing__result">
               <div class="listing__content">
                 <div class="grid-1">
-                  <h3 class="listing__detail"><%= ad.id %></h3>
+                  <h3 class="listing__detail"><%= classified.id %></h3>
                 </div>
                 <div class="grid-2">
-                  <p class="listing__detail"><%= fullname(ad) %></p>
+                  <p class="listing__detail"><%= fullname(classified) %></p>
                 </div>
                 <div class="grid-3">
-                  <p class="listing__detail"><%= ad.email %></p>
+                  <p class="listing__detail"><%= classified.email %></p>
                 </div>
                 <div class="grid-2">
-                  <p class="listing__detail"><%= ad.tenant.name %></p>
+                  <p class="listing__detail"><%= classified.tenant.name %></p>
                 </div>
                 <div class="grid-4">
                   <p class="listing__detail">
                     <a class="button --primary" href="<%= admin_ad_path(@conn, :show, ad.id) %>">Show</a>
                     <a class="button --warning" href="<%= admin_ad_path(@conn, :edit, ad.id) %>">Edit</a>
-                    <%= if ad.valid do %>
+                    <%= if classified.valid do %>
                       <a class="button --danger" href="<%= admin_ad_path(@conn, :invalidate, ad.id) %>">Reject</a>
                     <% else %>
                       <a class="button --success" href="<%= admin_ad_path(@conn, :validate, ad.id) %>">Validate</a>

@@ -1,12 +1,9 @@
-<%= form_for @changeset, admin_ad_path(@conn, :update, @ad), fn f -> %>
-<%= if @changeset.action do %>
-  <% IO.inspect @changeset %>
-<% end %>
+<%= form_for @changeset, admin_classified_path(@conn, :update, @classified), fn f -> %>
 <div id="content-wrapper">
   <div class="header__container">
     <div class="grid-8">
       <div class="header__title">Classified</div>
-      <div class="header__description">Edit ID <%= @ad.id %> - <%= fullname(@ad) %></div>
+      <div class="header__description">Edit ID <%= @classified.id %> - <%= fullname(@classified) %></div>
     </div>
     <div class="grid-4">
       <div class="header__actions">

@@ -1,7 +1,7 @@
-defmodule Babysitting.AdContact do
+defmodule Babysitting.ClassifiedContacts do
   use Babysitting.Web, :model
 
-  schema "ad_contacts" do
+  schema "classified_contacts" do
     field :email, :string
     field :message, :string
     field :phone, :string
@@ -9,7 +9,7 @@ defmodule Babysitting.AdContact do
     timestamps
 
     # Relations
-    belongs_to :ad, Babysitting.Ad
+    belongs_to :classified, Babysitting.Classified
   end
 
   @required_fields ~w(email message phone)

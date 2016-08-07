@@ -1,8 +1,8 @@
-defmodule Babysitting.Repo.Migrations.CreateAd do
+defmodule Babysitting.Repo.Migrations.CreateClassified do
   use Ecto.Migration
 
   def change do
-    create table(:ads) do
+    create table(:classifieds) do
       add :tenant_id, references(:tenants)
       add :email, :string
       add :password, :string
@@ -21,7 +21,7 @@ defmodule Babysitting.Repo.Migrations.CreateAd do
       timestamps
     end
 
-    create unique_index(:ads, [:email])
+    create unique_index(:classifieds, [:email])
 
   end
 end

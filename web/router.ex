@@ -31,9 +31,9 @@ defmodule Babysitting.Router do
     get "/press", PageController, :press
     get "/faq", PageController, :faq
 
-    get "/ads/new", AdController, :new
-    post "/ads", AdController, :create
-    get "/ads/thankyou", AdController, :thankyou
+    get "/classifieds/new", ClassifiedController, :new
+    post "/classifieds", ClassifiedController, :create
+    get "/classifieds/thankyou", ClassifiedController, :thankyou
 
   end
 
@@ -47,12 +47,12 @@ defmodule Babysitting.Router do
     get "/", AnalyticsController, :index
 
     # Ads
-    get "/ads", AdController, :index
-    get "/ads/:id/validate", AdController, :validate
-    get "/ads/:id/invalidate", AdController, :invalidate
-    get "/ads/:id/show", AdController, :show
-    get "/ads/:id/edit", AdController, :edit
-    put "/ads/:id/edit", AdController, :update
+    get "/classifieds", ClassifiedController, :index
+    get "/classifieds/:id/validate", ClassifiedController, :validate
+    get "/classifieds/:id/invalidate", ClassifiedController, :invalidate
+    get "/classifieds/:id/show", ClassifiedController, :show
+    get "/classifieds/:id/edit", ClassifiedController, :edit
+    put "/classifieds/:id/edit", ClassifiedController, :update
 
     # Auth
     get "/auth", AuthController, :index
