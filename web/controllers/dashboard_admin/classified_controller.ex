@@ -11,7 +11,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   plug :scrub_params, "ad" when action in [:update]
 
   @doc """
-  Display the ads
+  Display the classifieds
   """
   def index(conn, params) do
 
