@@ -37,6 +37,8 @@ defmodule Babysitting.ConnCase do
       Ecto.Adapters.SQL.restart_test_transaction(Babysitting.Repo, [])
     end
 
-    {:ok, conn: Phoenix.ConnTest.conn()}
+    conn = Phoenix.ConnTest.conn()
+    conn = %{conn | host: "www.babysittingbordeaux.dev"}
+    {:ok, conn: conn}
   end
 end
