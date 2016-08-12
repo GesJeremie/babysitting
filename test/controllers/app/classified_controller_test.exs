@@ -1,10 +1,17 @@
 """
-defmodule Babysitting.OfferControllerTest do
+defmodule Babysitting.ClassifiedControllerTest do
   use Babysitting.ConnCase
 
-  alias Babysitting.Offer
-  @valid_attrs %{day_birthday: 42, day_month: 42, day_year: 42, description: "some content", email: "some content", firstname: "some content", lastname: "some content", phone: "some content", search: "some content", token: "some content"}
+  alias Babysitting.Classified
+  @valid_attrs %{}
   @invalid_attrs %{}
+
+  test "awesome", %{conn: conn} do
+    conn = %{conn | host: "www.babysittingbordeaux.dev"}
+    conn = get conn, "/"
+    assert html_response(conn, 200) =~ "Bordeaux"
+  end
+
 
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, offer_path(conn, :index)

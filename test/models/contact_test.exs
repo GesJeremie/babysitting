@@ -1,3 +1,4 @@
+"""
 defmodule Babysitting.ContactTest do
   use Babysitting.ModelCase
 
@@ -16,3 +17,4 @@ defmodule Babysitting.ContactTest do
     refute changeset.valid?
   end
 end
+"""

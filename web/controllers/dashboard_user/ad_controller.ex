@@ -1,4 +1,4 @@
-defmodule Babysitting.DashboardUser.AccountController do
+defmodule Babysitting.DashboardUser.AdController do
   use Babysitting.Web, :controller
   alias Babysitting.Ad
   alias Babysitting.Helpers.App

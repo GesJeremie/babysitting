@@ -37,7 +37,7 @@ defmodule Babysitting.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
      {:comeonin, "~> 1.0"},
-     {:uuid, "~> 1.1" },
+     {:uuid, "~> 1.1"},
      {:arc_ecto, "~> 0.3.1"},
      {:arc, "0.2.0"},
      {:cowboy, "~> 1.0"},
@@ -46,7 +46,8 @@ defmodule Babysitting.Mixfile do
      {:httpoison, "~> 0.9.0"},
      {:keenex, "~> 0.4"},
      {:html_entities, "~> 0.3"},
-     {:timex, "~> 2.0.0"}]
+     {:timex, "~> 2.0.0"},
+     {:credo, "~> 0.4", only: [:dev, :test]}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
@@ -57,6 +58,7 @@ defmodule Babysitting.Mixfile do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
-     "ecto.reset": ["ecto.drop", "ecto.setup"]]
+     "ecto.reset": ["ecto.drop", "ecto.setup"],
+     "test.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds_test.exs"]]
   end
 end

@@ -30,7 +30,9 @@ defmodule Babysitting.Avatar do
   end
 
   defp uniq_id(string) do
-    :crypto.hash(:md5, string) |> Base.encode16
+    :md5
+      |> :crypto.hash(string)
+      |> Base.encode16
   end
 
   # Provide a default URL if there hasn't been a file uploaded

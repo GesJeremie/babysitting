@@ -23,5 +23,5 @@ tenants = [
 ]
 
 # Seed tenants
-tenants 
+tenants
   |> Enum.map(fn (tenant) ->  Babysitting.Repo.insert!(tenant) end)
