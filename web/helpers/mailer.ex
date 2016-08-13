@@ -20,4 +20,12 @@ defmodule Babysitting.Helpers.Mailer do
                subject: gettext("Baby Sitting %{name} - Classified validated", name: classified.tenant.name),
                html: Phoenix.View.render_to_string(Babysitting.EmailView, "validated.html", %{name: classified.firstname})
   end
+
+  def send_rejected(%{classified: classified}) do
+    send_email to: classified.email,
+               from: Application.get_env(:babysitting, :email_address),
+               subject: gettext("Baby Sitting %{name} - Classified rejected", name: classified.tenant.name),
+               html: Phoenix.View.render_to_string(Babysitting.EmailView, "rejected.html", %{name: classified.firstname})
+  end
+
 end

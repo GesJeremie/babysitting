@@ -163,10 +163,13 @@ $.noty.defaults.killer = true;
 
 $.noty.defaults.dismissQueue = false;
 
-if ($('[data-flash]').length && $('[data-flash]').first().text() !== "") {
-  $flash = $('[data-flash').first();
-  type = $flash.data('flash');
-  text = $flash.html();
+$flash = $('[data-flash]').filter(function(i, v) {
+  return $(v).text() !== '';
+});
+
+if ($flash.length) {
+  type = $flash.first().data('flash');
+  text = $flash.first().html();
   noty({
     type: type,
     text: text

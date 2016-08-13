@@ -16,11 +16,12 @@ $.noty.defaults.dismissQueue = false
 
 
 # Flash system
-if $('[data-flash]').length && $('[data-flash]').first().text() != ""
+$flash = $('[data-flash]').filter (i, v) ->
+    $(v).text() != ''
 
-    $flash = $('[data-flash').first()
-    type = $flash.data('flash')
-    text = $flash.html()
+if $flash.length
+    type = $flash.first().data('flash')
+    text = $flash.first().html()
 
     noty({
         type: type

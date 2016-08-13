@@ -94,6 +94,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
     case Repo.update(classified) do
       {:ok, classified} ->
         conn
+          |> send_email_rejected(classified)
           |> put_flash(:info, "Classified invalidated successfully.")
           |> redirect(to: admin_classified_path(conn, :index))
       {:error, changeset} ->
@@ -106,6 +107,12 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   defp send_email_validated(conn, classified) do
     classified = Repo.preload(classified, :tenant)
     Mailer.send_validated(%{classified: classified})
+    conn
+  end
+
+  defp send_email_rejected(conn, classified) do
+    classified = Repo.preload(classified, :tenant)
+    Mailer.send_rejected(%{classified: classified})
     conn
   end
 
