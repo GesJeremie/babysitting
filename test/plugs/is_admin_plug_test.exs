@@ -20,8 +20,4 @@ defmodule Babysitting.IsAdminPlugTest do
       assert not_redirected?(conn)
   end
 
-  defp not_redirected?(conn) do
-    conn.status != 302
-  end
-
 end

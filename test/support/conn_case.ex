@@ -51,4 +51,12 @@ defmodule Babysitting.ConnCase do
       |> Plug.Conn.fetch_session()
   end
 
+  def redirected?(conn) do
+    conn.status == 302
+  end
+
+  def not_redirected?(conn) do
+    conn.status != 302
+  end
+
 end
