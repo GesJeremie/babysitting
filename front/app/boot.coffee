@@ -5,29 +5,67 @@
 # It's the right place to put some code to execute globally like
 # the init of jQuery plugins, etc.
 ##
+class Boot
 
-# Noty configuration
-$.noty.defaults.timeout = 2500
-$.noty.defaults.animation.open = 'animated flipInX'
-$.noty.defaults.animation.close = 'animated flipOutX'
-$.noty.defaults.maxVisible = 1
-$.noty.defaults.killer = true
-$.noty.defaults.dismissQueue = false
+    constructor: ->
+        @setupNoty()
+        @setupFlash()
+        @setupAutosize()
+        @setupConfirm()
+
+    setupNoty: ->
+
+        # Noty configuration
+        $.noty.defaults.timeout = 2500
+        $.noty.defaults.animation.open = 'animated flipInX'
+        $.noty.defaults.animation.close = 'animated flipOutX'
+        $.noty.defaults.maxVisible = 1
+        $.noty.defaults.killer = true
+        $.noty.defaults.dismissQueue = false
+
+    setupFlash: ->
+
+        # Flash system
+        $flash = $('[data-flash]').filter (i, v) ->
+            $(v).text() != ''
+
+        if $flash.length
+            type = $flash.first().data('flash')
+            text = $flash.first().html()
+
+            noty({
+                type: type
+                text: text
+            })
+
+    setupAutosize: ->
+
+        # Autosize textarea
+        if $('.js-autosize').length
+            autosize($('.js-autosize'))
 
 
-# Flash system
-$flash = $('[data-flash]').filter (i, v) ->
-    $(v).text() != ''
+    setupConfirm: ->
 
-if $flash.length
-    type = $flash.first().data('flash')
-    text = $flash.first().html()
+        # Confirm
+        $('[data-confirm]').each ->
 
-    noty({
-        type: type
-        text: text
-    })
+            text = $(this).data('confirm')
+            url = $(this).attr('href')
 
-# Autosize textarea
-if $('.js-autosize').length
-    autosize($('.js-autosize'))
+            $(this).on 'click', (e) ->
+
+                e.preventDefault()
+
+                swal({
+                    title: $('#app-config').data('confirm-title') || '',
+                    text: text
+                    type: 'warning',
+                    showCancelButton: true
+                    }, ->
+
+                        window.location.href = url
+
+                )
+
+new Boot()

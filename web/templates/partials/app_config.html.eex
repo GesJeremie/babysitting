@@ -1,4 +1,5 @@
 <div id="app-config"
   data-environment="<%= Mix.env %>"
+  data-confirm-title="<%= gettext("Are you sure") %>"
 >
 </div>

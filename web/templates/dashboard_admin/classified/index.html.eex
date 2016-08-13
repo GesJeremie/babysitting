@@ -57,9 +57,9 @@
                     <a class="button --primary" href="<%= admin_classified_path(@conn, :show, classified.id) %>">Show</a>
                     <a class="button --warning" href="<%= admin_classified_path(@conn, :edit, classified.id) %>">Edit</a>
                     <%= if classified.valid do %>
-                      <a class="button --danger" href="<%= admin_classified_path(@conn, :invalidate, classified.id) %>">Reject</a>
+                      <a data-confirm="<%= gettext("It will reject the classified") %>" class="button --danger" href="<%= admin_classified_path(@conn, :invalidate, classified.id) %>">Reject</a>
                     <% else %>
-                      <a class="button --success" href="<%= admin_classified_path(@conn, :validate, classified.id) %>">Validate</a>
+                      <a data-confirm="<%= gettext("It will validate the classified") %>" class="button --success" href="<%= admin_classified_path(@conn, :validate, classified.id) %>">Validate</a>
                     <% end %>
                   </p>
                 </div>

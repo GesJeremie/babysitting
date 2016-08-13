@@ -149,36 +149,70 @@ var __makeRelativeRequire = function(require, mappings, pref) {
   }
 };
 require.register("boot.coffee", function(exports, require, module) {
-var $flash, text, type;
+var Boot;
 
-$.noty.defaults.timeout = 2500;
+Boot = (function() {
+  function Boot() {
+    this.setupNoty();
+    this.setupFlash();
+    this.setupAutosize();
+    this.setupConfirm();
+  }
 
-$.noty.defaults.animation.open = 'animated flipInX';
+  Boot.prototype.setupNoty = function() {
+    $.noty.defaults.timeout = 2500;
+    $.noty.defaults.animation.open = 'animated flipInX';
+    $.noty.defaults.animation.close = 'animated flipOutX';
+    $.noty.defaults.maxVisible = 1;
+    $.noty.defaults.killer = true;
+    return $.noty.defaults.dismissQueue = false;
+  };
 
-$.noty.defaults.animation.close = 'animated flipOutX';
+  Boot.prototype.setupFlash = function() {
+    var $flash, text, type;
+    $flash = $('[data-flash]').filter(function(i, v) {
+      return $(v).text() !== '';
+    });
+    if ($flash.length) {
+      type = $flash.first().data('flash');
+      text = $flash.first().html();
+      return noty({
+        type: type,
+        text: text
+      });
+    }
+  };
 
-$.noty.defaults.maxVisible = 1;
+  Boot.prototype.setupAutosize = function() {
+    if ($('.js-autosize').length) {
+      return autosize($('.js-autosize'));
+    }
+  };
 
-$.noty.defaults.killer = true;
+  Boot.prototype.setupConfirm = function() {
+    return $('[data-confirm]').each(function() {
+      var text, url;
+      text = $(this).data('confirm');
+      url = $(this).attr('href');
+      return $(this).on('click', function(e) {
+        e.preventDefault();
+        return swal({
+          title: $('#app-config').data('confirm-title') || '',
+          text: text,
+          type: 'warning',
+          showCancelButton: true
+        }, function() {
+          return window.location.href = url;
+        });
+      });
+    });
+  };
 
-$.noty.defaults.dismissQueue = false;
+  return Boot;
 
-$flash = $('[data-flash]').filter(function(i, v) {
-  return $(v).text() !== '';
-});
+})();
 
-if ($flash.length) {
-  type = $flash.first().data('flash');
-  text = $flash.first().html();
-  noty({
-    type: type,
-    text: text
-  });
-}
-
-if ($('.js-autosize').length) {
-  autosize($('.js-autosize'));
-}
+new Boot();
 });
 
 ;require.register("config.coffee", function(exports, require, module) {
