@@ -8,7 +8,14 @@
     <div class="header__description">Some statistics about the application</div>
   </div>
 
-  <div class="grid-4">
-    <div id="total-classified"></div>
+  <div class="container-fluid">
+    <div class="+spacer"></div>
+    <div class="grid-4">
+      <div id="total-classified"></div>
+    </div>
+
+    <div class="grid-4">
+      <div id="total-classified-7-days"></div>
+    </div>
   </div>
 </div>

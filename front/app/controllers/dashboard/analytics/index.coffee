@@ -36,11 +36,23 @@ class Dashboard_Analytics_Index extends Controller
                 eventCollection: 'classified.new'
                 timeframe: 'this_10_years'
                 timezone: 'UTC'
-            };
+            }
 
             client.draw(query, document.getElementById('total-classified'), {
                 title: 'Total Classified'
             })
+
+            query = new Keen.Query 'count', {
+                eventCollection: "classified.new"
+                timeframe: "this_7_days"
+                timezone: "UTC"
+            }
+
+            client.draw(query, document.getElementById('total-classified-7-days'), {
+                title: 'Added this last 7 days'
+            })
+
+
 
 
 # Export

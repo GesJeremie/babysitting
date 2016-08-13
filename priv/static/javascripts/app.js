@@ -306,8 +306,16 @@ Dashboard_Analytics_Index = (function(superClass) {
         timeframe: 'this_10_years',
         timezone: 'UTC'
       });
-      return client.draw(query, document.getElementById('total-classified'), {
+      client.draw(query, document.getElementById('total-classified'), {
         title: 'Total Classified'
+      });
+      query = new Keen.Query('count', {
+        eventCollection: "classified.new",
+        timeframe: "this_7_days",
+        timezone: "UTC"
+      });
+      return client.draw(query, document.getElementById('total-classified-7-days'), {
+        title: 'Added this last 7 days'
       });
     });
   };
