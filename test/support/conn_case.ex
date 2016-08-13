@@ -51,6 +51,12 @@ defmodule Babysitting.ConnCase do
       |> Plug.Conn.fetch_session()
   end
 
+  def with_tenant(conn) do
+    conn
+      |> with_session
+      |> Babysitting.Plug.Tenant.call(%{})
+  end
+
   def redirected?(conn) do
     conn.status == 302
   end
