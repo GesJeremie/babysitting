@@ -5,6 +5,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
 
   # Aliases
   alias Babysitting.Classified
+  alias Babysitting.Helpers.Mailer
 
   # Plugs
   plug Babysitting.Plug.IsAdmin
@@ -73,6 +74,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
     case Repo.update(classified) do
       {:ok, classified} ->
         conn
+          |> send_email_validated(classified)
           |> put_flash(:info, "Ad validated successfully.")
           |> redirect(to: admin_classified_path(conn, :index))
       {:error, changeset} ->
@@ -99,6 +101,12 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
           |> put_flash(:error, "Impossible to invalidate the classified.")
           |> redirect(to: admin_classified_path(conn, :index))
     end
+  end
+
+  defp send_email_validated(conn, classified) do
+    classified = Repo.preload(classified, :tenant)
+    Mailer.send_validated(%{classified: classified})
+    conn
   end
 
 end

@@ -1,0 +1,2 @@
+<%= gettext("Hello %{name}!", name: @name) %><br/>
+<p><%= gettext("The team has just approved your classified!") %></p>

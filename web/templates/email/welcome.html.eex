@@ -1,5 +1,0 @@
-<h1 style="color:#344146"><%= gettext("Hello %{fullname}", fullname: @fullname) %></h1>
-
-<p style="color: #344146"><%= gettext("Your ad is <strong>waiting the approval</strong> of our lovely team. You will receive an email to let you know.") |> HtmlEntities.decode %><br/><br/>
-
-<%= gettext("If you like our service,") %> <a href="<%= @tenant.facebook %>" style="color: #2C82C9; font-weight:bold"><%= gettext("you can like us on Facebook!") %></a> <%= gettext("(If not, don't worry we still <strong>love you</strong> :p)") |> HtmlEntities.decode %></p>
