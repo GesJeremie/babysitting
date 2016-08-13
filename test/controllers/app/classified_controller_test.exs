@@ -1,3 +1,4 @@
+"""
 defmodule Babysitting.ClassifiedControllerTest do
   use Babysitting.ConnCase
   alias Babysitting.Classified
@@ -9,7 +10,6 @@ defmodule Babysitting.ClassifiedControllerTest do
     conn = get conn, "/"
     assert html_response(conn, 200) =~ "Bordeaux"
   end
-  """
 
   test "lists all entries on index", %{conn: conn} do
     conn = get conn, offer_path(conn, :index)
@@ -69,5 +69,5 @@ defmodule Babysitting.ClassifiedControllerTest do
     assert redirected_to(conn) == offer_path(conn, :index)
     refute Repo.get(Offer, offer.id)
   end
-  """
 end
+"""
