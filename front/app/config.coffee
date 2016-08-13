@@ -27,3 +27,6 @@ module.exports =
 
         if $selector.length
             return $selector.data('environment')
+        else
+            console.log("[WARNING] Environment not specified, fallback to prod")
+            return 'prod'
