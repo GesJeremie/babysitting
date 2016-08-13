@@ -75,11 +75,11 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
       {:ok, classified} ->
         conn
           |> send_email_validated(classified)
-          |> put_flash(:info, "Ad validated successfully.")
+          |> put_flash(:info, "Classified validated!")
           |> redirect(to: admin_classified_path(conn, :index))
       {:error, changeset} ->
         conn
-          |> put_flash(:error, "Impossible to validate the ad.")
+          |> put_flash(:error, "Impossible to validate the classified.")
           |> redirect(to: admin_classified_path(conn, :index))
     end
   end
@@ -95,11 +95,11 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
       {:ok, classified} ->
         conn
           |> send_email_rejected(classified)
-          |> put_flash(:info, "Classified invalidated successfully.")
+          |> put_flash(:info, "Classified rejected!")
           |> redirect(to: admin_classified_path(conn, :index))
       {:error, changeset} ->
         conn
-          |> put_flash(:error, "Impossible to invalidate the classified.")
+          |> put_flash(:error, "Impossible to reject the classified.")
           |> redirect(to: admin_classified_path(conn, :index))
     end
   end
