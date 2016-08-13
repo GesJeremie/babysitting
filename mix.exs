@@ -46,7 +46,7 @@ defmodule Babysitting.Mixfile do
      {:httpoison, "~> 0.9.0"},
      {:keenex, "~> 0.4"},
      {:html_entities, "~> 0.3"},
-     {:timex, "~> 2.0.0"},
+     {:timex, "~> 3.0.0"},
      {:credo, "~> 0.4", only: [:dev, :test]}]
   end
 

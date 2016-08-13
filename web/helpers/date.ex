@@ -1,15 +1,19 @@
 defmodule Babysitting.Helpers.Date do
   @moduledoc """
-  Conveniences for shared view helpers. 
+  Conveniences for shared view helpers.
   """
   use Timex
 
   @doc """
   Return age given the birthday date
   """
-  def age(birthday) do 
-    [day, month, year] = birthday |> String.split("/")
-    Date.today.year - String.to_integer(year)
+  def age(birthday) do
+    {_, birthday} = birthday
+      |> Timex.parse("{0D}/{0M}/{YYYY}")
+
+    now = Timex.now
+
+    Timex.diff(now, birthday, :years)
   end
 
 
