@@ -2,7 +2,7 @@
 # Boot
 #--------------------------------------------------------------------------
 #
-# It's the right place to put some code to execute globally like 
+# It's the right place to put some code to execute globally like
 # the init of jQuery plugins, etc.
 ##
 
@@ -23,10 +23,10 @@ if $('[data-flash]').length && $('[data-flash]').first().text() != ""
     text = $flash.html()
 
     noty({
-      type: type
-      text: text
+        type: type
+        text: text
     })
 
 # Autosize textarea
-if $('.js-autosize').length 
-  autosize($('.js-autosize'))
+if $('.js-autosize').length
+    autosize($('.js-autosize'))

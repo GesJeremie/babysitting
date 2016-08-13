@@ -1,5 +1,5 @@
 <div id="app"
-    data-controller="classified.new"
+    data-controller="app.classified.new"
 ></div>
 
 <div class="container">

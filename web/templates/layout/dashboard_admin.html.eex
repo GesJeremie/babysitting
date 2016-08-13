@@ -20,6 +20,7 @@
   </head>
 
   <body id="csstyle">
+    <%= render Babysitting.PartialsView, "app_config.html", assigns %>
     <%= render Babysitting.PartialsView, "flash.html", assigns %>
 
     <%= if (@view_module != "Babysitting.DashboardAdmin.AuthView") do %>

@@ -15,11 +15,12 @@
 
     <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/stylesheets/vendor.css") %>">
     <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/stylesheets/app.css") %>">
-    
+
     <title><%= title(@conn) %></title>
   </head>
 
   <body id="csstyle">
+    <%= render Babysitting.PartialsView, "app_config.html", assigns %>
     <%= render Babysitting.PartialsView, "flash.html", assigns %>
     <%= render Babysitting.App.PartialsView, "navbar.html", assigns %>
     <%= render @view_module, @view_template, assigns %>

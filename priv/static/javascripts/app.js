@@ -183,59 +183,74 @@ module.exports = {
   app: {
     name: 'My Gotham Application',
     version: 0.1
-  }
+  },
+  keenio: {
+    dev: {
+      projectId: '57aeaf313831444167e1fa35',
+      readKey: '410e0b58f9d6c3371cd296341701dc9758bd8b47d9def44aff868ba6cfd54dfe394b8eb113a55c8dc4df2042975da73e7bcc9e397e1e8ca48f75607fd2caa712359db81d2cc304029fc6b20cc34795344551caf82419a8744bc650f9a8b910ac'
+    }
+  },
+  env: (function(_this) {
+    return function() {
+      var $selector;
+      $selector = $('#app-config[data-environment]');
+      if ($selector.length) {
+        return $selector.data('environment');
+      }
+    };
+  })(this)
 };
 });
 
-;require.register("controllers/ad/new.coffee", function(exports, require, module) {
-var AdNew, Controller,
+;require.register("controllers/app/classified/new.coffee", function(exports, require, module) {
+var Classified_New, Controller,
   bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
   extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
   hasProp = {}.hasOwnProperty;
 
 Controller = require('core/controller');
 
-AdNew = (function(superClass) {
-  extend(AdNew, superClass);
+Classified_New = (function(superClass) {
+  extend(Classified_New, superClass);
 
-  function AdNew() {
+  function Classified_New() {
     this.initAutosize = bind(this.initAutosize, this);
     this.setCharsCount = bind(this.setCharsCount, this);
     this.changeCharsCount = bind(this.changeCharsCount, this);
     this.initCharsCount = bind(this.initCharsCount, this);
     this.initBirthdayMask = bind(this.initBirthdayMask, this);
-    return AdNew.__super__.constructor.apply(this, arguments);
+    return Classified_New.__super__.constructor.apply(this, arguments);
   }
 
-  AdNew.prototype.before = function() {
-    return this.on('keyup', '#ad_description', this.changeCharsCount);
+  Classified_New.prototype.before = function() {
+    return this.on('keyup', '#classified_description', this.changeCharsCount);
   };
 
-  AdNew.prototype.run = function() {
+  Classified_New.prototype.run = function() {
     this.initBirthdayMask();
     this.initCharsCount();
     return this.initAutosize();
   };
 
-  AdNew.prototype.initBirthdayMask = function() {
-    return $('#ad_birthday').inputmask('99/99/9999', {
+  Classified_New.prototype.initBirthdayMask = function() {
+    return $('#classified_birthday').inputmask('99/99/9999', {
       placeholder: "jj/mm/aaaa"
     });
   };
 
-  AdNew.prototype.initCharsCount = function() {
+  Classified_New.prototype.initCharsCount = function() {
     var length;
-    length = $('#ad_description').val().length;
+    length = $('#classified_description').val().length;
     return this.setCharsCount(length);
   };
 
-  AdNew.prototype.changeCharsCount = function() {
+  Classified_New.prototype.changeCharsCount = function() {
     var count;
-    count = $('#ad_description').val().length;
+    count = $('#classified_description').val().length;
     return this.setCharsCount(count);
   };
 
-  AdNew.prototype.setCharsCount = function(number) {
+  Classified_New.prototype.setCharsCount = function(number) {
     var $chars, minimum, text;
     $chars = $('#chars');
     minimum = $chars.data('min');
@@ -248,15 +263,60 @@ AdNew = (function(superClass) {
     }
   };
 
-  AdNew.prototype.initAutosize = function() {
-    return autosize($('#ad_description'));
+  Classified_New.prototype.initAutosize = function() {
+    return autosize($('#classified_description'));
   };
 
-  return AdNew;
+  return Classified_New;
 
 })(Controller);
 
-module.exports = AdNew;
+module.exports = Classified_New;
+});
+
+;require.register("controllers/dashboard/analytics/index.coffee", function(exports, require, module) {
+var Controller, Dashboard_Analytics_Index, Keenio,
+  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
+
+Controller = require('core/controller');
+
+Keenio = require('helpers/keenio');
+
+Dashboard_Analytics_Index = (function(superClass) {
+  extend(Dashboard_Analytics_Index, superClass);
+
+  function Dashboard_Analytics_Index() {
+    return Dashboard_Analytics_Index.__super__.constructor.apply(this, arguments);
+  }
+
+  Dashboard_Analytics_Index.prototype.before = function() {
+    return this.setupStats();
+  };
+
+  Dashboard_Analytics_Index.prototype.run = function() {};
+
+  Dashboard_Analytics_Index.prototype.setupStats = function() {
+    var client;
+    client = new Keenio().client;
+    return Keen.ready(function() {
+      var query;
+      query = new Keen.Query('count', {
+        eventCollection: 'classified.new',
+        timeframe: 'this_10_years',
+        timezone: 'UTC'
+      });
+      return client.draw(query, document.getElementById('total-classified'), {
+        title: 'Total Classified'
+      });
+    });
+  };
+
+  return Dashboard_Analytics_Index;
+
+})(Controller);
+
+module.exports = Dashboard_Analytics_Index;
 });
 
 ;require.register("controllers/example-controller.coffee", function(exports, require, module) {
@@ -293,6 +353,27 @@ _.mixin({
     return false;
   }
 });
+});
+
+;require.register("helpers/keenio.coffee", function(exports, require, module) {
+var Config, Helpers_Keenio;
+
+Config = require('config');
+
+Helpers_Keenio = (function() {
+  function Helpers_Keenio() {
+    this.keys = Config.keenio[Config.env()];
+    this.client = new Keen({
+      projectId: this.keys.projectId,
+      readKey: this.keys.readKey
+    });
+  }
+
+  return Helpers_Keenio;
+
+})();
+
+module.exports = Helpers_Keenio;
 });
 
 ;require.register("initialize.coffee", function(exports, require, module) {

@@ -15,7 +15,8 @@
     "animate.css": "^3.5.2",
     "jquery.inputmask": "^3.3.1",
     "autosize": "^3.0.15",
-    "noty": "^2.3.8"
+    "noty": "^2.3.8",
+    "keen-js": "^3.4.1"
   },
   "overrides": {
     "jq-dropdown": {

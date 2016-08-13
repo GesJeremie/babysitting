@@ -1,6 +1,14 @@
+<div id="app"
+    data-controller="dashboard.analytics.index"
+></div>
+
 <div id="content-wrapper">
   <div class="header__container">
     <div class="header__title">Analytics</div>
     <div class="header__description">Some statistics about the application</div>
+  </div>
+
+  <div class="grid-4">
+    <div id="total-classified"></div>
   </div>
 </div>
