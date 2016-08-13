@@ -29,6 +29,7 @@ class Dashboard_Analytics_Index extends Controller
     setupStats: ->
 
         client = new Keenio().client
+        colors = ['#60646D']
 
         Keen.ready ->
 
@@ -39,7 +40,8 @@ class Dashboard_Analytics_Index extends Controller
             }
 
             client.draw(query, document.getElementById('total-classified'), {
-                title: 'Total Classified'
+                title: 'Total Classified',
+                colors: colors
             })
 
             query = new Keen.Query 'count', {
@@ -49,8 +51,22 @@ class Dashboard_Analytics_Index extends Controller
             }
 
             client.draw(query, document.getElementById('total-classified-7-days'), {
-                title: 'Added this last 7 days'
+                title: 'Added this last 7 days',
+                colors: colors
             })
+
+
+            query = new Keen.Query 'count', {
+                eventCollection: "classified.new"
+                timeframe: "this_1_days"
+                timezone: "UTC"
+            }
+
+            client.draw(query, document.getElementById('total-classified-today'), {
+                title: 'Added today',
+                colors: colors
+            })
+
 
 
 

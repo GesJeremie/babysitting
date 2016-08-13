@@ -297,8 +297,9 @@ Dashboard_Analytics_Index = (function(superClass) {
   Dashboard_Analytics_Index.prototype.run = function() {};
 
   Dashboard_Analytics_Index.prototype.setupStats = function() {
-    var client;
+    var client, colors;
     client = new Keenio().client;
+    colors = ['#60646D'];
     return Keen.ready(function() {
       var query;
       query = new Keen.Query('count', {
@@ -307,15 +308,26 @@ Dashboard_Analytics_Index = (function(superClass) {
         timezone: 'UTC'
       });
       client.draw(query, document.getElementById('total-classified'), {
-        title: 'Total Classified'
+        title: 'Total Classified',
+        colors: colors
       });
       query = new Keen.Query('count', {
         eventCollection: "classified.new",
         timeframe: "this_7_days",
         timezone: "UTC"
       });
-      return client.draw(query, document.getElementById('total-classified-7-days'), {
-        title: 'Added this last 7 days'
+      client.draw(query, document.getElementById('total-classified-7-days'), {
+        title: 'Added this last 7 days',
+        colors: colors
+      });
+      query = new Keen.Query('count', {
+        eventCollection: "classified.new",
+        timeframe: "this_1_days",
+        timezone: "UTC"
+      });
+      return client.draw(query, document.getElementById('total-classified-today'), {
+        title: 'Added today',
+        colors: colors
       });
     });
   };

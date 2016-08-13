@@ -17,5 +17,9 @@
     <div class="grid-4">
       <div id="total-classified-7-days"></div>
     </div>
+
+    <div class="grid-4">
+      <div id="total-classified-today"></div>
+    </div>
   </div>
 </div>
