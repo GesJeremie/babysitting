@@ -11,7 +11,7 @@ defmodule Babysitting.IsAdminPlugTest do
     assert redirected_to(conn) == admin_auth_path(conn, :index)
   end
 
-  test "admin is not redirect when authenticated" do
+  test "admin is not redirected when authenticated" do
     conn = conn()
       |> with_session
       |> put_session(:is_admin, true)
