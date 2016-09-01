@@ -1,35 +1,22 @@
 alias Babysitting.Repo
 import Babysitting.Fixtures
 
+# Let's make french the fixtures
 FakerElixir.set_locale(:fr)
 
-tenants = [
-  %Babysitting.Tenant{
-    :name => "Paris",
-    :domain => "www.babysittingparis.dev",
-    :slug => "paris",
-    :facebook => "https://www.facebook.com/parisBabySitting/",
-    :locale => "fr_FR"
-  },
-  %Babysitting.Tenant{
-    :name => "Bordeaux",
-    :domain => "www.babysittingbordeaux.dev",
-    :slug => "bordeaux",
-    :facebook =>"https://www.facebook.com/babySittingBordeaux",
-    :locale => "fr_FR"
-  },
-  %Babysitting.Tenant{
-    :name => "London",
-    :domain => "www.babysittinglondon.co.uk.dev",
-    :slug => "london",
-    :facebook =>"https://www.facebook.com/Baby-Sitting-London-552729038239860",
-    :locale => "en_GB"
-  }
-]
+# Let's the base tenants
+tenant_paris = fixture(:tenant, :paris)
+tenant_bordeaux = fixture(:tenant, :bordeaux)
+tenant_london = fixture(:tenant, :london)
 
-# Seed tenants
-tenants
-|> Enum.map(fn(tenant) ->  Repo.insert!(tenant) end)
+# Some classifieds for tenant paris
+Stream.repeatedly(fn -> fixture(:classified, tenant: tenant_paris) end)
+|> Enum.take(30)
 
-stream = Stream.repeatedly(fn -> Repo.insert!(fixture(:classified)) end)
-stream |> Enum.take(200)
+# Some classifieds for tenant bordeaux
+Stream.repeatedly(fn -> fixture(:classified, tenant: tenant_bordeaux) end)
+|> Enum.take(30)
+
+# Some classifieds for tenant london
+Stream.repeatedly(fn -> fixture(:classified, tenant: tenant_london) end)
+|> Enum.take(30)
