@@ -9,14 +9,11 @@ tenant_paris = fixture(:tenant, :paris)
 tenant_bordeaux = fixture(:tenant, :bordeaux)
 tenant_london = fixture(:tenant, :london)
 
-# Some classifieds for tenant paris
+# Create classifieds
 Stream.repeatedly(fn -> fixture(:classified, tenant: tenant_paris) end)
 |> Enum.take(30)
 
-# Some classifieds for tenant bordeaux
-Stream.repeatedly(fn -> fixture(:classified, tenant: tenant_bordeaux) end)
-|> Enum.take(30)
 
-# Some classifieds for tenant london
-Stream.repeatedly(fn -> fixture(:classified, tenant: tenant_london) end)
+# Create contacts
+Stream.repeatedly(fn -> fixture(:classified, tenant: FakerElixir.Helper.pick([tenant_paris, tenant_bordeaux, tenant_london])) end)
 |> Enum.take(30)

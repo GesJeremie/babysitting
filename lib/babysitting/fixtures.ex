@@ -78,4 +78,19 @@ defmodule Babysitting.Fixtures do
       valid: Faker.Boolean.boolean
     }
   end
+
+  @doc """
+  Create contact
+  """
+  def fixture(:contact, assoc \\ []) do
+
+    tenant = assoc[:tenant] || fixture(:tenant)
+
+    %Contact{
+      tenant_id: tenant.id,
+      email: Faker.Internet.email,
+      message: Faker.Lorem.sentences(2..7)
+    }
+  end
+
 end
