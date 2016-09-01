@@ -5,7 +5,9 @@ defmodule Babysitting.Fixtures do
   alias FakerElixir, as: Faker
   alias Babysitting.{Classified, Tenant, Repo}
 
-
+  @doc """
+  Create tenant with fake data
+  """
   def fixture(:tenant) do
     Repo.insert! %Tenant{
       name: Faker.Address.city,
@@ -15,6 +17,9 @@ defmodule Babysitting.Fixtures do
     }
   end
 
+  @doc """
+  Create tenant paris
+  """
   def fixture(:tenant, :paris) do
     Repo.insert! %Tenant{
       :name => "Paris",
@@ -25,6 +30,9 @@ defmodule Babysitting.Fixtures do
     }
   end
 
+  @doc """
+  Create tenant bordeaux
+  """
   def fixture(:tenant, :bordeaux) do
     Repo.insert! %Tenant{
       :name => "Bordeaux",
@@ -35,6 +43,9 @@ defmodule Babysitting.Fixtures do
     }
   end
 
+  @doc """
+  Create tenant london
+  """
   def fixture(:tenant, :london) do
     Repo.insert! %Tenant{
       :name => "London",
@@ -45,6 +56,9 @@ defmodule Babysitting.Fixtures do
     }
   end
 
+  @doc """
+  Create classified
+  """
   def fixture(:classified, assoc \\ []) do
 
     tenant = assoc[:tenant] || fixture(:tenant)
