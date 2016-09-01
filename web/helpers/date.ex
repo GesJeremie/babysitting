@@ -1,6 +1,6 @@
 defmodule Babysitting.Helpers.Date do
   @moduledoc """
-  Conveniences for shared view helpers.
+  Conveniences for shared date helpers.
   """
   use Timex
 

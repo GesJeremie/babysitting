@@ -1,8 +1,8 @@
 defmodule Babysitting.DashboardAdmin.AuthController do
-  
+
   # Use
   use Babysitting.Web, :controller
-  
+
   # Module attributes
   @password_login Application.get_env(:babysitting, :admin_password)
 
@@ -61,8 +61,8 @@ defmodule Babysitting.DashboardAdmin.AuthController do
     conn
       |> fetch_session
       |> delete_session(:is_admin)
+      |> put_flash(:info, "You just signed out!")
       |> redirect(to: "/")
   end
 
 end
-

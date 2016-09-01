@@ -19,7 +19,8 @@ defmodule Babysitting.Mixfile do
   def application do
     [mod: {Babysitting, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :httpoison, :keenex, :timex]]
+                    :phoenix_ecto, :postgrex, :httpoison, :keenex, :timex,
+                    :faker_elixir_octopus]]
   end
 
   # Specifies which paths to compile per environment.
@@ -47,6 +48,7 @@ defmodule Babysitting.Mixfile do
      {:keenex, "~> 0.4"},
      {:html_entities, "~> 0.3"},
      {:timex, "~> 3.0.0"},
+     {:faker_elixir_octopus, "> 0.0.0", only: [:dev, :test]},
      {:credo, "~> 0.4", only: [:dev, :test]}]
   end
 

@@ -1,3 +1,8 @@
+alias Babysitting.Repo
+import Babysitting.Fixtures
+
+FakerElixir.set_locale(:fr)
+
 tenants = [
   %Babysitting.Tenant{
     :name => "Paris",
@@ -24,4 +29,7 @@ tenants = [
 
 # Seed tenants
 tenants
-  |> Enum.map(fn (tenant) ->  Babysitting.Repo.insert!(tenant) end)
+|> Enum.map(fn(tenant) ->  Repo.insert!(tenant) end)
+
+stream = Stream.repeatedly(fn -> Repo.insert!(fixture(:classified)) end)
+stream |> Enum.take(200)
