@@ -3,7 +3,7 @@ defmodule Babysitting.Fixtures do
   import Ecto
 
   alias FakerElixir, as: Faker
-  alias Babysitting.{Classified, Tenant, Repo}
+  alias Babysitting.{Classified, Tenant, Contact, Repo}
 
   @doc """
   Create tenant with fake data
@@ -76,20 +76,6 @@ defmodule Babysitting.Fixtures do
       search: "",
       status: Faker.Boolean.boolean,
       valid: Faker.Boolean.boolean
-    }
-  end
-
-  @doc """
-  Create contact
-  """
-  def fixture(:contact, assoc \\ []) do
-
-    tenant = assoc[:tenant] || fixture(:tenant)
-
-    %Contact{
-      tenant_id: tenant.id,
-      email: Faker.Internet.email,
-      message: Faker.Lorem.sentences(2..7)
     }
   end
 

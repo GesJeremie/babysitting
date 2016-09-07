@@ -1,0 +1,22 @@
++component(post)
+  
+  +part(container)
+    margin-top: 1em
+
+  +part(name)
+    font-size: 1.3em
+    color: $color-dark
+    font-weight: bold
+
+  +part(age)
+    color: lighten($color-dark, 15%)
+    font-weight: bold
+
+  +part(item)
+    border-radius: 5px
+    padding-top: 2em
+    padding-bottom: 2em
+
+    &:hover
+      background-color: darken($color-grey, 3%)
+      cursor: pointer

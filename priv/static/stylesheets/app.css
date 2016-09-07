@@ -2185,6 +2185,31 @@ a {
 .facebook__container {
   padding-top: 1em; }
 
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.post__container {
+  margin-top: 1em; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.post__name {
+  font-size: 1.3em;
+  color: #4c4f52;
+  font-weight: bold; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.post__age {
+  color: #71757a;
+  font-weight: bold; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.post__item {
+  border-radius: 5px;
+  padding-top: 2em;
+  padding-bottom: 2em; }
+  /* line 20, /Users/jeremie/code/babysitting/front/styles/app/components/_post.sass */
+  .post__item:hover {
+    background-color: #eff2f7;
+    cursor: pointer; }
+
 /* line 1, /Users/jeremie/code/babysitting/front/styles/hooks/_noty.sass */
 #noty_top_layout_container {
   display: inline-block !important;

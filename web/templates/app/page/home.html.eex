@@ -11,12 +11,22 @@
 
 <%= if length(@classifieds) > 0 do %>
   <div class="container">
-    <%= for classified <- @classifieds do %>
-      <h1><%= classified.firstname %></h1>
-      <%= age(classified) %> <%= gettext("years old") %><br/>
-      <%= short_description(classified) %>
-      <hr>
-    <% end %>
+    <div class="post__container">
+      <%= for classified <- @classifieds do %>
+        <div class="post__item">
+          <div class="grid-3">
+          </div>
+          <div class="grid-9">
+            <h3 class="post__name"><%= fullname(classified) %></h3>
+            <h4 class="post__age">22 years old</h4>
+            <div class="post__description">
+              <%= short_description(classified) %>
+            </div>
+          </div>
+          <div class="clear"></div>
+        </div>
+      <% end %>
+    </div>
   </div>
 
 

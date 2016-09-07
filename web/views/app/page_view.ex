@@ -18,6 +18,9 @@ defmodule Babysitting.App.PageView do
       |> text_to_html
   end
 
+  def fullname(%{:firstname => firstname, :lastname => lastname}) do
+    Format.fullname(firstname, lastname)
+  end
 
 
 end
