@@ -15,6 +15,9 @@
       <%= for classified <- @classifieds do %>
         <div class="post__item">
           <div class="grid-3">
+            <div class="post__avatar">
+              <img src="/<%= Babysitting.Avatar.url({classified.avatar, classified}, :thumb) %>" />
+            </div>
           </div>
           <div class="grid-9">
             <h3 class="post__name"><%= fullname(classified) %></h3>

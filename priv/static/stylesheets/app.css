@@ -2197,35 +2197,29 @@ a {
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .post__age {
   color: #71757a;
-  font-weight: bold; }
+  font-weight: bold;
+  padding-bottom: 1em; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.post__avatar {
+  text-align: center;
+  padding-top: 1.5em; }
+  /* line 19, /Users/jeremie/code/babysitting/front/styles/app/components/_post.sass */
+  .post__avatar img {
+    display: inline-block;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .post__item {
   border-radius: 5px;
   padding-top: 2em;
   padding-bottom: 2em; }
-  /* line 20, /Users/jeremie/code/babysitting/front/styles/app/components/_post.sass */
+  /* line 31, /Users/jeremie/code/babysitting/front/styles/app/components/_post.sass */
   .post__item:hover {
     background-color: #eff2f7;
     cursor: pointer; }
-
-/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
-.thanks__container {
-  margin-top: 3em;
-  text-align: center;
-  text-align: left; }
-
-/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
-.thanks__title {
-  color: #585c5f;
-  font-size: 3em;
-  font-weight: bold;
-  padding-left: 3em; }
-
-/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
-.thanks__content {
-  font-size: 1em;
-  padding-top: 2em; }
 
 /* line 1, /Users/jeremie/code/babysitting/front/styles/hooks/_noty.sass */
 #noty_top_layout_container {
