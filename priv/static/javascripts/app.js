@@ -217,14 +217,11 @@ new Boot();
 
 ;require.register("config.coffee", function(exports, require, module) {
 module.exports = {
-  app: {
-    name: 'My Gotham Application',
-    version: 0.1
-  },
   keenio: {
     dev: {
-      projectId: '57aeaf313831444167e1fa35',
-      readKey: '410e0b58f9d6c3371cd296341701dc9758bd8b47d9def44aff868ba6cfd54dfe394b8eb113a55c8dc4df2042975da73e7bcc9e397e1e8ca48f75607fd2caa712359db81d2cc304029fc6b20cc34795344551caf82419a8744bc650f9a8b910ac'
+      projectId: "57aeaf313831444167e1fa35",
+      writeKey: "b90d7934bb1d121351a8cad5ec0b4687a81f86e47186d2812cf531f3e7bb62025622b50482fa18d03565d7815f0eaebab74a444af9b7dbfa94fc7621eec1e8ef786da80339a9b642402c893a52b8967a5b7241df69783d2c782ed66f82f1cc47",
+      readKey: "410e0b58f9d6c3371cd296341701dc9758bd8b47d9def44aff868ba6cfd54dfe394b8eb113a55c8dc4df2042975da73e7bcc9e397e1e8ca48f75607fd2caa712359db81d2cc304029fc6b20cc34795344551caf82419a8744bc650f9a8b910ac"
     }
   },
   env: (function(_this) {
@@ -312,6 +309,45 @@ Classified_New = (function(superClass) {
 })(Controller);
 
 module.exports = Classified_New;
+});
+
+;require.register("controllers/app/classified/show.coffee", function(exports, require, module) {
+var Classified_Show, Controller, Keenio,
+  extend = function(child, parent) { for (var key in parent) { if (hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+  hasProp = {}.hasOwnProperty;
+
+Controller = require('core/controller');
+
+Keenio = require('helpers/keenio');
+
+Classified_Show = (function(superClass) {
+  extend(Classified_Show, superClass);
+
+  function Classified_Show() {
+    return Classified_Show.__super__.constructor.apply(this, arguments);
+  }
+
+  Classified_Show.prototype.before = function() {
+    return this.on('click', '#show-phone', this.onShowPhone);
+  };
+
+  Classified_Show.prototype.run = function() {};
+
+  Classified_Show.prototype.onShowPhone = function() {
+    var $phone, client;
+    $phone = $('#phone');
+    $phone.html($phone.data('phone'));
+    $(this).remove();
+    return client = new Keenio().client.addEvent("show_phone", {
+      classified_id: $('#app').data('classified')
+    });
+  };
+
+  return Classified_Show;
+
+})(Controller);
+
+module.exports = Classified_Show;
 });
 
 ;require.register("controllers/dashboard/analytics/index.coffee", function(exports, require, module) {
@@ -425,7 +461,8 @@ Helpers_Keenio = (function() {
     this.keys = Config.keenio[Config.env()];
     this.client = new Keen({
       projectId: this.keys.projectId,
-      readKey: this.keys.readKey
+      readKey: this.keys.readKey,
+      writeKey: this.keys.writeKey
     });
   }
 

@@ -2126,11 +2126,18 @@ a {
   background-color: #F9FAFC;
   border: 1px solid #E1E2E4;
   border-radius: 5px; }
-  /* line 11, /Users/jeremie/code/babysitting/front/styles/app/components/_form.sass */
+  /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+  .form__container.\--no-panel {
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0; }
+  /* line 18, /Users/jeremie/code/babysitting/front/styles/app/components/_form.sass */
   .form__container label {
     font-weight: bold;
     display: block; }
-  /* line 15, /Users/jeremie/code/babysitting/front/styles/app/components/_form.sass */
+  /* line 22, /Users/jeremie/code/babysitting/front/styles/app/components/_form.sass */
   .form__container input, .form__container textarea {
     display: block;
     width: 100%;
@@ -2140,10 +2147,10 @@ a {
     border-radius: 3px;
     font-size: 0.8em;
     outline: 0; }
-    /* line 25, /Users/jeremie/code/babysitting/front/styles/app/components/_form.sass */
+    /* line 32, /Users/jeremie/code/babysitting/front/styles/app/components/_form.sass */
     .form__container input:active, .form__container input:focus, .form__container textarea:active, .form__container textarea:focus {
       border-color: lightgray; }
-  /* line 28, /Users/jeremie/code/babysitting/front/styles/app/components/_form.sass */
+  /* line 35, /Users/jeremie/code/babysitting/front/styles/app/components/_form.sass */
   .form__container textarea {
     min-height: 7em; }
 
@@ -2158,7 +2165,7 @@ a {
   color: #4c4f52;
   font-weight: bold;
   margin-bottom: 0.3em; }
-  /* line 41, /Users/jeremie/code/babysitting/front/styles/app/components/_form.sass */
+  /* line 48, /Users/jeremie/code/babysitting/front/styles/app/components/_form.sass */
   .form__title i {
     vertical-align: middle; }
 
@@ -2172,7 +2179,7 @@ a {
 .form__help {
   font-size: 0.8em;
   display: block; }
-  /* line 52, /Users/jeremie/code/babysitting/front/styles/app/components/_form.sass */
+  /* line 59, /Users/jeremie/code/babysitting/front/styles/app/components/_form.sass */
   .form__help i {
     vertical-align: middle; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
@@ -2188,7 +2195,7 @@ a {
 .form__checkbox.\--inline {
   vertical-align: middle;
   font-size: 0.8em; }
-  /* line 67, /Users/jeremie/code/babysitting/front/styles/app/components/_form.sass */
+  /* line 74, /Users/jeremie/code/babysitting/front/styles/app/components/_form.sass */
   .form__checkbox.\--inline input {
     vertical-align: middle; }
 
@@ -2315,6 +2322,16 @@ a {
 .post-show__description {
   padding-top: 1em;
   text-align: justify; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.post-show__phone {
+  font-size: 1.3em;
+  color: #2CC990;
+  background-color: white;
+  display: inline-block;
+  border-radius: 5px;
+  padding: 0.5em;
+  border: 1px solid #d7deeb; }
 
 /* line 32, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .divider {

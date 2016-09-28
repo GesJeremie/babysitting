@@ -8,7 +8,9 @@ class Helpers_Keenio
 
         @client = new Keen({
             projectId: @keys.projectId
-            readKey: @keys.readKey
+            readKey: @keys.readKey,
+            writeKey: @keys.writeKey
             })
+
 
 module.exports = Helpers_Keenio

@@ -1,3 +1,8 @@
+<div id="app"
+    data-controller="app.classified.show"
+    data-classified="<%= @classified.id %>"
+></div>
+
 <div class="container">
   <div>
     <div class="+spacer"></div>
@@ -28,17 +33,42 @@
     </div>
 
     <div class="clear"></div>
-    <h3>Phone</h3>
 
-    <%= @classified.phone %>
+    <div class="container">
+      <div class="empty__container --home">
+        <div class="row">
+          <div class="grid-4">
+            <h3 class="empty__title"><%= gettext "Phone" %></h3>
+            <p id="phone" data-phone="<%= phone(@classified) %>" class="empty__description post-show__phone"><%= phone_hidden(@classified) %></p>
+            <a id="show-phone" class="button --large">Show Phone</a> 
+          </div>
+          <div class="grid-8">
+            <h3 class="empty__title"><%= gettext "Email" %></h3>
+            <div class="form__container --no-panel">
+              <div class="+spacer"></div>
 
-    <h3>Email</h3>
+              <label>Your Email</label>
+              <input type="text" name="email" />
 
-    <form>
-      <input type="text" name="email" />
-      <input type="text" name="phone" />
-      <textarea name="content">
-      </textarea>
-    </form>
+              <div class="+spacer"></div>
+
+              <label>Your Phone</label>
+              <input type="text" name="phone" />
+              
+              <div class="+spacer"></div>
+
+              <label>Your Message</label>
+              <textarea name="content" class="js-autosize"></textarea>
+
+              <div class="+spacer"></div>
+
+              <button type="submit" class="button --large"><%= gettext "Send message" %></button>
+            </div>
+          </div>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+
   </div>
 </div>
