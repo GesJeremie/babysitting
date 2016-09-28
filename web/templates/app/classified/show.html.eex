@@ -1,0 +1,2 @@
+<a class="button" href="/#classified-<%= @classified.id %>">Back listing</a>
+<%= @classified.firstname %>

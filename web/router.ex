@@ -32,6 +32,7 @@ defmodule Babysitting.Router do
     get "/faq", PageController, :faq
 
     get "/classifieds/new", ClassifiedController, :new
+    get "/classifieds/:id/show", ClassifiedController, :show
     post "/classifieds", ClassifiedController, :create
     get "/classifieds/thankyou", ClassifiedController, :thankyou
 

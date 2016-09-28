@@ -43,6 +43,13 @@ defmodule Babysitting.App.ClassifiedController do
     end
   end
 
+  def show(conn, %{"id" => id}) do
+    classified = Repo.get!(Classified, id)
+
+    conn
+    |> render("show.html", classified: classified)
+  end
+
   @doc """
   Display thank you page
   """
