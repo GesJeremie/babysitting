@@ -65,12 +65,12 @@ defmodule Babysitting.Fixtures do
 
     Repo.insert! %Classified{
       tenant_id: tenant.id,
-      email: Faker.Internet.email,
+      email: Faker.Helper.unique!(:emails, fn -> Faker.Internet.email end),
       password: Faker.Crypto.md5,
       firstname: Faker.Name.first_name,
       lastname: Faker.Name.last_name,
       phone: Faker.Phone.cell,
-      birthday: Faker.Date.birthday,
+      birthday: Faker.Helper.numerify("03/10/19##"),
       description: Faker.Lorem.sentences(3..6),
       token: UUID.uuid1(),
       search: "",

@@ -21,7 +21,7 @@
           </div>
           <div class="grid-9">
             <h3 class="post__name"><%= fullname(classified) %></h3>
-            <h4 class="post__age">22 years old</h4>
+            <h4 class="post__age"><%= age(classified) %></h4>
             <div class="post__description">
               <%= short_description(classified) %>
             </div>

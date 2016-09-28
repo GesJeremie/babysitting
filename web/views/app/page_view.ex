@@ -9,7 +9,7 @@ defmodule Babysitting.App.PageView do
   end
 
   def age(%{:birthday => birthday}) do
-    Date.age(birthday)
+    "#{Date.age(birthday)} #{gettext("years old")}"
   end
 
   def short_description(%{:description => description}) do

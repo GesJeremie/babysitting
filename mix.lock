@@ -15,7 +15,7 @@
   "ex_machina": {:git, "https://github.com/thoughtbot/ex_machina.git", "a24c02618b460094bb81ea90f41e052355383e5a", []},
   "exjsx": {:hex, :exjsx, "3.1.0", "d419162cb2d5be80070835c2c2b8c78c8c45907706c991d23f3750dae506d1e9", [:mix], [{:jsx, "~> 2.4.0", [hex: :jsx, optional: false]}]},
   "faker": {:hex, :faker, "0.6.0", "2d2ff0879d6b10fab5fb47eb2c1149b811e4af780a17022aa249deb3a7156d2b", [:mix], []},
-  "faker_elixir_octopus": {:hex, :faker_elixir_octopus, "0.9.0", "d751e82c4afccd57757b0b18fc4ef5221662db0066d638760774d85364d79672", [:mix], []},
+  "faker_elixir_octopus": {:hex, :faker_elixir_octopus, "0.12.0", "fabb755849640c983fbe290473416792af7919766a87149cfcb836d778708759", [:mix], []},
   "fs": {:hex, :fs, "0.9.2", "ed17036c26c3f70ac49781ed9220a50c36775c6ca2cf8182d123b6566e49ec59", [:rebar], []},
   "gettext": {:hex, :gettext, "0.11.0", "80c1dd42d270482418fa158ec5ba073d2980e3718bacad86f3d4ad71d5667679", [:mix], []},
   "hackney": {:hex, :hackney, "1.6.1", "ddd22d42db2b50e6a155439c8811b8f6df61a4395de10509714ad2751c6da817", [:rebar3], [{:certifi, "0.4.0", [hex: :certifi, optional: false]}, {:idna, "1.2.0", [hex: :idna, optional: false]}, {:metrics, "1.0.1", [hex: :metrics, optional: false]}, {:mimerl, "1.0.2", [hex: :mimerl, optional: false]}, {:ssl_verify_fun, "1.1.0", [hex: :ssl_verify_fun, optional: false]}]},

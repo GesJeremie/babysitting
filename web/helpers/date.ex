@@ -8,7 +8,8 @@ defmodule Babysitting.Helpers.Date do
   Return age given the birthday date
   """
   def age(birthday) do
-    {_, birthday} = birthday
+    {_, birthday} = 
+      birthday
       |> Timex.parse("{0D}/{0M}/{YYYY}")
 
     now = Timex.now

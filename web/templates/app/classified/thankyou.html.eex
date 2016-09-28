@@ -8,10 +8,11 @@
         </div>
         <div class="grid-8">
           <h3 class="empty__title"><%= gettext("Thank you !") %></h3>
-          <p class="empty__description"><%= gettext("We are glad you used our service to post your classified. If you like our service, you should help us and ... like us on Facebook!") %></p>
+          <p class="empty__description">
+            <%= gettext("Your classified is now waiting for validation by our team! If you like our service, you should help us and ... like us on Facebook!") %>
+          </p>
           <div class="fb-like" data-href="<%= @current_tenant.facebook %>" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
           <div class="+spacer"></div>
-          <a href="#" class="empty__button"><%= gettext("View my classified") %></a>
         </div>
       </div>
       <div class="clear"></div>

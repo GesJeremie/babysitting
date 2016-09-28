@@ -1,2 +1,44 @@
-<a class="button" href="/#classified-<%= @classified.id %>">Back listing</a>
-<%= @classified.firstname %>
+<div class="container">
+  <div>
+    <div class="+spacer"></div>
+    <a class="button --sidebar" href="/#classified-<%= @classified.id %>"><i class="icon-back"></i> <%= gettext("Back Listing") %></a>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="grid-10 push-1">
+    <div class="post-show__avatar"> 
+      <img src="/<%= Babysitting.Avatar.url({@classified.avatar, @classified}, :thumb) %>" />
+    </div>
+
+    <div class="post-show__name"><%= fullname(@classified) %></div>
+    <div class="post-show__age"><%= age(@classified) %></div>
+    
+    <div class="grid-10 push-1">
+      <div class="divider"></div>
+
+      <div class="post-show__description">
+        <div class="panel">
+          <%= text_to_html(@classified.description) %>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+    </div>
+
+    <div class="clear"></div>
+    <h3>Phone</h3>
+
+    <%= @classified.phone %>
+
+    <h3>Email</h3>
+
+    <form>
+      <input type="text" name="email" />
+      <input type="text" name="phone" />
+      <textarea name="content">
+      </textarea>
+    </form>
+  </div>
+</div>

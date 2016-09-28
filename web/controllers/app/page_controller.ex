@@ -44,6 +44,7 @@ defmodule Babysitting.App.PageController do
       |> Classified.of_current_tenant(conn)
       |> Classified.valid
       |> Classified.active
+      |> Classified.sort_by_recent
       |> Repo.all
   end
 end
