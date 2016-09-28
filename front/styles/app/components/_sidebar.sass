@@ -1,0 +1,37 @@
++component(sidebar)
+
+  +part(background)
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    background: $color-primary
+  
+  +part(container)
+    width: 90%
+    margin: 0 auto
+    text-align: center
+
+  +part(logo)
+    text-align: center
+    padding-top: 2em
+
+    img
+      max-width: 100%
+
+  +part(divider)
+    padding-top: 1.5em
+    margin-bottom: 1.5em
+    border-bottom: 1px solid lighten($color-primary, 10%)
+
+  +part(actions)
+    li
+      text-align: center
+      padding-bottom: 1em
+    a
+      color: white
+      font-size: 1em
+
+      &:hover
+        border-bottom: 1px solid white

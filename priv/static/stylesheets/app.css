@@ -1663,14 +1663,27 @@ html.default {
   src: url(fonts/proximanova-semibolditalic-webfont.eot?#iefix) format("embedded-opentype"), url(fonts/proximanova-semibolditalic-webfont.svg#ProximaNovaLtBoldItalic) format("svg"), url(fonts/proximanova-semibolditalic-webfont.woff) format("woff"), url(fonts/proximanova-semibolditalic-webfont.ttf) format("truetype"); }
 
 /* line 57, /Users/jeremie/code/babysitting/front/styles/app/_base.sass */
+#sidebar-wrapper {
+  position: fixed;
+  width: 20%;
+  height: 100%;
+  float: left;
+  background: black; }
+
+/* line 64, /Users/jeremie/code/babysitting/front/styles/app/_base.sass */
+#page-wrapper {
+  width: 80%;
+  float: right; }
+
+/* line 73, /Users/jeremie/code/babysitting/front/styles/app/_base.sass */
 html {
   box-sizing: border-box; }
 
-/* line 60, /Users/jeremie/code/babysitting/front/styles/app/_base.sass */
+/* line 76, /Users/jeremie/code/babysitting/front/styles/app/_base.sass */
 *, *:before, *:after {
   box-sizing: inherit; }
 
-/* line 64, /Users/jeremie/code/babysitting/front/styles/app/_base.sass */
+/* line 80, /Users/jeremie/code/babysitting/front/styles/app/_base.sass */
 body {
   margin: 0;
   font-family: "ProximaNova";
@@ -1681,9 +1694,51 @@ body {
   font-weight: 300;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004); }
 
-/* line 76, /Users/jeremie/code/babysitting/front/styles/app/_base.sass */
+/* line 92, /Users/jeremie/code/babysitting/front/styles/app/_base.sass */
 a {
   text-decoration: none; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.sidebar__background {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #51aded; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.sidebar__container {
+  width: 90%;
+  margin: 0 auto;
+  text-align: center; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.sidebar__logo {
+  text-align: center;
+  padding-top: 2em; }
+  /* line 20, /Users/jeremie/code/babysitting/front/styles/app/components/_sidebar.sass */
+  .sidebar__logo img {
+    max-width: 100%; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.sidebar__divider {
+  padding-top: 1.5em;
+  margin-bottom: 1.5em;
+  border-bottom: 1px solid #7fc3f2; }
+
+/* line 29, /Users/jeremie/code/babysitting/front/styles/app/components/_sidebar.sass */
+.sidebar__actions li {
+  text-align: center;
+  padding-bottom: 1em; }
+
+/* line 32, /Users/jeremie/code/babysitting/front/styles/app/components/_sidebar.sass */
+.sidebar__actions a {
+  color: white;
+  font-size: 1em; }
+  /* line 36, /Users/jeremie/code/babysitting/front/styles/app/components/_sidebar.sass */
+  .sidebar__actions a:hover {
+    border-bottom: 1px solid white; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .hero__container {
@@ -2172,6 +2227,12 @@ a {
   .button.\--muted {
     cursor: not-allowed;
     opacity: 0.5; }
+  /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+  .button.\--sidebar {
+    background-color: #F9FAFC;
+    border: 1px solid #4c4f52;
+    color: #4c4f52;
+    font-weight: bold; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
   .button.\--large {
     padding: 0.8em 1em; }

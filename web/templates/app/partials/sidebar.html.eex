@@ -1,0 +1,20 @@
+ <div class="sidebar__background">
+        <div class="sidebar__container">
+          <div class="sidebar__logo">
+            <img src="/images/tenants/bordeaux/logo.png" />
+          </div>
+          <div class="sidebar__divider"></div>
+          <ul class="sidebar__actions">
+            <li><a href="/"><%= gettext("Home") %></a></li>
+            <li><a href="<%= facebook_link(@conn) %>">Facebook</a></li>
+            <li><a href="<%= app_page_path(@conn, :legal) %>"><%= gettext("Legal") %></a></li>
+            <li><a href="<%= app_page_path(@conn, :contact) %>"><%= gettext("Contact") %></li>
+            <li><a href="<%= app_page_path(@conn, :press) %>"><%= gettext("Press") %></li>
+            <li><a href="<%= app_page_path(@conn, :faq) %>"><%= gettext("FAQ") %></li>
+          </ul>
+          <div class="sidebar__divider"></div>
+          <div class="sidebar__add">
+            <a class="button --sidebar" href="#">BabySitter Dashboard</a>
+          </div>
+        </div>
+      </div>
