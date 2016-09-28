@@ -2275,10 +2275,13 @@ a {
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .post__item {
+  display: block;
+  text-decoration: none;
+  color: #4c4f52;
   border-radius: 5px;
   padding-top: 2em;
   padding-bottom: 2em; }
-  /* line 31, /Users/jeremie/code/babysitting/front/styles/app/components/_post.sass */
+  /* line 34, /Users/jeremie/code/babysitting/front/styles/app/components/_post.sass */
   .post__item:hover {
     background-color: #eff2f7;
     cursor: pointer; }
