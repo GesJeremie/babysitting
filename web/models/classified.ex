@@ -160,6 +160,9 @@ defmodule Babysitting.Classified do
       where: classified.status == true
   end
 
+  @doc """
+  Sort the classified by recent
+  """
   def sort_by_recent(query) do
     from classified in query,
       order_by: [desc: classified.inserted_at]
