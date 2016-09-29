@@ -32,7 +32,9 @@
     </div>
   </div>
 
-  <%= pagination_links @conn, @classifieds, path: &app_page_path/3, action: :home   %>
+  <div class="+text-center">
+    <%= pagination_links @conn, @classifieds, path: &app_page_path/3, action: :home   %>
+  </div>
 
 
   <div class="container">
