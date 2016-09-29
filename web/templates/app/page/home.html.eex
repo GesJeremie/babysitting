@@ -9,7 +9,7 @@
   </div>
 </div>
 
-<%= if length(@classifieds) > 0 do %>
+<%= if length(@classifieds.entries) > 0 do %>
   <div class="container">
     <div class="post__container">
       <%= for classified <- @classifieds do %>
@@ -31,6 +31,8 @@
       <% end %>
     </div>
   </div>
+
+  <%= pagination_links @conn, @classifieds, path: &app_page_path/3, action: :home   %>
 
 
   <div class="container">

@@ -20,7 +20,7 @@ defmodule Babysitting.Mixfile do
     [mod: {Babysitting, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
                     :phoenix_ecto, :postgrex, :httpoison, :keenex, :timex,
-                    :faker_elixir_octopus]]
+                    :faker_elixir_octopus, :phoenix_pubsub, :scrivener_html]]
   end
 
   # Specifies which paths to compile per environment.
@@ -31,9 +31,10 @@ defmodule Babysitting.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.1.4"},
+    [{:phoenix, "~> 1.2.0"},
+     {:phoenix_pubsub, "~> 1.0"},
      {:postgrex, ">= 0.0.0"},
-     {:phoenix_ecto, "~> 2.0"},
+     {:phoenix_ecto, "~> 3.0-rc"},
      {:phoenix_html, "~> 2.4"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
@@ -48,6 +49,8 @@ defmodule Babysitting.Mixfile do
      {:keenex, "~> 0.4"},
      {:html_entities, "~> 0.3"},
      {:timex, "~> 3.0.0"},
+     {:scrivener_ecto, "~> 1.0"},
+     {:scrivener_html, "~> 1.1"},
      {:faker_elixir_octopus, "> 0.0.0", only: [:dev, :test]},
      {:credo, "~> 0.4", only: [:dev, :test]}]
   end
@@ -61,6 +64,6 @@ defmodule Babysitting.Mixfile do
   defp aliases do
     ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds_dev.exs"],
      "ecto.reset": ["ecto.drop", "ecto.setup"],
-     "test.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds_test.exs"]]
+     "test": ["ecto.create --quiet", "ecto.migrate", "test"]]
   end
 end

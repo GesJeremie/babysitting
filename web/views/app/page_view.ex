@@ -2,6 +2,8 @@ defmodule Babysitting.App.PageView do
   use Babysitting.Web, :view
   use Phoenix.HTML
 
+  import Scrivener.HTML
+  
   alias Babysitting.Helpers.{Date, Format}
 
   def town(town) do

@@ -33,13 +33,13 @@ defmodule Babysitting.ConnCase do
   end
 
   setup tags do
-    unless tags[:async] do
-      Ecto.Adapters.SQL.restart_test_transaction(Babysitting.Repo, [])
-    end
+   :ok = Ecto.Adapters.SQL.Sandbox.checkout(Babysitting.Repo)
 
-    conn = Phoenix.ConnTest.conn()
-    conn = %{conn | host: "www.babysittingbordeaux.dev"}
-    {:ok, conn: conn}
+   unless tags[:async] do
+     Ecto.Adapters.SQL.Sandbox.mode(Babysitting.Repo, {:shared, self()})
+   end
+
+   {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 
   def with_session(conn) do

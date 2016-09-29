@@ -9,9 +9,9 @@ defmodule Babysitting.App.PageController do
   Display the home page with the classifieds of
   the current tenant
   """
-  def home(conn, _params) do
+  def home(conn, params) do
     tenant = App.current_tenant(conn)
-    classifieds = fetch_classifieds(conn)
+    classifieds = fetch_classifieds(conn, params)
 
     render conn, "home.html", %{
       tenant: tenant,
@@ -39,12 +39,12 @@ defmodule Babysitting.App.PageController do
     render conn, "faq.html", %{}
   end
 
-  defp fetch_classifieds(conn) do
+  defp fetch_classifieds(conn, params) do
     Classified
       |> Classified.of_current_tenant(conn)
       |> Classified.valid
       |> Classified.active
       |> Classified.sort_by_recent
-      |> Repo.all
+      |> Repo.paginate(params)
   end
 end

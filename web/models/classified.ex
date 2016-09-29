@@ -39,7 +39,7 @@ defmodule Babysitting.Classified do
     :optional_fields => ~w()
   }
 
-  def changeset(model, params \\ :empty) do
+  def changeset(model, params \\ %{}) do
     model
     |> cast(params, [], [])
   end
@@ -47,7 +47,7 @@ defmodule Babysitting.Classified do
   @doc """
   Changeset when you create a new classified
   """
-  def create_changeset(model, params \\ :empty) do
+  def create_changeset(model, params \\ %{}) do
     model
     |> cast(params, @rules_create.required_fields, @rules_create.optional_fields)
     |> cast_attachments(params, @rules_create.required_files, @rules_create.optional_files)
@@ -65,7 +65,7 @@ defmodule Babysitting.Classified do
   @doc """
   Changeset when you update an classified
   """
-  def update_changeset(model, params \\ :empty) do
+  def update_changeset(model, params \\ %{}) do
     model
       |> cast(params, @rules_update.required_fields, @rules_update.optional_fields)
       |> validate_length(:description, min: 280)
