@@ -5,7 +5,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
 
   # Aliases
   alias Babysitting.Classified
-  alias Babysitting.Helpers.Mailer
+  alias Babysitting.{Email, Mailer}
 
   # Plugs
   plug Babysitting.Plug.IsAdmin
@@ -69,9 +69,9 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   """
   def validate(conn, %{"id" => id}) do
     classified = Repo.get!(Classified, id)
-    classified = %{classified | valid: true}
+    changeset = Classified.update_changeset(classified, %{"valid" => true})
 
-    case Repo.update(classified) do
+    case Repo.update(changeset) do
       {:ok, classified} ->
         conn
           |> send_email_validated(classified)
@@ -89,9 +89,9 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   """
   def invalidate(conn, %{"id" => id}) do
     classified = Repo.get!(Classified, id)
-    classified = %{classified | valid: false}
+    changeset = Classified.update_changeset(classified, %{"valid" => false})
 
-    case Repo.update(classified) do
+    case Repo.update(changeset) do
       {:ok, classified} ->
         conn
           |> send_email_rejected(classified)
@@ -106,13 +106,19 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
 
   defp send_email_validated(conn, classified) do
     classified = Repo.preload(classified, :tenant)
-    Mailer.send_validated(%{classified: classified})
+
+    Email.validated(%{classified: classified}) 
+    |> Mailer.deliver_later
+
     conn
   end
 
   defp send_email_rejected(conn, classified) do
     classified = Repo.preload(classified, :tenant)
-    Mailer.send_rejected(%{classified: classified})
+
+    Email.rejected(%{classified: classified}) 
+    |> Mailer.deliver_later
+
     conn
   end
 

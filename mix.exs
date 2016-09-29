@@ -20,7 +20,8 @@ defmodule Babysitting.Mixfile do
     [mod: {Babysitting, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
                     :phoenix_ecto, :postgrex, :httpoison, :keenex, :timex,
-                    :faker_elixir_octopus, :phoenix_pubsub, :scrivener_html]]
+                    :faker_elixir_octopus, :phoenix_pubsub, :scrivener_html,
+                    :bamboo, :bamboo_smtp]]
   end
 
   # Specifies which paths to compile per environment.
@@ -43,12 +44,13 @@ defmodule Babysitting.Mixfile do
      {:arc_ecto, "~> 0.3.1"},
      {:arc, "0.2.0"},
      {:cowboy, "~> 1.0"},
-     {:mailgun, "~> 0.1.2"},
      {:poison, "~> 2.1", override: true},
      {:httpoison, "~> 0.9.0"},
      {:keenex, "~> 0.4"},
      {:html_entities, "~> 0.3"},
      {:timex, "~> 3.0.0"},
+     {:bamboo, "~> 0.7"},
+     {:bamboo_smtp, "~> 1.2.1"},
      {:scrivener_ecto, "~> 1.0"},
      {:scrivener_html, "~> 1.1"},
      {:faker_elixir_octopus, "> 0.0.0", only: [:dev, :test]},

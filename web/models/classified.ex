@@ -36,7 +36,7 @@ defmodule Babysitting.Classified do
 
   @rules_update %{
     :required_fields => ~w(firstname lastname email phone birthday description),
-    :optional_fields => ~w()
+    :optional_fields => ~w(valid)
   }
 
   def changeset(model, params \\ %{}) do

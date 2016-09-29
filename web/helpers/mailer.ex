@@ -1,31 +1,31 @@
-defmodule Babysitting.Helpers.Mailer do
+defmodule Babysitting.Mailer do
+  use Bamboo.Mailer, otp_app: :babysitting
+end
 
+defmodule Babysitting.Email do
+  import Bamboo.Email
   import Babysitting.Gettext
 
-  use Mailgun.Client,
-      domain: Application.get_env(:babysitting, :mailgun_domain),
-      key: Application.get_env(:babysitting, :mailgun_key)
+  def welcome(%{to: to, fullname: fullname, tenant: tenant}) do
 
-  def send_welcome(%{to: to, fullname: fullname, tenant: tenant}) do
-
-    send_email to: to,
+    new_email to: to,
                from: Application.get_env(:babysitting, :email_address),
                subject: gettext("Baby Sitting %{name} - Welcome", name: tenant.name),
-               html: Phoenix.View.render_to_string(Babysitting.EmailView, "welcome.html", %{fullname: fullname, tenant: tenant})
+               html_body: Phoenix.View.render_to_string(Babysitting.EmailView, "welcome.html", %{fullname: fullname, tenant: tenant})
   end
 
-  def send_validated(%{classified: classified}) do
-    send_email to: classified.email,
+  def validated(%{classified: classified}) do
+    new_email to: classified.email,
                from: Application.get_env(:babysitting, :email_address),
                subject: gettext("Baby Sitting %{name} - Classified validated", name: classified.tenant.name),
-               html: Phoenix.View.render_to_string(Babysitting.EmailView, "validated.html", %{name: classified.firstname})
+               html_body: Phoenix.View.render_to_string(Babysitting.EmailView, "validated.html", %{name: classified.firstname})
   end
 
-  def send_rejected(%{classified: classified}) do
-    send_email to: classified.email,
+  def rejected(%{classified: classified}) do
+    new_email to: classified.email,
                from: Application.get_env(:babysitting, :email_address),
                subject: gettext("Baby Sitting %{name} - Classified rejected", name: classified.tenant.name),
-               html: Phoenix.View.render_to_string(Babysitting.EmailView, "rejected.html", %{name: classified.firstname})
+               html_body: Phoenix.View.render_to_string(Babysitting.EmailView, "rejected.html", %{name: classified.firstname})
   end
 
 end
