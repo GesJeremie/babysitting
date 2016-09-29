@@ -10,4 +10,8 @@ defmodule Babysitting.App.PartialsView do
     App.current_tenant(conn).facebook
   end
 
+  def tenants(conn) do
+    App.tenants(conn)
+  end
+
 end

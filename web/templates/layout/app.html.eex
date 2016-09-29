@@ -15,6 +15,7 @@
 
     <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/stylesheets/vendor.css") %>">
     <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/stylesheets/app.css") %>">
+    <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, current_tenant_stylesheet(@conn)) %>">
 
     <title><%= title(@conn) %></title>
   </head>
@@ -29,6 +30,7 @@
 
     <div id="page-wrapper">
       <%= render @view_module, @view_template, assigns %>
+      <%= render Babysitting.App.PartialsView, "footer.html", assigns %>
     </div>
 
   </body>

@@ -1,0 +1,20 @@
+// ===========================================================
+// Csstyle
+// ===========================================================
+@import 'node_modules/csstyle/csstyle'
+
+// ===========================================================
+// Utilities
+// ===========================================================
+@import '../../helpers/variables'
+@import '../../helpers/functions'
+@import '../../helpers/mixins'
+
++component(sidebar)
+
+  +part(background)
+    background: $color-tenant-paris
+    border-right: 1px solid darken($color-tenant-paris, 10%)
+
+  +part(divider)
+    border-bottom: 1px solid lighten($color-tenant-paris, 10%)
