@@ -28,44 +28,50 @@ class Dashboard_Analytics_Index extends Controller
 
     setupStats: ->
 
-        client = new Keenio().client
-        colors = ['#60646D']
+        Keen.ready =>
 
-        Keen.ready ->
-
-            query = new Keen.Query 'count', {
-                eventCollection: 'classified.new'
-                timeframe: 'this_10_years'
-                timezone: 'UTC'
-            }
-
-            client.draw(query, document.getElementById('total-classified'), {
-                title: 'Total Classified',
-                colors: colors
-            })
-
-            query = new Keen.Query 'count', {
-                eventCollection: "classified.new"
-                timeframe: "this_7_days"
-                timezone: "UTC"
-            }
-
-            client.draw(query, document.getElementById('total-classified-7-days'), {
-                title: 'Added this last 7 days',
-                colors: colors
+            @showCount({
+                eventCollection: 'classified.new',
+                timeframe: 'this_10_years',
+                selector: 'total-classified',
+                title: 'Total Classified'
             })
 
 
-            query = new Keen.Query 'count', {
-                eventCollection: "classified.new"
-                timeframe: "this_1_days"
-                timezone: "UTC"
-            }
-
-            client.draw(query, document.getElementById('total-classified-today'), {
-                title: 'Added today',
-                colors: colors
+            @showCount({
+                eventCollection: 'classified.new',
+                timeframe: 'this_7_days',
+                selector: 'total-classified-7-days',
+                title: 'Added this week'
             })
+
+            @showCount({
+                eventCollection: 'classified.new',
+                timeframe: 'this_1_days',
+                selector: 'total-classified-today',
+                title: 'Added today'
+            })
+
+            @showCount({
+                eventCollection: 'show_phone',
+                timeframe: 'this_10_years',
+                selector: 'total-show-phone',
+                title: 'Total phone shown (classified)'
+            })
+    
+    showCount: (options) ->
+
+        query = new Keen.Query 'count', {
+            eventCollection: options.eventCollection
+            timeframe: options.timeframe,
+            timezone: "UTC"
+        }
+
+        new Keenio().client.draw(query, document.getElementById(options.selector), {
+            title: options.title,
+            colors: ['#897FBA']
+        })
+        
 
 
 

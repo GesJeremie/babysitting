@@ -373,38 +373,46 @@ Dashboard_Analytics_Index = (function(superClass) {
   Dashboard_Analytics_Index.prototype.run = function() {};
 
   Dashboard_Analytics_Index.prototype.setupStats = function() {
-    var client, colors;
-    client = new Keenio().client;
-    colors = ['#60646D'];
-    return Keen.ready(function() {
-      var query;
-      query = new Keen.Query('count', {
-        eventCollection: 'classified.new',
-        timeframe: 'this_10_years',
-        timezone: 'UTC'
-      });
-      client.draw(query, document.getElementById('total-classified'), {
-        title: 'Total Classified',
-        colors: colors
-      });
-      query = new Keen.Query('count', {
-        eventCollection: "classified.new",
-        timeframe: "this_7_days",
-        timezone: "UTC"
-      });
-      client.draw(query, document.getElementById('total-classified-7-days'), {
-        title: 'Added this last 7 days',
-        colors: colors
-      });
-      query = new Keen.Query('count', {
-        eventCollection: "classified.new",
-        timeframe: "this_1_days",
-        timezone: "UTC"
-      });
-      return client.draw(query, document.getElementById('total-classified-today'), {
-        title: 'Added today',
-        colors: colors
-      });
+    return Keen.ready((function(_this) {
+      return function() {
+        _this.showCount({
+          eventCollection: 'classified.new',
+          timeframe: 'this_10_years',
+          selector: 'total-classified',
+          title: 'Total Classified'
+        });
+        _this.showCount({
+          eventCollection: 'classified.new',
+          timeframe: 'this_7_days',
+          selector: 'total-classified-7-days',
+          title: 'Added this week'
+        });
+        _this.showCount({
+          eventCollection: 'classified.new',
+          timeframe: 'this_1_days',
+          selector: 'total-classified-today',
+          title: 'Added today'
+        });
+        return _this.showCount({
+          eventCollection: 'show_phone',
+          timeframe: 'this_10_years',
+          selector: 'total-show-phone',
+          title: 'Total phone shown (classified)'
+        });
+      };
+    })(this));
+  };
+
+  Dashboard_Analytics_Index.prototype.showCount = function(options) {
+    var query;
+    query = new Keen.Query('count', {
+      eventCollection: options.eventCollection,
+      timeframe: options.timeframe,
+      timezone: "UTC"
+    });
+    return new Keenio().client.draw(query, document.getElementById(options.selector), {
+      title: options.title,
+      colors: ['#897FBA']
     });
   };
 

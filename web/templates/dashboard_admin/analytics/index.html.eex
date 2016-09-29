@@ -21,5 +21,26 @@
     <div class="grid-4">
       <div id="total-classified-today"></div>
     </div>
+
+    <div class="clear"></div>
+
+    <div class="+spacer"></div>
+
+    <div class="grid-4">
+      <div id="total-show-phone"></div>
+    </div>
+
+    <div class="grid-4">
+      <div id="total-show-phone"></div>
+    </div>
+
+    <div class="grid-4">
+      <div id="total-show-phone-7-days"></div>
+    </div>
+
+    <div class="grid-4">
+      <div id="total-show-phone-today"></div>
+    </div>
+
   </div>
 </div>
