@@ -26,6 +26,12 @@ class Classified_Show extends Controller
     ##
     run: ->
 
+      # Send event new show classified
+      client = new Keenio().client.addEvent("classified.show", {
+        classified_id: $('#app').data('classified')
+      })
+
+
     onShowPhone: ->
 
       # Display phone
@@ -36,7 +42,7 @@ class Classified_Show extends Controller
       $(this).remove()
 
       # Send event keen.io
-      client = new Keenio().client.addEvent("show_phone", {
+      client = new Keenio().client.addEvent("classified.show_phone", {
         classified_id: $('#app').data('classified')
       })
 

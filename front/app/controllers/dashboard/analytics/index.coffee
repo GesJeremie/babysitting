@@ -53,10 +53,17 @@ class Dashboard_Analytics_Index extends Controller
             })
 
             @showCount({
-                eventCollection: 'show_phone',
+                eventCollection: 'classified.show_phone',
                 timeframe: 'this_10_years',
                 selector: 'total-show-phone',
                 title: 'Total phone shown (classified)'
+            })
+
+            @showCount({
+                eventCollection: 'classified.show',
+                timeframe: 'this_10_years',
+                selector: 'total-show',
+                title: 'Total classified seen'
             })
     
     showCount: (options) ->

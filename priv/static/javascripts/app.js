@@ -331,14 +331,19 @@ Classified_Show = (function(superClass) {
     return this.on('click', '#show-phone', this.onShowPhone);
   };
 
-  Classified_Show.prototype.run = function() {};
+  Classified_Show.prototype.run = function() {
+    var client;
+    return client = new Keenio().client.addEvent("classified.show", {
+      classified_id: $('#app').data('classified')
+    });
+  };
 
   Classified_Show.prototype.onShowPhone = function() {
     var $phone, client;
     $phone = $('#phone');
     $phone.html($phone.data('phone'));
     $(this).remove();
-    return client = new Keenio().client.addEvent("show_phone", {
+    return client = new Keenio().client.addEvent("classified.show_phone", {
       classified_id: $('#app').data('classified')
     });
   };
@@ -393,11 +398,17 @@ Dashboard_Analytics_Index = (function(superClass) {
           selector: 'total-classified-today',
           title: 'Added today'
         });
-        return _this.showCount({
-          eventCollection: 'show_phone',
+        _this.showCount({
+          eventCollection: 'classified.show_phone',
           timeframe: 'this_10_years',
           selector: 'total-show-phone',
           title: 'Total phone shown (classified)'
+        });
+        return _this.showCount({
+          eventCollection: 'classified.show',
+          timeframe: 'this_10_years',
+          selector: 'total-show',
+          title: 'Total classified seen'
         });
       };
     })(this));
