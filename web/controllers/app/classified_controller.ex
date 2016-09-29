@@ -4,11 +4,12 @@ defmodule Babysitting.App.ClassifiedController do
   use Babysitting.Web, :controller
 
   # Aliases
-  alias Babysitting.Classified
+  alias Babysitting.{Classified, ClassifiedContact}
   alias Babysitting.Helpers.{App, Ifttt, Mailer, Format}
 
   # Plugs
   plug :scrub_params, "classified" when action in [:create, :update]
+  plug :scrub_params, "classified_contact" when action in [:create_contact]
 
   @doc """
   Display the form to create a new classified
@@ -16,6 +17,25 @@ defmodule Babysitting.App.ClassifiedController do
   def new(conn, _params) do
     conn
       |> render("new.html", changeset: Classified.changeset(%Classified{}))
+  end
+
+  def create_contact(conn, %{"classified_contact" => contact_params, "id" => id}) do
+    
+    # Fill params with classified id
+    contact_params = set_classified(id, contact_params)
+    
+    changeset = ClassifiedContact.create_changeset(%ClassifiedContact{}, contact_params)
+
+    case Repo.insert(changeset) do
+      {:ok, contact} ->
+        conn
+        |> put_flash(:info, gettext("Message sent!"))
+        |> redirect(to: app_classified_path(conn, :show, id))
+      {:error, changeset} ->
+        conn
+        |> put_flash(:error, gettext("Oops, some errors are present in the form."))
+        |> show(%{"id" => id, "changeset" => changeset})
+    end
   end
 
   @doc """
@@ -31,24 +51,36 @@ defmodule Babysitting.App.ClassifiedController do
     case Repo.insert(changeset) do
       {:ok, classified} ->
         conn
-          |> trigger_success_events(classified)
-          |> put_flash(:info, gettext("Classifed created successfully."))
-          |> redirect(to: app_classified_path(conn, :thankyou))
+        |> trigger_success_events(classified)
+        |> put_flash(:info, gettext("Classifed created successfully."))
+        |> redirect(to: app_classified_path(conn, :thankyou))
 
       {:error, changeset} ->
         conn
-          |> trigger_error_events(changeset)
-          |> put_flash(:error, gettext("Oops, some errors are present in the form."))
-          |> render("new.html", changeset: changeset)
+        |> trigger_error_events(changeset)
+        |> put_flash(:error, gettext("Oops, some errors are present in the form."))
+        |> render("new.html", changeset: changeset)
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    classified = Repo.get!(Classified, id)
+  @doc """
+  Show classified by the given id
+  """
+  def show(conn, params) do
+    IO.inspect params
+    classified = Repo.get!(Classified, Map.get(params, "id"))
+
+    if Map.has_key?(params, "changeset") do
+      changeset = Map.get(params, "changeset")
+    else
+      changeset = ClassifiedContact.changeset(%ClassifiedContact{})
+    end
 
     conn
-    |> render("show.html", classified: classified)
+    |> render("show.html", classified: classified, changeset: changeset)
   end
+  
+
 
   @doc """
   Display thank you page
@@ -90,7 +122,15 @@ defmodule Babysitting.App.ClassifiedController do
   defp set_current_tenant(conn, params) do
     current_tenant = App.current_tenant(conn)
     params
-      |> Map.put("tenant_id", current_tenant.id)
+    |> Map.put("tenant_id", current_tenant.id)
+  end
+
+  @doc """
+  Set the classified id to the params struct
+  """
+  defp set_classified(id, params) do
+    params
+    |> Map.put("classified_id", id)
   end
 
 end

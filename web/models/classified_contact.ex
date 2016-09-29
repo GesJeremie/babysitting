@@ -1,4 +1,4 @@
-defmodule Babysitting.ClassifiedContacts do
+defmodule Babysitting.ClassifiedContact do
   use Babysitting.Web, :model
 
   schema "classified_contacts" do
@@ -12,7 +12,7 @@ defmodule Babysitting.ClassifiedContacts do
     belongs_to :classified, Babysitting.Classified
   end
 
-  @required_fields ~w(email message phone)
+  @required_fields ~w(email message phone classified_id)
   @optional_fields ~w()
 
   @doc """
@@ -24,5 +24,11 @@ defmodule Babysitting.ClassifiedContacts do
   def changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields, @optional_fields)
+  end
+
+  def create_changeset(model, params \\ %{}) do
+    model
+    |> cast(params, @required_fields, @optional_fields)
+    |> validate_format(:email, ~r/\A[^@]+@([^@\.]+\.)+[^@\.]+\z/)
   end
 end

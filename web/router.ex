@@ -34,6 +34,7 @@ defmodule Babysitting.Router do
     get "/classifieds/new", ClassifiedController, :new
     get "/classifieds/:id/show", ClassifiedController, :show
     post "/classifieds", ClassifiedController, :create
+    post "/classifieds/:id/contact", ClassifiedController, :create_contact
     get "/classifieds/thankyou", ClassifiedController, :thankyou
 
   end

@@ -46,23 +46,29 @@
             <h3 class="empty__title"><%= gettext "Email" %></h3>
             <div class="form__container --no-panel">
               <div class="+spacer"></div>
+              <%= form_for @changeset, app_classified_path(@conn, :create_contact, @classified.id), fn f -> %>
 
-              <label>Your Email</label>
-              <input type="text" name="email" />
+                <label>Your Email</label>
+                <%= text_input f, :email, placeholder: "Email" %>
+                <%= error_tag f, :email %>
 
-              <div class="+spacer"></div>
+                <div class="+spacer"></div>
 
-              <label>Your Phone</label>
-              <input type="text" name="phone" />
+                <label>Your Phone</label>
+                <%= text_input f, :phone, placeholder: "Phone" %>
+                <%= error_tag f, :phone %>
+
+                <div class="+spacer"></div>
+
+                <label>Your Message</label>
+                <%= textarea f, :message, placeholder: "Message", class: "js-autosize" %>
+                <%= error_tag f, :message %>
+
+                <div class="+spacer"></div>
+
+                <button type="submit" class="button --large"><%= gettext "Send message" %></button>
               
-              <div class="+spacer"></div>
-
-              <label>Your Message</label>
-              <textarea name="content" class="js-autosize"></textarea>
-
-              <div class="+spacer"></div>
-
-              <button type="submit" class="button --large"><%= gettext "Send message" %></button>
+              <% end %>
             </div>
           </div>
         </div>
