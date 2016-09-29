@@ -1,7 +1,7 @@
  <div class="sidebar__background">
         <div class="sidebar__container">
           <div class="sidebar__logo">
-            <img src="/images/tenants/bordeaux/logo.png" />
+            <img src="<%= logo(@conn) %>" />
           </div>
           <div class="sidebar__divider"></div>
           <ul class="sidebar__actions">
@@ -14,7 +14,7 @@
           </ul>
           <div class="sidebar__divider"></div>
           <div class="sidebar__add">
-            <a class="button --sidebar" href="#">BabySitter Dashboard</a>
+            <a class="button --sidebar" href="<%= app_classified_path(@conn, :new) %>"><%= gettext("Add my classified for free") %></a>
           </div>
         </div>
       </div>
