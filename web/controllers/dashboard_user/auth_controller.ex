@@ -1,6 +1,6 @@
 defmodule Babysitting.DashboardUser.AuthController do
   use Babysitting.Web, :controller
-  alias Babysitting.Ad
+  alias Babysitting.Classified
 
   @doc """
   Display form to login
@@ -45,9 +45,9 @@ defmodule Babysitting.DashboardUser.AuthController do
   if it's possible to "connect"
   """
   defp can_login_with(email, password, conn) do
-    Ad
-      |> Ad.of_current_tenant(conn)
-      |> Ad.where(:email, email)
+    Classified
+      |> Classified.of_current_tenant(conn)
+      |> Classified.where(:email, email)
       |> Repo.one
       |> case do
         nil -> {:error}

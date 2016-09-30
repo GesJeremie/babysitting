@@ -1,7 +1,6 @@
 defmodule Babysitting.Helpers.App do
   import Plug.Conn
   alias Babysitting.Repo
-  alias Babysitting.Ad
 
   @doc """
   Return the current tenant
@@ -19,5 +18,11 @@ defmodule Babysitting.Helpers.App do
       |> Map.get(:tenants)
   end
 
+  @doc """
+  Return the logo for the current tenant
+  """
+  def logo(conn) do
+    "/images/tenants/#{current_tenant(conn).slug}/logo.png"  
+  end
 
 end

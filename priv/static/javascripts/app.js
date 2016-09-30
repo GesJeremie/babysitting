@@ -502,12 +502,16 @@ $(function() {
   $('#main').smoothState({
     debug: true,
     scroll: true,
+    blacklist: '.js-no-smoothstate',
+    cacheLength: 0,
+    forms: 'form',
     onStart: {
       duration: 0,
       render: function($container) {}
     },
     onAfter: function($container, $newContent) {
       var bootstrap;
+      $('#main').smoothState().data('smoothState').clear();
       $('html, body').animate({
         scrollTop: 0
       }, 0);

@@ -1706,9 +1706,9 @@ input:-webkit-autofill:focus {
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .auth__container {
-  background: #606c88;
-  background: -webkit-linear-gradient(to left, #606c88, #3f4c6b);
-  background: linear-gradient(to left, #606c88, #3f4c6b);
+  background: #EECDA3;
+  background: -webkit-linear-gradient(to left, #EECDA3, #EF629F);
+  background: linear-gradient(to left, #EECDA3, #EF629F);
   position: absolute;
   top: 0;
   bottom: 0;
@@ -1724,7 +1724,7 @@ input:-webkit-autofill:focus {
   background-color: white;
   position: relative;
   overflow: hidden; }
-  /* line 20, /Users/jeremie/code/babysitting/front/styles/dashboard_user/components/_auth.sass */
+  /* line 22, /Users/jeremie/code/babysitting/front/styles/dashboard_user/components/_auth.sass */
   .auth__input i {
     position: absolute;
     right: -10px;
@@ -1868,7 +1868,8 @@ input:-webkit-autofill:focus {
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
   .button.\--auth {
     background-color: #FFB836;
-    color: #4c4f52; }
+    color: white;
+    border: 2px solid #ffb327; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
   .button.\--muted {
     cursor: not-allowed;
