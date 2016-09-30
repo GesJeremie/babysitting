@@ -1,12 +1,12 @@
 <div id="sidebar-wrapper">
   <div class="sidebar__container">
     <div class="sidebar__signout">
-      <a class="button --warning-transparent" href="#>"><i class="icon-lock"></i> Sign out</a>
+      <a class="button --warning-transparent js-no-smoothstate" href="<%= user_auth_path(@conn, :logout) %>"><i class="icon-lock"></i> <%= gettext "Sign out" %></a>
     </div>
 
     <ul class="sidebar__links">
-      <li class="sidebar__link "><a href="#"><i class="icon-chart"></i> Analytics</a></li>
-      <li class="sidebar__link"><a href="#"><i class="icon-file"></i> Classified</a></li>
+      <li class="sidebar__link"><a href="#"><i class="icon-file"></i> <%= gettext "Classified" %></a></li>
+      <li class="sidebar__link "><a href="#"><i class="icon-key"></i> <%= gettext "Security" %></a></li>
     </ul>
   </div>
 </div>

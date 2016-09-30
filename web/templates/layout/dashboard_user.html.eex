@@ -25,7 +25,6 @@
       <%= render Babysitting.PartialsView, "flash.html", assigns %>
 
       <%= if (@view_module != Elixir.Babysitting.DashboardUser.AuthView) do %>
-        <%= "loool" %>
         <%= render Babysitting.DashboardUser.PartialsView, "sidebar.html", assigns %>
       <% end %>
 

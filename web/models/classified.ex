@@ -36,7 +36,9 @@ defmodule Babysitting.Classified do
 
   @rules_update %{
     :required_fields => ~w(firstname lastname email phone birthday description),
-    :optional_fields => ~w(valid)
+    :optional_fields => ~w(valid),
+    :required_files => ~w(),
+    :optional_files => ~w(avatar)
   }
 
   def changeset(model, params \\ %{}) do
@@ -67,11 +69,12 @@ defmodule Babysitting.Classified do
   """
   def update_changeset(model, params \\ %{}) do
     model
-      |> cast(params, @rules_update.required_fields, @rules_update.optional_fields)
-      |> validate_length(:description, min: 280)
-      |> validate_format(:email, ~r/\A[^@]+@([^@\.]+\.)+[^@\.]+\z/)
-      |> validate_format(:birthday, ~r/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/)
-      |> make_search
+    |> cast(params, @rules_update.required_fields, @rules_update.optional_fields)
+    |> cast_attachments(params, @rules_update.required_files, @rules_create.optional_files)
+    |> validate_length(:description, min: 280)
+    |> validate_format(:email, ~r/\A[^@]+@([^@\.]+\.)+[^@\.]+\z/)
+    |> validate_format(:birthday, ~r/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/)
+    |> make_search
   end
 
   @doc """

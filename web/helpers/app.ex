@@ -1,6 +1,7 @@
 defmodule Babysitting.Helpers.App do
   import Plug.Conn
   alias Babysitting.Repo
+  alias Babysitting.Classified
 
   @doc """
   Return the current tenant
@@ -8,6 +9,18 @@ defmodule Babysitting.Helpers.App do
   def current_tenant(conn) do
     conn.private
       |> Map.get(:current_tenant)
+  end
+
+  @doc """
+  Return the current user (classified)
+  """
+  def current_user(conn) do
+    classified_id = 
+      conn
+      |> fetch_session
+      |> get_session(:current_user)
+
+    Repo.get!(Classified, classified_id)
   end
 
   @doc """

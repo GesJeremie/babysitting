@@ -1,0 +1,107 @@
+<%= form_for @changeset, user_classified_path(@conn, :update), [multipart: true], fn f -> %>
+<div id="content-wrapper">
+  <div class="header__container">
+    <div class="grid-8">
+      <div class="header__title"><%= gettext "Classified" %></div>
+      <div class="header__description"><%= gettext "Your current classified on the website" %></div>
+    </div>
+    <div class="grid-4">
+      <div class="header__actions">
+        <a class="button --primary" href="<%= admin_classified_path(@conn, :index) %>"><i class="icon-back"></i> Back</a>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </div>
+
+  <div class="container-fluid">
+
+    <div class="grid-2">
+      <div class="panel__content">
+        <img class="picture__circle" src="/<%= Babysitting.Avatar.url({@classified.avatar, @classified}, :thumb) %>" />
+        <%= file_input f, :avatar %>
+        <%= error_tag f, :avatar %>
+      </div>
+    </div>
+
+      <div class="grid-3">
+        <div class="panel__container">
+          <div class="panel__title">Firstname</div>
+          <div class="panel__content">
+            <div class="form__container">
+                <%= text_input f, :firstname %>
+                <%= error_tag f, :firstname %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="panel__container">
+          <div class="panel__title">Lastname</div>
+          <div class="panel__content">
+            <div class="form__container">
+                <%= text_input f, :lastname %>
+                <%= error_tag f, :lastname %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-4">
+        <div class="panel__container">
+          <div class="panel__title">Email</div>
+          <div class="panel__content">
+            <div class="form__container">
+                <%= text_input f, :email %>
+                <%= error_tag f, :email %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="clear"></div>
+
+      <div class="grid-6">
+        <div class="panel__container">
+          <div class="panel__title">Phone</div>
+          <div class="panel__content">
+            <div class="form__container">
+                <%= text_input f, :phone %>
+                <%= error_tag f, :phone %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid-6">
+        <div class="panel__container">
+          <div class="panel__title">Birthday</div>
+          <div class="panel__content">
+            <div class="form__container">
+                <%= text_input f, :birthday %>
+                <%= error_tag f, :birthday %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="clear"></div>
+
+      <div class="grid-12">
+        <div class="panel__container">
+          <div class="panel__title">Description</div>
+          <div class="panel__content">
+            <div class="form__container">
+                <%= textarea f, :description, class: "js-autosize" %>
+                <%= error_tag f, :description %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  <button type="submit" class="button --primary">Save changes</button>
+
+  </div>
+</div>
+
+<% end %>

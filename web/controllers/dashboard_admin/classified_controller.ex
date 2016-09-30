@@ -9,7 +9,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
 
   # Plugs
   plug Babysitting.Plug.IsAdmin
-  plug :scrub_params, "ad" when action in [:update]
+  plug :scrub_params, "classified" when action in [:update]
 
   @doc """
   Display the classifieds

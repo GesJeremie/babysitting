@@ -17,14 +17,13 @@ defmodule Babysitting.DashboardUser.AuthController do
     case can_login_with(email, password, conn) do 
       {:error} ->
         conn
-          |> put_flash(:error, gettext("Unable to connect with this email / password"))
-          |> redirect(to: user_auth_path(conn, :index))
+        |> put_flash(:error, gettext("Unable to connect with this email / password"))
+        |> redirect(to: user_auth_path(conn, :index))
       {:ok, id} ->
         conn
-          |> fetch_session
-          |> put_session(:is_user, true)
-          |> put_session(:current_user, id)
-          |> redirect(to: user_auth_path(conn, :index))
+        |> fetch_session
+        |> put_session(:current_user, id)
+        |> redirect(to: user_classified_path(conn, :show))
     end
 
   end
@@ -34,10 +33,10 @@ defmodule Babysitting.DashboardUser.AuthController do
   """
   def logout(conn, _params) do
     conn
-      |> fetch_session
-      |> delete_session(:is_user)
-      |> delete_session(:current_user)
-      |> redirect(to: app_page_path(conn, :home))
+    |> fetch_session
+    |> delete_session(:is_user)
+    |> delete_session(:current_user)
+    |> redirect(to: app_page_path(conn, :home))
   end
 
   @doc """
@@ -46,13 +45,13 @@ defmodule Babysitting.DashboardUser.AuthController do
   """
   defp can_login_with(email, password, conn) do
     Classified
-      |> Classified.of_current_tenant(conn)
-      |> Classified.where(:email, email)
-      |> Repo.one
-      |> case do
-        nil -> {:error}
-        ad -> check_password(password, ad)
-      end
+    |> Classified.of_current_tenant(conn)
+    |> Classified.where(:email, email)
+    |> Repo.one
+    |> case do
+      nil -> {:error}
+      ad -> check_password(password, ad)
+    end
   end
 
   @doc """

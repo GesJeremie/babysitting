@@ -74,7 +74,10 @@ defmodule Babysitting.Router do
     pipe_through [:browser, :user_layout]
 
     # Base
-    get "/", AccountController, :index
+    get "/", ClassifiedController, :show
+
+    # Classified
+    put "/classifieds/edit", ClassifiedController, :update
 
     # Auth
     get "/auth", AuthController, :index
