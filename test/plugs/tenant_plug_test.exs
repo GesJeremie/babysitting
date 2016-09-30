@@ -2,7 +2,8 @@ defmodule Babysitting.TenantPlugTest do
   use Babysitting.ConnCase
 
   test "set the current tenant for a valid host" do
-    conn = conn_valid_host
+    conn = 
+      conn_valid_host
       |> Babysitting.Plug.Tenant.call(%{})
 
     assert conn.status != 404
@@ -11,7 +12,8 @@ defmodule Babysitting.TenantPlugTest do
   end
 
   test "renders 404 status for invalid host" do
-    conn = conn_invalid_host
+    conn = 
+      conn_invalid_host
       |> Babysitting.Plug.Tenant.call(%{})
 
     assert conn.status == 404
@@ -26,7 +28,7 @@ defmodule Babysitting.TenantPlugTest do
   end
 
   defp build_conn_host(domain) do
-    conn = conn()
+    conn = build_conn()
     conn = %{conn | host: domain}
   end
 

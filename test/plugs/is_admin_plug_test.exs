@@ -4,7 +4,8 @@ defmodule Babysitting.IsAdminPlugTest do
   import Babysitting.ConnCase
 
   test "admin is redirected when not authenticated" do
-    conn = conn()
+    conn = 
+      build_conn()
       |> with_session
       |> Babysitting.Plug.IsAdmin.call(%{})
 
@@ -12,7 +13,8 @@ defmodule Babysitting.IsAdminPlugTest do
   end
 
   test "admin is not redirected when authenticated" do
-    conn = conn()
+    conn = 
+      build_conn()
       |> with_session
       |> put_session(:is_admin, true)
       |> Babysitting.Plug.IsAdmin.call(%{})

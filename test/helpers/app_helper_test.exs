@@ -5,7 +5,8 @@ defmodule Babysitting.AppHelperTest do
   alias Babysitting.Helpers.App
 
   test "current_tenant/1 return a map of the current tenant", %{conn: conn} do
-    conn = conn
+    conn = 
+      %{build_conn() | host: "www.babysittingbordeaux.dev"}
       |> with_tenant
 
     assert conn
@@ -15,7 +16,8 @@ defmodule Babysitting.AppHelperTest do
   end
 
   test "tenants/1 return a list of the tenants", %{conn: conn} do
-    conn = conn
+    conn =
+      %{build_conn() | host: "www.babysittingbordeaux.dev"}
       |> with_tenant
 
     assert conn

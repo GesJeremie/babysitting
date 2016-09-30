@@ -1,13 +1,3 @@
-defmodule Babysitting.ClassifiedControllerTest do
-
-  use Babysitting.ConnCase
-  alias Babysitting.Classified
-
-  
-
-end
-
-
 """
 defmodule Babysitting.ClassifiedControllerTest do
   use Babysitting.ConnCase
