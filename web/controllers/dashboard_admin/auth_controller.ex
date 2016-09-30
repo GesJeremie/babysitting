@@ -26,16 +26,16 @@ defmodule Babysitting.DashboardAdmin.AuthController do
     end
   end
 
-  @doc """
-  Return the number of times the admin tried to login
-  """
+  ###
+  # Return the number of times the admin tried to login
+  ###
   defp count_do_login(conn) do
     (conn |> fetch_session |> get_session(:count_attempt_login)) || 1
   end
 
-  @doc """
-  Login the user if right password provided
-  """
+  ###
+  # Login the user if right password provided
+  ###
   defp do_login(conn, password) when password == @password_login do
       conn
         |> put_session(:is_admin, true)
@@ -44,9 +44,9 @@ defmodule Babysitting.DashboardAdmin.AuthController do
         |> redirect(to: admin_analytics_path(conn, :index))
   end
 
-  @doc """
-  Doesn't login the user ann keep in memory the attempt
-  """
+  ##
+  # Doesn't login the user ann keep in memory the attempt
+  ##
   defp do_login(conn, _) do
     conn
       |> put_session(:count_do_login, count_do_login(conn) + 1)

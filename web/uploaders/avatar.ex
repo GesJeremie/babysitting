@@ -25,7 +25,7 @@ defmodule Babysitting.Avatar do
   end
 
   # Override the storage directory:
-  def storage_dir(version, {file, scope}) do
+  def storage_dir(_version, {_file, scope}) do
     "uploads/classifieds/avatars/#{uniq_id(scope.email)}"
   end
 

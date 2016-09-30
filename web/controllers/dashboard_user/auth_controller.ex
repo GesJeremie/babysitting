@@ -39,10 +39,10 @@ defmodule Babysitting.DashboardUser.AuthController do
     |> redirect(to: app_page_path(conn, :home))
   end
 
-  @doc """
-  Check with the combo email / password given
-  if it's possible to "connect"
-  """
+  ###
+  # Check with the combo email / password given
+  # if it's possible to "connect"
+  ###
   defp can_login_with(email, password, conn) do
     Classified
     |> Classified.of_current_tenant(conn)
@@ -54,10 +54,10 @@ defmodule Babysitting.DashboardUser.AuthController do
     end
   end
 
-  @doc """
-  Check if we have a match between the password given by the user
-  and the password stored in the database
-  """
+  ###
+  # Check if we have a match between the password given by the user
+  # and the password stored in the database
+  ###
   defp check_password(password, ad) do
     case Comeonin.Bcrypt.checkpw(password, ad.password) do
       false -> {:error}

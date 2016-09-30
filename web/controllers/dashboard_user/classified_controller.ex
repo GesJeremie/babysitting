@@ -30,14 +30,14 @@ defmodule Babysitting.DashboardUser.ClassifiedController do
     changeset = Classified.update_changeset(classified, classified_params)
     IO.inspect Map.get(classified_params, :avatar)
     case Repo.update(changeset) do
-      {:ok, ad} ->
+      {:ok, _classified} ->
         conn
           |> put_flash(:info, "Classified updated")
           |> redirect(to: user_classified_path(conn, :show))
       {:error, changeset} ->
         conn
           |> put_flash(:error, "Some errors are present in the form")
-          |> render "show.html", %{classified: classified, changeset: changeset}
+          |> render("show.html", %{classified: classified, changeset: changeset})
     end
   end
 end

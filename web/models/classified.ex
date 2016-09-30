@@ -183,7 +183,7 @@ defmodule Babysitting.Classified do
   Check if the query executed returned no result or not
   """
   def exists?([]), do: false
-  def exists?(result), do: true
+  def exists?(_), do: true
 
 
 end

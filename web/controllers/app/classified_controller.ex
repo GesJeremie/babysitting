@@ -5,7 +5,7 @@ defmodule Babysitting.App.ClassifiedController do
 
   # Aliases
   alias Babysitting.{Classified, ClassifiedContact}
-  alias Babysitting.Helpers.{App, Ifttt, Mailer, Format}
+  alias Babysitting.Helpers.{App, Ifttt, Format}
 
   # Plugs
   plug :scrub_params, "classified" when action in [:create, :update]
@@ -27,7 +27,7 @@ defmodule Babysitting.App.ClassifiedController do
     changeset = ClassifiedContact.create_changeset(%ClassifiedContact{}, contact_params)
 
     case Repo.insert(changeset) do
-      {:ok, contact} ->
+      {:ok, _contact} ->
         conn
         |> put_flash(:info, gettext("Message sent!"))
         |> redirect(to: app_classified_path(conn, :show, id))
@@ -70,11 +70,12 @@ defmodule Babysitting.App.ClassifiedController do
     IO.inspect params
     classified = Repo.get!(Classified, Map.get(params, "id"))
 
-    if Map.has_key?(params, "changeset") do
-      changeset = Map.get(params, "changeset")
-    else
-      changeset = ClassifiedContact.changeset(%ClassifiedContact{})
-    end
+    changeset = 
+      if Map.has_key?(params, "changeset") do
+        Map.get(params, "changeset")
+      else
+        ClassifiedContact.changeset(%ClassifiedContact{})
+      end
 
     conn
     |> render("show.html", classified: classified, changeset: changeset)
@@ -90,9 +91,9 @@ defmodule Babysitting.App.ClassifiedController do
       |> render("thankyou.html", %{current_tenant: App.current_tenant(conn)})
   end
 
-  @doc """
-  Trigger success events to third parties
-  """
+  ###
+  # Trigger success events to third parties
+  ###
   defp trigger_success_events(conn, classified) do
 
     # Fetch the current tenant
@@ -108,26 +109,26 @@ defmodule Babysitting.App.ClassifiedController do
     conn
   end
 
-  @doc """
-  Trigger error events to third parties
-  """
+  ###
+  # Trigger error events to third parties
+  ###
   defp trigger_error_events(conn, changeset) do
     Keenex.add_event("classified.new", %{type: "failed", classified: changeset.changes, tenant: App.current_tenant(conn).name})
     conn
   end
 
-  @doc """
-  Set the current tenant to the params
-  """
+  ###
+  # Set the current tenant to the params
+  ###
   defp set_current_tenant(conn, params) do
     current_tenant = App.current_tenant(conn)
     params
     |> Map.put("tenant_id", current_tenant.id)
   end
 
-  @doc """
-  Set the classified id to the params struct
-  """
+  ###
+  # Set the classified id to the params struct
+  ###
   defp set_classified(id, params) do
     params
     |> Map.put("classified_id", id)

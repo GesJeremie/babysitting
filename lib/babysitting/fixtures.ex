@@ -1,9 +1,7 @@
 defmodule Babysitting.Fixtures do
 
-  import Ecto
-
   alias FakerElixir, as: Faker
-  alias Babysitting.{Classified, Tenant, Contact, Repo}
+  alias Babysitting.{Classified, Tenant, Repo}
 
   @doc """
   Create tenant with fake data

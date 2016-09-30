@@ -1,8 +1,6 @@
 defmodule Babysitting.Plug.IsUser do
   
   import Plug.Conn
-  alias Babysitting.Classified
-  alias Babysitting.Helpers.App
 
   def init(default), do: default
 

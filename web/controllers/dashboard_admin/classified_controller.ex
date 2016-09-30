@@ -53,14 +53,14 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
     classified = Repo.get!(Classified, id)
     changeset = Classified.update_changeset(classified, classified_params)
     case Repo.update(changeset) do
-      {:ok, ad} ->
+      {:ok, _classified} ->
         conn
           |> put_flash(:info, "Classified updated")
           |> redirect(to: admin_classified_path(conn, :edit, classified))
       {:error, changeset} ->
         conn
           |> put_flash(:error, "Some errors are present in the form")
-          |> render "edit.html", %{classified: classified, changeset: changeset}
+          |> render("edit.html", %{classified: classified, changeset: changeset})
     end
   end
 
@@ -77,7 +77,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
           |> send_email_validated(classified)
           |> put_flash(:info, "Classified validated!")
           |> redirect(to: admin_classified_path(conn, :index))
-      {:error, changeset} ->
+      {:error, _changeset} ->
         conn
           |> put_flash(:error, "Impossible to validate the classified.")
           |> redirect(to: admin_classified_path(conn, :index))
@@ -97,7 +97,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
           |> send_email_rejected(classified)
           |> put_flash(:info, "Classified rejected!")
           |> redirect(to: admin_classified_path(conn, :index))
-      {:error, changeset} ->
+      {:error, _changeset} ->
         conn
           |> put_flash(:error, "Impossible to reject the classified.")
           |> redirect(to: admin_classified_path(conn, :index))
