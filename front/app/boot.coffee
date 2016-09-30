@@ -68,4 +68,4 @@ class Boot
 
                 )
 
-new Boot()
+module.exports = Boot

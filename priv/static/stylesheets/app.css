@@ -1739,7 +1739,6 @@ a {
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .hero__container {
   position: relative;
-  background-color: #43a6ec;
   width: 100%;
   min-height: 20em;
   text-align: center;
@@ -2232,8 +2231,14 @@ a {
     opacity: 0.5; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
   .button.\--sidebar {
-    background-color: #F9FAFC;
-    border: 1px solid #4c4f52;
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    font-weight: bold; }
+  /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+  .button.\--back {
+    background-color: transparent;
+    border: 2px solid #4c4f52;
     color: #4c4f52;
     font-weight: bold; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */

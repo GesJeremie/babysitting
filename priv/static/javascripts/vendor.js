@@ -26562,6 +26562,1166 @@ $.noty.themes.relax = {
 return window.noty;
 
 });
+/* NProgress, (c) 2013, 2014 Rico Sta. Cruz - http://ricostacruz.com/nprogress
+ * @license MIT */
+
+;(function(root, factory) {
+
+  if (typeof define === 'function' && define.amd) {
+    define(factory);
+  } else if (typeof exports === 'object') {
+    module.exports = factory();
+  } else {
+    root.NProgress = factory();
+  }
+
+})(this, function() {
+  var NProgress = {};
+
+  NProgress.version = '0.2.0';
+
+  var Settings = NProgress.settings = {
+    minimum: 0.08,
+    easing: 'ease',
+    positionUsing: '',
+    speed: 200,
+    trickle: true,
+    trickleRate: 0.02,
+    trickleSpeed: 800,
+    showSpinner: true,
+    barSelector: '[role="bar"]',
+    spinnerSelector: '[role="spinner"]',
+    parent: 'body',
+    template: '<div class="bar" role="bar"><div class="peg"></div></div><div class="spinner" role="spinner"><div class="spinner-icon"></div></div>'
+  };
+
+  /**
+   * Updates configuration.
+   *
+   *     NProgress.configure({
+   *       minimum: 0.1
+   *     });
+   */
+  NProgress.configure = function(options) {
+    var key, value;
+    for (key in options) {
+      value = options[key];
+      if (value !== undefined && options.hasOwnProperty(key)) Settings[key] = value;
+    }
+
+    return this;
+  };
+
+  /**
+   * Last number.
+   */
+
+  NProgress.status = null;
+
+  /**
+   * Sets the progress bar status, where `n` is a number from `0.0` to `1.0`.
+   *
+   *     NProgress.set(0.4);
+   *     NProgress.set(1.0);
+   */
+
+  NProgress.set = function(n) {
+    var started = NProgress.isStarted();
+
+    n = clamp(n, Settings.minimum, 1);
+    NProgress.status = (n === 1 ? null : n);
+
+    var progress = NProgress.render(!started),
+        bar      = progress.querySelector(Settings.barSelector),
+        speed    = Settings.speed,
+        ease     = Settings.easing;
+
+    progress.offsetWidth; /* Repaint */
+
+    queue(function(next) {
+      // Set positionUsing if it hasn't already been set
+      if (Settings.positionUsing === '') Settings.positionUsing = NProgress.getPositioningCSS();
+
+      // Add transition
+      css(bar, barPositionCSS(n, speed, ease));
+
+      if (n === 1) {
+        // Fade out
+        css(progress, { 
+          transition: 'none', 
+          opacity: 1 
+        });
+        progress.offsetWidth; /* Repaint */
+
+        setTimeout(function() {
+          css(progress, { 
+            transition: 'all ' + speed + 'ms linear', 
+            opacity: 0 
+          });
+          setTimeout(function() {
+            NProgress.remove();
+            next();
+          }, speed);
+        }, speed);
+      } else {
+        setTimeout(next, speed);
+      }
+    });
+
+    return this;
+  };
+
+  NProgress.isStarted = function() {
+    return typeof NProgress.status === 'number';
+  };
+
+  /**
+   * Shows the progress bar.
+   * This is the same as setting the status to 0%, except that it doesn't go backwards.
+   *
+   *     NProgress.start();
+   *
+   */
+  NProgress.start = function() {
+    if (!NProgress.status) NProgress.set(0);
+
+    var work = function() {
+      setTimeout(function() {
+        if (!NProgress.status) return;
+        NProgress.trickle();
+        work();
+      }, Settings.trickleSpeed);
+    };
+
+    if (Settings.trickle) work();
+
+    return this;
+  };
+
+  /**
+   * Hides the progress bar.
+   * This is the *sort of* the same as setting the status to 100%, with the
+   * difference being `done()` makes some placebo effect of some realistic motion.
+   *
+   *     NProgress.done();
+   *
+   * If `true` is passed, it will show the progress bar even if its hidden.
+   *
+   *     NProgress.done(true);
+   */
+
+  NProgress.done = function(force) {
+    if (!force && !NProgress.status) return this;
+
+    return NProgress.inc(0.3 + 0.5 * Math.random()).set(1);
+  };
+
+  /**
+   * Increments by a random amount.
+   */
+
+  NProgress.inc = function(amount) {
+    var n = NProgress.status;
+
+    if (!n) {
+      return NProgress.start();
+    } else {
+      if (typeof amount !== 'number') {
+        amount = (1 - n) * clamp(Math.random() * n, 0.1, 0.95);
+      }
+
+      n = clamp(n + amount, 0, 0.994);
+      return NProgress.set(n);
+    }
+  };
+
+  NProgress.trickle = function() {
+    return NProgress.inc(Math.random() * Settings.trickleRate);
+  };
+
+  /**
+   * Waits for all supplied jQuery promises and
+   * increases the progress as the promises resolve.
+   *
+   * @param $promise jQUery Promise
+   */
+  (function() {
+    var initial = 0, current = 0;
+
+    NProgress.promise = function($promise) {
+      if (!$promise || $promise.state() === "resolved") {
+        return this;
+      }
+
+      if (current === 0) {
+        NProgress.start();
+      }
+
+      initial++;
+      current++;
+
+      $promise.always(function() {
+        current--;
+        if (current === 0) {
+            initial = 0;
+            NProgress.done();
+        } else {
+            NProgress.set((initial - current) / initial);
+        }
+      });
+
+      return this;
+    };
+
+  })();
+
+  /**
+   * (Internal) renders the progress bar markup based on the `template`
+   * setting.
+   */
+
+  NProgress.render = function(fromStart) {
+    if (NProgress.isRendered()) return document.getElementById('nprogress');
+
+    addClass(document.documentElement, 'nprogress-busy');
+    
+    var progress = document.createElement('div');
+    progress.id = 'nprogress';
+    progress.innerHTML = Settings.template;
+
+    var bar      = progress.querySelector(Settings.barSelector),
+        perc     = fromStart ? '-100' : toBarPerc(NProgress.status || 0),
+        parent   = document.querySelector(Settings.parent),
+        spinner;
+    
+    css(bar, {
+      transition: 'all 0 linear',
+      transform: 'translate3d(' + perc + '%,0,0)'
+    });
+
+    if (!Settings.showSpinner) {
+      spinner = progress.querySelector(Settings.spinnerSelector);
+      spinner && removeElement(spinner);
+    }
+
+    if (parent != document.body) {
+      addClass(parent, 'nprogress-custom-parent');
+    }
+
+    parent.appendChild(progress);
+    return progress;
+  };
+
+  /**
+   * Removes the element. Opposite of render().
+   */
+
+  NProgress.remove = function() {
+    removeClass(document.documentElement, 'nprogress-busy');
+    removeClass(document.querySelector(Settings.parent), 'nprogress-custom-parent');
+    var progress = document.getElementById('nprogress');
+    progress && removeElement(progress);
+  };
+
+  /**
+   * Checks if the progress bar is rendered.
+   */
+
+  NProgress.isRendered = function() {
+    return !!document.getElementById('nprogress');
+  };
+
+  /**
+   * Determine which positioning CSS rule to use.
+   */
+
+  NProgress.getPositioningCSS = function() {
+    // Sniff on document.body.style
+    var bodyStyle = document.body.style;
+
+    // Sniff prefixes
+    var vendorPrefix = ('WebkitTransform' in bodyStyle) ? 'Webkit' :
+                       ('MozTransform' in bodyStyle) ? 'Moz' :
+                       ('msTransform' in bodyStyle) ? 'ms' :
+                       ('OTransform' in bodyStyle) ? 'O' : '';
+
+    if (vendorPrefix + 'Perspective' in bodyStyle) {
+      // Modern browsers with 3D support, e.g. Webkit, IE10
+      return 'translate3d';
+    } else if (vendorPrefix + 'Transform' in bodyStyle) {
+      // Browsers without 3D support, e.g. IE9
+      return 'translate';
+    } else {
+      // Browsers without translate() support, e.g. IE7-8
+      return 'margin';
+    }
+  };
+
+  /**
+   * Helpers
+   */
+
+  function clamp(n, min, max) {
+    if (n < min) return min;
+    if (n > max) return max;
+    return n;
+  }
+
+  /**
+   * (Internal) converts a percentage (`0..1`) to a bar translateX
+   * percentage (`-100%..0%`).
+   */
+
+  function toBarPerc(n) {
+    return (-1 + n) * 100;
+  }
+
+
+  /**
+   * (Internal) returns the correct CSS for changing the bar's
+   * position given an n percentage, and speed and ease from Settings
+   */
+
+  function barPositionCSS(n, speed, ease) {
+    var barCSS;
+
+    if (Settings.positionUsing === 'translate3d') {
+      barCSS = { transform: 'translate3d('+toBarPerc(n)+'%,0,0)' };
+    } else if (Settings.positionUsing === 'translate') {
+      barCSS = { transform: 'translate('+toBarPerc(n)+'%,0)' };
+    } else {
+      barCSS = { 'margin-left': toBarPerc(n)+'%' };
+    }
+
+    barCSS.transition = 'all '+speed+'ms '+ease;
+
+    return barCSS;
+  }
+
+  /**
+   * (Internal) Queues a function to be executed.
+   */
+
+  var queue = (function() {
+    var pending = [];
+    
+    function next() {
+      var fn = pending.shift();
+      if (fn) {
+        fn(next);
+      }
+    }
+
+    return function(fn) {
+      pending.push(fn);
+      if (pending.length == 1) next();
+    };
+  })();
+
+  /**
+   * (Internal) Applies css properties to an element, similar to the jQuery 
+   * css method.
+   *
+   * While this helper does assist with vendor prefixed property names, it 
+   * does not perform any manipulation of values prior to setting styles.
+   */
+
+  var css = (function() {
+    var cssPrefixes = [ 'Webkit', 'O', 'Moz', 'ms' ],
+        cssProps    = {};
+
+    function camelCase(string) {
+      return string.replace(/^-ms-/, 'ms-').replace(/-([\da-z])/gi, function(match, letter) {
+        return letter.toUpperCase();
+      });
+    }
+
+    function getVendorProp(name) {
+      var style = document.body.style;
+      if (name in style) return name;
+
+      var i = cssPrefixes.length,
+          capName = name.charAt(0).toUpperCase() + name.slice(1),
+          vendorName;
+      while (i--) {
+        vendorName = cssPrefixes[i] + capName;
+        if (vendorName in style) return vendorName;
+      }
+
+      return name;
+    }
+
+    function getStyleProp(name) {
+      name = camelCase(name);
+      return cssProps[name] || (cssProps[name] = getVendorProp(name));
+    }
+
+    function applyCss(element, prop, value) {
+      prop = getStyleProp(prop);
+      element.style[prop] = value;
+    }
+
+    return function(element, properties) {
+      var args = arguments,
+          prop, 
+          value;
+
+      if (args.length == 2) {
+        for (prop in properties) {
+          value = properties[prop];
+          if (value !== undefined && properties.hasOwnProperty(prop)) applyCss(element, prop, value);
+        }
+      } else {
+        applyCss(element, args[1], args[2]);
+      }
+    }
+  })();
+
+  /**
+   * (Internal) Determines if an element or space separated list of class names contains a class name.
+   */
+
+  function hasClass(element, name) {
+    var list = typeof element == 'string' ? element : classList(element);
+    return list.indexOf(' ' + name + ' ') >= 0;
+  }
+
+  /**
+   * (Internal) Adds a class to an element.
+   */
+
+  function addClass(element, name) {
+    var oldList = classList(element),
+        newList = oldList + name;
+
+    if (hasClass(oldList, name)) return; 
+
+    // Trim the opening space.
+    element.className = newList.substring(1);
+  }
+
+  /**
+   * (Internal) Removes a class from an element.
+   */
+
+  function removeClass(element, name) {
+    var oldList = classList(element),
+        newList;
+
+    if (!hasClass(element, name)) return;
+
+    // Replace the class name.
+    newList = oldList.replace(' ' + name + ' ', ' ');
+
+    // Trim the opening and closing spaces.
+    element.className = newList.substring(1, newList.length - 1);
+  }
+
+  /**
+   * (Internal) Gets a space separated list of the class names on the element. 
+   * The list is wrapped with a single space on each end to facilitate finding 
+   * matches within the list.
+   */
+
+  function classList(element) {
+    return (' ' + (element.className || '') + ' ').replace(/\s+/gi, ' ');
+  }
+
+  /**
+   * (Internal) Removes an element from the DOM.
+   */
+
+  function removeElement(element) {
+    element && element.parentNode && element.parentNode.removeChild(element);
+  }
+
+  return NProgress;
+});
+
+
+/**
+ * smoothState.js is a jQuery plugin to stop page load jank.
+ *
+ * This jQuery plugin progressively enhances page loads to
+ * behave more like a single-page application.
+ *
+ * @author  Miguel Ángel Pérez   reachme@miguel-perez.com
+ * @see     https://github.com/miguel-perez/jquery.smoothState.js
+ *
+ */
+
+;(function ( $, window, document, undefined ) {
+  'use strict';
+
+  /** Abort if browser does not support pushState */
+  if(!window.history.pushState) {
+    // setup a dummy fn, but don't intercept on link clicks
+    $.fn.smoothState = function() { return this; };
+    $.fn.smoothState.options = {};
+    return;
+  }
+
+  /** Abort if smoothState is already present **/
+  if($.fn.smoothState) { return; }
+
+  var
+    /** Used later to scroll page to the top */
+    $body = $('html, body'),
+
+    /** Used in debug mode to console out useful warnings */
+    consl = window.console,
+
+    /** Plugin default options, will be exposed as $fn.smoothState.options */
+    defaults = {
+
+      /** If set to true, smoothState will log useful debug information instead of aborting */
+      debug: false,
+
+      /** jQuery selector to specify which anchors smoothState should bind to */
+      anchors: 'a',
+
+      /** jQuery selector to specify which forms smoothState should bind to */
+      forms: 'form',
+
+      /** A selector that defines what should be ignored by smoothState */
+      blacklist: '.no-smoothState',
+
+      /** If set to true, smoothState will prefetch a link's contents on hover */
+      prefetch: false,
+
+      /** The number of pages smoothState will try to store in memory */
+      cacheLength: 0,
+
+      /** Class that will be applied to the body while the page is loading */
+      loadingClass: 'is-loading',
+
+      /**
+       * A function that can be used to alter the ajax request settings before it is called
+       * @param  {Object} request jQuery.ajax settings object that will be used to make the request
+       * @return {Object}         Altered request object
+       */
+      alterRequest: function (request) {
+        return request;
+      },
+
+      /** Run before a page load has been activated */
+      onBefore: function ($currentTarget, $container) {},
+
+      /** Run when a page load has been activated */
+      onStart: {
+        duration: 0,
+        render: function ($container) {}
+      },
+
+      /** Run if the page request is still pending and onStart has finished animating */
+      onProgress: {
+        duration: 0,
+        render: function ($container) {}
+      },
+
+      /** Run when requested content is ready to be injected into the page  */
+      onReady: {
+        duration: 0,
+        render: function ($container, $newContent) {
+          $container.html($newContent);
+        }
+      },
+
+      /** Run when content has been injected and all animations are complete  */
+      onAfter: function($container, $newContent) {}
+    },
+
+    /** Utility functions that are decoupled from smoothState */
+    utility = {
+
+      /**
+       * Checks to see if the url is external
+       * @param   {string}    url - url being evaluated
+       * @see     http://stackoverflow.com/questions/6238351/fastest-way-to-detect-external-urls
+       *
+       */
+      isExternal: function (url) {
+        var match = url.match(/^([^:\/?#]+:)?(?:\/\/([^\/?#]*))?([^?#]+)?(\?[^#]*)?(#.*)?/);
+        if (typeof match[1] === 'string' && match[1].length > 0 && match[1].toLowerCase() !== window.location.protocol) {
+          return true;
+        }
+        if (typeof match[2] === 'string' &&
+          match[2].length > 0 &&
+          match[2].replace(new RegExp(':(' + {'http:': 80, 'https:': 443}[window.location.protocol] +
+            ')?$'), '') !== window.location.host) {
+          return true;
+        }
+        return false;
+      },
+
+      /**
+       * Strips the hash from a url and returns the new href
+       * @param   {string}    href - url being evaluated
+       *
+       */
+      stripHash: function(href) {
+        return href.replace(/#.*/, '');
+      },
+
+      /**
+       * Checks to see if the url is an internal hash
+       * @param   {string}    href - url being evaluated
+       * @param   {string}    prev - previous url (optional)
+       *
+       */
+      isHash: function (href, prev) {
+        prev = prev || window.location.href;
+
+        var hasHash = (href.indexOf('#') > -1) ? true : false,
+            samePath = (utility.stripHash(href) === utility.stripHash(prev)) ? true : false;
+
+        return (hasHash && samePath);
+      },
+
+      /**
+       * Translates a url string into a $.ajax settings obj
+       * @param  {Object|String} request url or settings obj
+       * @return {Object}        settings object
+       */
+      translate: function(request) {
+          var defaults = {
+            dataType: 'html',
+            type: 'GET'
+          };
+          if(typeof request === 'string') {
+            request = $.extend({}, defaults, { url: request });
+          } else {
+            request = $.extend({}, defaults, request);
+          }
+          return request;
+      },
+
+      /**
+       * Checks to see if we should be loading this URL
+       * @param   {string}    url - url being evaluated
+       * @param   {string}    blacklist - jquery selector
+       *
+       */
+      shouldLoadAnchor: function ($anchor, blacklist) {
+        var href = $anchor.prop('href');
+        // URL will only be loaded if it's not an external link, hash, or blacklisted
+        return (!utility.isExternal(href) && !utility.isHash(href) && !$anchor.is(blacklist) && !$anchor.prop('target'));
+      },
+
+      /**
+       * Resets an object if it has too many properties
+       *
+       * This is used to clear the 'cache' object that stores
+       * all of the html. This would prevent the client from
+       * running out of memory and allow the user to hit the
+       * server for a fresh copy of the content.
+       *
+       * @param   {object}    obj
+       * @param   {number}    cap
+       *
+       */
+      clearIfOverCapacity: function (cache, cap) {
+        // Polyfill Object.keys if it doesn't exist
+        if (!Object.keys) {
+          Object.keys = function (obj) {
+            var keys = [],
+              k;
+            for (k in obj) {
+              if (Object.prototype.hasOwnProperty.call(obj, k)) {
+                keys.push(k);
+              }
+            }
+            return keys;
+          };
+        }
+
+        if (Object.keys(cache).length > cap) {
+          cache = {};
+        }
+
+        return cache;
+      },
+
+      /**
+       * Stores a document fragment into an object
+       * @param   {object}    object - object where it will be sotred
+       * @param   {string}    url - name of the entry
+       * @param   {string|document}    doc - entire html
+       * @param   {string}    id - the id of the fragment
+       *
+       */
+      storePageIn: function (object, url, doc, id) {
+        var $newDoc = $(doc);
+
+        object[url] = { // Content is indexed by the url
+          status: 'loaded',
+          // Stores the title of the page, .first() prevents getting svg titles
+          title: $newDoc.filter('title').first().text(),
+          html: $newDoc.filter('#' + id), // Stores the contents of the page
+        };
+        return object;
+      },
+
+      /**
+       * Triggers an 'allanimationend' event when all animations are complete
+       * @param   {object}    $element - jQuery object that should trigger event
+       * @param   {string}    resetOn - which other events to trigger allanimationend on
+       *
+       */
+      triggerAllAnimationEndEvent: function ($element, resetOn) {
+
+        resetOn = ' ' + resetOn || '';
+
+        var animationCount = 0,
+          animationstart = 'animationstart webkitAnimationStart oanimationstart MSAnimationStart',
+          animationend = 'animationend webkitAnimationEnd oanimationend MSAnimationEnd',
+          eventname = 'allanimationend',
+          onAnimationStart = function (e) {
+            if ($(e.delegateTarget).is($element)) {
+              e.stopPropagation();
+              animationCount++;
+            }
+          },
+          onAnimationEnd = function (e) {
+            if ($(e.delegateTarget).is($element)) {
+              e.stopPropagation();
+              animationCount--;
+              if(animationCount === 0) {
+                $element.trigger(eventname);
+              }
+            }
+          };
+
+        $element.on(animationstart, onAnimationStart);
+        $element.on(animationend, onAnimationEnd);
+
+        $element.on('allanimationend' + resetOn, function(){
+          animationCount = 0;
+          utility.redraw($element);
+        });
+      },
+
+      /** Forces browser to redraw elements */
+      redraw: function ($element) {
+        $element.height();
+      }
+    },
+
+    /** Handles the popstate event, like when the user hits 'back' */
+    onPopState = function ( e ) {
+      if(e.state !== null) {
+        var url = window.location.href,
+          $page = $('#' + e.state.id),
+          page = $page.data('smoothState');
+
+        if(page.href !== url && !utility.isHash(url, page.href)) {
+          page.load(url, false);
+        }
+      }
+    },
+
+    /** Constructor function */
+    Smoothstate = function ( element, options ) {
+      var
+        /** Container element smoothState is run on */
+        $container = $(element),
+
+        /** ID of the main container */
+        elementId = $container.prop('id'),
+
+        /** If a hash was clicked, we'll store it here so we
+         *  can scroll to it once the new page has been fully
+         *  loaded.
+         */
+        targetHash = null,
+
+        /** Used to prevent fetching while we transition so
+         *  that we don't mistakenly override a cache entry
+         *  we need.
+         */
+        isTransitioning = false,
+
+        /** Variable that stores pages after they are requested */
+        cache = {},
+
+        /** Url of the content that is currently displayed */
+        currentHref = window.location.href,
+
+        /**
+         * Clears a given page from the cache, if no url is provided
+         * it will clear the entire cache.
+         * @param  {String} url entry that is to be deleted.
+         */
+        clear = function(url) {
+          url = url || false;
+          if(url && cache.hasOwnProperty(url)) {
+            delete cache[url];
+          } else {
+            cache = {};
+          }
+          $container.data('smoothState').cache = cache;
+        },
+
+        /**
+         * Fetches the contents of a url and stores it in the 'cache' variable
+         * @param  {String|Object}   request  url or request settings object
+         * @param  {Function} callback function that will run as soon as it finishes
+         */
+        fetch = function (request, callback) {
+
+          // Sets a default in case a callback is not defined
+          callback = callback || $.noop;
+
+          // Allows us to accept a url string or object as the ajax settings
+          var settings = utility.translate(request);
+
+          // Don't prefetch if we have the content already or if it's a form
+          if(cache.hasOwnProperty(settings.url) && typeof settings.data === 'undefined') {
+            return;
+          }
+
+          // Check the length of the cache and clear it if needed
+          cache = utility.clearIfOverCapacity(cache, options.cacheLength);
+
+          // Let other parts of the code know we're working on getting the content
+          cache[settings.url] = { status: 'fetching' };
+
+          // Make the ajax request
+          var ajaxRequest = $.ajax(settings);
+
+          // Store contents in cache variable if successful
+          ajaxRequest.success(function (html) {
+            utility.storePageIn(cache, settings.url, html, elementId);
+            $container.data('smoothState').cache = cache;
+          });
+
+          // Mark as error to be acted on later
+          ajaxRequest.error(function () {
+            cache[settings.url].status = 'error';
+          });
+
+          // Call fetch callback
+          if(callback) {
+            ajaxRequest.complete(callback);
+          }
+        },
+
+        repositionWindow = function(){
+          // Scroll to a hash anchor on destination page
+          if(targetHash) {
+            var $targetHashEl = $(targetHash, $container);
+            if($targetHashEl.length){
+              var newPosition = $targetHashEl.offset().top;
+              document.body.scrollTop = newPosition;
+            }
+            targetHash = null;
+          }
+        },
+
+        /** Updates the contents from cache[url] */
+        updateContent = function (url) {
+          // If the content has been requested and is done:
+          var containerId = '#' + elementId,
+              $newContent = cache[url] ? $(cache[url].html.html()) : null;
+
+          if($newContent.length) {
+
+            // Update the title
+            document.title = cache[url].title;
+
+            // Update current url
+            $container.data('smoothState').href = url;
+
+            // Remove loading class
+            if(options.loadingClass) {
+              $body.removeClass(options.loadingClass);
+            }
+
+            // Call the onReady callback and set delay
+            options.onReady.render($container, $newContent);
+
+            $container.one('ss.onReadyEnd', function(){
+
+              // Allow prefetches to be made again
+              isTransitioning = false;
+
+              // Run callback
+              options.onAfter($container, $newContent);
+
+              repositionWindow();
+
+            });
+
+            window.setTimeout(function(){
+              $container.trigger('ss.onReadyEnd');
+            }, options.onReady.duration);
+
+          } else if (!$newContent && options.debug && consl) {
+            // Throw warning to help debug in debug mode
+            consl.warn('No element with an id of ' + containerId + ' in response from ' + url + ' in ' + cache);
+          } else {
+            // No content availble to update with, aborting...
+            window.location = url;
+          }
+        },
+
+        /**
+         * Loads the contents of a url into our container
+         * @param   {string}    url
+         * @param   {bool}      push - used to determine if we should
+         *                      add a new item into the history object
+         */
+        load = function (request, push) {
+
+          var settings = utility.translate(request);
+
+          /** Makes this an optional variable by setting a default */
+          if(typeof push === 'undefined') {
+            push = true;
+          }
+
+          var
+            /** Used to check if the onProgress function has been run */
+            hasRunCallback = false,
+
+            callbBackEnded = false,
+
+            /** List of responses for the states of the page request */
+            responses = {
+
+              /** Page is ready, update the content */
+              loaded: function () {
+                var eventName = hasRunCallback ? 'ss.onProgressEnd' : 'ss.onStartEnd';
+
+                if(!callbBackEnded || !hasRunCallback) {
+                  $container.one(eventName, function(){
+                    updateContent(settings.url);
+                  });
+                } else if(callbBackEnded) {
+                  updateContent(settings.url);
+                }
+
+                if(push) {
+                  window.history.pushState({ id: elementId }, cache[settings.url].title, settings.url);
+                }
+              },
+
+              /** Loading, wait 10 ms and check again */
+              fetching: function () {
+
+                if(!hasRunCallback) {
+
+                  hasRunCallback = true;
+
+                  // Run the onProgress callback and set trigger
+                  $container.one('ss.onStartEnd', function(){
+
+                    // Add loading class
+                    if(options.loadingClass) {
+                      $body.addClass(options.loadingClass);
+                    }
+
+                    options.onProgress.render($container);
+
+                    window.setTimeout(function (){
+                      $container.trigger('ss.onProgressEnd');
+                      callbBackEnded = true;
+                    }, options.onProgress.duration);
+
+                  });
+                }
+
+                window.setTimeout(function () {
+                  // Might of been canceled, better check!
+                  if(cache.hasOwnProperty(settings.url)){
+                    responses[cache[settings.url].status]();
+                  }
+                }, 10);
+              },
+
+              /** Error, abort and redirect */
+              error: function (){
+                if(options.debug && consl) {
+                  consl.log('There was an error loading: ' + settings.url);
+                } else {
+                  window.location = settings.url;
+                }
+              }
+            };
+
+          if (!cache.hasOwnProperty(settings.url)) {
+            fetch(settings);
+          }
+
+          // Run the onStart callback and set trigger
+          options.onStart.render($container);
+
+          window.setTimeout(function(){
+            $body.scrollTop(0);
+            $container.trigger('ss.onStartEnd');
+          }, options.onStart.duration);
+
+          // Start checking for the status of content
+          responses[cache[settings.url].status]();
+        },
+
+        /**
+         * Binds to the hover event of a link, used for prefetching content
+         * @param   {object}    event
+         */
+        hoverAnchor = function (event) {
+          var request,
+              $anchor = $(event.currentTarget);
+
+          if (utility.shouldLoadAnchor($anchor, options.blacklist) && !isTransitioning) {
+            event.stopPropagation();
+            request = utility.translate($anchor.prop('href'));
+            request = options.alterRequest(request);
+            fetch(request);
+          }
+        },
+
+        /**
+         * Binds to the click event of a link, used to show the content
+         * @param   {object}    event
+         */
+        clickAnchor = function (event) {
+          var $anchor = $(event.currentTarget);
+
+          // Ctrl (or Cmd) + click must open a new tab
+          if (!event.metaKey && !event.ctrlKey && utility.shouldLoadAnchor($anchor, options.blacklist)) {
+            var request = utility.translate($anchor.prop('href'));
+
+            // stopPropagation so that event doesn't fire on parent containers.
+            isTransitioning = true;
+            event.stopPropagation();
+            event.preventDefault();
+            targetHash = $anchor.prop('hash');
+
+            // Allows modifications to the request
+            request = options.alterRequest(request);
+
+            options.onBefore($anchor, $container);
+
+            load(request);
+          }
+        },
+
+        /**
+         * Binds to form submissions
+         * @param  {Event} event
+         */
+        submitForm = function (event) {
+          var $form = $(event.currentTarget);
+
+          if(!$form.is(options.blacklist)){
+            event.preventDefault();
+            event.stopPropagation();
+
+            var request = {
+                  url: $form.prop('action'),
+                  data: $form.serialize(),
+                  type: $form.prop('method')
+                };
+
+            isTransitioning = true;
+
+            request = options.alterRequest(request);
+
+            if(request.type.toLowerCase() === 'get') {
+              request.url = request.url + '?' + request.data;
+            }
+
+            // Call the onReady callback and set delay
+            options.onBefore($form, $container);
+
+            load(request);
+          }
+        },
+
+        /**
+         * Binds all events and inits functionality
+         * @param   {object}    event
+         */
+        bindEventHandlers = function ($element) {
+
+          $element.on('click', options.anchors, clickAnchor);
+
+          $element.on('submit', options.forms, submitForm);
+
+          if (options.prefetch) {
+            $element.on('mouseover touchstart', options.anchors, hoverAnchor);
+          }
+        },
+
+        /** Restart the container's css animations */
+        restartCSSAnimations = function () {
+          var classes = $container.prop('class');
+          $container.removeClass(classes);
+          utility.redraw($container);
+          $container.addClass(classes);
+        };
+
+      /** Merge defaults and global options into current configuration */
+      options = $.extend( {}, $.fn.smoothState.options, options );
+
+      /** Sets a default state */
+      if(window.history.state === null) {
+        window.history.replaceState({ id: elementId }, document.title, currentHref);
+      }
+
+      /** Stores the current page in cache variable */
+      utility.storePageIn(cache, currentHref, document.documentElement.outerHTML, elementId);
+
+      /** Bind all of the event handlers on the container, not anchors */
+      utility.triggerAllAnimationEndEvent($container, 'ss.onStartEnd ss.onProgressEnd ss.onEndEnd');
+
+      /** Bind all of the event handlers on the container, not anchors */
+      bindEventHandlers($container);
+
+      /** Public methods */
+      return {
+        href: currentHref,
+        cache: cache,
+        clear: clear,
+        load: load,
+        fetch: fetch,
+        restartCSSAnimations: restartCSSAnimations
+      };
+    },
+
+    /** Returns elements with smoothState attached to it */
+    declaresmoothState = function ( options ) {
+      return this.each(function () {
+        var tagname = this.tagName.toLowerCase();
+        // Checks to make sure the smoothState element has an id and isn't already bound
+        if(this.id && tagname !== 'body' && tagname !== 'html' && !$.data(this, 'smoothState')) {
+          // Makes public methods available via $('element').data('smoothState');
+          $.data(this, 'smoothState', new Smoothstate(this, options));
+        } else if (!this.id && consl) {
+          // Throw warning if in debug mode
+          consl.warn('Every smoothState container needs an id but the following one does not have one:', this);
+        } else if ((tagname === 'body' || tagname === 'html') && consl) {
+          // We dont support making th html or the body element the smoothstate container
+          consl.warn('The smoothstate container cannot be the ' + this.tagName + ' tag');
+        }
+      });
+    };
+
+  /** Sets the popstate function */
+  window.onpopstate = onPopState;
+
+  /** Makes utility functions public for unit tests */
+  $.smoothStateUtility = utility;
+
+  /** Defines the smoothState plugin */
+  $.fn.smoothState = declaresmoothState;
+
+  /* expose the default options */
+  $.fn.smoothState.options = defaults;
+
+})(jQuery, window, document);
+
 !function(e,t,n){"use strict";!function o(e,t,n){function a(s,l){if(!t[s]){if(!e[s]){var i="function"==typeof require&&require;if(!l&&i)return i(s,!0);if(r)return r(s,!0);var u=new Error("Cannot find module '"+s+"'");throw u.code="MODULE_NOT_FOUND",u}var c=t[s]={exports:{}};e[s][0].call(c.exports,function(t){var n=e[s][1][t];return a(n?n:t)},c,c.exports,o,e,t,n)}return t[s].exports}for(var r="function"==typeof require&&require,s=0;s<n.length;s++)a(n[s]);return a}({1:[function(o,a,r){var s=function(e){return e&&e.__esModule?e:{"default":e}};Object.defineProperty(r,"__esModule",{value:!0});var l,i,u,c,d=o("./modules/handle-dom"),f=o("./modules/utils"),p=o("./modules/handle-swal-dom"),m=o("./modules/handle-click"),v=o("./modules/handle-key"),y=s(v),h=o("./modules/default-params"),b=s(h),g=o("./modules/set-params"),w=s(g);r["default"]=u=c=function(){function o(e){var t=a;return t[e]===n?b["default"][e]:t[e]}var a=arguments[0];if(d.addClass(t.body,"stop-scrolling"),p.resetInput(),a===n)return f.logStr("SweetAlert expects at least 1 attribute!"),!1;var r=f.extend({},b["default"]);switch(typeof a){case"string":r.title=a,r.text=arguments[1]||"",r.type=arguments[2]||"";break;case"object":if(a.title===n)return f.logStr('Missing "title" argument!'),!1;r.title=a.title;for(var s in b["default"])r[s]=o(s);r.confirmButtonText=r.showCancelButton?"Confirm":b["default"].confirmButtonText,r.confirmButtonText=o("confirmButtonText"),r.doneFunction=arguments[1]||null;break;default:return f.logStr('Unexpected type of argument! Expected "string" or "object", got '+typeof a),!1}w["default"](r),p.fixVerticalPosition(),p.openModal(arguments[1]);for(var u=p.getModal(),v=u.querySelectorAll("button"),h=["onclick","onmouseover","onmouseout","onmousedown","onmouseup","onfocus"],g=function(e){return m.handleButton(e,r,u)},C=0;C<v.length;C++)for(var S=0;S<h.length;S++){var x=h[S];v[C][x]=g}p.getOverlay().onclick=g,l=e.onkeydown;var k=function(e){return y["default"](e,r,u)};e.onkeydown=k,e.onfocus=function(){setTimeout(function(){i!==n&&(i.focus(),i=n)},0)},c.enableButtons()},u.setDefaults=c.setDefaults=function(e){if(!e)throw new Error("userParams is required");if("object"!=typeof e)throw new Error("userParams has to be a object");f.extend(b["default"],e)},u.close=c.close=function(){var o=p.getModal();d.fadeOut(p.getOverlay(),5),d.fadeOut(o,5),d.removeClass(o,"showSweetAlert"),d.addClass(o,"hideSweetAlert"),d.removeClass(o,"visible");var a=o.querySelector(".sa-icon.sa-success");d.removeClass(a,"animate"),d.removeClass(a.querySelector(".sa-tip"),"animateSuccessTip"),d.removeClass(a.querySelector(".sa-long"),"animateSuccessLong");var r=o.querySelector(".sa-icon.sa-error");d.removeClass(r,"animateErrorIcon"),d.removeClass(r.querySelector(".sa-x-mark"),"animateXMark");var s=o.querySelector(".sa-icon.sa-warning");return d.removeClass(s,"pulseWarning"),d.removeClass(s.querySelector(".sa-body"),"pulseWarningIns"),d.removeClass(s.querySelector(".sa-dot"),"pulseWarningIns"),setTimeout(function(){var e=o.getAttribute("data-custom-class");d.removeClass(o,e)},300),d.removeClass(t.body,"stop-scrolling"),e.onkeydown=l,e.previousActiveElement&&e.previousActiveElement.focus(),i=n,clearTimeout(o.timeout),!0},u.showInputError=c.showInputError=function(e){var t=p.getModal(),n=t.querySelector(".sa-input-error");d.addClass(n,"show");var o=t.querySelector(".sa-error-container");d.addClass(o,"show"),o.querySelector("p").innerHTML=e,setTimeout(function(){u.enableButtons()},1),t.querySelector("input").focus()},u.resetInputError=c.resetInputError=function(e){if(e&&13===e.keyCode)return!1;var t=p.getModal(),n=t.querySelector(".sa-input-error");d.removeClass(n,"show");var o=t.querySelector(".sa-error-container");d.removeClass(o,"show")},u.disableButtons=c.disableButtons=function(){var e=p.getModal(),t=e.querySelector("button.confirm"),n=e.querySelector("button.cancel");t.disabled=!0,n.disabled=!0},u.enableButtons=c.enableButtons=function(){var e=p.getModal(),t=e.querySelector("button.confirm"),n=e.querySelector("button.cancel");t.disabled=!1,n.disabled=!1},"undefined"!=typeof e?e.sweetAlert=e.swal=u:f.logStr("SweetAlert is a frontend module!"),a.exports=r["default"]},{"./modules/default-params":2,"./modules/handle-click":3,"./modules/handle-dom":4,"./modules/handle-key":5,"./modules/handle-swal-dom":6,"./modules/set-params":8,"./modules/utils":9}],2:[function(e,t,n){Object.defineProperty(n,"__esModule",{value:!0});var o={title:"",text:"",type:null,allowOutsideClick:!1,showConfirmButton:!0,showCancelButton:!1,closeOnConfirm:!0,closeOnCancel:!0,confirmButtonText:"OK",confirmButtonColor:"#8CD4F5",cancelButtonText:"Cancel",imageUrl:null,imageSize:null,timer:null,customClass:"",html:!1,animation:!0,allowEscapeKey:!0,inputType:"text",inputPlaceholder:"",inputValue:"",showLoaderOnConfirm:!1};n["default"]=o,t.exports=n["default"]},{}],3:[function(t,n,o){Object.defineProperty(o,"__esModule",{value:!0});var a=t("./utils"),r=(t("./handle-swal-dom"),t("./handle-dom")),s=function(t,n,o){function s(e){m&&n.confirmButtonColor&&(p.style.backgroundColor=e)}var u,c,d,f=t||e.event,p=f.target||f.srcElement,m=-1!==p.className.indexOf("confirm"),v=-1!==p.className.indexOf("sweet-overlay"),y=r.hasClass(o,"visible"),h=n.doneFunction&&"true"===o.getAttribute("data-has-done-function");switch(m&&n.confirmButtonColor&&(u=n.confirmButtonColor,c=a.colorLuminance(u,-.04),d=a.colorLuminance(u,-.14)),f.type){case"mouseover":s(c);break;case"mouseout":s(u);break;case"mousedown":s(d);break;case"mouseup":s(c);break;case"focus":var b=o.querySelector("button.confirm"),g=o.querySelector("button.cancel");m?g.style.boxShadow="none":b.style.boxShadow="none";break;case"click":var w=o===p,C=r.isDescendant(o,p);if(!w&&!C&&y&&!n.allowOutsideClick)break;m&&h&&y?l(o,n):h&&y||v?i(o,n):r.isDescendant(o,p)&&"BUTTON"===p.tagName&&sweetAlert.close()}},l=function(e,t){var n=!0;r.hasClass(e,"show-input")&&(n=e.querySelector("input").value,n||(n="")),t.doneFunction(n),t.closeOnConfirm&&sweetAlert.close(),t.showLoaderOnConfirm&&sweetAlert.disableButtons()},i=function(e,t){var n=String(t.doneFunction).replace(/\s/g,""),o="function("===n.substring(0,9)&&")"!==n.substring(9,10);o&&t.doneFunction(!1),t.closeOnCancel&&sweetAlert.close()};o["default"]={handleButton:s,handleConfirm:l,handleCancel:i},n.exports=o["default"]},{"./handle-dom":4,"./handle-swal-dom":6,"./utils":9}],4:[function(n,o,a){Object.defineProperty(a,"__esModule",{value:!0});var r=function(e,t){return new RegExp(" "+t+" ").test(" "+e.className+" ")},s=function(e,t){r(e,t)||(e.className+=" "+t)},l=function(e,t){var n=" "+e.className.replace(/[\t\r\n]/g," ")+" ";if(r(e,t)){for(;n.indexOf(" "+t+" ")>=0;)n=n.replace(" "+t+" "," ");e.className=n.replace(/^\s+|\s+$/g,"")}},i=function(e){var n=t.createElement("div");return n.appendChild(t.createTextNode(e)),n.innerHTML},u=function(e){e.style.opacity="",e.style.display="block"},c=function(e){if(e&&!e.length)return u(e);for(var t=0;t<e.length;++t)u(e[t])},d=function(e){e.style.opacity="",e.style.display="none"},f=function(e){if(e&&!e.length)return d(e);for(var t=0;t<e.length;++t)d(e[t])},p=function(e,t){for(var n=t.parentNode;null!==n;){if(n===e)return!0;n=n.parentNode}return!1},m=function(e){e.style.left="-9999px",e.style.display="block";var t,n=e.clientHeight;return t="undefined"!=typeof getComputedStyle?parseInt(getComputedStyle(e).getPropertyValue("padding-top"),10):parseInt(e.currentStyle.padding),e.style.left="",e.style.display="none","-"+parseInt((n+t)/2)+"px"},v=function(e,t){if(+e.style.opacity<1){t=t||16,e.style.opacity=0,e.style.display="block";var n=+new Date,o=function(e){function t(){return e.apply(this,arguments)}return t.toString=function(){return e.toString()},t}(function(){e.style.opacity=+e.style.opacity+(new Date-n)/100,n=+new Date,+e.style.opacity<1&&setTimeout(o,t)});o()}e.style.display="block"},y=function(e,t){t=t||16,e.style.opacity=1;var n=+new Date,o=function(e){function t(){return e.apply(this,arguments)}return t.toString=function(){return e.toString()},t}(function(){e.style.opacity=+e.style.opacity-(new Date-n)/100,n=+new Date,+e.style.opacity>0?setTimeout(o,t):e.style.display="none"});o()},h=function(n){if("function"==typeof MouseEvent){var o=new MouseEvent("click",{view:e,bubbles:!1,cancelable:!0});n.dispatchEvent(o)}else if(t.createEvent){var a=t.createEvent("MouseEvents");a.initEvent("click",!1,!1),n.dispatchEvent(a)}else t.createEventObject?n.fireEvent("onclick"):"function"==typeof n.onclick&&n.onclick()},b=function(t){"function"==typeof t.stopPropagation?(t.stopPropagation(),t.preventDefault()):e.event&&e.event.hasOwnProperty("cancelBubble")&&(e.event.cancelBubble=!0)};a.hasClass=r,a.addClass=s,a.removeClass=l,a.escapeHtml=i,a._show=u,a.show=c,a._hide=d,a.hide=f,a.isDescendant=p,a.getTopMargin=m,a.fadeIn=v,a.fadeOut=y,a.fireClick=h,a.stopEventPropagation=b},{}],5:[function(t,o,a){Object.defineProperty(a,"__esModule",{value:!0});var r=t("./handle-dom"),s=t("./handle-swal-dom"),l=function(t,o,a){var l=t||e.event,i=l.keyCode||l.which,u=a.querySelector("button.confirm"),c=a.querySelector("button.cancel"),d=a.querySelectorAll("button[tabindex]");if(-1!==[9,13,32,27].indexOf(i)){for(var f=l.target||l.srcElement,p=-1,m=0;m<d.length;m++)if(f===d[m]){p=m;break}9===i?(f=-1===p?u:p===d.length-1?d[0]:d[p+1],r.stopEventPropagation(l),f.focus(),o.confirmButtonColor&&s.setFocusStyle(f,o.confirmButtonColor)):13===i?("INPUT"===f.tagName&&(f=u,u.focus()),f=-1===p?u:n):27===i&&o.allowEscapeKey===!0?(f=c,r.fireClick(f,l)):f=n}};a["default"]=l,o.exports=a["default"]},{"./handle-dom":4,"./handle-swal-dom":6}],6:[function(n,o,a){var r=function(e){return e&&e.__esModule?e:{"default":e}};Object.defineProperty(a,"__esModule",{value:!0});var s=n("./utils"),l=n("./handle-dom"),i=n("./default-params"),u=r(i),c=n("./injected-html"),d=r(c),f=".sweet-alert",p=".sweet-overlay",m=function(){var e=t.createElement("div");for(e.innerHTML=d["default"];e.firstChild;)t.body.appendChild(e.firstChild)},v=function(e){function t(){return e.apply(this,arguments)}return t.toString=function(){return e.toString()},t}(function(){var e=t.querySelector(f);return e||(m(),e=v()),e}),y=function(){var e=v();return e?e.querySelector("input"):void 0},h=function(){return t.querySelector(p)},b=function(e,t){var n=s.hexToRgb(t);e.style.boxShadow="0 0 2px rgba("+n+", 0.8), inset 0 0 0 1px rgba(0, 0, 0, 0.05)"},g=function(n){var o=v();l.fadeIn(h(),10),l.show(o),l.addClass(o,"showSweetAlert"),l.removeClass(o,"hideSweetAlert"),e.previousActiveElement=t.activeElement;var a=o.querySelector("button.confirm");a.focus(),setTimeout(function(){l.addClass(o,"visible")},500);var r=o.getAttribute("data-timer");if("null"!==r&&""!==r){var s=n;o.timeout=setTimeout(function(){var e=(s||null)&&"true"===o.getAttribute("data-has-done-function");e?s(null):sweetAlert.close()},r)}},w=function(){var e=v(),t=y();l.removeClass(e,"show-input"),t.value=u["default"].inputValue,t.setAttribute("type",u["default"].inputType),t.setAttribute("placeholder",u["default"].inputPlaceholder),C()},C=function(e){if(e&&13===e.keyCode)return!1;var t=v(),n=t.querySelector(".sa-input-error");l.removeClass(n,"show");var o=t.querySelector(".sa-error-container");l.removeClass(o,"show")},S=function(){var e=v();e.style.marginTop=l.getTopMargin(v())};a.sweetAlertInitialize=m,a.getModal=v,a.getOverlay=h,a.getInput=y,a.setFocusStyle=b,a.openModal=g,a.resetInput=w,a.resetInputError=C,a.fixVerticalPosition=S},{"./default-params":2,"./handle-dom":4,"./injected-html":7,"./utils":9}],7:[function(e,t,n){Object.defineProperty(n,"__esModule",{value:!0});var o='<div class="sweet-overlay" tabIndex="-1"></div><div class="sweet-alert"><div class="sa-icon sa-error">\n      <span class="sa-x-mark">\n        <span class="sa-line sa-left"></span>\n        <span class="sa-line sa-right"></span>\n      </span>\n    </div><div class="sa-icon sa-warning">\n      <span class="sa-body"></span>\n      <span class="sa-dot"></span>\n    </div><div class="sa-icon sa-info"></div><div class="sa-icon sa-success">\n      <span class="sa-line sa-tip"></span>\n      <span class="sa-line sa-long"></span>\n\n      <div class="sa-placeholder"></div>\n      <div class="sa-fix"></div>\n    </div><div class="sa-icon sa-custom"></div><h2>Title</h2>\n    <p>Text</p>\n    <fieldset>\n      <input type="text" tabIndex="3" />\n      <div class="sa-input-error"></div>\n    </fieldset><div class="sa-error-container">\n      <div class="icon">!</div>\n      <p>Not valid!</p>\n    </div><div class="sa-button-container">\n      <button class="cancel" tabIndex="2">Cancel</button>\n      <div class="sa-confirm-button-container">\n        <button class="confirm" tabIndex="1">OK</button><div class="la-ball-fall">\n          <div></div>\n          <div></div>\n          <div></div>\n        </div>\n      </div>\n    </div></div>';n["default"]=o,t.exports=n["default"]},{}],8:[function(e,t,o){Object.defineProperty(o,"__esModule",{value:!0});var a=e("./utils"),r=e("./handle-swal-dom"),s=e("./handle-dom"),l=["error","warning","info","success","input","prompt"],i=function(e){var t=r.getModal(),o=t.querySelector("h2"),i=t.querySelector("p"),u=t.querySelector("button.cancel"),c=t.querySelector("button.confirm");if(o.innerHTML=e.html?e.title:s.escapeHtml(e.title).split("\n").join("<br>"),i.innerHTML=e.html?e.text:s.escapeHtml(e.text||"").split("\n").join("<br>"),e.text&&s.show(i),e.customClass)s.addClass(t,e.customClass),t.setAttribute("data-custom-class",e.customClass);else{var d=t.getAttribute("data-custom-class");s.removeClass(t,d),t.setAttribute("data-custom-class","")}if(s.hide(t.querySelectorAll(".sa-icon")),e.type&&!a.isIE8()){var f=function(){for(var o=!1,a=0;a<l.length;a++)if(e.type===l[a]){o=!0;break}if(!o)return logStr("Unknown alert type: "+e.type),{v:!1};var i=["success","error","warning","info"],u=n;-1!==i.indexOf(e.type)&&(u=t.querySelector(".sa-icon.sa-"+e.type),s.show(u));var c=r.getInput();switch(e.type){case"success":s.addClass(u,"animate"),s.addClass(u.querySelector(".sa-tip"),"animateSuccessTip"),s.addClass(u.querySelector(".sa-long"),"animateSuccessLong");break;case"error":s.addClass(u,"animateErrorIcon"),s.addClass(u.querySelector(".sa-x-mark"),"animateXMark");break;case"warning":s.addClass(u,"pulseWarning"),s.addClass(u.querySelector(".sa-body"),"pulseWarningIns"),s.addClass(u.querySelector(".sa-dot"),"pulseWarningIns");break;case"input":case"prompt":c.setAttribute("type",e.inputType),c.value=e.inputValue,c.setAttribute("placeholder",e.inputPlaceholder),s.addClass(t,"show-input"),setTimeout(function(){c.focus(),c.addEventListener("keyup",swal.resetInputError)},400)}}();if("object"==typeof f)return f.v}if(e.imageUrl){var p=t.querySelector(".sa-icon.sa-custom");p.style.backgroundImage="url("+e.imageUrl+")",s.show(p);var m=80,v=80;if(e.imageSize){var y=e.imageSize.toString().split("x"),h=y[0],b=y[1];h&&b?(m=h,v=b):logStr("Parameter imageSize expects value with format WIDTHxHEIGHT, got "+e.imageSize)}p.setAttribute("style",p.getAttribute("style")+"width:"+m+"px; height:"+v+"px")}t.setAttribute("data-has-cancel-button",e.showCancelButton),e.showCancelButton?u.style.display="inline-block":s.hide(u),t.setAttribute("data-has-confirm-button",e.showConfirmButton),e.showConfirmButton?c.style.display="inline-block":s.hide(c),e.cancelButtonText&&(u.innerHTML=s.escapeHtml(e.cancelButtonText)),e.confirmButtonText&&(c.innerHTML=s.escapeHtml(e.confirmButtonText)),e.confirmButtonColor&&(c.style.backgroundColor=e.confirmButtonColor,c.style.borderLeftColor=e.confirmLoadingButtonColor,c.style.borderRightColor=e.confirmLoadingButtonColor,r.setFocusStyle(c,e.confirmButtonColor)),t.setAttribute("data-allow-outside-click",e.allowOutsideClick);var g=e.doneFunction?!0:!1;t.setAttribute("data-has-done-function",g),e.animation?"string"==typeof e.animation?t.setAttribute("data-animation",e.animation):t.setAttribute("data-animation","pop"):t.setAttribute("data-animation","none"),t.setAttribute("data-timer",e.timer)};o["default"]=i,t.exports=o["default"]},{"./handle-dom":4,"./handle-swal-dom":6,"./utils":9}],9:[function(t,n,o){Object.defineProperty(o,"__esModule",{value:!0});var a=function(e,t){for(var n in t)t.hasOwnProperty(n)&&(e[n]=t[n]);return e},r=function(e){var t=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(e);return t?parseInt(t[1],16)+", "+parseInt(t[2],16)+", "+parseInt(t[3],16):null},s=function(){return e.attachEvent&&!e.addEventListener},l=function(t){e.console&&e.console.log("SweetAlert: "+t)},i=function(e,t){e=String(e).replace(/[^0-9a-f]/gi,""),e.length<6&&(e=e[0]+e[0]+e[1]+e[1]+e[2]+e[2]),t=t||0;var n,o,a="#";for(o=0;3>o;o++)n=parseInt(e.substr(2*o,2),16),n=Math.round(Math.min(Math.max(0,n+n*t),255)).toString(16),a+=("00"+n).substr(n.length);return a};o.extend=a,o.hexToRgb=r,o.isIE8=s,o.logStr=l,o.colorLuminance=i},{}]},{},[1]),"function"==typeof define&&define.amd?define(function(){return sweetAlert}):"undefined"!=typeof module&&module.exports&&(module.exports=sweetAlert)}(window,document);
 (function() {
   var WebSocket = window.WebSocket || window.MozWebSocket;

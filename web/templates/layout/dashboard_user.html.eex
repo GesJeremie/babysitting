@@ -20,14 +20,16 @@
   </head>
 
   <body id="csstyle">
-    <%= render Babysitting.PartialsView, "app_config.html", assigns %>
-    <%= render Babysitting.PartialsView, "flash.html", assigns %>
+    <div id="main">
+      <%= render Babysitting.PartialsView, "app_config.html", assigns %>
+      <%= render Babysitting.PartialsView, "flash.html", assigns %>
 
-    <%= if (@view_module != Elixir.Babysitting.DashboardUser.AuthView) do %>
-      <%= "loool" %>
-      <%= render Babysitting.DashboardUser.PartialsView, "sidebar.html", assigns %>
-    <% end %>
+      <%= if (@view_module != Elixir.Babysitting.DashboardUser.AuthView) do %>
+        <%= "loool" %>
+        <%= render Babysitting.DashboardUser.PartialsView, "sidebar.html", assigns %>
+      <% end %>
 
-    <%= render @view_module, @view_template, assigns %>
+      <%= render @view_module, @view_template, assigns %>
+    </div>
   </body>
 </html>

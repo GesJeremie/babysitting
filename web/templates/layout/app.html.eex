@@ -21,17 +21,18 @@
   </head>
 
   <body id="csstyle">
-    <%= render Babysitting.PartialsView, "app_config.html", assigns %>
-    <%= render Babysitting.PartialsView, "flash.html", assigns %>
+    <div id="main">
+      <%= render Babysitting.PartialsView, "app_config.html", assigns %>
+      <%= render Babysitting.PartialsView, "flash.html", assigns %>
 
-    <div id="sidebar-wrapper">
-      <%= render Babysitting.App.PartialsView, "sidebar.html", assigns %>
+      <div id="sidebar-wrapper">
+        <%= render Babysitting.App.PartialsView, "sidebar.html", assigns %>
+      </div>
+
+      <div id="page-wrapper">
+        <%= render @view_module, @view_template, assigns %>
+        <%= render Babysitting.App.PartialsView, "footer.html", assigns %>
+      </div>
     </div>
-
-    <div id="page-wrapper">
-      <%= render @view_module, @view_template, assigns %>
-      <%= render Babysitting.App.PartialsView, "footer.html", assigns %>
-    </div>
-
   </body>
 </html>

@@ -11,7 +11,7 @@ class Bootstrap
   # Load the helpers, start, and invoke the controller
   ##
   run: ->
-
+    
     # Load lo-dash helpers
     require 'helpers'
 
@@ -19,7 +19,8 @@ class Bootstrap
     require 'validators'
 
     # Load boot
-    require 'boot'
+    Boot = require 'boot'
+    new Boot()
 
     # Fetch the controller to execute
     controller = $('#app').data('controller')

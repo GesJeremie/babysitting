@@ -212,7 +212,7 @@ Boot = (function() {
 
 })();
 
-new Boot();
+module.exports = Boot;
 });
 
 ;require.register("config.coffee", function(exports, require, module) {
@@ -499,6 +499,22 @@ Bootstrap = require('core/bootstrap');
 
 $(function() {
   var bootstrap;
+  $('#main').smoothState({
+    debug: true,
+    scroll: true,
+    onStart: {
+      duration: 0,
+      render: function($container) {}
+    },
+    onAfter: function($container, $newContent) {
+      var bootstrap;
+      $('html, body').animate({
+        scrollTop: 0
+      }, 0);
+      bootstrap = new Bootstrap();
+      return bootstrap.run();
+    }
+  });
   bootstrap = new Bootstrap();
   return bootstrap.run();
 });
@@ -517,10 +533,11 @@ Bootstrap = (function() {
   function Bootstrap() {}
 
   Bootstrap.prototype.run = function() {
-    var controller, pathController;
+    var Boot, controller, pathController;
     require('helpers');
     require('validators');
-    require('boot');
+    Boot = require('boot');
+    new Boot();
     controller = $('#app').data('controller');
     if (controller == null) {
       return;

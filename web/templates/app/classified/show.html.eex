@@ -6,7 +6,7 @@
 <div class="container">
   <div>
     <div class="+spacer"></div>
-    <a class="button --sidebar" href="/#classified-<%= @classified.id %>"><i class="icon-back"></i> <%= gettext("Back Listing") %></a>
+    <a class="button --back" href="/#classified-<%= @classified.id %>"><i class="icon-back"></i> <%= gettext("Back Listing") %></a>
   </div>
 
   <div class="divider"></div>
@@ -40,7 +40,7 @@
           <div class="grid-4">
             <h3 class="empty__title"><%= gettext "Phone" %></h3>
             <p id="phone" data-phone="<%= phone(@classified) %>" class="empty__description post-show__phone"><%= phone_hidden(@classified) %></p>
-            <a id="show-phone" class="button --large">Show Phone</a> 
+            <a id="show-phone" class="button --primary --large">Show Phone</a> 
           </div>
           <div class="grid-8">
             <h3 class="empty__title"><%= gettext "Email" %></h3>
@@ -66,7 +66,7 @@
 
                 <div class="+spacer"></div>
 
-                <button type="submit" class="button --large"><%= gettext "Send message" %></button>
+                <button type="submit" class="button --primary --large"><%= gettext "Send message" %></button>
               
               <% end %>
             </div>

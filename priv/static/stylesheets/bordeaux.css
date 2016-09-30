@@ -7,5 +7,30 @@
 .sidebar__divider {
   border-bottom: 1px solid #fa8191; }
 
+/* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.button.\--primary {
+  background-color: #F85066; }
+
+/* line 32, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.pagination {
+  border: 1px solid #F85066; }
+  /* line 37, /Users/jeremie/code/babysitting/front/styles/hooks/tenants/bordeaux.sass */
+  .pagination li:hover {
+    background-color: #fa8191; }
+  /* line 40, /Users/jeremie/code/babysitting/front/styles/hooks/tenants/bordeaux.sass */
+  .pagination li {
+    border-left: 1px solid #F85066;
+    color: #F85066; }
+    /* line 44, /Users/jeremie/code/babysitting/front/styles/hooks/tenants/bordeaux.sass */
+    .pagination li.active {
+      background-color: #F85066; }
+  /* line 47, /Users/jeremie/code/babysitting/front/styles/hooks/tenants/bordeaux.sass */
+  .pagination span, .pagination a {
+    color: #F85066; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.empty__button {
+  background-color: #F85066; }
+
 
 /*# sourceMappingURL=bordeaux.css.map*/
