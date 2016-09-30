@@ -501,7 +501,6 @@ $(function() {
   var bootstrap;
   $('#main').smoothState({
     debug: true,
-    scroll: true,
     blacklist: '.js-no-smoothstate',
     cacheLength: 0,
     forms: 'form',

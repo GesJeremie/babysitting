@@ -6,7 +6,7 @@
 <div class="container">
   <div>
     <div class="+spacer"></div>
-    <a class="button --back" href="/#classified-<%= @classified.id %>"><i class="icon-back"></i> <%= gettext("Back Listing") %></a>
+    <a class="button --back" href="/"><i class="icon-back"></i> <%= gettext("Back Listing") %></a>
   </div>
 
   <div class="divider"></div>

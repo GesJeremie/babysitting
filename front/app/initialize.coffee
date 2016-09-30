@@ -18,16 +18,15 @@ $ ->
   # Init smoothstate to avoid "blink" pages during transitions
   ##
   $('#main').smoothState({
-    debug: true,
-    scroll: true,
-    blacklist: '.js-no-smoothstate',
-    cacheLength: 0,
-    forms: 'form',
+    debug: true
+    blacklist: '.js-no-smoothstate'
+    cacheLength: 0
+    forms: 'form'
     onStart: {
       duration: 0,
       render: ($container) ->
        # NProgress.start()
-    },
+    }
     onAfter: ($container, $newContent) ->
 
       $('#main').smoothState().data('smoothState').clear()
