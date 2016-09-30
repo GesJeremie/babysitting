@@ -1,0 +1,99 @@
+// ===========================================================
+// Fonts
+// ===========================================================
+// 
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700)
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700,300,300italic,400italic,700italic,900,900italic&subset=latin,latin-ext)
+
+
+@font-face
+  font-family: "ProximaNova"
+  font-weight: normal
+  src: url(fonts/proximanova-regular-webfont.eot)
+  src: url(fonts/proximanova-regular-webfont.eot?#iefix) format("embedded-opentype"), url(fonts/proximanova-regular-webfont.svg#ProximaNovaRegular) format("svg"), url(fonts/proximanova-regular-webfont.woff) format("woff"), url(fonts/proximanova-regular-webfont.ttf) format("truetype")
+
+
+@font-face
+  font-family: "ProximaNova"
+  font-weight: bold
+  src: url(fonts/proximanova-bold-webfont.eot)
+  src: url(fonts/proximanova-bold-webfont.eot?#iefix) format("embedded-opentype"), url(fonts/proximanova-bold-webfont.svg#ProximaNovaBold) format("svg"), url(fonts/proximanova-bold-webfont.woff) format("woff"), url(fonts/proximanova-bold-webfont.ttf) format("truetype")
+
+
+@font-face
+  font-family: "ProximaNova"
+  font-weight: bold
+  font-style: italic
+  src: url(fonts/proximanova-boldit-webfont.eot)
+  src: url(fonts/proximanova-boldit-webfont.eot?#iefix) format("embedded-opentype"), url(fonts/proximanova-boldit-webfont.svg#ProximaNovaBold) format("svg"), url(fonts/proximanova-boldit-webfont.woff) format("woff"), url(fonts/proximanova-boldit-webfont.ttf) format("truetype")
+
+
+@font-face
+  font-family: "ProximaNova"
+  font-style: italic
+  src: url(fonts/proximanova-regitalic-webfont.eot)
+  src: url(fonts/proximanova-regitalic-webfont.eot?#iefix) format("embedded-opentype"), url(fonts/proximanova-regitalic-webfont.svg#ProximaNovaRgItalic) format("svg"), url(fonts/proximanova-regitalic-webfont.woff) format("woff"), url(fonts/proximanova-regitalic-webfont.ttf) format("truetype")
+
+
+@font-face
+  font-family: "ProximaNovaSemibold"
+  font-weight: bold
+  src: url(fonts/proximanova-semibold-webfont.eot)
+  src: url(fonts/proximanova-semibold-webfont.eot?#iefix) format("embedded-opentype"), url(fonts/proximanova-semibold-webfont.svg#ProximaNovaSemibold) format("svg"), url(fonts/proximanova-semibold-webfont.woff) format("woff"), url(fonts/proximanova-semibold-webfont.ttf) format("truetype")
+
+
+@font-face
+  font-weight: bold
+  font-family: "ProximaNovaSemibold"
+  font-style: italic
+  src: url(fonts/proximanova-semibolditalic-webfont.eot)
+  src: url(fonts/proximanova-semibolditalic-webfont.eot?#iefix) format("embedded-opentype"), url(fonts/proximanova-semibolditalic-webfont.svg#ProximaNovaLtBoldItalic) format("svg"), url(fonts/proximanova-semibolditalic-webfont.woff) format("woff"), url(fonts/proximanova-semibolditalic-webfont.ttf) format("truetype")
+
+// ===========================================================
+// General html overrides
+// ===========================================================
+// 
+
+html
+  box-sizing: border-box
+
+*, *:before, *:after
+  box-sizing: inherit
+
+#sidebar-wrapper
+  position: fixed
+  width: 15%
+  height: 100%
+  overflow-y: auto
+
+#content-wrapper
+  width: 85%
+  float: left
+  margin-left: 15%
+  margin-bottom: 3em
+
+// Reset ember margin body
+body
+  margin: 0
+  font-family: "ProximaNova"
+  font-size: 18px
+  line-height: 24px
+  color: #686c70
+  font-style: normal
+  font-weight: 300
+  text-shadow: 1px 1px 1px rgba(0,0,0,0.004)
+
+
+// Reset links
+a
+  text-decoration: none
+
+input:-webkit-autofill
+    -webkit-box-shadow: 0 0 0 50px white inset
+    -webkit-text-fill-color: #333
+
+
+input:-webkit-autofill:focus
+    -webkit-box-shadow: 0 0 0 50px white inset
+    -webkit-text-fill-color: #333
+ 

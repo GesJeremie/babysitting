@@ -8,24 +8,47 @@ defmodule Babysitting.Email do
 
   def welcome(%{to: to, fullname: fullname, tenant: tenant}) do
 
-    new_email to: to,
-               from: Application.get_env(:babysitting, :email_address),
-               subject: gettext("Baby Sitting %{name} - Welcome", name: tenant.name),
-               html_body: Phoenix.View.render_to_string(Babysitting.EmailView, "welcome.html", %{fullname: fullname, tenant: tenant})
+    make("welcome.html", %{
+      to: to,
+      subject: gettext("Baby Sitting %{name} - Welcome", name: tenant.name),
+      data: %{fullname: fullname, tenant: tenant}
+    })
+
   end
 
   def validated(%{classified: classified}) do
-    new_email to: classified.email,
-               from: Application.get_env(:babysitting, :email_address),
-               subject: gettext("Baby Sitting %{name} - Classified validated", name: classified.tenant.name),
-               html_body: Phoenix.View.render_to_string(Babysitting.EmailView, "validated.html", %{name: classified.firstname})
+    
+    make("validated.html", %{
+      to: classified.email,
+      subject: gettext("Baby Sitting %{name} - Classified validated", name: classified.tenant.name),
+      data: %{name: classified.firstname}
+    })
+
   end
 
   def rejected(%{classified: classified}) do
-    new_email to: classified.email,
-               from: Application.get_env(:babysitting, :email_address),
-               subject: gettext("Baby Sitting %{name} - Classified rejected", name: classified.tenant.name),
-               html_body: Phoenix.View.render_to_string(Babysitting.EmailView, "rejected.html", %{name: classified.firstname})
+
+    make("rejected.html", %{
+      to: classified.email,
+      subject: gettext("Baby Sitting %{name} - Classified rejected", name: classified.tenant.name),
+      data: %{name: classified.firstname}
+    })
+
+  end
+
+  ##
+  # Make email
+  ##
+  defp make(template, %{to: to, subject: subject, data: data}) do
+
+    data = Map.put(data, :template, template)
+
+    new_email
+    |> to(to)
+    |> from(Application.get_env(:babysitting, :email_address))
+    |> subject(subject)
+    |> html_body(Phoenix.View.render_to_string(Babysitting.EmailView, "base.html", data))
+  
   end
 
 end

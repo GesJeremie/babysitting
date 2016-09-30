@@ -1,2 +1,3 @@
-<%= gettext("Hello %{name}!", name: @name) %><br/>
-<p><%= gettext("The team has just rejected your classified ... You should edit it again !") %></p>
+<%= paragraph gettext("Hello %{name}!", name: @name) %>
+<%= paragraph gettext("The team has rejected your classified ... You should edit it!") %>
+<%= click gettext("Edit my classified"), "http://www.example.com/" %>

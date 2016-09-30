@@ -56,10 +56,10 @@ exports.config =
         'stylesheets/vendor.css': /^(vendor|bower_components)/
         'stylesheets/app.css': /^styles\/app/
         'stylesheets/dashboard_admin.css': /^styles\/dashboard_admin/
+        'stylesheets/dashboard_user.css': /^styles\/dashboard_user/
         'stylesheets/bordeaux.css': /^styles\/hooks\/tenants\/bordeaux/
         'stylesheets/paris.css': /^styles\/hooks\/tenants\/paris/
         'stylesheets/london.css': /^styles\/hooks\/tenants\/london/
-
 
       order:
         before: []

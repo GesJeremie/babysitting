@@ -1,0 +1,57 @@
+// ===========================================================
+// App.sass
+// ===========================================================
+//
+// It's the main file for the app section
+//
+// If you have other sections in your application like
+// `superadmin`, `admin`, etc.
+//
+// Follow the instructions (for example `admin`) :
+//
+// 1. Create a new base file `admin.sass` in that folder
+//
+// 2. Copy / Paste the folder app with the name `admin`
+//
+// 3. Add a new line in brunch-config.coffee :
+// 'stylesheets/admin.css': /^styles\/admin/
+//
+
+// ===========================================================
+// Csstyle
+// ===========================================================
+@import 'node_modules/csstyle/csstyle'
+
+// ===========================================================
+// Utilities
+// ===========================================================
+@import 'helpers/variables'
+@import 'helpers/functions'
+@import 'helpers/mixins'
+@import 'helpers/grid'
+@import 'helpers/tweaks'
+
+// ===========================================================
+// Base
+// ===========================================================
+@import 'dashboard_user/base'
+
+// ===========================================================
+// Components
+// ===========================================================
+@import 'dashboard_user/components/auth'
+@import 'dashboard_user/components/form'
+@import 'dashboard_user/components/button'
+@import 'dashboard_user/components/sidebar'
+@import 'dashboard_user/components/header'
+@import 'dashboard_user/components/tab'
+@import 'dashboard_user/components/stack'
+@import 'dashboard_user/components/listing'
+@import 'dashboard_user/components/panel'
+@import 'dashboard_user/components/picture'
+
+// ===========================================================
+// Hooks
+// ===========================================================
+@import 'hooks/noty'
+

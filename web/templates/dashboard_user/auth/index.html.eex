@@ -1,9 +1,23 @@
-<div class="container">
-  <%= get_flash(@conn, :error) %>
-  
-  <%= form_for @conn, user_auth_path(@conn, :login), [name: :login], fn f -> %>
-    <%= text_input f, :email %>
-    <%= password_input f, :password %>
-    <%= submit "login" %>
-  <% end %>
+<div class="auth__container">
+  <div class="container">  
+    <div class="grid-6 push-3">
+      <div class="auth__logo"><img src="/images/logo-admin.png" /></div>
+      <%= form_for @conn, user_auth_path(@conn, :login), [name: :login], fn f -> %>
+        
+        <div class="auth__input --radius-top --radius-bottom">
+          <%= text_input f, :email, class: "auth__field", placeholder: gettext("Email") %>
+          <i class="icon-email"></i>
+        </div>
+
+        <div class="+spacer"></div>
+
+        <div class="auth__input --radius-bottom --radius-top">
+          <%= password_input f, :password, class: "auth__field", placeholder: gettext("Password") %>
+          <i class="icon-lock"></i>
+        </div>
+        <div class="+spacer"></div>
+        <button type="submit" class="button --auth --large --expand"><%= gettext("Sign in") %></button>
+      <% end %>
+    </div>
+  </div>
 </div>

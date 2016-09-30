@@ -18,6 +18,10 @@ defmodule Babysitting.Router do
     plug :put_layout, {Babysitting.LayoutView, :dashboard_admin}
   end
 
+  pipeline :user_layout do
+    plug :put_layout, {Babysitting.LayoutView, :dashboard_user}
+  end
+
   ##
   # App
   ##
@@ -67,7 +71,7 @@ defmodule Babysitting.Router do
   # Dashboard User
   ##
   scope "/user", Babysitting.DashboardUser, as: :user do
-    pipe_through [:browser]
+    pipe_through [:browser, :user_layout]
 
     # Base
     get "/", AccountController, :index

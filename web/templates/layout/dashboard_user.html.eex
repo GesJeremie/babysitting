@@ -14,17 +14,18 @@
     <script>require('initialize')</script>
 
     <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/stylesheets/vendor.css") %>">
-    <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/stylesheets/dashboard_admin.css") %>">
+    <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/stylesheets/dashboard_user.css") %>">
 
-    <title>Dashboard</title>
+    <title><%= gettext("My Account") %></title>
   </head>
 
   <body id="csstyle">
     <%= render Babysitting.PartialsView, "app_config.html", assigns %>
     <%= render Babysitting.PartialsView, "flash.html", assigns %>
 
-    <%= if (@view_module != Elixir.Babysitting.DashboardAdmin.AuthView) do %>
-      <%= render Babysitting.DashboardAdmin.PartialsView, "sidebar.html", assigns %>
+    <%= if (@view_module != Elixir.Babysitting.DashboardUser.AuthView) do %>
+      <%= "loool" %>
+      <%= render Babysitting.DashboardUser.PartialsView, "sidebar.html", assigns %>
     <% end %>
 
     <%= render @view_module, @view_template, assigns %>

@@ -8,6 +8,7 @@
             <li><a href="/"><%= gettext("Home") %></a></li>
             <li><a href="<%= facebook_link(@conn) %>"><i class="icon-facebook"></i> Facebook</a></li>
             <li><a href="mailto:group.babysitting@gmail.com"><%= gettext("Contact") %></li>
+            <li><a href="<%= user_account_path(@conn, :index) %>"><%= gettext("My Account") %></li>
           </ul>
           <div class="sidebar__divider"></div>
           <div class="sidebar__add">

@@ -1,0 +1,57 @@
++component(auth)
+  
+  +part(container)
+    +background-admin
+    position: absolute
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    padding-top: 2em
+
+  +part(input)
+    border: 0
+    outline: 0
+    width: 100%
+    background-color: white
+    position: relative
+    overflow: hidden
+
+    i
+      position: absolute
+      right: -10px
+      bottom: -10px
+      font-size: 70px
+      color: lighten($color-text-grey, 20%)
+
+
+    +option(radius-top)
+      border-top-right-radius: 5px
+      border-top-left-radius: 5px
+
+
+    +option(divider-bottom)
+      border-bottom: 1px solid #F0F1F5
+
+
+    +option(radius-bottom)
+      border-bottom-right-radius: 5px
+      border-bottom-left-radius: 5px
+
+
+  +part(field)
+    font-size: 14px
+    width: 84%
+    border: 0
+    padding-top: 1.7em
+    padding-bottom: 1.7em
+    padding-left: 1em
+    font-weight: bold
+    outline: 0
+
+  +part(logo)
+    text-align: center
+    padding-top: 3em
+    padding-bottom: 1.5em
+
+

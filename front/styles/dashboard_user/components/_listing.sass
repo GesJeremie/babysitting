@@ -1,0 +1,33 @@
++component(listing)
+  
+  +part(container)
+    margin-top: 1em
+
+  +part(result)
+    border-bottom: 1px solid darken($color-grey, 2%)
+
+    &:hover
+      background-color: lighten($color-grey, 10%)
+
+    +option(header)
+      border-top-left-radius: 3px
+      border-top-right-radius: 3px
+      &:hover
+        cursor: default
+        background-color: white
+
+  +part(content)
+    padding: 1em
+
+  +part(detail)
+    font-size: 0.8em
+
+  +part(header)
+    font-size: 0.9em
+    font-weight: bold
+
+  +part(more)
+    padding-left: 1em
+    padding-bottom: 1em
+
+
