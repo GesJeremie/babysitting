@@ -53,10 +53,21 @@ exports.config =
     stylesheets:
 
       joinTo:
+        # Used for the different plugins
         'stylesheets/vendor.css': /^(vendor|bower_components)/
+
+        # The app section
         'stylesheets/app.css': /^styles\/app/
+
+        # The admin section
         'stylesheets/dashboard_admin.css': /^styles\/dashboard_admin/
+
+        # The user section
         'stylesheets/dashboard_user.css': /^styles\/dashboard_user/
+
+        # Customisation of the app.css
+        # We want each tenant to be different in terms of colors
+        # etc ...
         'stylesheets/bordeaux.css': /^styles\/hooks\/tenants\/bordeaux/
         'stylesheets/paris.css': /^styles\/hooks\/tenants\/paris/
         'stylesheets/london.css': /^styles\/hooks\/tenants\/london/
@@ -70,6 +81,7 @@ exports.config =
 
   plugins:
     sass:
+      # Because libsass rocks.
       mode: 'native'
 
   #--------------------------------------------------------------------------

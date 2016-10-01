@@ -1,78 +1,89 @@
-<div id="app"
-    data-controller="app.classified.new"
-></div>
+<div id="app" data-controller="app.classified.new"></div>
 
 <div class="container">
   <%= form_for @changeset, app_classified_path(@conn, :create), [multipart: true], fn f -> %>
 
     <div class="form__container">
-        <h2 class="form__title"><i class="icon-user"></i> <%= gettext "A propos de vous" %></h2>
-        <div class="row">
-          <div class="grid-4">
-            <%= text_input f, :firstname, placeholder: gettext "Firstname" %>
-            <%= error_tag f, :firstname %>
-          </div>
-          <div class="grid-4">
-            <%= text_input f, :lastname, placeholder: gettext "Lastname" %>
+      <h2 class="form__title"><i class="icon-user"></i>
+        <%= gettext "A propos de vous" %>
+      </h2>
+      <div class="row">
+        <div class="grid-4">
+          <%= text_input f, :firstname, placeholder: gettext "Firstname" %>
+          <%= error_tag f, :firstname %>
+        </div>
+        <div class="grid-4">
+          <%= text_input f, :lastname, placeholder: gettext "Lastname" %>
             <%= error_tag f, :lastname %>
-          </div>
-          <div class="grid-4">
-            <%= text_input f, :birthday, placeholder: gettext "Birthday" %>
+        </div>
+        <div class="grid-4">
+          <%= text_input f, :birthday, placeholder: gettext "Birthday" %>
             <%= error_tag f, :birthday %>
-          </div>
         </div>
-        <div class="clear"></div>
+      </div>
+      <div class="clear"></div>
     </div>
 
     <div class="form__container">
-        <h2 class="form__title"><i class="icon-file"></i> <%= gettext "Your classified" %></h2>
-        <p class="form__description"><%= gettext "Tell us more about you, your scholarship, your schedule and why you are an awesome baby sitter" %></p>
-        <%= textarea f, :description %>
+      <h2 class="form__title"><i class="icon-file"></i>
+        <%= gettext "Your classified" %>
+      </h2>
+      <p class="form__description">
+        <%= gettext "Tell us more about you, your scholarship, your schedule and why you are an awesome baby sitter" %>
+      </p>
+      <%= textarea f, :description %>
         <%= error_tag f, :description %>
-        <span id="chars" data-text-number='<%= gettext "Nombre de caractères" %>' data-text-minimum='<%= gettext "Minimum" %>'  class="form__chars" data-min="280"></span>
+          <span id="chars" data-text-number='<%= gettext "Nombre de caractères" %>' data-text-minimum='<%= gettext "Minimum" %>' class="form__chars"
+            data-min="280"></span>
 
 
-        <div class="+spacer"></div>
+          <div class="+spacer"></div>
 
-        <label><%= gettext "Avatar" %></label>
-        <%= file_input f, :avatar %>
-        <%= error_tag f, :avatar %>
+          <label><%= gettext "Avatar" %></label>
+          <%= file_input f, :avatar %>
+            <%= error_tag f, :avatar %>
     </div>
 
     <div class="form__container">
-        <h2 class="form__title"><i class="icon-contact"></i> Contact</h2>
-        <p class="form__description"><%= gettext "Basic informations for the parents to reach you."  %></p>
-        <div class="row">
-          <div class="grid-6">
-            <%= text_input f, :email, placeholder: "Email" %>
+      <h2 class="form__title"><i class="icon-contact"></i> Contact</h2>
+      <p class="form__description">
+        <%= gettext "Basic informations for the parents to reach you."  %>
+      </p>
+      <div class="row">
+        <div class="grid-6">
+          <%= text_input f, :email, placeholder: "Email" %>
             <%= error_tag f, :email %>
-          </div>
-          <div class="grid-6">
-            <%= text_input f, :phone, placeholder: "Téléphone" %>
-            <%= error_tag f, :phone %>
-          </div>
         </div>
-        <div class="clear"></div>
+        <div class="grid-6">
+          <%= text_input f, :phone, placeholder: "Téléphone" %>
+            <%= error_tag f, :phone %>
+        </div>
+      </div>
+      <div class="clear"></div>
     </div>
 
     <div class="form__container">
-        <h2 class="form__title"><i class="icon-lock"></i> <%= gettext "Sécurité" %></h2>
-        <p class="form__description"><%= gettext "With this password you will be able to edit your classified in the future" %></p>
-        <div class="row">
-          <div class="grid-6">
-            <%= password_input f, :password, placeholder: gettext "Password" %>
+      <h2 class="form__title"><i class="icon-lock"></i>
+        <%= gettext "Sécurité" %>
+      </h2>
+      <p class="form__description">
+        <%= gettext "With this password you will be able to edit your classified in the future" %>
+      </p>
+      <div class="row">
+        <div class="grid-6">
+          <%= password_input f, :password, placeholder: gettext "Password" %>
             <%= error_tag f, :password %>
-          </div>
-          <div class="grid-6">
-            <%= password_input f, :password_confirmation, placeholder: "Password confirmation" %>
-            <%= error_tag f, :password_confirmation %>
-          </div>
         </div>
-        <div class="clear"></div>
+        <div class="grid-6">
+          <%= password_input f, :password_confirmation, placeholder: "Password confirmation" %>
+            <%= error_tag f, :password_confirmation %>
+        </div>
+      </div>
+      <div class="clear"></div>
     </div>
 
     <div class="+spacer"></div>
     <button type="submit" class="button --primary --large"><i class="icon-file-add"></i> <%= gettext "Add my classified" %></button>
-  <% end %>
+    <% end %>
 
 </div>
