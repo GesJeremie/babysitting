@@ -4,9 +4,10 @@ defmodule Babysitting.AppHelperTest do
   import Babysitting.ConnCase
   alias Babysitting.Helpers.App
 
-  test "current_tenant/1 return a map of the current tenant", %{conn: conn} do
-    conn = 
-      %{build_conn() | host: "www.babysittingbordeaux.dev"}
+  test "current_tenant/1 return a map of the current tenant" do
+    conn =
+      build_conn()
+      |> with_host("www.babysittingbordeaux.dev")
       |> with_tenant
 
     assert conn
@@ -15,9 +16,10 @@ defmodule Babysitting.AppHelperTest do
 
   end
 
-  test "tenants/1 return a list of the tenants", %{conn: conn} do
+  test "tenants/1 return a list of the tenants" do
     conn =
-      %{build_conn() | host: "www.babysittingbordeaux.dev"}
+      build_conn()
+      |> with_host("www.babysittingbordeaux.dev")
       |> with_tenant
 
     assert conn

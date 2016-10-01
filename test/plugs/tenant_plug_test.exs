@@ -1,5 +1,6 @@
 defmodule Babysitting.TenantPlugTest do
   use Babysitting.ConnCase
+  import Babysitting.ConnCase
 
   test "set the current tenant for a valid host" do
     conn = 
@@ -28,8 +29,7 @@ defmodule Babysitting.TenantPlugTest do
   end
 
   defp build_conn_host(domain) do
-    conn = build_conn()
-    conn = %{conn | host: domain}
+    build_conn() |> with_host(domain)
   end
 
 

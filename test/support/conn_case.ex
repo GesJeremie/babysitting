@@ -39,7 +39,11 @@ defmodule Babysitting.ConnCase do
      Ecto.Adapters.SQL.Sandbox.mode(Babysitting.Repo, {:shared, self()})
    end
 
-   {:ok, conn: Phoenix.ConnTest.build_conn()}
+   conn = 
+    Phoenix.ConnTest.build_conn()
+    |> with_host
+
+   {:ok, conn: conn}
   end
 
   def with_session(conn) do
@@ -49,6 +53,15 @@ defmodule Babysitting.ConnCase do
       |> Map.put(:secret_key_base, String.duplicate("abcdefgh", 8))
       |> Plug.Session.call(session_opts)
       |> Plug.Conn.fetch_session()
+  end
+
+  def with_host(conn) do
+    with_host(conn, "www.babysittingbordeaux.dev")
+  end
+
+  def with_host(conn, host) do
+    # Let's add the host
+    conn = %{conn | host: host}
   end
 
   def with_tenant(conn) do
