@@ -10,7 +10,7 @@ defmodule Babysitting.Tenant do
 
     timestamps
 
-    has_many :ads, Babysitting.Ad
+    has_many :ads, Babysitting.Classified
     has_many :contacts, Babysitting.Contact
   end
 

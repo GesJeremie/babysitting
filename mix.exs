@@ -21,7 +21,7 @@ defmodule Babysitting.Mixfile do
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
                     :phoenix_ecto, :postgrex, :httpoison, :keenex, :timex,
                     :faker_elixir_octopus, :phoenix_pubsub, :scrivener_html,
-                    :bamboo, :bamboo_smtp]]
+                    :bamboo, :bamboo_smtp, :ex_machina]]
   end
 
   # Specifies which paths to compile per environment.
@@ -53,6 +53,7 @@ defmodule Babysitting.Mixfile do
      {:bamboo_smtp, "~> 1.2.1"},
      {:scrivener_ecto, "~> 1.0"},
      {:scrivener_html, "~> 1.1"},
+     {:ex_machina, "~> 1.0"},
      {:faker_elixir_octopus, "> 0.0.0", only: [:dev, :test]},
      {:credo, "~> 0.4", only: [:dev, :test]}]
   end
@@ -66,6 +67,6 @@ defmodule Babysitting.Mixfile do
   defp aliases do
     ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds_dev.exs"],
      "ecto.reset": ["ecto.drop", "ecto.setup"],
-     "test": ["ecto.create --quiet", "ecto.migrate", "test"]]
+     "test": ["ecto.create --quiet", "ecto.migrate", "run priv/repo/seeds_test.exs", "test"]]
   end
 end

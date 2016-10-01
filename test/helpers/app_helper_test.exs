@@ -3,8 +3,10 @@ defmodule Babysitting.AppHelperTest do
   use Babysitting.ConnCase
   import Babysitting.ConnCase
   alias Babysitting.Helpers.App
+  import Babysitting.Factory
 
   test "current_tenant/1 return a map of the current tenant" do
+
     conn =
       build_conn()
       |> with_host("www.babysittingbordeaux.dev")
