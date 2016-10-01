@@ -31,7 +31,9 @@ class Classified_Show extends Controller
         classified_id: $('#app').data('classified')
       })
 
-
+    ##
+    # Display full phone
+    ##
     onShowPhone: ->
 
       # Display phone

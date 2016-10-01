@@ -12,7 +12,10 @@ class Boot
         @setupFlash()
         @setupAutosize()
         @setupConfirm()
-
+    
+    ##
+    # Setup the base configuration of noty
+    ##
     setupNoty: ->
 
         # Noty configuration
@@ -23,6 +26,10 @@ class Boot
         $.noty.defaults.killer = true
         $.noty.defaults.dismissQueue = false
 
+    ##
+    # When a flash message is present in the DOM
+    # let's display it in an noty alert
+    ##
     setupFlash: ->
 
         # Flash system
@@ -37,14 +44,20 @@ class Boot
                 type: type
                 text: text
             })
-
+    
+    ##
+    # Textarea suck. Let's improve them.
+    ##
     setupAutosize: ->
 
         # Autosize textarea
         if $('.js-autosize').length
             autosize($('.js-autosize'))
 
-
+    ##
+    # Will display an alert confirmation if you click
+    # on a data-confirm link
+    ##
     setupConfirm: ->
 
         # Confirm

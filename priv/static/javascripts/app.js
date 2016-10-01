@@ -493,12 +493,17 @@ module.exports = Helpers_Keenio;
 });
 
 ;require.register("initialize.coffee", function(exports, require, module) {
-var Bootstrap;
+var Bootstrap, boot;
 
 Bootstrap = require('core/bootstrap');
 
-$(function() {
+boot = function() {
   var bootstrap;
+  bootstrap = new Bootstrap();
+  return bootstrap.run();
+};
+
+$(function() {
   $('#main').smoothState({
     debug: true,
     blacklist: '.js-no-smoothstate',
@@ -506,20 +511,20 @@ $(function() {
     forms: 'form',
     onStart: {
       duration: 0,
-      render: function($container) {}
+      render: function($container) {
+        return NProgress.start();
+      }
     },
     onAfter: function($container, $newContent) {
-      var bootstrap;
+      NProgress.done();
       $('#main').smoothState().data('smoothState').clear();
       $('html, body').animate({
         scrollTop: 0
       }, 0);
-      bootstrap = new Bootstrap();
-      return bootstrap.run();
+      return boot();
     }
   });
-  bootstrap = new Bootstrap();
-  return bootstrap.run();
+  return boot();
 });
 });
 

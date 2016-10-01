@@ -2400,5 +2400,18 @@ a {
     color: white !important;
     background: #ed5153 !important; }
 
+/* line 1, /Users/jeremie/code/babysitting/front/styles/hooks/_nprogress.sass */
+#nprogress .bar {
+  background: #3E4651; }
+
+/* line 4, /Users/jeremie/code/babysitting/front/styles/hooks/_nprogress.sass */
+#nprogress .peg {
+  box-shadow: 0 0 10px #3E4651, 0 0 5px #3E4651; }
+
+/* line 7, /Users/jeremie/code/babysitting/front/styles/hooks/_nprogress.sass */
+#nprogress .spinner-icon {
+  border-top-color: #3E4651;
+  border-left-color: #3E4651; }
+
 
 /*# sourceMappingURL=app.css.map*/

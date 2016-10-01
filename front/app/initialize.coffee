@@ -7,7 +7,9 @@
 ##
 Bootstrap = require 'core/bootstrap'
 
-
+boot = ->
+  bootstrap = new Bootstrap()
+  bootstrap.run()
 
 # Hey sir, is the document ready ?
 $ ->
@@ -25,19 +27,22 @@ $ ->
     onStart: {
       duration: 0,
       render: ($container) ->
-       # NProgress.start()
+        NProgress.start()
     }
     onAfter: ($container, $newContent) ->
 
+      NProgress.done()
+
+      # Let's clear the cache (else the form are fucked up.)
       $('#main').smoothState().data('smoothState').clear()
 
+      # Let's scroll back to the top
       $('html, body').animate({ scrollTop: 0 }, 0);
       
-      # Re run the js logic
-      bootstrap = new Bootstrap()
-      bootstrap.run()
+      # The content just changed
+      # let's reboot.
+      boot()
   })
 
-  # Yep ! We will run gotham !
-  bootstrap = new Bootstrap()
-  bootstrap.run()
+  # Let's boot
+  boot()

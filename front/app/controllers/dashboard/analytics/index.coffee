@@ -25,7 +25,9 @@ class Dashboard_Analytics_Index extends Controller
     ##
     run: ->
 
-
+    ##
+    # Display the stats
+    ##
     setupStats: ->
 
         Keen.ready =>
@@ -66,6 +68,9 @@ class Dashboard_Analytics_Index extends Controller
                 title: 'Total classified seen'
             })
     
+    ##
+    # Render metric count for the data provided
+    ##
     showCount: (options) ->
 
         query = new Keen.Query 'count', {
