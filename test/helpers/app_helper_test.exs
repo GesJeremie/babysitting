@@ -68,4 +68,23 @@ defmodule Babysitting.AppHelperTest do
     end
   end
 
+  describe "logo/1" do
+    
+    setup do
+
+      tenant = insert(:tenant)
+
+      conn = 
+        build_conn()
+        |> with_host(tenant.domain)
+        |> with_tenant  
+
+      [tenant: tenant, conn: conn]
+    end
+
+    test "return valid path for current tenant", context do
+      assert App.logo(context.conn) == "/images/tenants/#{context.tenant.slug}/logo.png"
+    end
+  end
+
 end
