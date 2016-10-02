@@ -52,16 +52,20 @@ defmodule Babysitting.AppHelperTest do
 
   end
 
+  describe "tenants/1" do
 
-  test "tenants/1 return a list of the tenants" do
-    conn =
-      build_conn()
-      |> with_host("www.babysittingbordeaux.dev")
-      |> with_tenant
+    setup do
+      conn = 
+        build_conn()
+        |> with_host("www.babysittingbordeaux.dev")
+        |> with_tenant
+      
+      [conn: conn]
+    end
 
-    assert conn
-      |> App.tenants
-      |> is_list
+    test "return map", context do
+      assert App.tenants(context.conn) |> is_list
+    end
   end
 
 end
