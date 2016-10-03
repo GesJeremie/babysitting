@@ -17,3 +17,8 @@ config :babysitting, Babysitting.Repo,
   database: "babysitting_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+
+# Finally import the config/dev.secret.exs
+# which should be versioned separately.
+import_config "dev.secret.exs"
