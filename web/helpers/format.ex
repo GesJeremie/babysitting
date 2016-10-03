@@ -4,17 +4,18 @@ defmodule Babysitting.Helpers.Format do
   @doc """
   Limit the number of words for the content given
   """
-  def word_limit(content, limit \\ 50) do
-    length = String.length(content)
-    short = content
-      |> String.split(" ")
-      |> Enum.slice(0..limit)
-      |> Enum.join(" ")
-
-    if length < limit do
-      short
+  def word_limit(content, limit \\ 50, separator \\ " ...") do
+    words = String.split(content, " ")
+    
+    if length(words) <= limit do
+      content
     else
-      short <> " ..."
+      content = 
+        words
+        |> Enum.slice(0..limit-1)
+        |> Enum.join(" ")
+
+      "#{content}#{separator}"
     end
   end
 
