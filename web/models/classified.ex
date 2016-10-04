@@ -52,13 +52,12 @@ defmodule Babysitting.Classified do
   def create_changeset(model, params \\ %{}) do
     model
     |> cast(params, @rules_create.required_fields, @rules_create.optional_fields)
-    |> cast_attachments(params, @rules_create.required_files, @rules_create.optional_files)
     |> validate_length(:description, min: 280)
     |> validate_format(:email, ~r/\A[^@]+@([^@\.]+\.)+[^@\.]+\z/)
     |> validate_format(:birthday, ~r/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/)
     |> validate_length(:password, min: 6)
     |> validate_confirmation(:password)
-    |> unique_constraint(:email)
+    |> validate_unique_email
     |> hash_password
     |> make_token
     |> make_search

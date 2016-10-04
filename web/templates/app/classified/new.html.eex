@@ -1,7 +1,7 @@
 <div id="app" data-controller="app.classified.new"></div>
 
 <div class="container">
-  <%= form_for @changeset, app_classified_path(@conn, :create), [multipart: true], fn f -> %>
+  <%= form_for @changeset, app_classified_path(@conn, :create), [multipart: true, class:  "js-no-smoothstate"], fn f -> %>
 
     <div class="form__container">
       <h2 class="form__title"><i class="icon-user"></i>
@@ -32,16 +32,16 @@
         <%= gettext "Tell us more about you, your scholarship, your schedule and why you are an awesome baby sitter" %>
       </p>
       <%= textarea f, :description %>
-        <%= error_tag f, :description %>
+      <%= error_tag f, :description %>
           <span id="chars" data-text-number='<%= gettext "Nombre de caractères" %>' data-text-minimum='<%= gettext "Minimum" %>' class="form__chars"
             data-min="280"></span>
 
 
           <div class="+spacer"></div>
 
-          <label><%= gettext "Avatar" %></label>
-          <%= file_input f, :avatar %>
-            <%= error_tag f, :avatar %>
+      <label><%= gettext "Avatar" %></label>
+      <%= file_input f, :avatar %>
+      <%= error_tag f, :avatar %>
     </div>
 
     <div class="form__container">

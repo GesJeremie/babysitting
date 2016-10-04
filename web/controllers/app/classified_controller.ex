@@ -6,6 +6,7 @@ defmodule Babysitting.App.ClassifiedController do
   # Aliases
   alias Babysitting.{Classified, ClassifiedContact}
   alias Babysitting.Helpers.{App, Ifttt, Format}
+  alias Babysitting.{Email, Mailer}
 
   # Plugs
   plug :scrub_params, "classified" when action in [:create, :update]
@@ -50,8 +51,14 @@ defmodule Babysitting.App.ClassifiedController do
 
     case Repo.insert(changeset) do
       {:ok, classified} ->
+
+        # Store avatar with changeset
+        # If success (changeset valid) -> render
+        # Else display errors
+
         conn
         |> trigger_success_events(classified)
+        |> send_email_new_admin(classified)
         |> put_flash(:info, gettext("Classifed created successfully."))
         |> redirect(to: app_classified_path(conn, :thankyou))
 
@@ -67,7 +74,6 @@ defmodule Babysitting.App.ClassifiedController do
   Show classified by the given id
   """
   def show(conn, params) do
-    IO.inspect params
     classified = Repo.get!(Classified, Map.get(params, "id"))
 
     changeset = 
@@ -134,4 +140,9 @@ defmodule Babysitting.App.ClassifiedController do
     |> Map.put("classified_id", id)
   end
 
+
+  defp send_email_new_admin(conn, classified) do
+    Email.new_admin(%{classified: classified}) |> Mailer.deliver_later
+    conn
+  end
 end

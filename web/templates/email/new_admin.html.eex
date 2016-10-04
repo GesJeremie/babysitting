@@ -1,0 +1,3 @@
+<%= paragraph gettext("New classified waiting for validation!", name: @name) %>
+<%= paragraph gettext("Name: ", name: Babysitting.Helpers.Format.fullname(@classified.firstname, @classified.lastname)) %>
+<%= click gettext("Go to the dashboard"), admin_classified_path(:show, @classified.id) %>

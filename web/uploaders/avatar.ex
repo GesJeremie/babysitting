@@ -10,7 +10,7 @@ defmodule Babysitting.Avatar do
    def __storage, do: Arc.Storage.Local
 
   # Whitelist file extensions:
-  def validate({file, _}) do
+  def validate({file, scope}) do
     ~w(.jpg .jpeg .gif .png) |> Enum.member?(Path.extname(file.file_name))
   end
 
@@ -26,12 +26,12 @@ defmodule Babysitting.Avatar do
 
   # Override the storage directory:
   def storage_dir(_version, {_file, scope}) do
-    "uploads/classifieds/avatars/#{uniq_id(scope.email)}"
+    "uploads/classifieds/avatars/#{hash(scope.email)}"
   end
 
-  defp uniq_id(string) do
+  defp hash(email) do
     :md5
-      |> :crypto.hash(string)
+      |> :crypto.hash(email)
       |> Base.encode16
   end
 

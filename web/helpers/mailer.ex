@@ -36,6 +36,16 @@ defmodule Babysitting.Email do
 
   end
 
+  def new_admin(%{classified: classified}) do
+    
+    make("new_admin.html", %{
+      to: Application.get_env(:babysitting, :email_address),
+      subject: gettext("New classified waiting for validation"),
+      data: %{}
+    })
+
+  end
+
   ##
   # Make email
   ##
