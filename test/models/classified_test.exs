@@ -119,5 +119,32 @@ defmodule Babysitting.ClassifiedTest do
 
   end
 
+
+  describe "validate_unique_email/1" do
+
+    setup do
+      insert(:classified, %{email: "zombie@zombie.com"})
+      :ok
+    end
+
+    test "changeset should be valid" do
+      changeset =
+        %Classified{}
+        |> Ecto.Changeset.cast(%{email: "test@example.com"}, [:email])
+        |> Classified.validate_unique_email
+      
+      assert changeset.valid? == true
+    end
+
+    test "changeset should not be valid" do
+      changeset =
+        %Classified{}
+        |> Ecto.Changeset.cast(%{email: "zombie@zombie.com"}, [:email])
+        |> Classified.validate_unique_email
+      
+      assert changeset.valid? == false
+    end
+
+  end
 end
 
