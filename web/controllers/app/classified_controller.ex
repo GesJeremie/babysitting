@@ -51,11 +51,6 @@ defmodule Babysitting.App.ClassifiedController do
 
     case Repo.insert(changeset) do
       {:ok, classified} ->
-
-        # Store avatar with changeset
-        # If success (changeset valid) -> render
-        # Else display errors
-
         conn
         |> trigger_success_events(classified)
         |> send_email_new_admin(classified)
@@ -140,9 +135,11 @@ defmodule Babysitting.App.ClassifiedController do
     |> Map.put("classified_id", id)
   end
 
-
+  ###
+  # Send email new classified to the admin
+  ###
   defp send_email_new_admin(conn, classified) do
-    Email.new_admin(%{classified: classified}) |> Mailer.deliver_later
+    Email.new_admin(%{conn: conn, classified: classified}) |> Mailer.deliver_later
     conn
   end
 end
