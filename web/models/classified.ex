@@ -2,6 +2,7 @@ defmodule Babysitting.Classified do
   use Babysitting.Web, :model
   use Arc.Ecto.Model
   use Timex
+  alias Babysitting.Repo
   alias Babysitting.Helpers.App
 
   schema "classifieds" do
@@ -50,17 +51,27 @@ defmodule Babysitting.Classified do
   Changeset when you create a new classified
   """
   def create_changeset(model, params \\ %{}) do
-    model
-    |> cast(params, @rules_create.required_fields, @rules_create.optional_fields)
-    |> validate_length(:description, min: 280)
-    |> validate_format(:email, ~r/\A[^@]+@([^@\.]+\.)+[^@\.]+\z/)
-    |> validate_format(:birthday, ~r/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/)
-    |> validate_length(:password, min: 6)
-    |> validate_confirmation(:password)
-    |> validate_unique_email
-    |> hash_password
-    |> make_token
-    |> make_search
+    changeset = 
+      model
+      |> cast(params, @rules_create.required_fields, @rules_create.optional_fields)
+      |> validate_length(:description, min: 280)
+      |> validate_format(:email, ~r/\A[^@]+@([^@\.]+\.)+[^@\.]+\z/)
+      |> validate_format(:birthday, ~r/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/)
+      |> validate_length(:password, min: 6)
+      |> validate_confirmation(:password)
+      |> validate_unique_email
+      |> hash_password
+      |> make_token
+      |> make_search
+
+    if changeset.valid? do
+      # Store picture too
+      changeset
+      |> cast_attachments(params, @rules_create.required_files, @rules_create.optional_files)
+    else
+      changeset
+    end
+
   end
 
   @doc """
@@ -69,7 +80,7 @@ defmodule Babysitting.Classified do
   def update_changeset(model, params \\ %{}) do
     model
     |> cast(params, @rules_update.required_fields, @rules_update.optional_fields)
-    |> cast_attachments(params, @rules_update.required_files, @rules_create.optional_files)
+    |> cast_attachments(params, @rules_update.required_files, @rules_update.optional_files)
     |> validate_length(:description, min: 280)
     |> validate_format(:email, ~r/\A[^@]+@([^@\.]+\.)+[^@\.]+\z/)
     |> validate_format(:birthday, ~r/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/)
@@ -102,6 +113,32 @@ defmodule Babysitting.Classified do
       put_change(changeset, :search, firstname <> " " <> lastname <> " " <> description)
     else
       :error ->
+        changeset
+    end
+  end
+
+  @doc """
+  Will check if the email is unique in the database
+  """
+  def validate_unique_email(changeset) do
+    email = fetch_field(changeset, :email)
+
+    case email do
+
+      {_type, nil} ->
+        changeset
+
+      {_type, email} ->
+        
+        classifieds = Babysitting.Classified |> where(:email, email) |> Repo.all
+
+        if length(classifieds) > 0 do
+          add_error(changeset, :email, "already taken")
+        else 
+          changeset
+        end
+      
+      _ ->
         changeset
     end
   end
