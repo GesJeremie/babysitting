@@ -13,6 +13,12 @@ defmodule Babysitting.DashboardUser.ClassifiedController do
 
   plug :scrub_params, "classified" when action in [:update]
 
+
+  def index(conn, _) do
+    conn
+    |> redirect(to: user_classified_path(conn, :show))
+  end
+  
   @doc """
   Display the classified of the user
   """
@@ -36,7 +42,7 @@ defmodule Babysitting.DashboardUser.ClassifiedController do
         
         # Load tenant association
         classified = Repo.preload(classified, :tenant)
-        
+
         conn
           |> send_email(:update_classified_admin, classified)
           |> put_flash(:info, gettext("Classified updated"))

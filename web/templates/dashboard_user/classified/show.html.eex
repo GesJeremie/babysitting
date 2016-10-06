@@ -7,7 +7,9 @@
     </div>
     <div class="grid-4">
       <div class="header__actions">
-        <a class="button --primary" href="<%= admin_classified_path(@conn, :index) %>"><i class="icon-back"></i> Back</a>
+      <%= if @classified.valid do %>
+        <a target="_blank" class="button --primary" href="#"><%= gettext "See my classified on the website" %></a>
+      <% end %>
       </div>
     </div>
     <div class="clear"></div>

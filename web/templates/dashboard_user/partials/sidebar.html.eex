@@ -5,7 +5,7 @@
     </div>
 
     <ul class="sidebar__links">
-      <li class="sidebar__link"><a href="#"><i class="icon-file"></i> <%= gettext "Classified" %></a></li>
+      <li class="sidebar__link"><a href="<%= user_classified_path(@conn, :show) %>"><i class="icon-file"></i> <%= gettext "Classified" %></a></li>
       <li class="sidebar__link "><a href="#"><i class="icon-key"></i> <%= gettext "Security" %></a></li>
     </ul>
   </div>
