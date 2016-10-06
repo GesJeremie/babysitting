@@ -165,7 +165,7 @@ defmodule Babysitting.Classified do
   """
   def mark_as_invalid(changeset) do
     changeset
-    |> put_change(:valid, false)  
+    |> put_change(:valid, nil)  
   end
 
   @doc """
