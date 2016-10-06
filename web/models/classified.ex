@@ -31,6 +31,7 @@ defmodule Babysitting.Classified do
 
   @valid_email ~r/\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
   @valid_birthday ~r/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/
+  @min_length_description 280 
 
   def changeset(model, params \\ %{}) do
     model
@@ -44,7 +45,7 @@ defmodule Babysitting.Classified do
     changeset = 
       model
       |> cast(params, ~w(tenant_id firstname lastname email password password_confirmation phone birthday description), [])
-      |> validate_length(:description, min: 280)
+      |> validate_length(:description, min: @min_length_description)
       |> validate_format(:email, @valid_email)
       |> validate_format(:birthday, @valid_birthday)
       |> validate_length(:password, min: 6)
@@ -70,11 +71,31 @@ defmodule Babysitting.Classified do
   def update_admin_changeset(model, params \\ %{}) do
     model
     |> cast(params, ~w(firstname lastname email phone birthday description valid), ~w(valid))
-    |> validate_length(:description, min: 280)
+    |> validate_length(:description, min: @min_length_description)
     |> validate_format(:email, @valid_email)
     |> validate_format(:birthday, @valid_birthday)
     |> validate_unique_email(model.id)
     |> make_search
+  end
+
+  def update_changeset(model, params \\ %{}) do
+    changeset = 
+      model
+      |> cast(params, ~w(firstname lastname email phone birthday description), ~w())
+      |> validate_length(:description, min: @min_length_description)
+      |> validate_format(:email, @valid_email)
+      |> validate_format(:birthday, @valid_birthday)
+      |> validate_unique_email(model.id)
+      |> mark_as_invalid
+      |> make_search
+    
+    if changeset.valid? do
+      changeset 
+      |> cast_attachments(params, ~w(), ~w(avatar))
+    else
+      changeset
+    end
+
   end
 
   @doc """
@@ -137,6 +158,14 @@ defmodule Babysitting.Classified do
       _ ->
         changeset
     end
+  end
+
+  @doc """
+  Mark the classified as invalid
+  """
+  def mark_as_invalid(changeset) do
+    changeset
+    |> put_change(:valid, false)  
   end
 
   @doc """

@@ -26,13 +26,15 @@ defmodule Babysitting.DashboardUser.ClassifiedController do
   Update the classified
   """
   def update(conn, %{"classified" => classified_params}) do
+
     classified = App.current_user(conn)
     changeset = Classified.update_changeset(classified, classified_params)
-    IO.inspect Map.get(classified_params, :avatar)
+
     case Repo.update(changeset) do
       {:ok, _classified} ->
         conn
-          |> put_flash(:info, "Classified updated")
+          |> put_flash(:info, gettext("Classified updated"))
+          |> put_flash(:warning, gettext("Since you updated your classified, we put it back in queue for validation by our team"))
           |> redirect(to: user_classified_path(conn, :show))
       {:error, changeset} ->
         conn

@@ -1975,7 +1975,7 @@ input:-webkit-autofill:focus {
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .header__description {
-  color: #F9FAFC;
+  color: #b5c1da;
   font-size: 0.9em; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
@@ -2130,6 +2130,17 @@ input:-webkit-autofill:focus {
   width: 120px;
   height: 120px;
   border-radius: 50%; }
+
+/* line 32, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.alert {
+  padding: 1em;
+  border-radius: 5px;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em; }
+  /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+  .alert.\--warning {
+    color: white;
+    background-color: #FFB836; }
 
 /* line 1, /Users/jeremie/code/babysitting/front/styles/hooks/_noty.sass */
 #noty_top_layout_container {

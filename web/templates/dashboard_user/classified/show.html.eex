@@ -1,4 +1,4 @@
-<%= form_for @changeset, user_classified_path(@conn, :update), [multipart: true], fn f -> %>
+<%= form_for @changeset, user_classified_path(@conn, :update), [multipart: true, class: "js-no-smoothstate"], fn f -> %>
 <div id="content-wrapper">
   <div class="header__container">
     <div class="grid-8">
@@ -14,6 +14,15 @@
   </div>
 
   <div class="container-fluid">
+    
+    <%= if info = get_flash(@conn, :warning) do %>
+
+      <div class="alert --warning">
+        <%= get_flash(@conn, :warning) %>
+      </div>
+
+      <div class="clear"></div>
+    <% end %>
 
     <div class="grid-2">
       <div class="panel__content">
