@@ -5,6 +5,7 @@ defmodule Babysitting.DashboardUser.ClassifiedController do
 
   # Aliases
   alias Babysitting.Classified
+  alias Babysitting.{Email, Mailer}
   alias Babysitting.Helpers.App
 
   # Plugs
@@ -31,8 +32,13 @@ defmodule Babysitting.DashboardUser.ClassifiedController do
     changeset = Classified.update_changeset(classified, classified_params)
 
     case Repo.update(changeset) do
-      {:ok, _classified} ->
+      {:ok, classified} ->
+        
+        # Load tenant association
+        classified = Repo.preload(classified, :tenant)
+        
         conn
+          |> send_email(:update_classified_admin, classified)
           |> put_flash(:info, gettext("Classified updated"))
           |> put_flash(:warning, gettext("Since you updated your classified, we put it back in queue for validation by our team"))
           |> redirect(to: user_classified_path(conn, :show))
@@ -42,4 +48,13 @@ defmodule Babysitting.DashboardUser.ClassifiedController do
           |> render("show.html", %{classified: classified, changeset: changeset})
     end
   end
+
+  ###
+  # Alert the admin to validate the classified just updated
+  ###
+  defp send_email(conn, :update_classified_admin, classified) do
+    Email.update_classified_admin(%{conn: conn, classified: classified}) |> Mailer.deliver_later
+    conn
+  end
+
 end

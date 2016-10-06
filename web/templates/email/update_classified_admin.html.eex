@@ -1,5 +1,5 @@
 <%= paragraph gettext(
-  "New classified waiting for validation from %{name} !",
+  "Classified waiting for validation from %{name} !",
   name: Babysitting.Helpers.Format.fullname(@classified.firstname, @classified.lastname)
 ) %>
 <%= click gettext("Go to the dashboard"), tenant_url(@conn, admin_classified_path(@conn, :show, @classified.id)) %>

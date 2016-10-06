@@ -66,6 +66,16 @@ defmodule Babysitting.Email do
 
   end
 
+  def update_classified_admin(%{conn: conn, classified: classified}) do
+
+    make("update_classified_admin.html", %{
+      to: Application.get_env(:babysitting, :email_address),
+      subject: gettext("Baby Sitting %{name} - Classified just updated", name: classified.tenant.name),
+      data: %{classified: classified, conn: conn}
+    })
+
+  end
+
   ##
   # Make email
   ##

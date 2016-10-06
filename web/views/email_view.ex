@@ -1,5 +1,12 @@
 defmodule Babysitting.EmailView do
   use Babysitting.Web, :view
+  alias Babysitting.Helpers.App
+  
+  def tenant_url(conn, path) do
+    domain = App.current_tenant(conn).domain
+    
+    "http://#{domain}#{path}"
+  end
 
   def click(title, url) do
     Phoenix.HTML.raw """
