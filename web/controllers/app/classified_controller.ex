@@ -28,9 +28,18 @@ defmodule Babysitting.App.ClassifiedController do
     changeset = ClassifiedContact.create_changeset(%ClassifiedContact{}, contact_params)
 
     case Repo.insert(changeset) do
-      {:ok, _contact} ->
+      {:ok, contact} ->
+
+        # Let's load associations
+        contact = 
+          contact
+          |> Repo.preload(:classified)
+          |> Repo.preload(classified: :tenant)
+
         conn
         |> put_flash(:info, gettext("Message sent!"))
+        |> send_email(:new_contact_admin, contact)
+        |> send_email(:new_contact, contact)
         |> redirect(to: app_classified_path(conn, :show, id))
       {:error, changeset} ->
         conn
@@ -53,7 +62,7 @@ defmodule Babysitting.App.ClassifiedController do
       {:ok, classified} ->
         conn
         |> trigger_success_events(classified)
-        |> send_email_new_admin(classified)
+        |> send_email(:new_classified_admin, classified)
         |> put_flash(:info, gettext("Classifed created successfully."))
         |> redirect(to: app_classified_path(conn, :thankyou))
 
@@ -136,10 +145,34 @@ defmodule Babysitting.App.ClassifiedController do
   end
 
   ###
-  # Send email new classified to the admin
+  # Alert the admin to validate the classified just added
   ###
-  defp send_email_new_admin(conn, classified) do
-    Email.new_admin(%{conn: conn, classified: classified}) |> Mailer.deliver_later
+  defp send_email(conn, :new_classified_admin, classified) do
+    Email.new_classified_admin(%{conn: conn, classified: classified}) |> Mailer.deliver_later
     conn
   end
+
+  ###
+  # Send the message of the family to the baby sitter
+  ###
+  defp send_email(conn, :new_contact, contact) do
+    %{conn: conn, contact: contact}
+    |> Email.new_contact
+    |> Mailer.deliver_later
+
+    conn
+  end
+
+  ###
+  # Alert the admin we just made a relation between 
+  # a family and a baby sitter
+  ###
+  defp send_email(conn, :new_contact_admin, contact) do
+    %{conn: conn, contact: contact}
+    |> Email.new_contact_admin
+    |> Mailer.deliver_later
+
+    conn
+  end
+
 end

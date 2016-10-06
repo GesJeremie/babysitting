@@ -1,0 +1,12 @@
+<%= paragraph gettext(
+  "Email: %{email}",
+  email: @contact.email,
+) %>
+
+<%= paragraph gettext(
+  "Phone: %{phone}",
+  phone: @contact.phone
+) %>
+
+<%= paragraph gettext("Message:") %>
+<%= paragraph @contact.message %>

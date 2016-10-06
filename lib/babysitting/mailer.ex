@@ -36,12 +36,32 @@ defmodule Babysitting.Email do
 
   end
 
-  def new_admin(%{classified: classified, conn: conn}) do
+  def new_classified_admin(%{classified: classified, conn: conn}) do
     
-    make("new_admin.html", %{
+    make("new_classified_admin.html", %{
       to: Application.get_env(:babysitting, :email_address),
-      subject: gettext("New classified waiting for validation"),
+      subject: gettext("Baby Sitting %{name} - New classified waiting for validation", name: classified.tenant.name),
       data: %{classified: classified, conn: conn}
+    })
+
+  end
+
+  def new_contact(%{conn: conn, contact: contact}) do
+
+    make("new_contact.html", %{
+      to: contact.classified.email,
+      subject: gettext("Baby Sitting %{name} - New contact request", name: contact.classified.tenant.name),
+      data: %{contact: contact, conn: conn}
+    })
+
+  end
+
+  def new_contact_admin(%{conn: conn, contact: contact}) do
+
+    make("new_contact_admin.html", %{
+      to: Application.get_env(:babysitting, :email_address),
+      subject: gettext("Baby Sitting %{name} - A family just sent a message to a baby sitter", name: contact.classified.tenant.name),
+      data: %{contact: contact, conn: conn}
     })
 
   end

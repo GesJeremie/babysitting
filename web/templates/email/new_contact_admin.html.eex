@@ -1,0 +1,9 @@
+<%= paragraph gettext(
+  "From %{email_contact} to babysitter %{name} (%{email_babysitter})",
+  email_contact: @contact.email,
+  name: @contact.classified.firstname,
+  email_babysitter: @contact.classified.email
+) %>
+
+<%= paragraph gettext("Message:") %>
+<%= paragraph @contact.message %>
