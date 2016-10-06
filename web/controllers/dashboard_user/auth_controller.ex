@@ -50,7 +50,7 @@ defmodule Babysitting.DashboardUser.AuthController do
     |> Repo.one
     |> case do
       nil -> {:error}
-      ad -> check_password(password, ad)
+      classified -> check_password(password, classified)
     end
   end
 
@@ -58,10 +58,10 @@ defmodule Babysitting.DashboardUser.AuthController do
   # Check if we have a match between the password given by the user
   # and the password stored in the database
   ###
-  defp check_password(password, ad) do
-    case Comeonin.Bcrypt.checkpw(password, ad.password) do
+  defp check_password(password, classified) do
+    case Comeonin.Bcrypt.checkpw(password, classified.password) do
       false -> {:error}
-      true -> {:ok, ad.id}
+      true -> {:ok, classified.id}
     end
   end 
 
