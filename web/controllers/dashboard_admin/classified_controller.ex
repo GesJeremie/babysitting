@@ -51,7 +51,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   """
   def update(conn, %{"id" => id, "classified" => classified_params}) do
     classified = Repo.get!(Classified, id)
-    changeset = Classified.update_changeset(classified, classified_params)
+    changeset = Classified.update_admin_changeset(classified, classified_params)
     case Repo.update(changeset) do
       {:ok, _classified} ->
         conn
@@ -69,7 +69,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   """
   def validate(conn, %{"id" => id}) do
     classified = Repo.get!(Classified, id)
-    changeset = Classified.update_changeset(classified, %{"valid" => true})
+    changeset = Classified.update_admin_changeset(classified, %{"valid" => true})
 
     case Repo.update(changeset) do
       {:ok, classified} ->
@@ -89,7 +89,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   """
   def invalidate(conn, %{"id" => id}) do
     classified = Repo.get!(Classified, id)
-    changeset = Classified.update_changeset(classified, %{"valid" => false})
+    changeset = Classified.update_admin_changeset(classified, %{"valid" => false})
 
     case Repo.update(changeset) do
       {:ok, classified} ->

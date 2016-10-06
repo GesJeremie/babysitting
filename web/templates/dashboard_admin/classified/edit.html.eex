@@ -1,4 +1,4 @@
-<%= form_for @changeset, admin_classified_path(@conn, :update, @classified), fn f -> %>
+<%= form_for @changeset, admin_classified_path(@conn, :update, @classified), [class: "js-no-smoothstate"], fn f -> %>
 <div id="content-wrapper">
   <div class="header__container">
     <div class="grid-8">

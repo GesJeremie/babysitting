@@ -28,19 +28,9 @@ defmodule Babysitting.Classified do
     has_many :classified_contacts, Babysitting.ClassifiedContact
   end
 
-  @rules_create %{
-    :required_fields => ~w(tenant_id firstname lastname email password password_confirmation phone birthday description),
-    :optional_fields => ~w(),
-    :required_files => ~w(avatar),
-    :optional_files => ~w()
-  }
 
-  @rules_update %{
-    :required_fields => ~w(firstname lastname email phone birthday description),
-    :optional_fields => ~w(valid),
-    :required_files => ~w(),
-    :optional_files => ~w(avatar)
-  }
+  @valid_email ~r/\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
+  @valid_birthday ~r/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/
 
   def changeset(model, params \\ %{}) do
     model
@@ -53,10 +43,10 @@ defmodule Babysitting.Classified do
   def create_changeset(model, params \\ %{}) do
     changeset = 
       model
-      |> cast(params, @rules_create.required_fields, @rules_create.optional_fields)
+      |> cast(params, ~w(tenant_id firstname lastname email password password_confirmation phone birthday description), [])
       |> validate_length(:description, min: 280)
-      |> validate_format(:email, ~r/\A[^@]+@([^@\.]+\.)+[^@\.]+\z/)
-      |> validate_format(:birthday, ~r/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/)
+      |> validate_format(:email, @valid_email)
+      |> validate_format(:birthday, @valid_birthday)
       |> validate_length(:password, min: 6)
       |> validate_confirmation(:password)
       |> validate_unique_email
@@ -65,9 +55,9 @@ defmodule Babysitting.Classified do
       |> make_search
 
     if changeset.valid? do
-      # Store picture too
+      # Handle picture upload
       changeset
-      |> cast_attachments(params, @rules_create.required_files, @rules_create.optional_files)
+      |> cast_attachments(params, ~w(avatar), [])
     else
       changeset
     end
@@ -75,15 +65,15 @@ defmodule Babysitting.Classified do
   end
 
   @doc """
-  Changeset when you update an classified
+  Changeset when you update an classified (admin section)
   """
-  def update_changeset(model, params \\ %{}) do
+  def update_admin_changeset(model, params \\ %{}) do
     model
-    |> cast(params, @rules_update.required_fields, @rules_update.optional_fields)
-    |> cast_attachments(params, @rules_update.required_files, @rules_update.optional_files)
+    |> cast(params, ~w(firstname lastname email phone birthday description valid), ~w(valid))
     |> validate_length(:description, min: 280)
-    |> validate_format(:email, ~r/\A[^@]+@([^@\.]+\.)+[^@\.]+\z/)
-    |> validate_format(:birthday, ~r/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/)
+    |> validate_format(:email, @valid_email)
+    |> validate_format(:birthday, @valid_birthday)
+    |> validate_unique_email(model.id)
     |> make_search
   end
 
@@ -120,7 +110,7 @@ defmodule Babysitting.Classified do
   @doc """
   Will check if the email is unique in the database
   """
-  def validate_unique_email(changeset) do
+  def validate_unique_email(changeset, id \\ nil) do
     email = fetch_field(changeset, :email)
 
     case email do
@@ -130,7 +120,13 @@ defmodule Babysitting.Classified do
 
       {_type, email} ->
         
-        classifieds = Babysitting.Classified |> where(:email, email) |> Repo.all
+        query = Babysitting.Classified |> where(:email, email)
+
+        unless is_nil(id) do
+          query = query |> where_not(:id, id)
+        end
+
+        classifieds = Repo.all(query)
 
         if length(classifieds) > 0 do
           add_error(changeset, :email, "already taken")
@@ -213,6 +209,14 @@ defmodule Babysitting.Classified do
   def where(query, field, condition) do
     from classified in query,
       where: field(classified, ^field) == ^condition
+  end
+
+  @doc """
+  Global where not filter 
+  """
+  def where_not(query, field, condition) do
+    from classified in query,
+      where: field(classified, ^field) != ^condition
   end
 
   @doc """
