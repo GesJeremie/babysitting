@@ -80,6 +80,11 @@ defmodule Babysitting.Router do
     get "/classified/show", ClassifiedController, :show
     put "/classified/edit", ClassifiedController, :update
 
+    # Security
+    get "/security", SecurityController, :index
+    get "/security/password", SecurityController, :password
+    post "/security/password", SecurityController, :update_password
+
     # Auth
     get "/auth", AuthController, :index
     post "/auth/login", AuthController, :login

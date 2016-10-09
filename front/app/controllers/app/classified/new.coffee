@@ -1,81 +1,78 @@
 # Require the controller library of Gotham
 Controller = require 'core/controller'
 
-
 class Classified_New extends Controller
 
-    ##
-    # Before
-    #
-    # Executed before the run action. You can use
-    # @stop() in this method to stop the execution
-    # of the controller
-    #
-    ##
-    before: ->
+  ##
+  # Before
+  #
+  # Executed before the run action. You can use
+  # @stop() in this method to stop the execution
+  # of the controller
+  #
+  ##
+  before: ->
 
-        @on 'keyup', '#classified_description', @changeCharsCount
+    @on 'keyup', '#classified_description', @changeCharsCount
 
-    ##
-    # Run
-    #
-    # The main entry of the controller.
-    # Your code start here
-    #
-    ##
-    run: ->
+  ##
+  # Run
+  #
+  # The main entry of the controller.
+  # Your code start here
+  #
+  ##
+  run: ->
 
-        @initBirthdayMask()
-        @initCharsCount()
-        @initAutosize()
+    @initBirthdayMask()
+    @initCharsCount()
+    @initAutosize()
 
-    ##
-    # Init the mark birthday to help the user to format correctly his answer
-    ##
-    initBirthdayMask: =>
+  ##
+  # Init the mark birthday to help the user to format correctly his answer
+  ##
+  initBirthdayMask: =>
 
-        $('#classified_birthday').inputmask('99/99/9999', {placeholder: "jj/mm/aaaa"})
+    $('#classified_birthday').inputmask('99/99/9999', {placeholder: "jj/mm/aaaa"})
 
-    ##
-    # Set the counter of chars to his initial state
-    ##
-    initCharsCount: =>
+  ##
+  # Set the counter of chars to his initial state
+  ##
+  initCharsCount: =>
 
-        length = $('#classified_description').val().length
+    length = $('#classified_description').val().length
+    @setCharsCount(length)
 
-        @setCharsCount(length)
+  ##
+  # When the description change
+  ##
+  changeCharsCount: =>
 
-    ##
-    # When the description change
-    ##
-    changeCharsCount: =>
+    count = $('#classified_description').val().length
+    @setCharsCount(count)
 
-        count = $('#classified_description').val().length
+  ##
+  # Set a new state for the counter
+  ##
+  setCharsCount: (number) =>
 
-        @setCharsCount(count)
+    $chars = $('#chars')
+    minimum = $chars.data('min')
 
-    ##
-    # Set a new state for the counter
-    ##
-    setCharsCount: (number) =>
+    text = $chars.data('text-number') + ': ' + number + ' (' + $chars.data('text-minimum') + ': ' + minimum + ')'
 
-        $chars = $('#chars')
-        minimum = $chars.data('min')
+    $chars.html text
 
-        text = $chars.data('text-number') + ': ' + number + ' (' + $chars.data('text-minimum') + ': ' + minimum + ')'
+    if number < minimum
+        $chars.css('color', '#E3000E') # Red
+    else
+        $chars.css('color', '#71BA51') # Green
 
-        $chars.html text
-
-        if number < minimum
-            $chars.css('color', '#E3000E') # Red
-        else
-            $chars.css('color', '#71BA51') # Green
-
-    ##
-    # Will autoresize the description when the user write his description
-    ##
-    initAutosize: =>
-        autosize($('#classified_description'))
+  ##
+  # Will autoresize the description when the user write his description
+  ##
+  initAutosize: =>
+    autosize($('#classified_description'))
 
 # Export
 module.exports = Classified_New

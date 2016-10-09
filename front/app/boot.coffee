@@ -7,78 +7,76 @@
 ##
 class Boot
 
-    constructor: ->
-        @setupNoty()
-        @setupFlash()
-        @setupAutosize()
-        @setupConfirm()
-    
-    ##
-    # Setup the base configuration of noty
-    ##
-    setupNoty: ->
+  constructor: ->
+    @setupNoty()
+    @setupFlash()
+    @setupAutosize()
+    @setupConfirm()
 
-        # Noty configuration
-        $.noty.defaults.timeout = 2500
-        $.noty.defaults.animation.open = 'animated flipInX'
-        $.noty.defaults.animation.close = 'animated flipOutX'
-        $.noty.defaults.maxVisible = 1
-        $.noty.defaults.killer = true
-        $.noty.defaults.dismissQueue = false
+  ##
+  # Setup the base configuration of noty
+  ##
+  setupNoty: ->
 
-    ##
-    # When a flash message is present in the DOM
-    # let's display it in an noty alert
-    ##
-    setupFlash: ->
+    # Noty configuration
+    $.noty.defaults.timeout = 2500
+    $.noty.defaults.animation.open = 'animated flipInX'
+    $.noty.defaults.animation.close = 'animated flipOutX'
+    $.noty.defaults.maxVisible = 1
+    $.noty.defaults.killer = true
+    $.noty.defaults.dismissQueue = false
 
-        # Flash system
-        $flash = $('[data-flash]').filter (i, v) ->
-            $(v).text() != ''
+  ##
+  # When a flash message is present in the DOM
+  # let's display it in an noty alert
+  ##
+  setupFlash: ->
 
-        if $flash.length
-            type = $flash.first().data('flash')
-            text = $flash.first().html()
+    # Flash system
+    $flash = $('[data-flash]').filter (i, v) ->
+      $(v).text() != ''
 
-            noty({
-                type: type
-                text: text
-            })
-    
-    ##
-    # Textarea suck. Let's improve them.
-    ##
-    setupAutosize: ->
+    if $flash.length
+      type = $flash.first().data('flash')
+      text = $flash.first().html()
+      
+      noty({
+        type: type
+        text: text
+      })
 
-        # Autosize textarea
-        if $('.js-autosize').length
-            autosize($('.js-autosize'))
+  ##
+  # Textarea suck. Let's improve them.
+  ##
+  setupAutosize: ->
 
-    ##
-    # Will display an alert confirmation if you click
-    # on a data-confirm link
-    ##
-    setupConfirm: ->
+    # Autosize textarea
+    if $('.js-autosize').length
+      autosize($('.js-autosize'))
 
-        # Confirm
-        $('[data-confirm]').each ->
+  ##
+  # Will display an alert confirmation if you click
+  # on a data-confirm link
+  ##
+  setupConfirm: ->
 
-            text = $(this).data('confirm')
-            url = $(this).attr('href')
+    # Confirm
+    $('[data-confirm]').each ->
 
-            $(this).on 'click', (e) ->
+      text = $(this).data('confirm')
+      url = $(this).attr('href')
 
-                e.preventDefault()
+      $(this).on 'click', (e) ->
 
-                swal({
-                    title: $('#app-config').data('confirm-title') || '',
-                    text: text
-                    type: 'warning',
-                    showCancelButton: true
-                    }, ->
+        e.preventDefault()
 
-                        window.location.href = url
-
-                )
+        swal({
+          title: $('#app-config').data('confirm-title') || '',
+          text: text
+          type: 'warning',
+          showCancelButton: true
+        }, ->
+          window.location.href = url
+        )
 
 module.exports = Boot

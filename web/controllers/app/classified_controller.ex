@@ -17,7 +17,7 @@ defmodule Babysitting.App.ClassifiedController do
   """
   def new(conn, _params) do
     conn
-      |> render("new.html", changeset: Classified.changeset(%Classified{}))
+    |> render("new.html", changeset: Classified.changeset(%Classified{}))
   end
 
   def create_contact(conn, %{"classified_contact" => contact_params, "id" => id}) do
