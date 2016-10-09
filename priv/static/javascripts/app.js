@@ -378,7 +378,7 @@ Dashboard_Analytics_Index = (function(superClass) {
   Dashboard_Analytics_Index.prototype.run = function() {};
 
   Dashboard_Analytics_Index.prototype.setupStats = function() {
-    return Keen.ready((function(_this) {
+    Keen.ready((function(_this) {
       return function() {
         _this.showCount({
           eventCollection: 'classified.new',
@@ -412,19 +412,20 @@ Dashboard_Analytics_Index = (function(superClass) {
         });
       };
     })(this));
-  };
-
-  Dashboard_Analytics_Index.prototype.showCount = function(options) {
-    var query;
-    query = new Keen.Query('count', {
-      eventCollection: options.eventCollection,
-      timeframe: options.timeframe,
-      timezone: "UTC"
-    });
-    return new Keenio().client.draw(query, document.getElementById(options.selector), {
-      title: options.title,
-      colors: ['#897FBA']
-    });
+    return {
+      showCount: function(options) {
+        var query;
+        query = new Keen.Query('count', {
+          eventCollection: options.eventCollection,
+          timeframe: options.timeframe,
+          timezone: "UTC"
+        });
+        return new Keenio().client.draw(query, document.getElementById(options.selector), {
+          title: options.title,
+          colors: ['#897FBA']
+        });
+      }
+    };
   };
 
   return Dashboard_Analytics_Index;

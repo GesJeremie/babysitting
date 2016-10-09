@@ -1728,7 +1728,7 @@ input:-webkit-autofill:focus {
     right: -10px;
     bottom: -10px;
     font-size: 70px;
-    color: white; }
+    color: #e8ecf4; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
   .auth__input.\--radius-top {
     border-top-right-radius: 5px;
