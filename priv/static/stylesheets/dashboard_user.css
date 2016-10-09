@@ -2141,6 +2141,14 @@ input:-webkit-autofill:focus {
   .alert.\--warning {
     color: white;
     background-color: #FFB836; }
+  /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+  .alert.\--success {
+    color: white;
+    background-color: #2CC990; }
+  /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+  .alert.\--danger {
+    color: white;
+    background-color: #ed5153; }
 
 /* line 1, /Users/jeremie/code/babysitting/front/styles/hooks/_noty.sass */
 #noty_top_layout_container {

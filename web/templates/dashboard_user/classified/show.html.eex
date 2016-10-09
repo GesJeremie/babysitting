@@ -26,6 +26,18 @@
       <div class="clear"></div>
     <% end %>
 
+    <%= if @classified.valid do %>
+      <div class="alert --success">
+        <%= gettext("Your classified is online.") %>
+      </div>
+      <div class="clear"></div>
+    <% else %>
+      <div class="alert --danger">
+        <%= gettext("Your classified is in queue for validation and doesn't appear on the website.") %>
+      </div>
+      <div class="clear"></div>
+    <% end %>
+
     <div class="grid-2">
       <div class="panel__content">
         <img class="picture__circle" src="/<%= Babysitting.Avatar.url({@classified.avatar, @classified}, :thumb) %>" />
