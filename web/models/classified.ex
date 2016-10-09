@@ -22,6 +22,7 @@ defmodule Babysitting.Classified do
     timestamps
 
     field :password_confirmation, :string, virtual: true
+    field :password_old, :string, virtual: true
 
     # Relations
     belongs_to :tenant, Babysitting.Tenant
@@ -32,6 +33,7 @@ defmodule Babysitting.Classified do
   @valid_email ~r/\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
   @valid_birthday ~r/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/
   @min_length_description 280 
+  @min_length_password 6
 
   def changeset(model, params \\ %{}) do
     model
@@ -48,7 +50,7 @@ defmodule Babysitting.Classified do
       |> validate_length(:description, min: @min_length_description)
       |> validate_format(:email, @valid_email)
       |> validate_format(:birthday, @valid_birthday)
-      |> validate_length(:password, min: 6)
+      |> validate_length(:password, min: @min_length_password)
       |> validate_confirmation(:password)
       |> validate_unique_email
       |> hash_password
@@ -66,7 +68,7 @@ defmodule Babysitting.Classified do
   end
 
   @doc """
-  Changeset when you update an classified (admin section)
+  Changeset when an admin updates the classified
   """
   def update_admin_changeset(model, params \\ %{}) do
     model
@@ -78,6 +80,9 @@ defmodule Babysitting.Classified do
     |> make_search
   end
 
+  @doc """
+  Changeset when an user updates the classified
+  """
   def update_changeset(model, params \\ %{}) do
     changeset = 
       model
@@ -96,6 +101,15 @@ defmodule Babysitting.Classified do
       changeset
     end
 
+  end
+
+  def update_password_changeset(model, params \\ %{}) do
+    model
+    |> cast(params, ~w(password password_confirmation password_old), ~w())
+    |> validate_length(:password, min: @min_length_password)
+    |> validate_confirmation(:password)
+    |> validate_old_password
+    |> hash_password
   end
 
   @doc """
@@ -157,6 +171,17 @@ defmodule Babysitting.Classified do
       
       _ ->
         changeset
+    end
+  end
+
+  def validate_old_password(changeset) do
+    validate_change changeset, :password_old, fn _, password_old ->
+
+      if Comeonin.Bcrypt.checkpw(password_old, changeset.data.password) do
+        []
+      else
+        [password_old: "invalid password"]
+      end
     end
   end
 

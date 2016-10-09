@@ -3,7 +3,7 @@ defmodule Babysitting.DashboardUser.SecurityController do
   alias Babysitting.Classified
   alias Babysitting.Helpers.App
   
-  plug :scrub_params, "security" when action in [:update_password]
+  plug :scrub_params, "classified" when action in [:update_password]
 
   def index(conn, _) do
     conn
@@ -11,14 +11,29 @@ defmodule Babysitting.DashboardUser.SecurityController do
   end
 
   def password(conn, _params) do
+
+    classified = App.current_user(conn)
+    changeset = Classified.changeset(classified)
+    
     conn
-    |> render("password.html", %{})
+    |> render("password.html", %{changeset: changeset})
   end
 
-  def update_password(conn, params) do
-    IO.inspect params
-    conn
-    |> text "update password"
+  def update_password(conn, %{"classified" => classified_params}) do
+  
+    classified = App.current_user(conn)
+    changeset = Classified.update_password_changeset(classified, classified_params)
+
+    case Repo.update(changeset) do
+      {:ok, _classified} ->
+        conn
+          |> put_flash(:info, gettext("Password changed!"))
+          |> redirect(to: user_security_path(conn, :password))
+      {:error, changeset} ->
+        conn
+          |> put_flash(:error, "Some errors are present in the form")
+          |> render("password.html", %{changeset: changeset})
+    end
   end
 
 

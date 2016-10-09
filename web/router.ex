@@ -83,7 +83,7 @@ defmodule Babysitting.Router do
     # Security
     get "/security", SecurityController, :index
     get "/security/password", SecurityController, :password
-    post "/security/password", SecurityController, :update_password
+    put "/security/password", SecurityController, :update_password
 
     # Auth
     get "/auth", AuthController, :index

@@ -39,7 +39,7 @@ defmodule Babysitting.DashboardUser.ClassifiedController do
 
     case Repo.update(changeset) do
       {:ok, classified} ->
-        
+
         # Load tenant association
         classified = Repo.preload(classified, :tenant)
 

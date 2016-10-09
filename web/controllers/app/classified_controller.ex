@@ -60,6 +60,10 @@ defmodule Babysitting.App.ClassifiedController do
 
     case Repo.insert(changeset) do
       {:ok, classified} ->
+
+        classified =
+          classified |> Repo.preload(:tenant)
+
         conn
         |> trigger_success_events(classified)
         |> send_email(:new_classified_admin, classified)
