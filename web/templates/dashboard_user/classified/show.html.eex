@@ -8,7 +8,7 @@
     <div class="grid-4">
       <div class="header__actions">
       <%= if @classified.valid do %>
-        <a target="_blank" class="button --primary" href="#"><%= gettext "See my classified on the website" %></a>
+        <a target="_blank" class="button --primary" href="<%= app_classified_path(@conn, :show, @classified.id) %>"><%= gettext "See my classified on the website" %></a>
       <% end %>
       </div>
     </div>
@@ -126,5 +126,4 @@
 
   </div>
 </div>
-
 <% end %>
