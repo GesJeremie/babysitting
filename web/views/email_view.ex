@@ -2,9 +2,12 @@ defmodule Babysitting.EmailView do
   use Babysitting.Web, :view
   alias Babysitting.Helpers.App
   
+  def tenant_url(domain, path) when is_binary(domain) do
+    "http://#{domain}#{path}"
+  end
+
   def tenant_url(conn, path) do
     domain = App.current_tenant(conn).domain
-    
     "http://#{domain}#{path}"
   end
 

@@ -16,22 +16,22 @@ defmodule Babysitting.Email do
 
   end
 
-  def validated(%{classified: classified}) do
+  def validated(%{conn: conn, classified: classified}) do
     
     make("validated.html", %{
       to: classified.email,
       subject: gettext("Baby Sitting %{name} - Classified validated", name: classified.tenant.name),
-      data: %{name: classified.firstname}
+      data: %{conn: conn, classified: classified}
     })
 
   end
 
-  def rejected(%{classified: classified}) do
+  def rejected(%{conn: conn, classified: classified}) do
 
     make("rejected.html", %{
       to: classified.email,
       subject: gettext("Baby Sitting %{name} - Classified rejected", name: classified.tenant.name),
-      data: %{name: classified.firstname}
+      data: %{conn: conn, classified: classified}
     })
 
   end

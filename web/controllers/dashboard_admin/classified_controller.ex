@@ -107,7 +107,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   defp send_email_validated(conn, classified) do
     classified = Repo.preload(classified, :tenant)
 
-    Email.validated(%{classified: classified}) 
+    Email.validated(%{conn: conn, classified: classified}) 
     |> Mailer.deliver_later
 
     conn
@@ -116,7 +116,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   defp send_email_rejected(conn, classified) do
     classified = Repo.preload(classified, :tenant)
 
-    Email.rejected(%{classified: classified}) 
+    Email.rejected(%{conn: conn, classified: classified}) 
     |> Mailer.deliver_later
 
     conn
