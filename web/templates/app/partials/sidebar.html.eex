@@ -1,18 +1,32 @@
- <div class="sidebar__background">
-        <div class="sidebar__container">
-          <div class="sidebar__logo">
-            <img src="<%= logo(@conn) %>" />
-          </div>
-          <div class="sidebar__divider"></div>
-          <ul class="sidebar__actions">
-            <li><a href="/"><%= gettext("Home") %></a></li>
-            <li><a href="<%= facebook_link(@conn) %>" target="_blank" class="js-no-smoothstate"><i class="icon-facebook"></i> Facebook</a></li>
-            <li><a href="mailto:group.babysitting@gmail.com" class="js-no-smoothstate"><%= gettext("Contact") %></a></li>
-            <li><a href="<%= user_classified_path(@conn, :show) %>" class="js-no-smoothstate"><%= gettext("My Account") %></a></li>
-          </ul>
-          <div class="sidebar__divider"></div>
-          <div class="sidebar__add">
-            <a class="button --sidebar" href="<%= app_classified_path(@conn, :new) %>"><%= gettext("Add my classified for free") %></a>
-          </div>
-        </div>
-      </div>
+<div class="sidebar__background">
+  <div class="sidebar__container">
+    <div class="sidebar__logo">
+      <img src="<%= logo(@conn) %>" />
+    </div>
+    <div class="sidebar__divider"></div>
+    <ul class="sidebar__actions">
+      <li>
+        <a href="/">
+          <%= gettext("Home") %>
+        </a>
+      </li>
+      <li><a href="<%= facebook_link(@conn) %>" target="_blank" class="js-no-smoothstate"><i class="icon-facebook"></i> Facebook</a></li>
+      <li>
+        <a href="mailto:group.babysitting@gmail.com" class="js-no-smoothstate">
+          <%= gettext("Contact") %>
+        </a>
+      </li>
+      <li>
+        <a href="<%= user_classified_path(@conn, :show) %>" class="js-no-smoothstate">
+          <%= gettext("My Account") %>
+        </a>
+      </li>
+    </ul>
+    <div class="sidebar__divider"></div>
+    <div class="sidebar__add">
+      <a class="button --sidebar" href="<%= app_classified_path(@conn, :new) %>">
+        <%= gettext("Add my classified for free") %>
+      </a>
+    </div>
+  </div>
+</div>

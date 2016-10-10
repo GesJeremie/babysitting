@@ -68,21 +68,21 @@ class Dashboard_Analytics_Index extends Controller
         title: 'Total classified seen'
       })
     
-    ##
-    # Render metric count for the data provided
-    ##
-    showCount: (options) ->
+  ##
+  # Render metric count for the data provided
+  ##
+  showCount: (options) ->
 
-      query = new Keen.Query 'count', {
-        eventCollection: options.eventCollection
-        timeframe: options.timeframe,
-        timezone: "UTC"
-      }
+    query = new Keen.Query 'count', {
+      eventCollection: options.eventCollection
+      timeframe: options.timeframe,
+      timezone: "UTC"
+    }
 
-      new Keenio().client.draw(query, document.getElementById(options.selector), {
-        title: options.title,
-        colors: ['#897FBA']
-      })
+    new Keenio().client.draw(query, document.getElementById(options.selector), {
+      title: options.title,
+      colors: ['#897FBA']
+    })
 
 # Export
 module.exports = Dashboard_Analytics_Index
