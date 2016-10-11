@@ -74,9 +74,11 @@ defmodule Babysitting.ClassifiedControllerTest do
       classified = insert(:classified)
 
       conn = build_conn() |> with_host(tenant.domain)
-      conn = get conn, app_classified_path(conn, :show, classified.id)
 
-      assert html_response(conn, 400)
+      assert_error_sent :not_found, fn ->
+        get conn, app_classified_path(conn, :show, classified.id)
+      end
+
     end
 
     
