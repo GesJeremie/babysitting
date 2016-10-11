@@ -1,5 +1,6 @@
 defmodule Babysitting.ClassifiedControllerTest do
   use Babysitting.ConnCase
+  import Babysitting.ConnCase
   alias Babysitting.Classified
   import Babysitting.Factory
 
@@ -33,13 +34,58 @@ defmodule Babysitting.ClassifiedControllerTest do
 
       conn = post conn, app_classified_path(conn, :create), classified: params
 
-      IO.inspect params
-      IO.inspect conn
+      # Check if picture uploaded
+      assert path_avatars(params.email) |> File.exists?
+      assert path_avatars(params.email) |> File.ls |> elem(1) |> length == 2
 
+      # Check classified added
+      classifieds = Repo.all(Classified)
+      assert classifieds |> length == 1
+
+      # Check properties created
+      classified = classifieds |> Enum.at(0)
+      assert is_nil(classified.valid)
+      assert not is_nil(classified.token)
+      assert not is_nil(classified.search)
+
+      # Check redirect to /thankyou
+      assert redirected?(conn)
+
+      # Clean file uploads
+      path_avatars(params.email) |> File.rm_rf
+
+    end
+  end
+
+  describe "show/2" do
+
+    test "render classified of current tenant" do
+      tenant = insert(:tenant)
+      classified = insert(:classified, %{tenant: tenant})
+
+      conn = build_conn() |> with_host(tenant.domain)
+      conn = get conn, app_classified_path(conn, :show, classified.id)
+
+      assert html_response(conn, 200)
+    end
+
+    test "don't render classified of other tenant" do
+      tenant = insert(:tenant)
+      classified = insert(:classified)
+
+      conn = build_conn() |> with_host(tenant.domain)
+      conn = get conn, app_classified_path(conn, :show, classified.id)
+
+      assert html_response(conn, 400)
     end
 
     
 
+  end
+
+  defp path_avatars(email) do
+    hash_email = :md5 |> :crypto.hash(email) |> Base.encode16
+    "uploads/classifieds/avatars/#{hash_email}"
   end
 
 end

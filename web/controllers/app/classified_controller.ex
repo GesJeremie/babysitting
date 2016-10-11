@@ -82,7 +82,11 @@ defmodule Babysitting.App.ClassifiedController do
   Show classified by the given id
   """
   def show(conn, params) do
-    classified = Repo.get!(Classified, Map.get(params, "id"))
+    classified = 
+      Classified
+      |> Classified.of_current_tenant(conn)
+      |> Classified.where(:id, Map.get(params, "id"))
+      |> Repo.one!
 
     changeset = 
       if Map.has_key?(params, "changeset") do

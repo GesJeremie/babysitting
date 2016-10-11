@@ -50,7 +50,7 @@ defmodule Babysitting.ClassifiedTest do
       # Create 2 classifieds for this tenant
       insert_list(2, :classified, %{tenant: tenant})
       
-      # Create other classfieds attached to other tenants
+      # Create other classifieds attached to other tenants
       insert_list(30, :classified)
 
       # Build the connection for our first tenant
@@ -98,15 +98,6 @@ defmodule Babysitting.ClassifiedTest do
       assert length(classifieds) == 5
     end
 
-    test "sort_by_recent/1" do
-      classifieds = Classified |> Classified.sort_by_recent |> Repo.all
-      
-      first = classifieds |> Enum.at(0)
-      second = classifieds |> Enum.at(1)
-
-      assert first.id < second.id
-    end
-
     test "exists/1" do
       exists = Classified |> Repo.all |> Classified.exists?
       assert exists |> is_boolean
@@ -145,9 +136,7 @@ defmodule Babysitting.ClassifiedTest do
       assert changeset.valid? == false
     end
 
-    test "handle id", context do
-      IO.inspect context.classified.id
-      
+    test "handle id", context do      
       changeset = 
         %Classified{}
         |> Ecto.Changeset.cast(%{email: "zombie@zombie.com"}, [:email])
