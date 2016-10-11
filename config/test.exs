@@ -21,4 +21,4 @@ config :babysitting, Babysitting.Repo,
 
 # Finally import the config/dev.secret.exs
 # which should be versioned separately.
-import_config "dev.secret.exs"
+import_config "test.secret.exs"

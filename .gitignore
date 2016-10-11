@@ -14,8 +14,8 @@ erl_crash.dump
 # secrets file as long as you replace its contents by environment
 # variables.
 /config/prod.secret.exs
-/config/config.secret.exs
 /config/dev.secret.exs
+/config/test.secret.exs
 
 # Mac
 .DS_Store

@@ -1,8 +1,10 @@
 defmodule Babysitting.ClassifiedControllerTest do
   use Babysitting.ConnCase
+  use Bamboo.Test, shared: :true
   import Babysitting.ConnCase
-  alias Babysitting.Classified
   import Babysitting.Factory
+  alias Babysitting.Email
+  alias Babysitting.{Classified, ClassifiedContact}
 
   describe "new/2" do
     test "display form", %{conn: conn} do
@@ -44,13 +46,15 @@ defmodule Babysitting.ClassifiedControllerTest do
 
       # Check properties created
       classified = classifieds |> Enum.at(0)
+      classified = classified |> Repo.preload(:tenant)
+
       assert is_nil(classified.valid)
       assert not is_nil(classified.token)
       assert not is_nil(classified.search)
-
-      # Check redirect to /thankyou
       assert redirected?(conn)
-
+      assert get_flash(conn, :info)
+      assert_delivered_email Email.new_classified_admin(%{conn: conn, classified: classified})
+      
       # Clean file uploads
       path_avatars(params.email) |> File.rm_rf
 
@@ -78,11 +82,48 @@ defmodule Babysitting.ClassifiedControllerTest do
       assert_error_sent :not_found, fn ->
         get conn, app_classified_path(conn, :show, classified.id)
       end
+    end
+    
+  end
 
+  describe "create_contact/2" do
+    test "don't create resource when form invalid" do
+      
+      tenant = insert(:tenant)
+      classified = insert(:classified, %{tenant: tenant})
+
+      conn = build_conn() |> with_host(tenant.domain)
+      conn = post conn, app_classified_path(conn, :create_contact, classified.id), classified_contact: %{}
+
+      assert html_response(conn, 200) =~ "<form"
+      assert get_flash(conn, :error)
+      assert Repo.all(ClassifiedContact) |> length == 0
     end
 
-    
+    test "create resource when form valid" do
+      tenant = insert(:tenant)
+      classified = insert(:classified, %{tenant: tenant})
 
+      classified_contact = %{
+        email: FakerElixir.Internet.email(:popular),
+        phone: FakerElixir.Helper.numerify("06########"),
+        message: FakerElixir.Lorem.sentences(5..8)
+      }
+      
+      conn = build_conn() |> with_host(tenant.domain)
+      conn = post conn, app_classified_path(conn, :create_contact, classified.id), classified_contact: classified_contact
+
+      assert get_flash(conn, :info)
+      assert redirected?(conn)
+      assert Repo.all(ClassifiedContact) |> length == 1
+
+      # Check emails sent
+      newly_classified_contact = Repo.one(ClassifiedContact) |> Repo.preload(:classified) |> Repo.preload(classified: :tenant)
+      
+      assert_delivered_email Email.new_contact_admin(%{conn: conn, contact: newly_classified_contact})
+      assert_delivered_email Email.new_contact(%{conn: conn, contact: newly_classified_contact})
+      
+    end
   end
 
   defp path_avatars(email) do
