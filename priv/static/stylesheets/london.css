@@ -7,5 +7,30 @@
 .sidebar__divider {
   border-bottom: 1px solid #c3b7cf; }
 
+/* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.button.\--primary {
+  background-color: #AA99BA; }
+
+/* line 32, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.pagination {
+  border: 1px solid #AA99BA; }
+  /* line 43, /Users/jeremie/code/babysitting/front/styles/hooks/tenants/london.sass */
+  .pagination li:hover {
+    background-color: #c3b7cf; }
+  /* line 46, /Users/jeremie/code/babysitting/front/styles/hooks/tenants/london.sass */
+  .pagination li {
+    border-left: 1px solid #AA99BA;
+    color: #AA99BA; }
+    /* line 50, /Users/jeremie/code/babysitting/front/styles/hooks/tenants/london.sass */
+    .pagination li.active {
+      background-color: #AA99BA; }
+  /* line 53, /Users/jeremie/code/babysitting/front/styles/hooks/tenants/london.sass */
+  .pagination span, .pagination a {
+    color: #AA99BA; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.empty__button {
+  background-color: #AA99BA; }
+
 
 /*# sourceMappingURL=london.css.map*/

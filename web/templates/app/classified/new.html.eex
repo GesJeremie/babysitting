@@ -33,7 +33,7 @@
       </p>
       <%= textarea f, :description %>
       <%= error_tag f, :description %>
-          <span id="chars" data-text-number='<%= gettext "Chars length" %>' data-text-minimum='<%= gettext "Minimum" %>' class="form__chars"
+          <span id="chars" data-text-number='<%= gettext "Character count" %>' data-text-minimum='<%= gettext "Minimum" %>' class="form__chars"
             data-min="280"></span>
 
 

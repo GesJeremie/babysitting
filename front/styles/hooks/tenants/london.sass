@@ -11,7 +11,7 @@
 @import '../../helpers/mixins'
 
 // ===========================================================
-// Hooks for tenant Bordeaux
+// Hooks for tenant London
 //
 // Every "app" of the tenants should be customised.
 // We don't push the customisation to the admin dashboard
@@ -20,6 +20,7 @@
 // It's only for the app section.
 // ===========================================================
 
+// Sidebar
 +component(sidebar)
 
   +part(background)
@@ -28,3 +29,31 @@
 
   +part(divider)
     border-bottom: 1px solid lighten($color-tenant-london, 10%)
+
+// Button
++component(button)
+
+  +option(primary)
+    background-color: $color-tenant-london
+
+// Pagination
++component(pagination)
+  border: 1px solid $color-tenant-london
+
+  li:hover
+    background-color: lighten($color-tenant-london, 10%)
+
+  li
+    border-left: 1px solid $color-tenant-london
+    color: $color-tenant-london
+
+    &.active
+      background-color: $color-tenant-london
+
+  span, a
+    color: $color-tenant-london
+
+// Empty
++component(empty)
+  +part(button)
+    background-color: $color-tenant-london

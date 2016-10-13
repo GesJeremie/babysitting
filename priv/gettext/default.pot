@@ -342,14 +342,14 @@ msgstr ""
 msgid "About you"
 msgstr ""
 
-#: web/templates/app/classified/new.html.eex:36
-msgid "Chars length"
-msgstr ""
-
 #: web/templates/dashboard_user/security/password.html.eex:50
 msgid "Update password"
 msgstr ""
 
 #: web/templates/dashboard_user/classified/show.html.eex:125
 msgid "Save changes"
+msgstr ""
+
+#: web/templates/app/classified/new.html.eex:36
+msgid "Character count"
 msgstr ""
