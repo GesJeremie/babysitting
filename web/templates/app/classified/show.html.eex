@@ -40,7 +40,7 @@
           <div class="grid-4">
             <h3 class="empty__title"><%= gettext "Phone" %></h3>
             <p id="phone" data-phone="<%= phone(@classified) %>" class="empty__description post-show__phone"><%= phone_hidden(@classified) %></p>
-            <a id="show-phone" class="button --primary --large">Show Phone</a> 
+            <a id="show-phone" class="button --primary --large"><%= gettext("Show Phone") %></a> 
           </div>
           <div class="grid-8">
             <h3 class="empty__title"><%= gettext "Email" %></h3>
@@ -48,20 +48,20 @@
               <div class="+spacer"></div>
               <%= form_for @changeset, app_classified_path(@conn, :create_contact, @classified.id), fn f -> %>
 
-                <label>Your Email</label>
-                <%= text_input f, :email, placeholder: "Email" %>
+                <label><%= gettext "Your Email" %></label>
+                <%= text_input f, :email, placeholder: gettext("Email") %>
                 <%= error_tag f, :email %>
 
                 <div class="+spacer"></div>
 
-                <label>Your Phone</label>
-                <%= text_input f, :phone, placeholder: "Phone" %>
+                <label><%= gettext "Your Phone" %></label>
+                <%= text_input f, :phone, placeholder: gettext("Phone") %>
                 <%= error_tag f, :phone %>
 
                 <div class="+spacer"></div>
 
-                <label>Your Message</label>
-                <%= textarea f, :message, placeholder: "Message", class: "js-autosize" %>
+                <label><%= gettext "Your Message" %></label>
+                <%= textarea f, :message, placeholder: gettext("Message"), class: "js-autosize" %>
                 <%= error_tag f, :message %>
 
                 <div class="+spacer"></div>

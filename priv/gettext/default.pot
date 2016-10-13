@@ -151,6 +151,7 @@ msgid "Edit my classified"
 msgstr ""
 
 #: web/templates/app/classified/show.html.eex:46
+#: web/templates/app/classified/show.html.eex:52
 #: web/templates/dashboard_user/auth/index.html.eex:8
 msgid "Email"
 msgstr ""
@@ -249,6 +250,7 @@ msgid "Password changed!"
 msgstr ""
 
 #: web/templates/app/classified/show.html.eex:41
+#: web/templates/app/classified/show.html.eex:58
 msgid "Phone"
 msgstr ""
 
@@ -352,4 +354,24 @@ msgstr ""
 
 #: web/templates/app/classified/new.html.eex:36
 msgid "Character count"
+msgstr ""
+
+#: web/templates/app/classified/show.html.eex:64
+msgid "Message"
+msgstr ""
+
+#: web/templates/app/classified/show.html.eex:51
+msgid "Your Email"
+msgstr ""
+
+#: web/templates/app/classified/show.html.eex:63
+msgid "Your Message"
+msgstr ""
+
+#: web/templates/app/classified/show.html.eex:57
+msgid "Your Phone"
+msgstr ""
+
+#: web/templates/app/classified/show.html.eex:43
+msgid "Show Phone"
 msgstr ""
