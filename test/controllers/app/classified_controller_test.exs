@@ -126,6 +126,17 @@ defmodule Babysitting.ClassifiedControllerTest do
     end
   end
 
+  describe "thankyou/2" do
+    test "display right fan page facebook to like" do
+      tenant = insert(:tenant)
+
+      conn = build_conn() |> with_host(tenant.domain)
+      conn = get conn, app_classified_path(conn, :thankyou)
+
+      assert html_response(conn, 200) =~ "data-href=\"#{tenant.facebook}\""
+    end
+  end
+
   defp path_avatars(email) do
     hash_email = :md5 |> :crypto.hash(email) |> Base.encode16
     "uploads/classifieds/avatars/#{hash_email}"

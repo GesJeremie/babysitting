@@ -7,6 +7,7 @@ defmodule Babysitting.Factory do
     %Tenant{
       name: Faker.Address.city,
       domain: Faker.Internet.url,
+      facebook: Faker.Helper.letterify("https://www.facebook.com/babysitting#######"),
       slug: Faker.Helper.pick(["paris", "bordeaux", "london", "barcelona", "nantes", "marseille"]),
       locale: Faker.Helper.pick(["fr_FR", "en_GB", "fr_FR", "fr_FR"])
     }
