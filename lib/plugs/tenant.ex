@@ -16,26 +16,27 @@ defmodule Babysitting.Plug.Tenant do
     tenants = Repo.all(Tenant)
 
     # Find current tenant
-    current_tenant = tenants
+    current_tenant = 
+      tenants
       |> Enum.reject(fn(tenant) -> conn.host != tenant.domain end)
 
     case Enum.count(current_tenant) do
       0 ->
         conn
-          |> put_status(404)
-          |> halt
+        |> put_status(404)
+        |> halt
 
       _ ->
         current_tenant = current_tenant
-          |> Enum.at(0)
+        |> Enum.at(0)
 
         # Set the right locale for the current tenant
         Gettext.put_locale(Babysitting.Gettext, current_tenant.locale)
 
         # Pass it to the connection as private
         conn
-          |> put_private(:current_tenant, current_tenant)
-          |> put_private(:tenants, tenants)
+        |> put_private(:current_tenant, current_tenant)
+        |> put_private(:tenants, tenants)
     end
   end
 

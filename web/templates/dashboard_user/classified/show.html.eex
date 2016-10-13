@@ -122,7 +122,7 @@
         </div>
       </div>
 
-  <button type="submit" class="button --primary">Save changes</button>
+  <button type="submit" class="button --primary"><%= gettext "Save changes" %></button>
 
   </div>
 </div>

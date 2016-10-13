@@ -5,7 +5,7 @@
 
     <div class="form__container">
       <h2 class="form__title"><i class="icon-user"></i>
-        <%= gettext "A propos de vous" %>
+        <%= gettext "About you" %>
       </h2>
       <div class="row">
         <div class="grid-4">
@@ -33,7 +33,7 @@
       </p>
       <%= textarea f, :description %>
       <%= error_tag f, :description %>
-          <span id="chars" data-text-number='<%= gettext "Nombre de caractères" %>' data-text-minimum='<%= gettext "Minimum" %>' class="form__chars"
+          <span id="chars" data-text-number='<%= gettext "Chars length" %>' data-text-minimum='<%= gettext "Minimum" %>' class="form__chars"
             data-min="280"></span>
 
 
@@ -64,7 +64,7 @@
 
     <div class="form__container">
       <h2 class="form__title"><i class="icon-lock"></i>
-        <%= gettext "Sécurité" %>
+        <%= gettext "Security" %>
       </h2>
       <p class="form__description">
         <%= gettext "With this password you will be able to edit your classified in the future" %>
