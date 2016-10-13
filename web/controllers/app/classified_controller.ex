@@ -72,7 +72,6 @@ defmodule Babysitting.App.ClassifiedController do
 
       {:error, changeset} ->
         conn
-        |> trigger_error_events(changeset)
         |> put_flash(:error, gettext("Oops, some errors are present in the form."))
         |> render("new.html", changeset: changeset)
     end
@@ -118,20 +117,11 @@ defmodule Babysitting.App.ClassifiedController do
     current_tenant = App.current_tenant(conn)
 
     # Send events
-    Ifttt.send_event("classified.new.created", Format.fullname(classified.firstname, classified.lastname), current_tenant.name)
     Keenex.add_event("classified.new", %{
       type: "created",
       classified: %{id: classified.id, email: classified.email},
       tenant: %{id: current_tenant.id, name: current_tenant.name}
     })
-    conn
-  end
-
-  ###
-  # Trigger error events to third parties
-  ###
-  defp trigger_error_events(conn, changeset) do
-    Keenex.add_event("classified.new", %{type: "failed", classified: changeset.changes, tenant: App.current_tenant(conn).name})
     conn
   end
 
