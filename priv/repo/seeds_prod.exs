@@ -16,3 +16,5 @@ import Babysitting.Factory
 tenant_paris = insert(:tenant_paris)
 tenant_bordeaux = insert(:tenant_bordeaux)
 tenant_london = insert(:tenant_london)
+
+# Let's fill the classifieds of the older version
