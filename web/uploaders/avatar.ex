@@ -7,7 +7,7 @@ defmodule Babysitting.Avatar do
   @versions [:original, :thumb]
   @acl :public_read
 
-   def __storage, do: Arc.Storage.Local
+  def __storage, do: Arc.Storage.Local
 
   # Whitelist file extensions:
   def validate({file, scope}) do

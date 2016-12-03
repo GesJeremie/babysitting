@@ -13,36 +13,6 @@ defmodule Babysitting.Factory do
     }
   end
 
-  def tenant_paris_factory do
-    %Tenant{
-      :name => "Paris",
-      :domain => "www.babysittingparis.dev",
-      :slug => "paris",
-      :facebook => "https://www.facebook.com/parisBabySitting/",
-      :locale => "fr_FR"
-    }
-  end
-
-  def tenant_bordeaux_factory do
-    %Tenant{
-      :name => "Bordeaux",
-      :domain => "www.babysittingbordeaux.dev",
-      :slug => "bordeaux",
-      :facebook =>"https://www.facebook.com/babySittingBordeaux",
-      :locale => "fr_FR"
-    }
-  end
-
-  def tenant_london_factory do
-    %Tenant{
-      :name => "London",
-      :domain => "www.babysittinglondon.co.uk.dev",
-      :slug => "london",
-      :facebook =>"https://www.facebook.com/Baby-Sitting-London-552729038239860",
-      :locale => "en_GB"
-    }
-  end
-
   def classified_factory do
     %Classified{
       tenant: build(:tenant),

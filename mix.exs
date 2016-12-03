@@ -65,8 +65,10 @@ defmodule Babysitting.Mixfile do
   #
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
-    ["ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds_dev.exs"],
-     "ecto.reset": ["ecto.drop", "ecto.setup"],
-     "test": ["ecto.create --quiet", "ecto.migrate", "run priv/repo/seeds_test.exs", "test"]]
+    [
+      "ecto.reset": ["ecto.drop", "ecto.create", "ecto.migrate"],
+      "setup.dev": ["ecto.reset", "run priv/repo/seeds_dev.exs"],
+      "test": ["ecto.create --quiet", "ecto.migrate", "run priv/repo/seeds_test.exs", "test"]
+    ]
   end
 end
