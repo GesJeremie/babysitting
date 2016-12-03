@@ -8,28 +8,27 @@
     background-position: center center
 
   +part(overlay)
-    position: absolute
     display: block
+    position: absolute
     top: 0
-    left: 0
     right: 0
     bottom: 0
-    content: ''
+    left: 0
     background: black
+    content: ''
     opacity: 0.3
 
   +part(title)
     position: relative
     z-index: 2
-    color: white
-    font-size: 20px
-    font-weight: bold
-    font-size: 40px
     padding-top: 4em
+    color: $color-white
+    font-size: 40px
+    font-weight: bold
     text-transform: capitalize
 
   +part(description)
-    color: white
     position: relative
     margin-top: 0.5em
+    color: $color-white
     font-size: 22px

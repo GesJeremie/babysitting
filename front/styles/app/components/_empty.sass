@@ -3,7 +3,7 @@
   +part(container)
     margin-top: 2em
     padding: 2em
-    background-color: #F9FAFC
+    background-color: $color-grey
     border: 1px solid #E1E2E4
     border-radius: 5px
 
@@ -17,24 +17,22 @@
       height: 200px
 
   +part(title)
-    font-size: 1.4em
     color: $color-dark
+    font-size: 1.4em
     font-weight: bold
 
   +part(description)
-    text-align: justify
     margin-top: 1em
     margin-bottom: 1.3em
+    text-align: justify
 
   +part(button)
-    background-color: $color-primary
-    color: white
-    padding: 0.5em
-    padding-left: 1em
-    padding-right: 1em
-    border-radius: 5px
-    margin-top: 0.55em
     display: inline-block
+    margin-top: 0.55em
+    padding: 0.5em 1em
+    color: $color-white
     font-weight: bold
     text-transform: capitalize
+    background-color: $color-primary
+    border-radius: 5px
 

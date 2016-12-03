@@ -1,6 +1,6 @@
 {
-  "name": "Hammer",
-  "description": "Kick-ass my front-end",
+  "name": "Babysitting",
+  "description": "The front end of Babysitting",
   "author": "Ges Jeremie",
   "version": "0.0.1",
   "repository": {
@@ -21,5 +21,9 @@
     "javascript-brunch": ">= 1.0 < 1.8",
     "sass-brunch": "^1.8.8",
     "uglify-js-brunch": ">= 1.0 < 1.8"
-  }
+  },
+  "devDependencies": {
+    "sass-lint": "^1.10.2"
+  },
+  "sasslintConfig": "../.sass-lint.yml"
 }
