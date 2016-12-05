@@ -24,7 +24,7 @@ defmodule Babysitting.Mixfile do
       applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
                     :phoenix_ecto, :postgrex, :httpoison, :keenex, :timex,
                     :faker_elixir_octopus, :phoenix_pubsub, :scrivener_html,
-                    :bamboo, :bamboo_smtp, :ex_machina]
+                    :bamboo, :bamboo_smtp, :ex_machina, :faker_elixir_octopus]
     ]
   end
 
@@ -59,7 +59,7 @@ defmodule Babysitting.Mixfile do
       {:scrivener_ecto, "~> 1.0"},
       {:scrivener_html, "~> 1.1"},
       {:ex_machina, "~> 1.0"},
-      {:faker_elixir_octopus, "> 0.0.0", only: [:dev, :test]},
+      {:faker_elixir_octopus, "> 0.0.0"},
       {:credo, "~> 0.4", only: [:dev, :test]}
     ]
   end
