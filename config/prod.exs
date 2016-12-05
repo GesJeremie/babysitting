@@ -13,11 +13,45 @@ use Mix.Config
 # which you typically run after static files are built.
 config :babysitting, Babysitting.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [host: "example.com", port: 80],
+  url: [host: System.get_env("HOSTNAME"), port: 80],
   cache_static_manifest: "priv/static/manifest.json"
 
 # Do not print debug messages in production
 config :logger, level: :info
+
+# In this file, we keep production configuration that
+# you likely want to automate and keep it away from
+# your version control system.
+config :babysitting, Babysitting.Endpoint,
+  secret_key_base: System.get_env("SECRET_KEY_BASE")
+
+# Configure your database
+config :babysitting, Babysitting.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: System.get_env("DB_USERNAME"),
+  password: System.get_env("DB_PASSWORD"),
+  database: System.get_env("DB_NAME"),
+  pool_size: 20
+
+config :babysitting,
+       email_address: "group.babysitting@gmail.com",
+       ifttt_key: "VCDRxG7MqAtP68lM2wEHtCr66sjo73HuWlBF6sNWMk",
+       admin_password: "babysittingrocksdude"
+
+config :keenex,
+  project_id: "57aeaf313831444167e1fa35",
+  write_key: "b90d7934bb1d121351a8cad5ec0b4687a81f86e47186d2812cf531f3e7bb62025622b50482fa18d03565d7815f0eaebab74a444af9b7dbfa94fc7621eec1e8ef786da80339a9b642402c893a52b8967a5b7241df69783d2c782ed66f82f1cc47",
+  read_key: "410e0b58f9d6c3371cd296341701dc9758bd8b47d9def44aff868ba6cfd54dfe394b8eb113a55c8dc4df2042975da73e7bcc9e397e1e8ca48f75607fd2caa712359db81d2cc304029fc6b20cc34795344551caf82419a8744bc650f9a8b910ac"
+
+config :babysitting, Babysitting.Mailer,
+  adapter: Bamboo.SMTPAdapter,
+  server: "mailtrap.io",
+  port: 2525,
+  username: "784554979ecabb",
+  password: "a3568f06c9698b",
+  tls: :if_available, # can be `:always` or `:never`
+  ssl: false, # can be `true`
+  retries: 1
 
 # ## SSL Support
 #
@@ -60,6 +94,3 @@ config :logger, level: :info
 #
 #     config :babysitting, Babysitting.Endpoint, root: "."
 
-# Finally import the config/prod.secret.exs
-# which should be versioned separately.
-import_config "prod.secret.exs"

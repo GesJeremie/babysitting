@@ -17,6 +17,9 @@ erl_crash.dump
 /config/dev.secret.exs
 /config/test.secret.exs
 
+# Deployment
+.deliver
+
 # Mac
 .DS_Store
 
