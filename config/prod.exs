@@ -13,7 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :babysitting, Babysitting.Endpoint,
   http: [port: {:system, "PORT"}],
-  url: [host: System.get_env("HOSTNAME"), port: 80],
+  url: [host: "example.com", port: 80],
   cache_static_manifest: "priv/static/manifest.json"
 
 # Do not print debug messages in production
@@ -34,7 +34,7 @@ config :babysitting, Babysitting.Repo,
 config :babysitting,
        email_address: "group.babysitting@gmail.com",
        ifttt_key: "VCDRxG7MqAtP68lM2wEHtCr66sjo73HuWlBF6sNWMk",
-       admin_password: "babysittingrocksdude"
+       admin_password: System.get_env("ADMIN_PASSWORD")
 
 config :keenex,
   project_id: "57aeaf313831444167e1fa35",
