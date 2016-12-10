@@ -4,10 +4,14 @@ defmodule Babysitting.App.PageView do
 
   import Scrivener.HTML
   
-  alias Babysitting.Helpers.{Date, Format}
+  alias Babysitting.Helpers.{Date, Format, App}
 
   def town(town) do
     town |> String.capitalize
+  end
+
+  def cover(conn) do
+    "/images/tenants/#{App.current_tenant_folder(conn)}/cover.jpg"
   end
 
   def age(%{:birthday => birthday}) do

@@ -32,10 +32,19 @@ defmodule Babysitting.Helpers.App do
   end
 
   @doc """
+  Return the folder based on the slug of 
+  the current tenant. It's used to generate 
+  the path of the assets (logo, stylesheets, ...)
+  """
+  def current_tenant_folder(conn) do
+    current_tenant(conn).slug |> String.trim_trailing("-dev")
+  end
+
+  @doc """
   Return the logo for the current tenant
   """
   def logo(conn) do
-    "/images/tenants/#{current_tenant(conn).slug}/logo.png"  
+    "/images/tenants/#{current_tenant_folder(conn)}/logo.png"  
   end
 
 end

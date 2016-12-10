@@ -1,5 +1,5 @@
 <div class="hero">
-  <div class="hero__container" style="background-image: url('/images/tenants/<%= @tenant.slug %>/cover.jpg')">
+  <div class="hero__container" style="background-image: url('<%= cover(@conn) %>')">
     <div class="hero__overlay"></div>
     <h2 class="hero__title"><%= gettext "Your Baby Sitter in %{tenant_name}", tenant_name: @tenant.name %></h2>
     <p class="hero__description"><%= gettext "Simple, free and effective. Find your next baby sitter." %></p>

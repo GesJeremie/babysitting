@@ -7,7 +7,6 @@ defmodule Babysitting.LayoutView do
   end
 
   def current_tenant_stylesheet(conn) do
-    "/stylesheets/#{App.current_tenant(conn).slug}.css"
+    "/stylesheets/#{App.current_tenant_folder(conn)}.css"
   end
-    
 end
