@@ -11,8 +11,9 @@ config :babysitting, Babysitting.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
-  watchers: []
-
+  watchers: [
+    node: ["front/node_modules/brunch/bin/brunch", "watch", "front"]
+  ]
 
 # Watch static and templates for browser reloading.
 config :babysitting, Babysitting.Endpoint,
