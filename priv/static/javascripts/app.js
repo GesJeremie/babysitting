@@ -371,61 +371,9 @@ Dashboard_Analytics_Index = (function(superClass) {
     return Dashboard_Analytics_Index.__super__.constructor.apply(this, arguments);
   }
 
-  Dashboard_Analytics_Index.prototype.before = function() {
-    return this.setupStats();
-  };
+  Dashboard_Analytics_Index.prototype.before = function() {};
 
   Dashboard_Analytics_Index.prototype.run = function() {};
-
-  Dashboard_Analytics_Index.prototype.setupStats = function() {
-    return Keen.ready((function(_this) {
-      return function() {
-        _this.showCount({
-          eventCollection: 'classified.new',
-          timeframe: 'this_10_years',
-          selector: 'total-classified',
-          title: 'Total Classified'
-        });
-        _this.showCount({
-          eventCollection: 'classified.new',
-          timeframe: 'this_7_days',
-          selector: 'total-classified-7-days',
-          title: 'Added this week'
-        });
-        _this.showCount({
-          eventCollection: 'classified.new',
-          timeframe: 'this_1_days',
-          selector: 'total-classified-today',
-          title: 'Added today'
-        });
-        _this.showCount({
-          eventCollection: 'classified.show_phone',
-          timeframe: 'this_10_years',
-          selector: 'total-show-phone',
-          title: 'Total phone shown (classified)'
-        });
-        return _this.showCount({
-          eventCollection: 'classified.show',
-          timeframe: 'this_10_years',
-          selector: 'total-show',
-          title: 'Total classified seen'
-        });
-      };
-    })(this));
-  };
-
-  Dashboard_Analytics_Index.prototype.showCount = function(options) {
-    var query;
-    query = new Keen.Query('count', {
-      eventCollection: options.eventCollection,
-      timeframe: options.timeframe,
-      timezone: "UTC"
-    });
-    return new Keenio().client.draw(query, document.getElementById(options.selector), {
-      title: options.title,
-      colors: ['#897FBA']
-    });
-  };
 
   return Dashboard_Analytics_Index;
 
