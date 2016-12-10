@@ -1,0 +1,14 @@
+{
+  "name": "Babysitting",
+  "description": "Simple, free and effective. Find your next baby sitter.",
+  "keywords": [
+    "elixir",
+    "phoenix"
+  ],
+  "repository": "https://github.com/GesJeremie/babysitting",
+  "scripts": {
+    "dokku": {
+      "predeploy": "cd /app/front && brunch b --production"
+    }
+  }
+}
