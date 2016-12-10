@@ -41,10 +41,10 @@ defmodule Babysitting.Helpers.App do
   end
 
   @doc """
-  Return the logo for the current tenant
+  Return the logo of babysitting
   """
   def logo(conn) do
-    "/images/tenants/#{current_tenant_folder(conn)}/logo.png"  
+    "/images/logo.png"
   end
 
 end
