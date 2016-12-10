@@ -1,0 +1,36 @@
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.sidebar__background {
+  background: #3498DB;
+  border-right: 1px solid #217dbb; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.sidebar__divider {
+  border-bottom: 1px solid #5faee3; }
+
+/* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.button.\--primary {
+  background-color: #3498DB; }
+
+/* line 32, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.pagination {
+  border: 1px solid #3498DB; }
+  /* line 43, /Users/jeremie/code/babysitting/front/styles/hooks/tenants/marseille.sass */
+  .pagination li:hover {
+    background-color: #5faee3; }
+  /* line 46, /Users/jeremie/code/babysitting/front/styles/hooks/tenants/marseille.sass */
+  .pagination li {
+    border-left: 1px solid #3498DB;
+    color: #3498DB; }
+    /* line 50, /Users/jeremie/code/babysitting/front/styles/hooks/tenants/marseille.sass */
+    .pagination li.active {
+      background-color: #3498DB; }
+  /* line 53, /Users/jeremie/code/babysitting/front/styles/hooks/tenants/marseille.sass */
+  .pagination span, .pagination a {
+    color: #3498DB; }
+
+/* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
+.empty__button {
+  background-color: #3498DB; }
+
+
+/*# sourceMappingURL=marseille.css.map*/

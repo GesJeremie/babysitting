@@ -1,36 +1,36 @@
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .sidebar__background {
-  background: #44BBFF;
-  border-right: 1px solid #11a8ff; }
+  background: #249991;
+  border-right: 1px solid #1a706a; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .sidebar__divider {
-  border-bottom: 1px solid #77ceff; }
+  border-bottom: 1px solid #2ec2b8; }
 
 /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .button.\--primary {
-  background-color: #44BBFF; }
+  background-color: #249991; }
 
 /* line 32, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .pagination {
-  border: 1px solid #44BBFF; }
+  border: 1px solid #249991; }
   /* line 43, /Users/jeremie/code/babysitting/front/styles/hooks/tenants/paris.sass */
   .pagination li:hover {
-    background-color: #77ceff; }
+    background-color: #2ec2b8; }
   /* line 46, /Users/jeremie/code/babysitting/front/styles/hooks/tenants/paris.sass */
   .pagination li {
-    border-left: 1px solid #44BBFF;
-    color: #44BBFF; }
+    border-left: 1px solid #249991;
+    color: #249991; }
     /* line 50, /Users/jeremie/code/babysitting/front/styles/hooks/tenants/paris.sass */
     .pagination li.active {
-      background-color: #44BBFF; }
+      background-color: #249991; }
   /* line 53, /Users/jeremie/code/babysitting/front/styles/hooks/tenants/paris.sass */
   .pagination span, .pagination a {
-    color: #44BBFF; }
+    color: #249991; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .empty__button {
-  background-color: #44BBFF; }
+  background-color: #249991; }
 
 
 /*# sourceMappingURL=paris.css.map*/
