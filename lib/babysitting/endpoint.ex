@@ -9,10 +9,7 @@ defmodule Babysitting.Endpoint do
   # when deploying your static files in production.
   plug Plug.Static,
     at: "/", from: :babysitting, gzip: false,
-    only: ~w(stylesheets fonts images javascripts favicon.ico robots.txt)
-
-  plug Plug.Static,
-    at: "/uploads", from: Path.expand('./uploads'), gzip: false
+    only: ~w(storage stylesheets fonts images javascripts favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

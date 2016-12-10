@@ -26,7 +26,7 @@ defmodule Babysitting.Avatar do
 
   # Override the storage directory:
   def storage_dir(_version, {_file, scope}) do
-    "uploads/classifieds/avatars/#{hash(scope.email)}"
+    "priv/static/storage/uploads/classifieds/avatars/#{hash(scope.email)}"
   end
 
   defp hash(email) do

@@ -139,7 +139,7 @@ defmodule Babysitting.ClassifiedControllerTest do
 
   defp path_avatars(email) do
     hash_email = :md5 |> :crypto.hash(email) |> Base.encode16
-    "uploads/classifieds/avatars/#{hash_email}"
+    "priv/static/storage/uploads/classifieds/avatars/#{hash_email}"
   end
 
 end
