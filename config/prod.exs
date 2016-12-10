@@ -35,12 +35,14 @@ config :babysitting,
        email_address: "group.babysitting@gmail.com",
        admin_password: System.get_env("ADMIN_PASSWORD")
 
+IO.puts "config"
+
 config :babysitting, Babysitting.Mailer,
   adapter: Bamboo.SMTPAdapter,
-  server: "mailtrap.io",
+  server: System.get_env("MAILGUN_SERVER"),
   port: 2525,
-  username: "784554979ecabb",
-  password: "a3568f06c9698b",
+  username: System.get_env("MAILGUN_USERNAME"),
+  password: System.get_env("MAILGUN_PASSWORD"),
   tls: :if_available, # can be `:always` or `:never`
   ssl: false, # can be `true`
   retries: 1
