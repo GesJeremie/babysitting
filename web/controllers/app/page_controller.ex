@@ -12,7 +12,7 @@ defmodule Babysitting.App.PageController do
   def home(conn, params) do
     tenant = App.current_tenant(conn)
     classifieds = fetch_classifieds(conn, params)
-    IO.inspect Path.expand('./uploads')
+
     render conn, "home.html", %{
       tenant: tenant,
       classifieds: classifieds
