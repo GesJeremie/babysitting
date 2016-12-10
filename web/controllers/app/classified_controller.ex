@@ -5,7 +5,7 @@ defmodule Babysitting.App.ClassifiedController do
 
   # Aliases
   alias Babysitting.{Classified, ClassifiedContact}
-  alias Babysitting.Helpers.{App, Ifttt, Format}
+  alias Babysitting.Helpers.{App, Format}
   alias Babysitting.{Email, Mailer}
 
   # Plugs
@@ -122,6 +122,7 @@ defmodule Babysitting.App.ClassifiedController do
       classified: %{id: classified.id, email: classified.email},
       tenant: %{id: current_tenant.id, name: current_tenant.name}
     })
+
     conn
   end
 

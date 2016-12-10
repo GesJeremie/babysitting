@@ -33,7 +33,6 @@ config :babysitting, Babysitting.Repo,
 
 config :babysitting,
        email_address: "group.babysitting@gmail.com",
-       ifttt_key: "VCDRxG7MqAtP68lM2wEHtCr66sjo73HuWlBF6sNWMk",
        admin_password: System.get_env("ADMIN_PASSWORD")
 
 config :keenex,
