@@ -26,7 +26,7 @@ defmodule Babysitting.Classified do
 
     # Relations
     belongs_to :tenant, Babysitting.Tenant
-    has_many :classified_contacts, Babysitting.ClassifiedContact
+    has_many :classified_contacts, Babysitting.ClassifiedContact, on_delete: :delete_all
   end
 
 

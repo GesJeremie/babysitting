@@ -10,8 +10,8 @@ defmodule Babysitting.Tenant do
 
     timestamps
 
-    has_many :ads, Babysitting.Classified
-    has_many :contacts, Babysitting.Contact
+    has_many :classifieds, Babysitting.Classified, on_delete: :delete_all
+    has_many :contacts, Babysitting.Contact, on_delete: :delete_all
   end
 
   @required_fields ~w(name domain slug facebook locale)
