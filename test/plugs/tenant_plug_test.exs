@@ -21,7 +21,7 @@ defmodule Babysitting.TenantPlugTest do
   end
 
   defp conn_valid_host() do
-    build_conn_host("www.babysittingbordeaux.dev")
+    build_conn_host("www.babysittingparis.dev")
   end
 
   defp conn_invalid_host() do

@@ -116,12 +116,8 @@ defmodule Babysitting.App.ClassifiedController do
     # Fetch the current tenant
     current_tenant = App.current_tenant(conn)
 
-    # Send events
-    Keenex.add_event("classified.new", %{
-      type: "created",
-      classified: %{id: classified.id, email: classified.email},
-      tenant: %{id: current_tenant.id, name: current_tenant.name}
-    })
+    # Nothing now. It was some events to keenex,
+    # but the package was buggy.
 
     conn
   end

@@ -9,7 +9,7 @@ defmodule Babysitting.AppHelperTest do
     setup do 
       conn =
         build_conn()
-        |> with_host("www.babysittingbordeaux.dev")
+        |> with_host("www.babysittingparis.dev")
         |> with_tenant
 
       [conn: conn]
@@ -57,7 +57,7 @@ defmodule Babysitting.AppHelperTest do
     setup do
       conn = 
         build_conn()
-        |> with_host("www.babysittingbordeaux.dev")
+        |> with_host("www.babysittingparis.dev")
         |> with_tenant
       
       [conn: conn]
@@ -65,25 +65,6 @@ defmodule Babysitting.AppHelperTest do
 
     test "return map", context do
       assert App.tenants(context.conn) |> is_list
-    end
-  end
-
-  describe "logo/1" do
-    
-    setup do
-
-      tenant = insert(:tenant)
-
-      conn = 
-        build_conn()
-        |> with_host(tenant.domain)
-        |> with_tenant  
-
-      [tenant: tenant, conn: conn]
-    end
-
-    test "return valid path for current tenant", context do
-      assert App.logo(context.conn) == "/images/tenants/#{context.tenant.slug}/logo.png"
     end
   end
 

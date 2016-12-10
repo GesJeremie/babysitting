@@ -14,8 +14,6 @@ class Dashboard_Analytics_Index extends Controller
   ##
   before: ->
 
-    @setupStats()
-
   ##
   # Run
   #
@@ -24,65 +22,7 @@ class Dashboard_Analytics_Index extends Controller
   #
   ##
   run: ->
-
-  ##
-  # Display the stats
-  ##
-  setupStats: ->
-
-    Keen.ready =>
-
-      @showCount({
-        eventCollection: 'classified.new',
-        timeframe: 'this_10_years',
-        selector: 'total-classified',
-        title: 'Total Classified'
-      })
-
-
-      @showCount({
-        eventCollection: 'classified.new',
-        timeframe: 'this_7_days',
-        selector: 'total-classified-7-days',
-        title: 'Added this week'
-      })
-
-      @showCount({
-        eventCollection: 'classified.new',
-        timeframe: 'this_1_days',
-        selector: 'total-classified-today',
-        title: 'Added today'
-      })
-
-      @showCount({
-        eventCollection: 'classified.show_phone',
-        timeframe: 'this_10_years',
-        selector: 'total-show-phone',
-        title: 'Total phone shown (classified)'
-      })
-
-      @showCount({
-        eventCollection: 'classified.show',
-        timeframe: 'this_10_years',
-        selector: 'total-show',
-        title: 'Total classified seen'
-      })
     
-  ##
-  # Render metric count for the data provided
-  ##
-  showCount: (options) ->
-
-    query = new Keen.Query 'count', {
-      eventCollection: options.eventCollection
-      timeframe: options.timeframe,
-      timezone: "UTC"
-    }
-
-    new Keenio().client.draw(query, document.getElementById(options.selector), {
-      title: options.title,
-      colors: ['#897FBA']
-    })
 
 # Export
 module.exports = Dashboard_Analytics_Index

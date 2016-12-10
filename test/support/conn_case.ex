@@ -56,7 +56,7 @@ defmodule Babysitting.ConnCase do
   end
 
   def with_host(conn) do
-    with_host(conn, "www.babysittingbordeaux.dev")
+    with_host(conn, "www.babysittingparis.dev")
   end
 
   def with_host(conn, host) do

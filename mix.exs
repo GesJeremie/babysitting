@@ -22,7 +22,7 @@ defmodule Babysitting.Mixfile do
     [
       mod: {Babysitting, []},
       applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :httpoison, :keenex, :timex,
+                    :phoenix_ecto, :postgrex, :httpoison, :timex,
                     :faker_elixir_octopus, :phoenix_pubsub, :scrivener_html,
                     :bamboo, :bamboo_smtp, :ex_machina, :faker_elixir_octopus]
     ]
@@ -51,7 +51,6 @@ defmodule Babysitting.Mixfile do
       {:cowboy, "~> 1.0"},
       {:poison, "~> 2.1", override: true},
       {:httpoison, "~> 0.9.0"},
-      {:keenex, "~> 0.4"},
       {:html_entities, "~> 0.3"},
       {:timex, "~> 3.0.0"},
       {:bamboo, "~> 0.7"},
