@@ -1,0 +1,15 @@
+language: elixir
+elixir:
+  - 1.3.0
+otp_release:
+  - 18.3
+sudo: false # to use faster container based build environment
+cache:
+  directories:
+    - _build
+    - deps
+after_script:
+  - mix deps.get
+notifications:
+  recipients:
+    - ges.jeremie@gmail.com
