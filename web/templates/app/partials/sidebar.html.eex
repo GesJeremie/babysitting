@@ -1,7 +1,9 @@
 <div class="sidebar__background">
   <div class="sidebar__container">
     <div class="sidebar__logo">
-      <img src="<%= logo(@conn) %>" />
+      <a href="/">
+        <img src="<%= logo(@conn) %>" />
+      </a>
     </div>
     <div class="sidebar__divider"></div>
     <ul class="sidebar__actions">
