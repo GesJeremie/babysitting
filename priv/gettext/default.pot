@@ -29,18 +29,21 @@ msgid "Add my classified!"
 msgstr ""
 
 #: web/templates/app/classified/new.html.eex:20
+#: web/templates/dashboard_user/classified/show.html.eex:101
 msgid "Birthday"
 msgstr ""
 
-#: web/templates/app/partials/sidebar.html.eex:16
+#: web/templates/app/partials/sidebar.html.eex:18
 msgid "Contact"
 msgstr ""
 
 #: web/templates/app/classified/new.html.eex:12
+#: web/templates/dashboard_user/classified/show.html.eex:51
 msgid "Firstname"
 msgstr ""
 
 #: web/templates/app/classified/new.html.eex:16
+#: web/templates/dashboard_user/classified/show.html.eex:63
 msgid "Lastname"
 msgstr ""
 
@@ -81,7 +84,7 @@ msgstr ""
 msgid "About us"
 msgstr ""
 
-#: web/templates/app/partials/sidebar.html.eex:28
+#: web/templates/app/partials/sidebar.html.eex:30
 msgid "Add my classified for free"
 msgstr ""
 
@@ -150,9 +153,10 @@ msgstr ""
 msgid "Edit my classified"
 msgstr ""
 
-#: web/templates/app/classified/show.html.eex:46
-#: web/templates/app/classified/show.html.eex:52
+#: web/templates/app/classified/show.html.eex:47
+#: web/templates/app/classified/show.html.eex:53
 #: web/templates/dashboard_user/auth/index.html.eex:8
+#: web/templates/dashboard_user/classified/show.html.eex:75
 msgid "Email"
 msgstr ""
 
@@ -178,7 +182,7 @@ msgstr ""
 msgid "Hello %{name}!"
 msgstr ""
 
-#: web/templates/app/partials/sidebar.html.eex:10
+#: web/templates/app/partials/sidebar.html.eex:12
 msgid "Home"
 msgstr ""
 
@@ -207,7 +211,7 @@ msgstr ""
 msgid "Minimum"
 msgstr ""
 
-#: web/templates/app/partials/sidebar.html.eex:21
+#: web/templates/app/partials/sidebar.html.eex:23
 #: web/templates/layout/dashboard_user.html.eex:19
 msgid "My Account"
 msgstr ""
@@ -250,7 +254,8 @@ msgid "Password changed!"
 msgstr ""
 
 #: web/templates/app/classified/show.html.eex:41
-#: web/templates/app/classified/show.html.eex:58
+#: web/templates/app/classified/show.html.eex:59
+#: web/templates/dashboard_user/classified/show.html.eex:89
 msgid "Phone"
 msgstr ""
 
@@ -272,7 +277,7 @@ msgstr ""
 msgid "See my classified on the website"
 msgstr ""
 
-#: web/templates/app/classified/show.html.eex:69
+#: web/templates/app/classified/show.html.eex:70
 msgid "Send message"
 msgstr ""
 
@@ -336,7 +341,7 @@ msgstr ""
 msgid "Your current classified on the website"
 msgstr ""
 
-#: web/views/app/classified_view.ex:13 web/views/app/page_view.ex:14
+#: web/views/app/classified_view.ex:19 web/views/app/page_view.ex:18
 msgid "years old"
 msgstr ""
 
@@ -356,22 +361,30 @@ msgstr ""
 msgid "Character count"
 msgstr ""
 
-#: web/templates/app/classified/show.html.eex:64
+#: web/templates/app/classified/show.html.eex:65
 msgid "Message"
 msgstr ""
 
-#: web/templates/app/classified/show.html.eex:51
+#: web/templates/app/classified/show.html.eex:52
 msgid "Your Email"
 msgstr ""
 
-#: web/templates/app/classified/show.html.eex:63
+#: web/templates/app/classified/show.html.eex:64
 msgid "Your Message"
 msgstr ""
 
-#: web/templates/app/classified/show.html.eex:57
+#: web/templates/app/classified/show.html.eex:58
 msgid "Your Phone"
 msgstr ""
 
 #: web/templates/app/classified/show.html.eex:43
 msgid "Show Phone"
+msgstr ""
+
+#: web/templates/dashboard_user/classified/show.html.eex:115
+msgid "Description"
+msgstr ""
+
+#: web/templates/app/classified/opengraph.show.html.eex:2
+msgid "See the classified on"
 msgstr ""
