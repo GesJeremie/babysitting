@@ -1,4 +1,4 @@
-defmodule Babysitting.PageControllerTest do
+defmodule Babysitting.SitemapControllerTest do
   use Babysitting.ConnCase
   import Babysitting.ConnCase
   import Babysitting.Factory
