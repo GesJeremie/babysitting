@@ -6,15 +6,23 @@
     background-color: $color-grey
     border: 1px solid #E1E2E4
     border-radius: 5px
+    text-align: center
+
+    +gridle_state(sm)
+      text-align: left
 
     +option(home)
       margin-top: 3em
       margin-bottom: 3em
 
   +part(artwork)
-    text-align: center
-    img
-      height: 200px
+    display: none
+
+    +gridle_state(sm)
+      display: block
+      text-align: center
+      img
+        height: 200px
 
   +part(title)
     color: $color-dark
@@ -24,7 +32,9 @@
   +part(description)
     margin-top: 1em
     margin-bottom: 1.3em
-    text-align: justify
+
+    +gridle_state(sm)
+      text-align: justify
 
   +part(button)
     display: inline-block

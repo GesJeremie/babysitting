@@ -9,15 +9,23 @@
 // ===========================================================
 //
 #sidebar-wrapper
-    position: fixed
-    width: 20%
-    height: 100%
-    float: left
+    float: none
+    width: 100%
     background: black
 
+    +gridle_state(md)
+      position: fixed
+      width: 20%
+      height: 100%
+      float: left
+
 #page-wrapper
-    width: 80%
-    float: right
+    float: none
+    width: 100%
+
+    +gridle_state(md)
+      width: 80%
+      float: right
 
 // ===========================================================
 // General html overrides

@@ -1,13 +1,17 @@
 +component(sidebar)
 
   +part(background)
-    position: absolute
-    top: 0
-    bottom: 0
-    left: 0
-    right: 0
+    padding-bottom: 2em
     background: $color-primary
     border-right: 1px solid darken($color-primary, 10%)
+
+    +gridle_state(md)
+      position: absolute
+      top: 0
+      right: 0
+      bottom: 0
+      left: 0
+      padding-bottom: 0
   
   +part(container)
     width: 90%

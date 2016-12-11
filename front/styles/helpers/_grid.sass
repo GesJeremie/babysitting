@@ -13,15 +13,28 @@
 // Setting up the grid
 +gridle_setup((context: 12, gutter-width: 10px, direction: ltr, debug: true))
 
++gridle_register_state(xs, (max-width : 768px))
++gridle_register_state(sm, (min-width : 768px))
++gridle_register_state(md, (min-width : 992px))
++gridle_register_state(lg, (min-width : 1200px))
+
 // Generate css classes (to use in the html)
 +gridle_generate_classes()
 
 // Setup the static container
 .container
-  max-width : 960px
   margin : 0 auto
+  max-width : 960px
+  width: 95%
 
+  +gridle_state(md)
+    width: 100%
+    
 // Setup the fluid container
 .container-fluid
-  width: 95%
   margin: 0 auto
+  width: 95%
+
+[class*="grid-"]
+  +gridle_state(xs)
+    width: 100%
