@@ -62,8 +62,12 @@ defmodule Babysitting.App.ClassifiedView do
   end
 
   def url_avatar(conn, classified) do
-    path = "/" <> Babysitting.Avatar.url({classified.avatar, classified}, :thumb)
-    App.current_tenant_url(conn, path)
+    avatar = Babysitting.Avatar.url({classified.avatar, classified}, :thumb)
+
+    unless is_nil(avatar) do
+      path = "/" <> Babysitting.Avatar.url({classified.avatar, classified}, :thumb)
+      App.current_tenant_url(conn, path)
+    end
   end
 
 end
