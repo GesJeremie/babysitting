@@ -8,7 +8,7 @@ defmodule Babysitting.Endpoint do
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
-    at: "/storage", from: Path.expand('./storage')
+    at: "/storage", from: Path.expand("storage")
 
   plug Plug.Static,
     at: "/", from: :babysitting, gzip: false,

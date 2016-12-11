@@ -35,8 +35,6 @@ config :babysitting,
        email_address: "group.babysitting@gmail.com",
        admin_password: System.get_env("ADMIN_PASSWORD")
 
-IO.puts "config"
-
 config :babysitting, Babysitting.Mailer,
   adapter: Bamboo.SMTPAdapter,
   server: System.get_env("MAILGUN_SERVER"),
