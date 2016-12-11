@@ -34,6 +34,7 @@ defmodule Babysitting.Router do
     get "/contact", PageController, :contact
     get "/press", PageController, :press
     get "/faq", PageController, :faq
+    get "/sitemap.xml", SitemapController, :index
 
     get "/classifieds/new", ClassifiedController, :new
     get "/classifieds/:id/show", ClassifiedController, :show
