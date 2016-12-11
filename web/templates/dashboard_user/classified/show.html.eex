@@ -40,7 +40,7 @@
 
     <div class="grid-2">
       <div class="panel__content">
-        <img class="picture__circle" src="<%= Babysitting.Helpers.Images.avatar_url(@classified, :thumb) %>" />
+        <img class="picture__circle" src="/<%= Babysitting.Avatar.url({@classified.avatar, @classified}, :thumb) %>" />
         <%= file_input f, :avatar %>
         <%= error_tag f, :avatar %>
       </div>

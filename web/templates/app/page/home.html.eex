@@ -18,7 +18,7 @@
         <a id="classified-<%= classified.id %>" href="<%= app_classified_path(@conn, :show, classified.id) %>" class="post__item">
           <div class="grid-3">
             <div class="post__avatar">
-              <img src="<%= Babysitting.Helpers.Images.avatar_url(classified, :thumb) %>" />
+              <img src="<%= Babysitting.Avatar.url({classified.avatar, classified}, :thumb) %>" />
             </div>
           </div>
           <div class="grid-9">

@@ -8,8 +8,11 @@ defmodule Babysitting.Endpoint do
   # You should set gzip to true if you are running phoenix.digest
   # when deploying your static files in production.
   plug Plug.Static,
+    at: "/storage", from: Path.expand('./storage')
+
+  plug Plug.Static,
     at: "/", from: :babysitting, gzip: false,
-    only: ~w(storage stylesheets fonts images javascripts favicon.ico robots.txt)
+    only: ~w(stylesheets fonts images javascripts favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
