@@ -12,7 +12,10 @@ defmodule Babysitting.Helpers.App do
   end
 
   @doc """
-  Return the current user (classified)
+  Return the current user. 
+
+  Note: We don't have the concept of "users", in fact
+  a classified is an user.
   """
   def current_user(conn) do
     classified_id = 
@@ -38,6 +41,21 @@ defmodule Babysitting.Helpers.App do
   """
   def current_tenant_folder(conn) do
     current_tenant(conn).slug |> String.trim_trailing("-dev")
+  end
+
+  @doc """
+  Return the full url for the current tenant and
+  suffix the path given
+  """
+  def current_tenant_url(conn, path) do
+    "http://#{current_tenant(conn).domain}#{path}"
+  end
+
+  @doc """
+  Return the site name for the current tenant
+  """
+  def current_tenant_site_name(conn) do
+    "Baby Sitting #{current_tenant(conn).name}"
   end
 
   @doc """

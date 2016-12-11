@@ -1,0 +1,6 @@
+<meta property="og:title" content="<%= fullname(@classified) %>, baby sitter"/>
+<meta property="og:description" content="Voir son annonce sur <%= site_name(@conn) %> !" />
+<meta property="og:url" content="<%= url_classified(@conn, @classified) %>" />
+<meta property="og:site_name" content="<%= site_name(@conn) %>"/>
+<meta property="og:type" content="article" />
+<meta property="og:image" content="<%= url_avatar(@conn, @classified) %>"/>

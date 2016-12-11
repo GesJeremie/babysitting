@@ -7,6 +7,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
+    <%= render_existing(@view_module, "opengraph." <> @view_template, assigns) %>
+
     <link href="https://file.myfontastic.com/jiBmkbvREKqK69TasUa4W/icons.css" rel="stylesheet">
 
     <script src="<%= static_path(@conn, "/javascripts/vendor.js") %>"></script>
