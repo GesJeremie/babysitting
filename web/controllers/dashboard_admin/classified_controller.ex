@@ -47,6 +47,30 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   end
 
   @doc """
+  Delete the classified given
+  """
+  def delete(conn, %{"id" => id}) do
+    classified = Repo.get!(Classified, id)
+    pictures = Babysitting.Avatar.urls({classified.avatar, classified})
+
+    # Delete pictures
+    pictures
+    |> Enum.map(fn(picture) -> 
+      picture
+      |> elem(1)
+      |> String.split("?v=") # Remove fingerprint
+      |> Enum.at(0)
+      |> File.rm
+    end)
+
+    Repo.delete!(classified)
+
+    conn
+    |> put_flash(:info, "Classified deleted")
+    |> redirect(to: admin_classified_path(conn, :index))
+  end
+
+  @doc """
   Update the classified
   """
   def update(conn, %{"id" => id, "classified" => classified_params}) do
@@ -55,12 +79,12 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
     case Repo.update(changeset) do
       {:ok, _classified} ->
         conn
-          |> put_flash(:info, "Classified updated")
-          |> redirect(to: admin_classified_path(conn, :edit, classified))
+        |> put_flash(:info, "Classified updated")
+        |> redirect(to: admin_classified_path(conn, :edit, classified))
       {:error, changeset} ->
         conn
-          |> put_flash(:error, "Some errors are present in the form")
-          |> render("edit.html", %{classified: classified, changeset: changeset})
+        |> put_flash(:error, "Some errors are present in the form")
+        |> render("edit.html", %{classified: classified, changeset: changeset})
     end
   end
 

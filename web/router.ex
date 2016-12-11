@@ -59,6 +59,7 @@ defmodule Babysitting.Router do
     get "/classifieds/:id/show", ClassifiedController, :show
     get "/classifieds/:id/edit", ClassifiedController, :edit
     put "/classifieds/:id/edit", ClassifiedController, :update
+    get "/classifieds/:id/delete", ClassifiedController, :delete
 
     # Auth
     get "/auth", AuthController, :index

@@ -61,6 +61,7 @@
                     <% else %>
                       <a data-confirm="<%= gettext("It will validate the classified") %>" class="button --success js-no-smoothstate" href="<%= admin_classified_path(@conn, :validate, classified.id) %>">Validate</a>
                     <% end %>
+                    <a data-confirm="It will delete the classified" class="button --danger js-no-smoothstate" href="<%= admin_classified_path(@conn, :delete, classified.id) %>"><i class="icon-page-delete"></i>Delete</a>
                   </p>
                 </div>
                 <div class="clear"></div>
