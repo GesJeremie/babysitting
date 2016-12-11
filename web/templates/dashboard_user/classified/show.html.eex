@@ -48,7 +48,7 @@
 
       <div class="grid-3">
         <div class="panel__container">
-          <div class="panel__title">Firstname</div>
+          <div class="panel__title"><%= gettext "Firstname" %></div>
           <div class="panel__content">
             <div class="form__container">
                 <%= text_input f, :firstname %>
@@ -60,7 +60,7 @@
 
       <div class="grid-3">
         <div class="panel__container">
-          <div class="panel__title">Lastname</div>
+          <div class="panel__title"><%= gettext "Lastname" %></div>
           <div class="panel__content">
             <div class="form__container">
                 <%= text_input f, :lastname %>
@@ -72,7 +72,7 @@
 
       <div class="grid-4">
         <div class="panel__container">
-          <div class="panel__title">Email</div>
+          <div class="panel__title"><%= gettext "Email" %></div>
           <div class="panel__content">
             <div class="form__container">
                 <%= text_input f, :email %>
@@ -86,7 +86,7 @@
 
       <div class="grid-6">
         <div class="panel__container">
-          <div class="panel__title">Phone</div>
+          <div class="panel__title"><%= gettext "Phone" %></div>
           <div class="panel__content">
             <div class="form__container">
                 <%= text_input f, :phone %>
@@ -98,7 +98,7 @@
 
       <div class="grid-6">
         <div class="panel__container">
-          <div class="panel__title">Birthday</div>
+          <div class="panel__title"><%= gettext "Birthday" %></div>
           <div class="panel__content">
             <div class="form__container">
                 <%= text_input f, :birthday %>
@@ -112,7 +112,7 @@
 
       <div class="grid-12">
         <div class="panel__container">
-          <div class="panel__title">Description</div>
+          <div class="panel__title"><%= gettext "Description" %></div>
           <div class="panel__content">
             <div class="form__container">
                 <%= textarea f, :description, class: "js-autosize" %>
