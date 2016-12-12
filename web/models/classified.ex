@@ -1,4 +1,5 @@
 defmodule Babysitting.Classified do
+  import Babysitting.Gettext
   use Babysitting.Web, :model
   use Arc.Ecto.Model
   use Timex
@@ -164,7 +165,7 @@ defmodule Babysitting.Classified do
         classifieds = Repo.all(query)
 
         if length(classifieds) > 0 do
-          add_error(changeset, :email, "already taken")
+          add_error(changeset, :email, gettext("already taken"))
         else 
           changeset
         end

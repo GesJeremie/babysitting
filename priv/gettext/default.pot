@@ -388,3 +388,7 @@ msgstr ""
 #: web/templates/app/classified/opengraph.show.html.eex:2
 msgid "See the classified on"
 msgstr ""
+
+#: web/models/classified.ex:168
+msgid "already taken"
+msgstr ""
