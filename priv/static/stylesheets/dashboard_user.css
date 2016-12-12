@@ -6893,13 +6893,13 @@ input:-webkit-autofill:focus {
 
 /* line 32, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .button {
+  display: inline-block;
   background-color: #F9FAFC;
   color: #4c4f52;
   text-transform: capitalize;
   padding: 0.5em;
   padding-left: 1em;
   padding-right: 1em;
-  display: inline-block;
   border-radius: 3px;
   font-weight: normal;
   letter-spacing: 0.4px;
@@ -7213,10 +7213,10 @@ input:-webkit-autofill:focus {
 
 /* line 32, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .alert {
-  padding: 1em;
-  border-radius: 5px;
   margin-top: 0.3em;
-  margin-bottom: 0.3em; }
+  margin-bottom: 0.3em;
+  padding: 1em;
+  border-radius: 5px; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
   .alert.\--warning {
     color: white;
