@@ -1,9 +1,9 @@
 defmodule Babysitting.DashboardAdmin.AnalyticsController do
-  
-  # Use
+
+  # Uses
   use Babysitting.Web, :controller
-  
-  # PLug
+
+  # Plugs
   plug Babysitting.Plug.IsAdmin
 
   def index(conn, _params) do

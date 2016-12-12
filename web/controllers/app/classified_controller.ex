@@ -1,6 +1,5 @@
 defmodule Babysitting.App.ClassifiedController do
-
-  # Use
+  # Uses
   use Babysitting.Web, :controller
 
   # Aliases
@@ -21,17 +20,17 @@ defmodule Babysitting.App.ClassifiedController do
   end
 
   def create_contact(conn, %{"classified_contact" => contact_params, "id" => id}) do
-    
+
     # Fill params with classified id
     contact_params = set_classified(id, contact_params)
-    
+
     changeset = ClassifiedContact.create_changeset(%ClassifiedContact{}, contact_params)
 
     case Repo.insert(changeset) do
       {:ok, contact} ->
 
         # Let's load associations
-        contact = 
+        contact =
           contact
           |> Repo.preload(:classified)
           |> Repo.preload(classified: :tenant)
@@ -49,7 +48,7 @@ defmodule Babysitting.App.ClassifiedController do
   end
 
   @doc """
-  Commit the form given
+  Commit the form to create a classfied
   """
   def create(conn, %{"classified" => classified_params}) do
 
@@ -61,8 +60,7 @@ defmodule Babysitting.App.ClassifiedController do
     case Repo.insert(changeset) do
       {:ok, classified} ->
 
-        classified =
-          classified |> Repo.preload(:tenant)
+        classified = classified |> Repo.preload(:tenant)
 
         conn
         |> trigger_success_events(classified)
@@ -81,13 +79,13 @@ defmodule Babysitting.App.ClassifiedController do
   Show classified by the given id
   """
   def show(conn, params) do
-    classified = 
+    classified =
       Classified
       |> Classified.of_current_tenant(conn)
       |> Classified.where(:id, Map.get(params, "id"))
       |> Repo.one!
 
-    changeset = 
+    changeset =
       if Map.has_key?(params, "changeset") do
         Map.get(params, "changeset")
       else
@@ -97,15 +95,13 @@ defmodule Babysitting.App.ClassifiedController do
     conn
     |> render("show.html", classified: classified, changeset: changeset)
   end
-  
-
 
   @doc """
   Display thank you page
   """
   def thankyou(conn, _params) do
     conn
-      |> render("thankyou.html", %{current_tenant: App.current_tenant(conn)})
+    |> render("thankyou.html", %{current_tenant: App.current_tenant(conn)})
   end
 
   ###
@@ -116,7 +112,7 @@ defmodule Babysitting.App.ClassifiedController do
     # Fetch the current tenant
     current_tenant = App.current_tenant(conn)
 
-    # Nothing now. It was some events to keenex,
+    # Nothing now. It was some events to keenex
     # but the package was buggy.
 
     conn
@@ -159,7 +155,7 @@ defmodule Babysitting.App.ClassifiedController do
   end
 
   ###
-  # Alert the admin we just made a relation between 
+  # Alert the admin we just made a relation between
   # a family and a baby sitter
   ###
   defp send_email(conn, :new_contact_admin, contact) do

@@ -1,6 +1,6 @@
 defmodule Babysitting.DashboardAdmin.ClassifiedController do
 
-  # Use
+  # Uses
   use Babysitting.Web, :controller
 
   # Aliases
@@ -15,7 +15,6 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   Display the classifieds
   """
   def index(conn, params) do
-
     state = Map.get(params, "state")
 
     classifieds = Classified
@@ -50,20 +49,11 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   Delete the classified given
   """
   def delete(conn, %{"id" => id}) do
-    classified = Repo.get!(Classified, id)
-    pictures = Babysitting.Avatar.urls({classified.avatar, classified})
 
-    # Delete pictures
-    pictures
-    |> Enum.map(fn(picture) -> 
-      picture
-      |> elem(1)
-      |> String.split("?v=") # Remove fingerprint
-      |> Enum.at(0)
-      |> File.rm
-    end)
-
-    Repo.delete!(classified)
+    Classified
+    |> Repo.get!(id)
+    |> Classified.delete_pictures
+    |> Repo.delete!
 
     conn
     |> put_flash(:info, "Classified deleted")
@@ -131,7 +121,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   defp send_email_validated(conn, classified) do
     classified = Repo.preload(classified, :tenant)
 
-    Email.validated(%{conn: conn, classified: classified}) 
+    Email.validated(%{conn: conn, classified: classified})
     |> Mailer.deliver_later
 
     conn
@@ -140,7 +130,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   defp send_email_rejected(conn, classified) do
     classified = Repo.preload(classified, :tenant)
 
-    Email.rejected(%{conn: conn, classified: classified}) 
+    Email.rejected(%{conn: conn, classified: classified})
     |> Mailer.deliver_later
 
     conn

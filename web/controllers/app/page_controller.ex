@@ -1,4 +1,5 @@
 defmodule Babysitting.App.PageController do
+  # Uses
   use Babysitting.Web, :controller
 
   # Aliases

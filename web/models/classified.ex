@@ -33,7 +33,7 @@ defmodule Babysitting.Classified do
 
   @valid_email ~r/\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
   @valid_birthday ~r/[0-9]{2}\/[0-9]{2}\/[0-9]{4}/
-  @min_length_description 280 
+  @min_length_description 280
   @min_length_password 6
 
   def changeset(model, params \\ %{}) do
@@ -45,7 +45,7 @@ defmodule Babysitting.Classified do
   Changeset when you create a new classified
   """
   def create_changeset(model, params \\ %{}) do
-    changeset = 
+    changeset =
       model
       |> cast(params, ~w(tenant_id firstname lastname email password password_confirmation phone birthday description), [])
       |> validate_length(:description, min: @min_length_description)
@@ -85,7 +85,7 @@ defmodule Babysitting.Classified do
   Changeset when an user updates the classified
   """
   def update_changeset(model, params \\ %{}) do
-    changeset = 
+    changeset =
       model
       |> cast(params, ~w(firstname lastname email phone birthday description), ~w())
       |> validate_length(:description, min: @min_length_description)
@@ -94,9 +94,9 @@ defmodule Babysitting.Classified do
       |> validate_unique_email(model.id)
       |> mark_as_invalid
       |> make_search
-    
+
     if changeset.valid? do
-      changeset 
+      changeset
       |> cast_attachments(params, ~w(), ~w(avatar))
     else
       changeset
@@ -155,7 +155,7 @@ defmodule Babysitting.Classified do
         changeset
 
       {_type, email} ->
-        
+
         query = Babysitting.Classified |> where(:email, email)
 
         unless is_nil(id) do
@@ -166,24 +166,40 @@ defmodule Babysitting.Classified do
 
         if length(classifieds) > 0 do
           add_error(changeset, :email, gettext("already taken"))
-        else 
+        else
           changeset
         end
-      
+
       _ ->
         changeset
     end
   end
 
   def validate_old_password(changeset) do
-    validate_change changeset, :password_old, fn _, password_old ->
 
+    validate_change changeset, :password_old, fn _, password_old ->
       if Comeonin.Bcrypt.checkpw(password_old, changeset.data.password) do
         []
       else
         [password_old: "invalid password"]
       end
     end
+
+  end
+
+  def delete_pictures(classified) do
+    pictures = Babysitting.Avatar.urls({classified.avatar, classified})
+
+    pictures
+    |> Enum.map(fn(picture) ->
+      picture
+      |> elem(1)
+      |> String.split("?v=") # Remove fingerprint
+      |> Enum.at(0)
+      |> File.rm
+    end)
+
+    classified
   end
 
   @doc """
@@ -191,7 +207,7 @@ defmodule Babysitting.Classified do
   """
   def mark_as_invalid(changeset) do
     changeset
-    |> put_change(:valid, nil)  
+    |> put_change(:valid, nil)
   end
 
   @doc """
@@ -267,7 +283,7 @@ defmodule Babysitting.Classified do
   end
 
   @doc """
-  Global where not filter 
+  Global where not filter
   """
   def where_not(query, field, condition) do
     from classified in query,
@@ -275,10 +291,9 @@ defmodule Babysitting.Classified do
   end
 
   @doc """
-  Check if the query executed returned no result or not
+  Check if the query executed returned a result
   """
   def exists?([]), do: false
   def exists?(_), do: true
-
 
 end

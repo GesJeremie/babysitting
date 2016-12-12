@@ -1,5 +1,8 @@
 defmodule Babysitting.App.SitemapController do
+  # Uses
   use Babysitting.Web, :controller
+
+  # Aliases
   alias Babysitting.{Classified, Repo}
   alias Babysitting.Helpers.App
 
@@ -20,30 +23,35 @@ defmodule Babysitting.App.SitemapController do
     |> render("index.html", [urls: urls])
   end
 
+  ###
+  # Fetch every urls to render in the sitemap
+  ###
   defp sitemap_urls(conn) do
     classified_urls(conn) ++ page_urls(conn)
   end
 
+  ###
+  # Fetch every urls of the classifieds
+  ###
   defp classified_urls(conn) do
     classifieds = fetch_classifieds(conn)
 
     for classified <- classifieds do
       segment = Babysitting.Router.Helpers.app_classified_path(conn, :show, classified)
-      url_tenant(conn, segment)
+      App.current_tenant_url(conn, segment)
     end
   end
 
+  ###
+  # Fetch every static pages of the scope "app"
+  ###
   defp page_urls(conn) do
     pages = [:home]
 
     for page <- pages do
       segment = Babysitting.Router.Helpers.app_page_path(conn, page)
-      url_tenant(conn, segment)
+      App.current_tenant_url(conn, segment)
     end
-  end
-
-  defp url_tenant(conn, segment) do
-    "#{@http_protocol}#{App.current_tenant(conn).domain}#{segment}"
   end
 
   defp fetch_classifieds(conn) do

@@ -1,9 +1,9 @@
 defmodule Babysitting.DashboardAdmin.AuthController do
 
-  # Use
+  # Uses
   use Babysitting.Web, :controller
 
-  # Module attributes
+  # Attributes
   @password_login Application.get_env(:babysitting, :admin_password)
 
   @doc """
@@ -26,6 +26,17 @@ defmodule Babysitting.DashboardAdmin.AuthController do
     end
   end
 
+  @doc """
+  Logout the user
+  """
+  def logout(conn, _params) do
+    conn
+      |> fetch_session
+      |> delete_session(:is_admin)
+      |> put_flash(:info, "You just signed out!")
+      |> redirect(to: "/")
+  end
+
   ###
   # Return the number of times the admin tried to login
   ###
@@ -45,24 +56,13 @@ defmodule Babysitting.DashboardAdmin.AuthController do
   end
 
   ##
-  # Doesn't login the user ann keep in memory the attempt
+  # Don't login the user and keep in memory the attempt
   ##
   defp do_login(conn, _) do
     conn
       |> put_session(:count_do_login, count_do_login(conn) + 1)
       |> put_flash(:error, "Impossible to connect with this password")
       |> redirect(to: admin_auth_path(conn, :index))
-  end
-
-  @doc """
-  Logout the user
-  """
-  def logout(conn, _params) do
-    conn
-      |> fetch_session
-      |> delete_session(:is_admin)
-      |> put_flash(:info, "You just signed out!")
-      |> redirect(to: "/")
   end
 
 end
