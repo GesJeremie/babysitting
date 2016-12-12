@@ -6796,19 +6796,19 @@ input:-webkit-autofill:focus {
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .auth__input {
-  border: 0;
-  outline: 0;
+  position: relative;
   width: 100%;
   background-color: white;
-  position: relative;
+  border: 0;
+  outline: 0;
   overflow: hidden; }
   /* line 20, /Users/jeremie/code/babysitting/front/styles/dashboard_user/components/_auth.sass */
   .auth__input i {
     position: absolute;
     right: -10px;
     bottom: -10px;
-    font-size: 70px;
-    color: #e8ecf4; }
+    color: #e8ecf4;
+    font-size: 70px; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
   .auth__input.\--radius-top {
     border-top-right-radius: 5px;
@@ -6823,20 +6823,20 @@ input:-webkit-autofill:focus {
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .auth__field {
-  font-size: 14px;
-  width: 84%;
-  border: 0;
   padding-top: 1.7em;
   padding-bottom: 1.7em;
   padding-left: 1em;
+  width: 84%;
+  font-size: 14px;
   font-weight: bold;
+  border: 0;
   outline: 0; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .auth__logo {
-  text-align: center;
   padding-top: 3em;
-  padding-bottom: 1.5em; }
+  padding-bottom: 1.5em;
+  text-align: center; }
 
 /* line 5, /Users/jeremie/code/babysitting/front/styles/dashboard_user/components/_form.sass */
 .form__container label {

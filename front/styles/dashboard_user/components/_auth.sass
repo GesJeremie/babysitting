@@ -10,19 +10,19 @@
     background-color: darken($color-grey, 7%)
 
   +part(input)
-    border: 0
-    outline: 0
+    position: relative
     width: 100%
     background-color: white
-    position: relative
+    border: 0
+    outline: 0
     overflow: hidden
 
     i
       position: absolute
       right: -10px
       bottom: -10px
-      font-size: 70px
       color: darken($color-grey, 5%)
+      font-size: 70px
 
 
     +option(radius-top)
@@ -40,18 +40,19 @@
 
 
   +part(field)
-    font-size: 14px
-    width: 84%
-    border: 0
     padding-top: 1.7em
     padding-bottom: 1.7em
     padding-left: 1em
+    width: 84%
+    font-size: 14px
     font-weight: bold
+    border: 0
     outline: 0
 
   +part(logo)
-    text-align: center
     padding-top: 3em
     padding-bottom: 1.5em
+    text-align: center
+
 
 
