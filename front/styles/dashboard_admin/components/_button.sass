@@ -1,78 +1,75 @@
 +component(button)
-    background-color: $color-grey
-    color: $color-dark
-    text-transform: capitalize
-    padding: 0.5em
-    padding-left: 1em
-    padding-right: 1em
-    display: inline-block
-    border-radius: 3px
-    font-weight: normal
-    letter-spacing: 0.4px
-    font-size: 0.8em
-    border: 0
-    outline: 0
-    line-height: normal
-    white-space: nowrap
+  display: inline-block
+  padding: 0.5em 1em
+  color: $color-dark
+  font-size: 0.8em
+  font-weight: normal
+  line-height: normal
+  letter-spacing: 0.4px
+  text-transform: capitalize
+  white-space: nowrap
+  background-color: $color-grey
+  border: 0
+  border-radius: 3px
+  outline: 0
+  vertical-align: middle
+  cursor: pointer
+
+  i
     vertical-align: middle
-    cursor: pointer
-    i
-        vertical-align: middle
-    
-    +option(primary)
-        background-color: darken($color-blue, 5%)
-        border: 1px solid darken($color-blue, 15%)
-        color: white
 
-    +option(success)
-        background-color: darken($color-success, 5%)
-        border: 1px solid darken($color-success, 15%)
-        color: white
+  +option(primary)
+    color: white
+    background-color: darken($color-blue, 5%)
+    border: 1px solid darken($color-blue, 15%)
 
-    +option(primary-transparent)
-        background-color: transparent
-        border: 1px solid darken($color-blue, 15%)
-        color: darken($color-blue, 15%)
-    
+  +option(success)
+    color: white
+    background-color: darken($color-success, 5%)
+    border: 1px solid darken($color-success, 15%)
 
-    +option(danger)
-        background-color: $color-danger
-        border: 1px solid darken($color-danger, 15%)
-        color: white
-    
-    +option(warning)
-        background-color: $color-warning
-        border: 1px solid darken($color-warning, 15%)
-        color: white
+  +option(primary-transparent)
+    color: darken($color-blue, 15%)
+    background-color: transparent
+    border: 1px solid darken($color-blue, 15%)
 
-    +option(warning-transparent)
-        background-color: transparent
-        border: 1px solid darken($color-warning, 15%)
-        color: darken($color-warning, 15%)
-    
-    
-    +option(auth)
-        background-color: $color-warning
-        color: $color-dark
-    
-    +option(muted)
-        cursor: not-allowed
-        opacity: 0.5
-    
-    +option(large)
-        padding: 0.8em 1em
-    
-    +option(small)
-        padding: 0.5em 0.7em
-        font-size: 0.73em
-    
-    +option(expand)
-        width: 100%
-    
-    +option(inline-form)
-        padding: 0.5em
-        height: 2.5em
-    
+  +option(danger)
+    color: white
+    background-color: $color-danger
+    border: 1px solid darken($color-danger, 15%)
+
+  +option(warning)
+    color: white
+    background-color: $color-warning
+    border: 1px solid darken($color-warning, 15%)
+
+  +option(warning-transparent)
+    color: darken($color-warning, 15%)
+    background-color: transparent
+    border: 1px solid darken($color-warning, 15%)
+
+  +option(auth)
+    color: $color-dark
+    background-color: $color-warning
+
+  +option(muted)
+    cursor: not-allowed
+    opacity: 0.5
+
+  +option(large)
+    padding: 0.8em 1em
+
+  +option(small)
+    padding: 0.5em 0.7em
+    font-size: 0.73em
+
+  +option(expand)
+    width: 100%
+
+  +option(inline-form)
+    padding: 0.5em
+    height: 2.5em
+
 
 
 

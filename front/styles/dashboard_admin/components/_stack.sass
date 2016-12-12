@@ -1,34 +1,33 @@
 +component(stack)
 
   +part(container)
-    clear: both
     padding-top: 0.3em
+    clear: both
 
     &:after
-      content: ''
       display: block
       clear: both
+      content: ''
 
   +part(item)
     display: inline-block
     padding: 10px 20px
-    -webkit-border-radius: 3px
-    border-radius: 3px
     color: #a0a0a0
-    text-decoration: none
     font-size: 14px
     font-weight: 300
     text-transform: uppercase
+    text-decoration: none
     border: 1px solid #d6d6d6
+    border-radius: 3px
     cursor: pointer
 
     +option(active)
-      border-bottom: 2px solid #fce04c
       color: #333
+      border-bottom: 2px solid #fce04c
 
       &:hover
-        border-bottom: 2px solid #fce04c
         color: #333
+        border-bottom: 2px solid #fce04c
 
     &:hover
       color: #333

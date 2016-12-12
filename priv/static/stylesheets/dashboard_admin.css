@@ -6754,23 +6754,23 @@ html {
 
 /* line 24, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/_base.sass */
 #content-wrapper {
-  width: 85%;
-  float: left;
+  margin-bottom: 3em;
   margin-left: 15%;
-  margin-bottom: 3em; }
+  width: 85%;
+  float: left; }
 
 /* line 31, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/_base.sass */
 body {
   margin: 0;
-  font-family: "ProximaNova";
-  font-size: 18px;
-  line-height: 24px;
   color: #686c70;
+  font-size: 18px;
   font-style: normal;
+  font-family: "ProximaNova";
   font-weight: 300;
+  line-height: 24px;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004); }
 
-/* line 43, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/_base.sass */
+/* line 42, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/_base.sass */
 a {
   text-decoration: none; }
 
@@ -6832,22 +6832,21 @@ a {
 
 /* line 5, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_form.sass */
 .form__container label {
+  display: block;
   margin-bottom: 2px;
-  font-weight: bold;
-  display: block; }
+  font-weight: bold; }
 
-/* line 11, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_form.sass */
+/* line 10, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_form.sass */
 .form__container input, .form__container textarea {
   display: block;
-  width: 100%;
   padding: 1em;
-  border: 0;
-  border: 2px solid #e8ecf4;
-  border-radius: 3px;
+  width: 100%;
   font-size: 0.8em;
   font-weight: bold;
+  border: 2px solid #e8ecf4;
+  border-radius: 3px;
   outline: 0; }
-  /* line 22, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_form.sass */
+  /* line 20, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_form.sass */
   .form__container input:active, .form__container input:focus, .form__container textarea:active, .form__container textarea:focus {
     border: 2px solid #e1e6f0; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
@@ -6856,15 +6855,15 @@ a {
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .form__under-label {
+  display: block;
   color: #F9FAFC;
-  font-size: 0.8em;
-  display: block; }
+  font-size: 0.8em; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .form__help {
-  font-size: 0.8em;
-  display: block; }
-  /* line 39, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_form.sass */
+  display: block;
+  font-size: 0.8em; }
+  /* line 35, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_form.sass */
   .form__help i {
     vertical-align: middle; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
@@ -6877,68 +6876,66 @@ a {
 
 /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .form__checkbox.\--inline {
-  vertical-align: middle;
-  font-size: 0.8em; }
-  /* line 57, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_form.sass */
+  font-size: 0.8em;
+  vertical-align: middle; }
+  /* line 50, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_form.sass */
   .form__checkbox.\--inline input {
     vertical-align: middle; }
 
 /* line 32, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .button {
-  background-color: #F9FAFC;
-  color: #4c4f52;
-  text-transform: capitalize;
-  padding: 0.5em;
-  padding-left: 1em;
-  padding-right: 1em;
   display: inline-block;
-  border-radius: 3px;
-  font-weight: normal;
-  letter-spacing: 0.4px;
+  padding: 0.5em 1em;
+  color: #4c4f52;
   font-size: 0.8em;
-  border: 0;
-  outline: 0;
+  font-weight: normal;
   line-height: normal;
+  letter-spacing: 0.4px;
+  text-transform: capitalize;
   white-space: nowrap;
+  background-color: #F9FAFC;
+  border: 0;
+  border-radius: 3px;
+  outline: 0;
   vertical-align: middle;
   cursor: pointer; }
-  /* line 19, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_button.sass */
+  /* line 18, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_button.sass */
   .button i {
     vertical-align: middle; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
   .button.\--primary {
+    color: white;
     background-color: #20aaff;
-    border: 1px solid #0092ec;
-    color: white; }
+    border: 1px solid #0092ec; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
   .button.\--success {
+    color: white;
     background-color: #27b481;
-    border: 1px solid #1e8a63;
-    color: white; }
+    border: 1px solid #1e8a63; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
   .button.\--primary-transparent {
+    color: #0092ec;
     background-color: transparent;
-    border: 1px solid #0092ec;
-    color: #0092ec; }
+    border: 1px solid #0092ec; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
   .button.\--danger {
+    color: white;
     background-color: #ed5153;
-    border: 1px solid #db1719;
-    color: white; }
+    border: 1px solid #db1719; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
   .button.\--warning {
+    color: white;
     background-color: #FFB836;
-    border: 1px solid #e99600;
-    color: white; }
+    border: 1px solid #e99600; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
   .button.\--warning-transparent {
+    color: #e99600;
     background-color: transparent;
-    border: 1px solid #e99600;
-    color: #e99600; }
+    border: 1px solid #e99600; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
   .button.\--auth {
-    background-color: #FFB836;
-    color: #4c4f52; }
+    color: #4c4f52;
+    background-color: #FFB836; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
   .button.\--muted {
     cursor: not-allowed;
@@ -6960,15 +6957,15 @@ a {
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .sidebar__container {
-  background: #f9fafc;
   width: 100%;
   height: 100%;
+  background: #f9fafc;
   border-right: 1px solid #ebeff5; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .sidebar__signout {
-  text-align: center;
-  padding-top: 1em; }
+  padding-top: 1em;
+  text-align: center; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .sidebar__links {
@@ -6985,20 +6982,20 @@ a {
       border-left: 4px solid #FFB836; }
   /* line 25, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_sidebar.sass */
   .sidebar__link i {
-    vertical-align: middle;
-    font-size: 1.4em;
+    padding-right: 0.3em;
     padding-left: 0.3em;
-    padding-right: 0.3em; }
+    font-size: 1.4em;
+    vertical-align: middle; }
   /* line 31, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_sidebar.sass */
   .sidebar__link a {
-    color: #4c4f52;
-    font-size: 0.85em;
-    vertical-align: middle;
-    width: 100%;
-    height: 100%;
     display: block;
     padding: 1em;
-    border-left: 4px solid transparent; }
+    width: 100%;
+    height: 100%;
+    color: #4c4f52;
+    font-size: 0.85em;
+    border-left: 4px solid transparent;
+    vertical-align: middle; }
     /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
     .sidebar__link a.\--active {
       background-color: #f2f4f9;
@@ -7006,43 +7003,42 @@ a {
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .sidebar__logout {
-  background-color: #ed5153;
-  text-align: left;
   position: absolute;
+  right: 0;
   bottom: 0;
   left: 0;
-  right: 0; }
+  text-align: left;
+  background-color: #ed5153; }
   /* line 53, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_sidebar.sass */
   .sidebar__logout a {
-    color: white;
     display: inline-block;
+    padding: 0.7em 0;
     width: 100%;
     height: 100%;
-    padding-top: 0.7em;
-    padding-bottom: 0.7em;
-    text-transform: uppercase;
-    font-size: 0.8em; }
-  /* line 64, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_sidebar.sass */
+    color: white;
+    font-size: 0.8em;
+    text-transform: uppercase; }
+  /* line 62, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_sidebar.sass */
   .sidebar__logout i {
-    vertical-align: middle;
+    padding-left: 1em;
     font-size: 1.4em;
-    padding-left: 1em; }
+    vertical-align: middle; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .header__container {
-  background-color: white;
-  min-height: 4.5em;
-  padding-left: 2em;
   padding-top: 1.8em;
   padding-bottom: 1.8em;
+  padding-left: 2em;
+  min-height: 4.5em;
+  background-color: white;
   border-bottom: 2px solid #f2f4f9; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .header__title {
-  font-weight: normal;
-  text-transform: uppercase;
+  color: #4c4f52;
   font-size: 1.4em;
-  color: #4c4f52; }
+  font-weight: normal;
+  text-transform: uppercase; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .header__description {
@@ -7051,8 +7047,8 @@ a {
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .header__actions {
-  text-align: right;
-  padding-right: 1.5em; }
+  padding-right: 1.5em;
+  text-align: right; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .tab__container {
@@ -7061,9 +7057,9 @@ a {
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .tab__item {
   position: relative;
+  padding: 0.3em;
   text-align: center;
   background-color: white;
-  padding: 0.3em;
   border: 1px solid #dee3ee;
   overflow: hidden;
   cursor: pointer; }
@@ -7073,58 +7069,57 @@ a {
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .tab__title {
-  font-weight: bold;
+  z-index: 2;
   color: #4c4f52;
-  z-index: 2; }
+  font-weight: bold; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .tab__description {
-  font-size: 0.7em;
   z-index: 2;
-  color: #4c4f52; }
+  color: #4c4f52;
+  font-size: 0.7em; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .tab__icon {
   position: absolute;
-  font-size: 4em;
   top: 10px;
   right: -20px;
+  z-index: 0;
   color: #F9FAFC;
-  opacity: 0.3;
-  z-index: 0; }
+  font-size: 4em;
+  opacity: 0.3; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .stack__container {
-  clear: both;
-  padding-top: 0.3em; }
+  padding-top: 0.3em;
+  clear: both; }
   /* line 7, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_stack.sass */
   .stack__container:after {
-    content: '';
     display: block;
-    clear: both; }
+    clear: both;
+    content: ''; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .stack__item {
   display: inline-block;
   padding: 10px 20px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
   color: #a0a0a0;
-  text-decoration: none;
   font-size: 14px;
   font-weight: 300;
   text-transform: uppercase;
+  text-decoration: none;
   border: 1px solid #d6d6d6;
+  border-radius: 3px;
   cursor: pointer; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
   .stack__item.\--active {
-    border-bottom: 2px solid #fce04c;
-    color: #333; }
-    /* line 29, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_stack.sass */
+    color: #333;
+    border-bottom: 2px solid #fce04c; }
+    /* line 28, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_stack.sass */
     .stack__item.\--active:hover {
-      border-bottom: 2px solid #fce04c;
-      color: #333; }
-  /* line 33, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_stack.sass */
+      color: #333;
+      border-bottom: 2px solid #fce04c; }
+  /* line 32, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_stack.sass */
   .stack__item:hover {
     color: #333;
     background: #f7f7f7; }
@@ -7141,12 +7136,12 @@ a {
     background-color: white; }
   /* line 40, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
   .listing__result.\--header {
-    border-top-left-radius: 3px;
-    border-top-right-radius: 3px; }
-    /* line 15, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_listing.sass */
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px; }
+    /* line 16, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_listing.sass */
     .listing__result.\--header:hover {
-      cursor: default;
-      background-color: white; }
+      background-color: white;
+      cursor: default; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .listing__content {
@@ -7163,26 +7158,26 @@ a {
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .listing__more {
-  padding-left: 1em;
-  padding-bottom: 1em; }
+  padding-bottom: 1em;
+  padding-left: 1em; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .panel__container {
-  background-color: #eff2f7;
-  padding: 1em;
   margin-top: 1em;
   margin-bottom: 1em;
+  padding: 1em;
+  background-color: #eff2f7;
   border-radius: 5px; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .panel__title {
-  font-weight: bold;
+  color: #4c4f52;
   font-size: 1.1em;
-  color: #4c4f52; }
+  font-weight: bold; }
   /* line 15, /Users/jeremie/code/babysitting/front/styles/dashboard_admin/components/_panel.sass */
   .panel__title i {
-    vertical-align: middle;
-    padding-right: 0.3em; }
+    padding-right: 0.3em;
+    vertical-align: middle; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .panel__description {

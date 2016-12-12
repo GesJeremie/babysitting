@@ -1,13 +1,13 @@
 +component(tab)
-  
+
   +part(container)
     margin-top: 1em
 
   +part(item)
     position: relative
+    padding: 0.3em
     text-align: center
     background-color: white
-    padding: 0.3em
     border: 1px solid darken($color-grey, 8%)
     overflow: hidden
     cursor: pointer
@@ -16,20 +16,20 @@
       border-top: 2px solid $color-warning
 
   +part(title)
-    font-weight: bold
-    color: $color-dark
     z-index: 2
+    color: $color-dark
+    font-weight: bold
 
   +part(description)
-    font-size: 0.7em
     z-index: 2
     color: $color-dark
+    font-size: 0.7em
 
   +part(icon)
     position: absolute
-    font-size: 4em
     top: 10px
     right: -20px
-    color: $color-grey
-    opacity: 0.3
     z-index: 0
+    color: $color-grey
+    font-size: 4em
+    opacity: 0.3
