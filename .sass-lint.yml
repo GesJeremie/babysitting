@@ -173,9 +173,3 @@ rules:
   space-before-brace:
     - 1
     - include: true
-  variable-for-property:
-    - 1
-    - properties:
-        - color
-        - font-family
-        - background-color

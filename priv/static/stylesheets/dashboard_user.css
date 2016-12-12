@@ -6786,15 +6786,13 @@ input:-webkit-autofill:focus {
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .auth__container {
-  background: #EECDA3;
-  background: -webkit-linear-gradient(to left, #EECDA3, #EF629F);
-  background: linear-gradient(to left, #EECDA3, #EF629F);
   position: absolute;
   top: 0;
+  right: 0;
   bottom: 0;
   left: 0;
-  right: 0;
-  padding-top: 2em; }
+  padding-top: 2em;
+  background-color: #e1e6f0; }
 
 /* line 76, /Users/jeremie/code/babysitting/front/node_modules/csstyle/csstyle.scss */
 .auth__input {
@@ -6804,7 +6802,7 @@ input:-webkit-autofill:focus {
   background-color: white;
   position: relative;
   overflow: hidden; }
-  /* line 22, /Users/jeremie/code/babysitting/front/styles/dashboard_user/components/_auth.sass */
+  /* line 20, /Users/jeremie/code/babysitting/front/styles/dashboard_user/components/_auth.sass */
   .auth__input i {
     position: absolute;
     right: -10px;
