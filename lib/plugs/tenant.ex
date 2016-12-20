@@ -16,7 +16,7 @@ defmodule Babysitting.Plug.Tenant do
     tenants = Repo.all(Tenant)
 
     # Find current tenant
-    current_tenant = 
+    current_tenant =
       tenants
       |> Enum.reject(fn(tenant) -> conn.host != tenant.domain end)
 
