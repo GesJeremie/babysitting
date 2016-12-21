@@ -7,7 +7,7 @@ class Initializers_Confirm
     @events()
 
   events: ->
-    $('[data-confirm]').on 'click', @displayAlert
+    $('[data-confirm]').on 'click', this.displayAlert
 
   displayAlert: (e) ->
     e.preventDefault()
