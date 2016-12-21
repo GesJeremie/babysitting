@@ -1,9 +1,9 @@
 <div class="auth__container">
-  <div class="container">  
+  <div class="container">
     <div class="grid-6 push-3">
       <div class="auth__logo"><img src="<%= logo(@conn) %>" /></div>
-      <%= form_for @conn, user_auth_path(@conn, :login), [as: :login], fn f -> %>
-        
+      <%= form_for @conn, user_auth_path(@conn, :login), [as: :login, class: "js-no-smoothstate"], fn f -> %>
+
         <div class="auth__input --radius-top --radius-bottom">
           <%= text_input f, :email, class: "auth__field", placeholder: gettext("Email") %>
           <i class="icon-email"></i>
@@ -16,7 +16,7 @@
           <i class="icon-lock"></i>
         </div>
         <div class="+spacer"></div>
-        <button type="submit" class="button --auth --large --expand js-no-smoothstate"><i class="icon-login"></i> <%= gettext("Sign in") %></button>
+        <button type="submit" class="button --auth --large --expand"><i class="icon-login"></i> <%= gettext("Sign in") %></button>
       <% end %>
     </div>
   </div>
