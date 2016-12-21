@@ -149,70 +149,23 @@ var __makeRelativeRequire = function(require, mappings, pref) {
   }
 };
 require.register("boot.coffee", function(exports, require, module) {
-var Boot;
+var Autosize, Confirm, FlashMessages, Noty;
 
-Boot = (function() {
-  function Boot() {
-    this.setupNoty();
-    this.setupFlash();
-    this.setupAutosize();
-    this.setupConfirm();
-  }
+Noty = require('initializers/noty');
 
-  Boot.prototype.setupNoty = function() {
-    $.noty.defaults.timeout = 2500;
-    $.noty.defaults.animation.open = 'animated flipInX';
-    $.noty.defaults.animation.close = 'animated flipOutX';
-    $.noty.defaults.maxVisible = 1;
-    $.noty.defaults.killer = true;
-    return $.noty.defaults.dismissQueue = false;
-  };
+FlashMessages = require('initializers/flash-messages');
 
-  Boot.prototype.setupFlash = function() {
-    var $flash, text, type;
-    $flash = $('[data-flash]').filter(function(i, v) {
-      return $(v).text() !== '';
-    });
-    if ($flash.length) {
-      type = $flash.first().data('flash');
-      text = $flash.first().html();
-      return noty({
-        type: type,
-        text: text
-      });
-    }
-  };
+Autosize = require('initializers/autosize');
 
-  Boot.prototype.setupAutosize = function() {
-    if ($('.js-autosize').length) {
-      return autosize($('.js-autosize'));
-    }
-  };
+Confirm = require('initializers/confirm');
 
-  Boot.prototype.setupConfirm = function() {
-    return $('[data-confirm]').each(function() {
-      var text, url;
-      text = $(this).data('confirm');
-      url = $(this).attr('href');
-      return $(this).on('click', function(e) {
-        e.preventDefault();
-        return swal({
-          title: $('#app-config').data('confirm-title') || '',
-          text: text,
-          type: 'warning',
-          showCancelButton: true
-        }, function() {
-          return window.location.href = url;
-        });
-      });
-    });
-  };
+(new Noty).init();
 
-  return Boot;
+(new FlashMessages).init();
 
-})();
+(new Autosize).init();
 
-module.exports = Boot;
+(new Confirm).init();
 });
 
 ;require.register("config.coffee", function(exports, require, module) {
@@ -226,14 +179,13 @@ module.exports = {
   },
   env: (function(_this) {
     return function() {
-      var $selector;
-      $selector = $('#app-config[data-environment]');
-      if ($selector.length) {
-        return $selector.data('environment');
-      } else {
-        console.log("[WARNING] Environment not specified, fallback to prod");
-        return 'prod';
+      var $app;
+      $app = $('#app-config[data-environment]');
+      if ($app.length) {
+        return $app.data('environment');
       }
+      console.log("[WARNING] Environment not specified, fallback to prod");
+      return 'prod';
     };
   })(this)
 };
@@ -476,6 +428,115 @@ $(function() {
 });
 });
 
+;require.register("initializers/autosize.coffee", function(exports, require, module) {
+var Initializers_Autosize;
+
+Initializers_Autosize = (function() {
+  function Initializers_Autosize() {}
+
+  Initializers_Autosize.prototype.init = function() {
+    var $autosize;
+    $autosize = $('.js-autosize');
+    if (!$autosize.length) {
+      return;
+    }
+    return autosize($autosize);
+  };
+
+  return Initializers_Autosize;
+
+})();
+
+module.exports = Initializers_Autosize;
+});
+
+;require.register("initializers/confirm.coffee", function(exports, require, module) {
+var Initializers_Confirm;
+
+Initializers_Confirm = (function() {
+  function Initializers_Confirm() {}
+
+  Initializers_Confirm.prototype.init = function() {
+    return this.events();
+  };
+
+  Initializers_Confirm.prototype.events = function() {
+    return $('[data-confirm]').on('click', this.displayAlert);
+  };
+
+  Initializers_Confirm.prototype.displayAlert = function(e) {
+    var text, url;
+    e.preventDefault();
+    text = $(this).data('confirm');
+    url = $(this).attr('href');
+    return swal({
+      title: $('#app-config').data('confirm-title') || '',
+      text: text,
+      type: 'warning',
+      showCancelButton: true
+    }, function() {
+      return window.location.href = url;
+    });
+  };
+
+  return Initializers_Confirm;
+
+})();
+
+module.exports = Initializers_Confirm;
+});
+
+;require.register("initializers/flash-messages.coffee", function(exports, require, module) {
+var Initializers_FlashMessages;
+
+Initializers_FlashMessages = (function() {
+  function Initializers_FlashMessages() {}
+
+  Initializers_FlashMessages.prototype.init = function() {
+    var $flash, text, type;
+    $flash = $('[data-flash]').filter(function(index, value) {
+      return $(value).text() !== '';
+    });
+    if (!$flash.length) {
+      return;
+    }
+    type = $flash.first().data('flash');
+    text = $flash.first().html();
+    return noty({
+      type: type,
+      text: text
+    });
+  };
+
+  return Initializers_FlashMessages;
+
+})();
+
+module.exports = Initializers_FlashMessages;
+});
+
+;require.register("initializers/noty.coffee", function(exports, require, module) {
+var Initializers_Noty;
+
+Initializers_Noty = (function() {
+  function Initializers_Noty() {}
+
+  Initializers_Noty.prototype.init = function() {
+    $.noty.defaults.timeout = 2500;
+    $.noty.defaults.animation.open = 'animated flipInX';
+    $.noty.defaults.animation.close = 'animated flipOutX';
+    $.noty.defaults.maxVisible = 1;
+    $.noty.defaults.killer = true;
+    return $.noty.defaults.dismissQueue = false;
+  };
+
+  return Initializers_Noty;
+
+})();
+
+module.exports = Initializers_Noty;
+});
+
 ;require.register("validators.coffee", function(exports, require, module) {
 Validator.errors;
 
@@ -489,11 +550,10 @@ Bootstrap = (function() {
   function Bootstrap() {}
 
   Bootstrap.prototype.run = function() {
-    var Boot, controller, pathController;
+    var controller, pathController;
     require('helpers');
     require('validators');
-    Boot = require('boot');
-    new Boot();
+    require('boot');
     controller = $('#app').data('controller');
     if (controller == null) {
       return;
