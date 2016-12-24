@@ -1,5 +1,5 @@
 <meta property="og:title" content="<%= fullname(@classified) %>, baby sitter"/>
-<meta property="og:description" content="<%= gettext "See the classified on" %> <%= site_name(@conn) %> !" />
+<meta property="og:description" content="<%= og_short_description(@classified) %> <%= gettext "See the classified on" %> <%= site_name(@conn) %> !" />
 <meta property="og:url" content="<%= url_classified(@conn, @classified) %>" />
 <meta property="og:site_name" content="<%= site_name(@conn) %>"/>
 <meta property="og:type" content="article" />

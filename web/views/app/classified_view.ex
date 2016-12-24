@@ -1,6 +1,6 @@
 defmodule Babysitting.App.ClassifiedView do
   use Babysitting.Web, :view
-  
+
   alias Babysitting.Helpers.{Date, Format, App}
 
   @valid_phone_length 10
@@ -11,7 +11,7 @@ defmodule Babysitting.App.ClassifiedView do
   def fullname(%{:firstname => firstname, :lastname => lastname}) do
     Format.fullname(firstname, lastname)
   end
-  
+
   @doc """
   Return age for the birthday given
   """
@@ -38,11 +38,11 @@ defmodule Babysitting.App.ClassifiedView do
   Return the phone obfuscated
   """
   def phone_hidden(%{:phone => phone}) do
-    phone = 
+    phone =
       %{phone: phone}
       |> phone
       |> String.slice(0..-3)
-    
+
     "#{phone}**"
   end
 
@@ -61,6 +61,9 @@ defmodule Babysitting.App.ClassifiedView do
     App.current_tenant_url(conn, path)
   end
 
+  @doc """
+  Generate full url for the avatar of the classified given
+  """
   def url_avatar(conn, classified) do
     avatar = Babysitting.Avatar.url({classified.avatar, classified}, :thumb)
 
@@ -68,6 +71,14 @@ defmodule Babysitting.App.ClassifiedView do
       path = "/" <> Babysitting.Avatar.url({classified.avatar, classified}, :thumb)
       App.current_tenant_url(conn, path)
     end
+  end
+
+  @doc """
+  Return a short description for og:description property.
+  """
+  def og_short_description(%{:description => description}) do
+    description
+      |> Format.char_limit(249)
   end
 
 end
