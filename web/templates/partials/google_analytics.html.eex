@@ -6,5 +6,4 @@
 
   ga('create', '<%= google_analytics_id(@conn) %>', 'auto');
   ga('send', 'pageview');
-
 </script>

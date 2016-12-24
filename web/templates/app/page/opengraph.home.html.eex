@@ -1,0 +1,6 @@
+<meta property="og:title" content="<%= site_name(@conn) %>"/>
+<meta property="og:description" content="<%= gettext "Do you need a babysitter in %{town} ? Trust us, it's simple, free and effective!", town: town(@conn) %>" />
+<meta property="og:url" content="<%= url_home_page(@conn) %>" />
+<meta property="og:site_name" content="<%= site_name(@conn) %>"/>
+<meta property="og:type" content="website" />
+<meta property="og:image" content="<%= url_thumbnail(@conn) %>"/>

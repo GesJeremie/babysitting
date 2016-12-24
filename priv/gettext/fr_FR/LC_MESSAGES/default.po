@@ -131,7 +131,7 @@ msgstr "Retour liste"
 msgid "Basic informations for the parents to reach you."
 msgstr "Informations de base permettant aux parents de te contacter."
 
-#: web/controllers/app/classified_controller.ex:70
+#: web/controllers/app/classified_controller.ex:68
 msgid "Classifed created successfully."
 msgstr "Annonce ajoutée"
 
@@ -197,7 +197,7 @@ msgstr "Refusera l'annonce"
 msgid "It will validate the classified"
 msgstr "Validera l'annonce"
 
-#: web/controllers/app/classified_controller.ex:40
+#: web/controllers/app/classified_controller.ex:39
 msgid "Message sent!"
 msgstr "Message envoyé!"
 
@@ -243,8 +243,8 @@ msgstr "Ancien mot de passe"
 msgid "Online"
 msgstr "En-Ligne"
 
-#: web/controllers/app/classified_controller.ex:46
-#: web/controllers/app/classified_controller.ex:75
+#: web/controllers/app/classified_controller.ex:45
+#: web/controllers/app/classified_controller.ex:73
 msgid "Oops, some errors are present in the form."
 msgstr "Oups, des erreurs sont présentes dans le formulaire."
 
@@ -340,7 +340,7 @@ msgstr "Ton annonce est en ligne"
 msgid "Your current classified on the website"
 msgstr "Ton annonce sur le site"
 
-#: web/views/app/classified_view.ex:19 web/views/app/page_view.ex:18
+#: web/views/app/classified_view.ex:19 web/views/app/page_view.ex:14
 msgid "years old"
 msgstr "ans"
 
@@ -391,3 +391,7 @@ msgstr "Voir son annonce sur"
 #: web/models/classified.ex:168
 msgid "already taken"
 msgstr "est déjà pris"
+
+#: web/templates/app/page/opengraph.home.html.eex:2
+msgid "Do you need a babysitter in %{town} ? Trust us, it's simple, free and effective!"
+msgstr "Besoin d'une baby sitter sur %{town} ? Faites nous confiance, c'est simple, gratuit et efficace!"

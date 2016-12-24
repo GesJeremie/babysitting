@@ -3,12 +3,8 @@ defmodule Babysitting.App.PageView do
   use Phoenix.HTML
 
   import Scrivener.HTML
-  
-  alias Babysitting.Helpers.{Date, Format, App}
 
-  def town(town) do
-    town |> String.capitalize
-  end
+  alias Babysitting.Helpers.{Date, Format, App}
 
   def cover(conn) do
     "/images/tenants/#{App.current_tenant_folder(conn)}/cover.jpg"
@@ -28,5 +24,20 @@ defmodule Babysitting.App.PageView do
     Format.fullname(firstname, lastname)
   end
 
+  def site_name(conn) do
+    App.current_tenant_site_name(conn)
+  end
+
+  def town(conn) do
+    App.current_tenant(conn).name
+  end
+
+  def url_home_page(conn) do
+    App.current_tenant_url(conn, "/")
+  end
+
+  def url_thumbnail(conn) do
+    "#{App.current_tenant_url(conn, "/images/tenants/")}#{App.current_tenant_folder(conn)}/thumbnail.jpg"
+  end
 
 end
