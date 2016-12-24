@@ -38,5 +38,7 @@
     </div>
 
     <%= render Babysitting.PartialsView, "hotjar.html", assigns %>
+    <%= render Babysitting.PartialsView, "google_analytics.html", assigns %>
+
   </body>
 </html>

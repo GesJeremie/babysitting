@@ -8,6 +8,8 @@ defmodule Babysitting.Tenant do
     field :facebook, :string
     field :locale, :string
     field :hotjar, :string
+    field :google_analytics, :string
+
 
     timestamps
 
