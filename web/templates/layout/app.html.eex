@@ -36,5 +36,7 @@
         <%= render Babysitting.App.PartialsView, "footer.html", assigns %>
       </div>
     </div>
+
+    <%= render Babysitting.PartialsView, "hotjar.html", assigns %>
   </body>
 </html>
