@@ -9,6 +9,7 @@
 
     <%= render_existing(@view_module, "opengraph." <> @view_template, assigns) %>
 
+    <link rel="icon" type="image/png" href="<%= static_path(@conn, "/images/favicon.png") %>" />
     <link href="https://file.myfontastic.com/jiBmkbvREKqK69TasUa4W/icons.css" rel="stylesheet">
 
     <script src="<%= static_path(@conn, "/javascripts/vendor.js") %>"></script>
