@@ -85,6 +85,7 @@ defmodule Babysitting.App.ClassifiedController do
       |> Classified.of_current_tenant(conn)
       |> Classified.where(:id, Map.get(params, "id"))
       |> Repo.one!
+      |> Repo.preload(:tenant)
 
     changeset =
       if Map.has_key?(params, "changeset") do

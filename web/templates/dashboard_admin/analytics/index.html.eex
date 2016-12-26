@@ -1,5 +1,6 @@
 <div id="app"
     data-controller="dashboard.analytics.index"
+    data-tenants='<%= data_tenants(@conn) %>'
 ></div>
 
 <div id="content-wrapper">
@@ -10,34 +11,9 @@
 
   <div class="container-fluid">
     <div class="+spacer"></div>
-    <div class="grid-4">
-      <div id="total-classified"></div>
+
+    <div id="graphs">
     </div>
-
-    <div class="grid-4">
-      <div id="total-classified-7-days"></div>
-    </div>
-
-    <div class="grid-4">
-      <div id="total-classified-today"></div>
-    </div>
-
-    <div class="clear"></div>
-
-    <div class="+spacer"></div>
-
-    <div class="grid-4">
-      <div id="total-show-phone"></div>
-    </div>
-
-    <div class="clear"></div>
-
-    <div class="+spacer"></div>
-
-    <div class="grid-4">
-      <div id="total-show"></div>
-    </div>
-
 
   </div>
 </div>

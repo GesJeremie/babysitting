@@ -1,6 +1,7 @@
 <div id="app"
     data-controller="app.classified.show"
     data-classified="<%= @classified.id %>"
+    data-tenant="<%= @classified.tenant.id %>"
 ></div>
 
 <div class="container">
@@ -12,13 +13,13 @@
   <div class="divider"></div>
 
   <div class="grid-10@md push-1@md grid-12">
-    <div class="post-show__avatar"> 
+    <div class="post-show__avatar">
       <img src="/<%= Babysitting.Avatar.url({@classified.avatar, @classified}, :thumb) %>" />
     </div>
 
     <div class="post-show__name"><%= fullname(@classified) %></div>
     <div class="post-show__age"><%= age(@classified) %></div>
-    
+
     <div class="grid-10@ push-1@md grid-12">
       <div class="divider"></div>
 
@@ -40,7 +41,7 @@
           <div class="grid-4">
             <h3 class="empty__title"><%= gettext "Phone" %></h3>
             <p id="phone" data-phone="<%= phone(@classified) %>" class="empty__description post-show__phone"><%= phone_hidden(@classified) %></p>
-            <a id="show-phone" class="button --primary --large"><%= gettext("Show Phone") %></a> 
+            <a id="show-phone" class="button --primary --large"><%= gettext("Show Phone") %></a>
             <div class="+spacer-large"></div>
           </div>
           <div class="grid-8">
@@ -68,7 +69,7 @@
                 <div class="+spacer"></div>
 
                 <button type="submit" class="button --primary --large"><%= gettext "Send message" %></button>
-              
+
               <% end %>
             </div>
           </div>
