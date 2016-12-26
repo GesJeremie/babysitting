@@ -18,7 +18,8 @@
     "noty": "^2.3.8",
     "sweetalert": "^1.1.3",
     "smoothstate": "^0.7.2",
-    "nprogress": "^0.2.0"
+    "nprogress": "^0.2.0",
+    "keen-js": "^3.4.1"
   },
   "overrides": {
     "jq-dropdown": {
