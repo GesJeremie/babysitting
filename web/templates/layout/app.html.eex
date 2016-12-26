@@ -38,8 +38,10 @@
       </div>
     </div>
 
-    <%= render Babysitting.PartialsView, "hotjar.html", assigns %>
-    <%= render Babysitting.PartialsView, "google_analytics.html", assigns %>
+    <%= if Mix.env === :prod do %>
+      <%= render Babysitting.PartialsView, "hotjar.html", assigns %>
+      <%= render Babysitting.PartialsView, "google_analytics.html", assigns %>
+    <% end %>
 
   </body>
 </html>
