@@ -227,7 +227,7 @@ msgstr ""
 msgid "New classified waiting for validation from %{name} !"
 msgstr ""
 
-#: web/helpers/format.ex:33 web/views/dashboard_admin/classified_view.ex:15
+#: web/helpers/format.ex:51 web/views/dashboard_admin/classified_view.ex:15
 msgid "No"
 msgstr ""
 
@@ -320,7 +320,7 @@ msgstr ""
 msgid "Want to see your classified in this list ?"
 msgstr ""
 
-#: web/helpers/format.ex:32 web/views/dashboard_admin/classified_view.ex:14
+#: web/helpers/format.ex:50 web/views/dashboard_admin/classified_view.ex:14
 msgid "Yes"
 msgstr ""
 
@@ -388,10 +388,14 @@ msgstr ""
 msgid "See the classified on"
 msgstr ""
 
-#: web/models/classified.ex:168
+#: web/models/classified.ex:169
 msgid "already taken"
 msgstr ""
 
 #: web/templates/app/page/opengraph.home.html.eex:2
 msgid "Do you need a babysitter in %{town} ? Trust us, it's simple, free and effective!"
+msgstr ""
+
+#: web/controllers/dashboard_admin/classified_controller.ex:162
+msgid "A new baby sitter is available"
 msgstr ""

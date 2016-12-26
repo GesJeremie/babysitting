@@ -227,7 +227,7 @@ msgstr "Confirmation nouveau mot de passe"
 msgid "New classified waiting for validation from %{name} !"
 msgstr "Nouvelle annonce en attente de validation de %{name} !"
 
-#: web/helpers/format.ex:33 web/views/dashboard_admin/classified_view.ex:15
+#: web/helpers/format.ex:51 web/views/dashboard_admin/classified_view.ex:15
 msgid "No"
 msgstr "Non"
 
@@ -320,7 +320,7 @@ msgstr "En attente de validation"
 msgid "Want to see your classified in this list ?"
 msgstr "Envie de voir ton annonce dans cette liste ?"
 
-#: web/helpers/format.ex:32 web/views/dashboard_admin/classified_view.ex:14
+#: web/helpers/format.ex:50 web/views/dashboard_admin/classified_view.ex:14
 msgid "Yes"
 msgstr "Oui"
 
@@ -388,10 +388,14 @@ msgstr ""
 msgid "See the classified on"
 msgstr "Voir son annonce sur"
 
-#: web/models/classified.ex:168
+#: web/models/classified.ex:169
 msgid "already taken"
 msgstr "est déjà pris"
 
 #: web/templates/app/page/opengraph.home.html.eex:2
 msgid "Do you need a babysitter in %{town} ? Trust us, it's simple, free and effective!"
 msgstr "Besoin d'une baby sitter sur %{town} ? Faites nous confiance, c'est simple, gratuit et efficace!"
+
+#: web/controllers/dashboard_admin/classified_controller.ex:162
+msgid "A new baby sitter is available"
+msgstr "Une nouvelle baby sitter est disponible"
