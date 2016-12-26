@@ -1,4 +1,4 @@
-defmodule Babysitting.Helpers.Format do
+defmodule Babysitting.Helpers.FormatHelper do
   import Babysitting.Gettext
 
   @doc """

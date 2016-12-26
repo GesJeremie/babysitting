@@ -1,12 +1,12 @@
 defmodule Babysitting.PartialsView do
   use Babysitting.Web, :view
-  alias Babysitting.Helpers.App
+  alias Babysitting.Helpers.{AppHelper}
 
   def hotjar_id(conn) do
-    App.current_tenant(conn).hotjar
+    AppHelper.current_tenant(conn).hotjar
   end
 
   def google_analytics_id(conn) do
-    App.current_tenant(conn).google_analytics
+    AppHelper.current_tenant(conn).google_analytics
   end
 end

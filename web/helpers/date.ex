@@ -1,4 +1,4 @@
-defmodule Babysitting.Helpers.Date do
+defmodule Babysitting.Helpers.DateHelper do
   @moduledoc """
   Conveniences for shared date helpers.
   """
@@ -8,7 +8,7 @@ defmodule Babysitting.Helpers.Date do
   Return age given the birthday date
   """
   def age(birthday) do
-    {_, birthday} = 
+    {_, birthday} =
       birthday
       |> Timex.parse("{0D}/{0M}/{YYYY}")
 

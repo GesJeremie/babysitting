@@ -3,15 +3,15 @@ defmodule Babysitting.App.PageController do
   use Babysitting.Web, :controller
 
   # Aliases
-  alias Babysitting.Helpers.App
-  alias Babysitting.Classified
+  alias Babysitting.Helpers.{AppHelper}
+  alias Babysitting.{Classified}
 
   @doc """
   Display the home page with the classifieds of
   the current tenant
   """
   def home(conn, params) do
-    tenant = App.current_tenant(conn)
+    tenant = AppHelper.current_tenant(conn)
     classifieds = fetch_classifieds(conn, params)
 
     render conn, "home.html", %{

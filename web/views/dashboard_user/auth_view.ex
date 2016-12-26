@@ -1,8 +1,8 @@
 defmodule Babysitting.DashboardUser.AuthView do
   use Babysitting.Web, :view
-  alias Babysitting.Helpers.App
+  alias Babysitting.Helpers.{AppHelper}
 
   def logo(conn) do
-    App.logo(conn)
+    AppHelper.logo(conn)
   end
 end

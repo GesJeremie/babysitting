@@ -7,7 +7,7 @@ defmodule Babysitting.ClassifiedTest do
   describe "hash_password/1" do
     setup do
       changeset = Ecto.Changeset.cast(%Classified{}, %{password: "zombie"}, [:password])
-      [changeset: changeset]  
+      [changeset: changeset]
     end
 
     test "is crypted", context do
@@ -22,13 +22,13 @@ defmodule Babysitting.ClassifiedTest do
 
     setup do
       changeset = Classified.changeset(%Classified{}, %{})
-      [changeset: changeset]  
+      [changeset: changeset]
     end
 
     test "generate unique token", context do
 
-      stream = 
-        Stream.repeatedly(fn -> 
+      stream =
+        Stream.repeatedly(fn ->
           Classified.make_token(context.changeset)
         end)
 
@@ -49,32 +49,32 @@ defmodule Babysitting.ClassifiedTest do
 
       # Create 2 classifieds for this tenant
       insert_list(2, :classified, %{tenant: tenant})
-      
+
       # Create other classifieds attached to other tenants
       insert_list(30, :classified)
 
       # Build the connection for our first tenant
-      conn = 
+      conn =
         build_conn()
         |> with_host(tenant.domain)
         |> with_tenant
 
       [conn: conn]
     end
-    
+
     test "return the right classifieds", context do
-      classifieds = 
-        Classified 
+      classifieds =
+        Classified
         |> Classified.of_current_tenant(context.conn)
         |> Repo.all
 
       assert classifieds |> length == 2
     end
-    
+
   end
 
   describe "simple queries" do
-    
+
     setup do
       insert_list(4, :classified, %{valid: true})
       insert_list(3, :classified, %{valid: false})
@@ -123,7 +123,7 @@ defmodule Babysitting.ClassifiedTest do
         %Classified{}
         |> Ecto.Changeset.cast(%{email: "test@example.com"}, [:email])
         |> Classified.validate_unique_email
-      
+
       assert changeset.valid? == true
     end
 
@@ -132,12 +132,12 @@ defmodule Babysitting.ClassifiedTest do
         %Classified{}
         |> Ecto.Changeset.cast(%{email: "zombie@zombie.com"}, [:email])
         |> Classified.validate_unique_email
-      
+
       assert changeset.valid? == false
     end
 
-    test "handle id", context do      
-      changeset = 
+    test "handle id", context do
+      changeset =
         %Classified{}
         |> Ecto.Changeset.cast(%{email: "zombie@zombie.com"}, [:email])
         |> Classified.validate_unique_email(context.classified.id)

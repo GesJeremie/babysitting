@@ -1,13 +1,13 @@
 defmodule Babysitting.DashboardAdmin.ClassifiedView do
   use Babysitting.Web, :view
-  alias Babysitting.Helpers.{Date, Format}
+  alias Babysitting.Helpers.{DateHelper, FormatHelper}
 
   def format_boolean(bool) do
-    Format.boolean(bool)
+    FormatHelper.boolean(bool)
   end
 
   def fullname(%{:firstname => firstname, :lastname => lastname}) do
-    Format.fullname(firstname, lastname)
+    FormatHelper.fullname(firstname, lastname)
   end
 
   def valid(%{:valid => valid}), do: do_valid(valid)
@@ -20,7 +20,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedView do
   defp do_status(false), do: gettext("Offline")
 
   def age(%{:birthday => birthday}) do
-    Date.age(birthday)
+    DateHelper.age(birthday)
   end
 
 

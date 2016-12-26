@@ -2,11 +2,11 @@ defmodule Babysitting.AppHelperTest do
   use Babysitting.ConnCase
   import Babysitting.ConnCase
   import Babysitting.Factory
-  alias Babysitting.Helpers.App
+  alias Babysitting.Helpers.AppHelper
 
   describe "current_tenant/1" do
 
-    setup do 
+    setup do
       conn =
         build_conn()
         |> with_host("www.babysittingparis.dev")
@@ -16,11 +16,11 @@ defmodule Babysitting.AppHelperTest do
     end
 
     test "return a map", context do
-      assert App.current_tenant(context.conn) |> is_map
+      assert AppHelper.current_tenant(context.conn) |> is_map
     end
 
     test "return the properties", context do
-      tenant = App.current_tenant(context.conn)
+      tenant = AppHelper.current_tenant(context.conn)
 
       for property <- [:domain, :id, :name, :slug, :facebook, :locale] do
         assert tenant |> Map.has_key?(property)
@@ -43,11 +43,11 @@ defmodule Babysitting.AppHelperTest do
     end
 
     test "return a map", context do
-      assert App.current_user(context.conn) |> is_map
+      assert AppHelper.current_user(context.conn) |> is_map
     end
 
     test "return id", context do
-      assert App.current_user(context.conn) |> Map.has_key?(:id)
+      assert AppHelper.current_user(context.conn) |> Map.has_key?(:id)
     end
 
   end
@@ -55,16 +55,16 @@ defmodule Babysitting.AppHelperTest do
   describe "tenants/1" do
 
     setup do
-      conn = 
+      conn =
         build_conn()
         |> with_host("www.babysittingparis.dev")
         |> with_tenant
-      
+
       [conn: conn]
     end
 
     test "return map", context do
-      assert App.tenants(context.conn) |> is_list
+      assert AppHelper.tenants(context.conn) |> is_list
     end
   end
 

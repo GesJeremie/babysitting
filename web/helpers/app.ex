@@ -1,4 +1,4 @@
-defmodule Babysitting.Helpers.App do
+defmodule Babysitting.Helpers.AppHelper do
   import Plug.Conn
   alias Babysitting.Repo
   alias Babysitting.Classified

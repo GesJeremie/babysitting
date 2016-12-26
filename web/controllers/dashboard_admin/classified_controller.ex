@@ -5,7 +5,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   # Aliases
   alias Babysitting.Classified
   alias Babysitting.{Email, Mailer}
-  alias Babysitting.Helpers.{App, Zapier}
+  alias Babysitting.Helpers.{AppHelper, ZapierHelper}
 
   # Plugs
   plug Babysitting.Plug.IsAdmin
@@ -15,6 +15,11 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   Display the classifieds
   """
   def index(conn, params) do
+
+    # Fetch params
+    # Params to a service class
+    # @classifieds = ClassifiedsForPage.new(params).classifieds
+
     state = Map.get(params, "state")
 
     classifieds = Classified
@@ -155,17 +160,21 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   defp do_post_on_facebook(conn, classified) do
     # Get url to post
     segment = Babysitting.Router.Helpers.app_classified_path(conn, :show, classified)
-    url = App.current_tenant_url(conn, segment)
+    url = AppHelper.current_tenant_url(conn, segment)
 
     # Get message to post
     emoji = Enum.random(["😇", "😃", "😁", "😍👍", "💪😉"])
     message = "#{gettext("A new baby sitter is available")} #{emoji}"
 
     # Get fan page id to post
-    facebook_page_id = App.current_tenant_facebook_page_id(conn)
+    facebook_page_id = AppHelper.current_tenant_facebook_page_id(conn)
 
     # Send Zapier request
-    Zapier.post_new_classified_on_facebook([url: url, message: message, facebook_page_id: facebook_page_id])
+    ZapierHelper.post_new_classified_on_facebook([
+      url: url,
+      message: message,
+      facebook_page_id: facebook_page_id
+    ])
 
     # Update posted on facebook for the current classified to true
     classified

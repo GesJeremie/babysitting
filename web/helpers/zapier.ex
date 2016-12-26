@@ -1,4 +1,4 @@
-defmodule Babysitting.Helpers.Zapier do
+defmodule Babysitting.Helpers.ZapierHelper do
 
   def send_hook(url, params) do
     HTTPoison.get url, [], params: params

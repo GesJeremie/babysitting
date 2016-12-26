@@ -1,7 +1,7 @@
 defmodule Babysitting.App.ClassifiedView do
   use Babysitting.Web, :view
 
-  alias Babysitting.Helpers.{Date, Format, App}
+  alias Babysitting.Helpers.{DateHelper, FormatHelper, AppHelper}
 
   @valid_phone_length 10
 
@@ -9,14 +9,14 @@ defmodule Babysitting.App.ClassifiedView do
   Return fullname for the classified given
   """
   def fullname(%{:firstname => firstname, :lastname => lastname}) do
-    Format.fullname(firstname, lastname)
+    FormatHelper.fullname(firstname, lastname)
   end
 
   @doc """
   Return age for the birthday given
   """
   def age(%{:birthday => birthday}) do
-    "#{Date.age(birthday)} #{gettext("years old")}"
+    "#{DateHelper.age(birthday)} #{gettext("years old")}"
   end
 
   @doc """
@@ -50,7 +50,7 @@ defmodule Babysitting.App.ClassifiedView do
   Return the site name of the current tenant
   """
   def site_name(conn) do
-    App.current_tenant_site_name(conn)
+    AppHelper.current_tenant_site_name(conn)
   end
 
   @doc """
@@ -58,7 +58,7 @@ defmodule Babysitting.App.ClassifiedView do
   """
   def url_classified(conn, classified) do
     path = Babysitting.Router.Helpers.app_classified_path(conn, :show, classified.id)
-    App.current_tenant_url(conn, path)
+    AppHelper.current_tenant_url(conn, path)
   end
 
   @doc """
@@ -69,7 +69,7 @@ defmodule Babysitting.App.ClassifiedView do
 
     unless is_nil(avatar) do
       path = "/" <> Babysitting.Avatar.url({classified.avatar, classified}, :thumb)
-      App.current_tenant_url(conn, path)
+      AppHelper.current_tenant_url(conn, path)
     end
   end
 
@@ -78,7 +78,7 @@ defmodule Babysitting.App.ClassifiedView do
   """
   def og_short_description(%{:description => description}) do
     description
-      |> Format.char_limit(249)
+      |> FormatHelper.char_limit(249)
   end
 
 end

@@ -6,7 +6,7 @@ defmodule Babysitting.DashboardUser.ClassifiedController do
   # Aliases
   alias Babysitting.Classified
   alias Babysitting.{Email, Mailer}
-  alias Babysitting.Helpers.App
+  alias Babysitting.Helpers.{AppHelper}
 
   # Plugs
   plug Babysitting.Plug.IsUser
@@ -18,12 +18,12 @@ defmodule Babysitting.DashboardUser.ClassifiedController do
     conn
     |> redirect(to: user_classified_path(conn, :show))
   end
-  
+
   @doc """
   Display the classified of the user
   """
   def show(conn, _) do
-    classified = App.current_user(conn)
+    classified = AppHelper.current_user(conn)
     changeset = Classified.changeset(classified)
 
     render conn, "show.html", %{classified: classified, changeset: changeset}
@@ -34,7 +34,7 @@ defmodule Babysitting.DashboardUser.ClassifiedController do
   """
   def update(conn, %{"classified" => classified_params}) do
 
-    classified = App.current_user(conn)
+    classified = AppHelper.current_user(conn)
     changeset = Classified.update_changeset(classified, classified_params)
 
     case Repo.update(changeset) do

@@ -4,7 +4,7 @@ defmodule Babysitting.App.ClassifiedController do
 
   # Aliases
   alias Babysitting.{Classified, ClassifiedContact}
-  alias Babysitting.Helpers.{App, Format}
+  alias Babysitting.Helpers.{AppHelper}
   alias Babysitting.{Email, Mailer}
 
   # Plugs
@@ -101,7 +101,7 @@ defmodule Babysitting.App.ClassifiedController do
   """
   def thankyou(conn, _params) do
     conn
-    |> render("thankyou.html", %{current_tenant: App.current_tenant(conn)})
+    |> render("thankyou.html", %{current_tenant: AppHelper.current_tenant(conn)})
   end
 
   ###
@@ -110,7 +110,7 @@ defmodule Babysitting.App.ClassifiedController do
   defp trigger_success_events(conn, classified) do
 
     # Fetch the current tenant
-    current_tenant = App.current_tenant(conn)
+    current_tenant = AppHelper.current_tenant(conn)
 
     # Nothing now. It was some events to keenex
     # but the package was buggy.
@@ -122,7 +122,7 @@ defmodule Babysitting.App.ClassifiedController do
   # Set the current tenant to the params
   ###
   defp set_current_tenant(conn, params) do
-    current_tenant = App.current_tenant(conn)
+    current_tenant = AppHelper.current_tenant(conn)
     params
     |> Map.put("tenant_id", current_tenant.id)
   end

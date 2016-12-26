@@ -4,7 +4,7 @@ defmodule Babysitting.App.SitemapController do
 
   # Aliases
   alias Babysitting.{Classified, Repo}
-  alias Babysitting.Helpers.App
+  alias Babysitting.Helpers.{AppHelper}
 
   @doc """
   Used to generate the urls of the sitemap
@@ -38,7 +38,7 @@ defmodule Babysitting.App.SitemapController do
 
     for classified <- classifieds do
       segment = Babysitting.Router.Helpers.app_classified_path(conn, :show, classified)
-      App.current_tenant_url(conn, segment)
+      AppHelper.current_tenant_url(conn, segment)
     end
   end
 
@@ -50,7 +50,7 @@ defmodule Babysitting.App.SitemapController do
 
     for page <- pages do
       segment = Babysitting.Router.Helpers.app_page_path(conn, page)
-      App.current_tenant_url(conn, segment)
+      AppHelper.current_tenant_url(conn, segment)
     end
   end
 

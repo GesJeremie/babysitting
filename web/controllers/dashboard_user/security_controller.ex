@@ -1,8 +1,8 @@
 defmodule Babysitting.DashboardUser.SecurityController do
   use Babysitting.Web, :controller
   alias Babysitting.Classified
-  alias Babysitting.Helpers.App
-  
+  alias Babysitting.Helpers.{AppHelper}
+
   plug :scrub_params, "classified" when action in [:update_password]
 
   def index(conn, _) do
@@ -12,16 +12,16 @@ defmodule Babysitting.DashboardUser.SecurityController do
 
   def password(conn, _params) do
 
-    classified = App.current_user(conn)
+    classified = AppHelper.current_user(conn)
     changeset = Classified.changeset(classified)
-    
+
     conn
     |> render("password.html", %{changeset: changeset})
   end
 
   def update_password(conn, %{"classified" => classified_params}) do
-  
-    classified = App.current_user(conn)
+
+    classified = AppHelper.current_user(conn)
     changeset = Classified.update_password_changeset(classified, classified_params)
 
     case Repo.update(changeset) do

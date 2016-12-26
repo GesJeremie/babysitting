@@ -4,7 +4,7 @@ defmodule Babysitting.Classified do
   use Arc.Ecto.Model
   use Timex
   alias Babysitting.Repo
-  alias Babysitting.Helpers.App
+  alias Babysitting.Helpers.{AppHelper}
 
   schema "classifieds" do
     field :firstname, :string
@@ -216,7 +216,7 @@ defmodule Babysitting.Classified do
   """
   def of_current_tenant(query, conn) do
     from classified in query,
-      where: classified.tenant_id == ^App.current_tenant(conn).id
+      where: classified.tenant_id == ^AppHelper.current_tenant(conn).id
   end
 
   @doc """
