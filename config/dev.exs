@@ -45,7 +45,7 @@ config :babysitting, Babysitting.Repo,
 
 config :babysitting,
        email_address: "group.babysitting@gmail.com",
-       admin_password: "babysittingrocksdude"
+       admin_password: "admin"
 
 config :babysitting, Babysitting.Mailer,
   adapter: Bamboo.SMTPAdapter,

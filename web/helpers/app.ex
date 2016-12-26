@@ -12,13 +12,13 @@ defmodule Babysitting.Helpers.App do
   end
 
   @doc """
-  Return the current user. 
+  Return the current user.
 
   Note: We don't have the concept of "users", in fact
   a classified is an user.
   """
   def current_user(conn) do
-    classified_id = 
+    classified_id =
       conn
       |> fetch_session
       |> get_session(:current_user)
@@ -35,8 +35,8 @@ defmodule Babysitting.Helpers.App do
   end
 
   @doc """
-  Return the folder based on the slug of 
-  the current tenant. It's used to generate 
+  Return the folder based on the slug of
+  the current tenant. It's used to generate
   the path of the assets (logo, stylesheets, ...)
   """
   def current_tenant_folder(conn) do
@@ -56,6 +56,20 @@ defmodule Babysitting.Helpers.App do
   """
   def current_tenant_site_name(conn) do
     "Baby Sitting #{current_tenant(conn).name}"
+  end
+
+  @doc """
+  Return the facebook id for the current tenant
+  Note: In the future we should store the data
+  directly in the tenant table.
+  """
+  def current_tenant_facebook_page_id(conn) do
+    case current_tenant(conn).slug do
+      "paris" -> "1638919713096605"
+      "marseille" -> "184713158658939"
+      "london" -> "552729038239860"
+      _ -> nil
+    end
   end
 
   @doc """

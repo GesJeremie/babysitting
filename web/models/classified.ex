@@ -19,6 +19,7 @@ defmodule Babysitting.Classified do
     field :search, :string
     field :status, :boolean, default: true
     field :valid, :boolean
+    field :posted_on_facebook, :boolean, default: false
 
     timestamps
 
@@ -73,7 +74,7 @@ defmodule Babysitting.Classified do
   """
   def update_admin_changeset(model, params \\ %{}) do
     model
-    |> cast(params, ~w(firstname lastname email phone birthday description valid), ~w(valid))
+    |> cast(params, ~w(firstname lastname email phone birthday description valid), ~w(valid posted_on_facebook))
     |> validate_length(:description, min: @min_length_description)
     |> validate_format(:email, @valid_email)
     |> validate_format(:birthday, @valid_birthday)

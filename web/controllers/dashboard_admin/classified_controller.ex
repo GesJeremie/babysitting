@@ -1,11 +1,11 @@
 defmodule Babysitting.DashboardAdmin.ClassifiedController do
-
   # Uses
   use Babysitting.Web, :controller
 
   # Aliases
   alias Babysitting.Classified
   alias Babysitting.{Email, Mailer}
+  alias Babysitting.Helpers.{App, Zapier}
 
   # Plugs
   plug Babysitting.Plug.IsAdmin
@@ -89,6 +89,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
       {:ok, classified} ->
         conn
           |> send_email_validated(classified)
+          |> maybe_post_on_facebook(classified)
           |> put_flash(:info, "Classified validated!")
           |> redirect(to: admin_classified_path(conn, :index))
       {:error, _changeset} ->
@@ -132,6 +133,44 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
 
     Email.rejected(%{conn: conn, classified: classified})
     |> Mailer.deliver_later
+
+    conn
+  end
+
+  defp maybe_post_on_facebook(conn, classified) do
+    if Mix.env == :prod && classified.posted_on_facebook == false do
+      do_post_on_facebook(conn, classified)
+    end
+
+    conn
+  end
+
+  ###
+  # Note: Currently we are using Zapier and we are limited
+  # by 100 tasks / month. That means we can only post 100
+  # post per month. We don't really care yet, still we will have
+  # to switch to IFTTT (but bad support for emojis and url description)
+  # or code our thing with the API of facebook (what a nightmare...)
+  ###
+  defp do_post_on_facebook(conn, classified) do
+    # Get url to post
+    segment = Babysitting.Router.Helpers.app_classified_path(conn, :show, classified)
+    url = App.current_tenant_url(conn, segment)
+
+    # Get message to post
+    emoji = Enum.random(["😇", "😃", "😁", "😍👍", "💪😉"])
+    message = "#{gettext("A new baby sitter is available")} #{emoji}"
+
+    # Get fan page id to post
+    facebook_page_id = App.current_tenant_facebook_page_id(conn)
+
+    # Send Zapier request
+    Zapier.post_new_classified_on_facebook([url: url, message: message, facebook_page_id: facebook_page_id])
+
+    # Update posted on facebook for the current classified to true
+    classified
+    |> Classified.update_admin_changeset(%{posted_on_facebook: true})
+    |> Repo.update!
 
     conn
   end
