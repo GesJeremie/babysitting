@@ -93,7 +93,7 @@ msgstr "Es-tu sûr"
 
 #: web/templates/app/classified/new.html.eex:42
 msgid "Avatar"
-msgstr "Avatar"
+msgstr "Photo de profil"
 
 #: lib/babysitting/mailer.ex:63
 msgid "Baby Sitting %{name} - A family just sent a message to a baby sitter"
@@ -399,3 +399,7 @@ msgstr "Besoin d'une baby sitter sur %{town} ? Faites nous confiance, c'est simp
 #: web/controllers/dashboard_admin/classified_controller.ex:162
 msgid "A new baby sitter is available"
 msgstr "Une nouvelle baby sitter est disponible"
+
+#: web/templates/app/classified/new.html.eex:78
+msgid "Password confirmation"
+msgstr "Confirmation du mot de passe"
