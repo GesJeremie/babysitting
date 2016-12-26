@@ -46,7 +46,8 @@ class Classified_Show extends Controller
 
     # Send event keen.io
     new Keenio().client.addEvent("classified.show_phone", {
-      classified_id: $('#app').data('classified')
+      classified_id: $('#app').data('classified'),
+      tenant_id: $('#app').data('tenant')
     })
 
 # Export
