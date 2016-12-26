@@ -21,7 +21,6 @@ defmodule Babysitting.Web do
       use Ecto.Schema
 
       import Ecto
-      import Ecto.Changeset
       import Ecto.Query, only: [from: 1, from: 2]
     end
   end
@@ -36,6 +35,14 @@ defmodule Babysitting.Web do
 
       import Babysitting.Router.Helpers
       import Babysitting.Gettext
+    end
+  end
+
+  def changeset do
+    quote do
+      import Ecto
+      import Ecto.Changeset
+      import Ecto.Query, only: [from: 1, from: 2]
     end
   end
 

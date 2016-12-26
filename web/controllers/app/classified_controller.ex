@@ -4,8 +4,9 @@ defmodule Babysitting.App.ClassifiedController do
 
   # Aliases
   alias Babysitting.{Classified, ClassifiedContact}
-  alias Babysitting.Helpers.{AppHelper}
   alias Babysitting.{Email, Mailer}
+  alias Babysitting.Changesets.{ClassifiedChangeset, ClassifiedContactChangeset}
+  alias Babysitting.Helpers.{AppHelper}
 
   # Plugs
   plug :scrub_params, "classified" when action in [:create, :update]
@@ -16,7 +17,7 @@ defmodule Babysitting.App.ClassifiedController do
   """
   def new(conn, _params) do
     conn
-    |> render("new.html", changeset: Classified.changeset(%Classified{}))
+    |> render("new.html", changeset: ClassifiedChangeset.default(%Classified{}))
   end
 
   def create_contact(conn, %{"classified_contact" => contact_params, "id" => id}) do
@@ -24,7 +25,7 @@ defmodule Babysitting.App.ClassifiedController do
     # Fill params with classified id
     contact_params = set_classified(id, contact_params)
 
-    changeset = ClassifiedContact.create_changeset(%ClassifiedContact{}, contact_params)
+    changeset = ClassifiedContactChangeset.create(%ClassifiedContact{}, contact_params)
 
     case Repo.insert(changeset) do
       {:ok, contact} ->
@@ -55,7 +56,7 @@ defmodule Babysitting.App.ClassifiedController do
     # Fill params with current tenant
     classified_params = set_current_tenant(conn, classified_params)
 
-    changeset = Classified.create_changeset(%Classified{}, classified_params)
+    changeset = ClassifiedChangeset.create(%Classified{}, classified_params)
 
     case Repo.insert(changeset) do
       {:ok, classified} ->
@@ -89,7 +90,7 @@ defmodule Babysitting.App.ClassifiedController do
       if Map.has_key?(params, "changeset") do
         Map.get(params, "changeset")
       else
-        ClassifiedContact.changeset(%ClassifiedContact{})
+        ClassifiedContactChangeset.default(%ClassifiedContact{})
       end
 
     conn

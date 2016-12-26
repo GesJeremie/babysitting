@@ -5,6 +5,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   # Aliases
   alias Babysitting.Classified
   alias Babysitting.{Email, Mailer}
+  alias Babysitting.Changesets.{ClassifiedChangeset}
   alias Babysitting.Helpers.{AppHelper, ZapierHelper}
 
   # Plugs
@@ -15,10 +16,6 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   Display the classifieds
   """
   def index(conn, params) do
-
-    # Fetch params
-    # Params to a service class
-    # @classifieds = ClassifiedsForPage.new(params).classifieds
 
     state = Map.get(params, "state")
 
@@ -46,7 +43,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   """
   def edit(conn, %{"id" => id}) do
     classified = Repo.get!(Classified, id)
-    changeset = Classified.changeset(classified)
+    changeset = ClassifiedChangeset.default(classified)
     render conn, "edit.html", %{classified: classified, changeset: changeset}
   end
 
@@ -70,7 +67,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   """
   def update(conn, %{"id" => id, "classified" => classified_params}) do
     classified = Repo.get!(Classified, id)
-    changeset = Classified.update_admin_changeset(classified, classified_params)
+    changeset = ClassifiedChangeset.update_by_admin(classified, classified_params)
     case Repo.update(changeset) do
       {:ok, _classified} ->
         conn
@@ -88,7 +85,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   """
   def validate(conn, %{"id" => id}) do
     classified = Repo.get!(Classified, id)
-    changeset = Classified.update_admin_changeset(classified, %{"valid" => true})
+    changeset = ClassifiedChangeset.update_by_admin(classified, %{"valid" => true})
 
     case Repo.update(changeset) do
       {:ok, classified} ->
@@ -109,7 +106,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   """
   def invalidate(conn, %{"id" => id}) do
     classified = Repo.get!(Classified, id)
-    changeset = Classified.update_admin_changeset(classified, %{"valid" => false})
+    changeset = ClassifiedChangeset.update_by_admin(classified, %{"valid" => false})
 
     case Repo.update(changeset) do
       {:ok, classified} ->

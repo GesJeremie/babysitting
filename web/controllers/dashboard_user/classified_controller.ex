@@ -1,18 +1,16 @@
 defmodule Babysitting.DashboardUser.ClassifiedController do
-
   # Use
   use Babysitting.Web, :controller
 
   # Aliases
   alias Babysitting.Classified
   alias Babysitting.{Email, Mailer}
+  alias Babysitting.Changesets.{ClassifiedChangeset}
   alias Babysitting.Helpers.{AppHelper}
 
   # Plugs
   plug Babysitting.Plug.IsUser
-
   plug :scrub_params, "classified" when action in [:update]
-
 
   def index(conn, _) do
     conn
@@ -24,7 +22,7 @@ defmodule Babysitting.DashboardUser.ClassifiedController do
   """
   def show(conn, _) do
     classified = AppHelper.current_user(conn)
-    changeset = Classified.changeset(classified)
+    changeset = ClassifiedChangeset.default(classified)
 
     render conn, "show.html", %{classified: classified, changeset: changeset}
   end
@@ -35,11 +33,10 @@ defmodule Babysitting.DashboardUser.ClassifiedController do
   def update(conn, %{"classified" => classified_params}) do
 
     classified = AppHelper.current_user(conn)
-    changeset = Classified.update_changeset(classified, classified_params)
+    changeset = ClassifiedChangeset.update(classified, classified_params)
 
     case Repo.update(changeset) do
       {:ok, classified} ->
-
         # Load tenant association
         classified = Repo.preload(classified, :tenant)
 
@@ -48,6 +45,7 @@ defmodule Babysitting.DashboardUser.ClassifiedController do
           |> put_flash(:info, gettext("Classified updated"))
           |> put_flash(:warning, gettext("Since you updated your classified, we put it back in queue for validation by our team"))
           |> redirect(to: user_classified_path(conn, :show))
+
       {:error, changeset} ->
         conn
           |> put_flash(:error, "Some errors are present in the form")
