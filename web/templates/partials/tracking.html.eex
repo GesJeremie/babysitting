@@ -1,0 +1,5 @@
+<%= if Mix.env === :prod do %>
+  <%= render Babysitting.PartialsView, "tracking/hotjar.html", assigns %>
+  <%= render Babysitting.PartialsView, "tracking/google_analytics.html", assigns %>
+  <%= render Babysitting.PartialsView, "tracking/intercom.html", assigns %>
+<% end %>

@@ -30,5 +30,8 @@
 
       <%= render @view_module, @view_template, assigns %>
     </div>
+
+    <%= render Babysitting.PartialsView, "tracking.html", assigns %>
+
   </body>
 </html>
