@@ -11,5 +11,9 @@ erl_crash.dump
 .DS_Store
 
 /storage
-/priv/static/stylesheets
+
 /priv/static/javascripts
+
+/priv/static/stylesheets/*
+!/priv/static/stylesheets/fonts/
+
