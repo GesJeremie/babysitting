@@ -28,7 +28,8 @@ defmodule Babysitting.PartialsView do
     %{
       name: FormatHelper.fullname(classified.firstname, classified.lastname),
       email: classified.email,
-      created_at: DateHelper.ecto_datetime_to_timestamp(classified.inserted_at)
+      created_at: DateHelper.ecto_datetime_to_timestamp(classified.inserted_at),
+      website: AppHelper.current_tenant(conn).domain
     }
   end
 

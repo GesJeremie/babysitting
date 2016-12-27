@@ -4,7 +4,8 @@
       app_id: "cm7e66yt",
       name: "<%= user(@conn).name %>",
       email: "<%= user(@conn).email %>",
-      created_at: "<%= user(@conn).created_at %>"
+      created_at: "<%= user(@conn).created_at %>",
+      website: "<%= user(@conn).website %>"
     };
   </script>
 <%= else %>
