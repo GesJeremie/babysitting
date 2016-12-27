@@ -175,7 +175,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
 
     # Update posted on facebook for the current classified to true
     classified
-    |> Classified.update_admin_changeset(%{posted_on_facebook: true})
+    |> ClassifiedChangeset.update_by_admin(%{posted_on_facebook: true})
     |> Repo.update!
 
     conn
