@@ -13,13 +13,14 @@
       background-color: transparent
       border: 0
       border-radius: 0
-    
+
     label
       display: block
       font-weight: bold
 
     input, textarea
       display: block
+      margin-bottom: 1em
       padding: 1em
       width: 100%
       font-size: 0.8em
@@ -27,11 +28,20 @@
       border-radius: 3px
       outline: 0
 
+      +gridle_state(md)
+        margin-bottom: 0
+
       &:active, &:focus
         border-color: darken(#E7E7E7, 8%)
 
     textarea
       min-height: 7em
+
+  +part(actions)
+    text-align: center
+
+    +gridle_state(md)
+      text-align: left
 
   +part(description)
     margin-bottom: 0.3em
@@ -45,7 +55,7 @@
 
     i
       vertical-align: middle
-    
+
   +part(under-label)
     display: block
     color: $color-grey

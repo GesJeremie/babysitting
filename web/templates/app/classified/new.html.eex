@@ -83,7 +83,10 @@
     </div>
 
     <div class="+spacer"></div>
-    <button type="submit" class="button --primary --large"><i class="icon-file-add"></i> <%= gettext "Add my classified" %></button>
+
+    <div class="form__actions">
+      <button type="submit" class="button --primary --large"><i class="icon-file-add"></i> <%= gettext "Add my classified" %></button>
+    </div>
     <% end %>
 
 </div>
