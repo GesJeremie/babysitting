@@ -48,7 +48,7 @@
             <h3 class="empty__title"><%= gettext "Email" %></h3>
             <div class="form__container --no-panel">
               <div class="+spacer"></div>
-              <%= form_for @changeset, app_classified_path(@conn, :create_contact, @classified.id), fn f -> %>
+              <%= form_for @changeset, app_classified_path(@conn, :create_contact, @classified.id), [class:  "js-no-smoothstate"], fn f -> %>
 
                 <label><%= gettext "Your Email" %></label>
                 <%= text_input f, :email, placeholder: gettext("Email") %>
