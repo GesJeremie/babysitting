@@ -85,7 +85,7 @@ msgstr "A propos"
 
 #: web/templates/app/partials/sidebar.html.eex:30
 msgid "Add my classified for free"
-msgstr "Ajouter mon annonce gratuitement"
+msgstr "Ajouter mon annonce"
 
 #: web/templates/partials/app_config.html.eex:3
 msgid "Are you sure"
@@ -123,7 +123,7 @@ msgstr "Baby Sitting %{name} - Nouvelle demande de contact"
 msgid "Baby Sitting %{name} - Welcome"
 msgstr "Baby Sitting %{name} - Bonjour"
 
-#: web/templates/app/classified/show.html.eex:9
+#: web/templates/app/classified/show.html.eex:10
 msgid "Back Listing"
 msgstr "Retour liste"
 
@@ -131,7 +131,7 @@ msgstr "Retour liste"
 msgid "Basic informations for the parents to reach you."
 msgstr "Informations de base permettant aux parents de te contacter."
 
-#: web/controllers/app/classified_controller.ex:68
+#: web/controllers/app/classified_controller.ex:69
 msgid "Classifed created successfully."
 msgstr "Annonce ajoutée"
 
@@ -140,7 +140,7 @@ msgstr "Annonce ajoutée"
 msgid "Classified"
 msgstr "Annonce"
 
-#: web/controllers/dashboard_user/classified_controller.ex:48
+#: web/controllers/dashboard_user/classified_controller.ex:45
 msgid "Classified updated"
 msgstr "Annonce mise à jour"
 
@@ -152,8 +152,8 @@ msgstr "Annonce en attente de validation de %{name} !"
 msgid "Edit my classified"
 msgstr "Editer mon annonce"
 
-#: web/templates/app/classified/show.html.eex:47
-#: web/templates/app/classified/show.html.eex:53
+#: web/templates/app/classified/show.html.eex:48
+#: web/templates/app/classified/show.html.eex:54
 #: web/templates/dashboard_user/auth/index.html.eex:8
 #: web/templates/dashboard_user/classified/show.html.eex:75
 msgid "Email"
@@ -197,7 +197,7 @@ msgstr "Refusera l'annonce"
 msgid "It will validate the classified"
 msgstr "Validera l'annonce"
 
-#: web/controllers/app/classified_controller.ex:39
+#: web/controllers/app/classified_controller.ex:40
 msgid "Message sent!"
 msgstr "Message envoyé!"
 
@@ -227,7 +227,8 @@ msgstr "Confirmation nouveau mot de passe"
 msgid "New classified waiting for validation from %{name} !"
 msgstr "Nouvelle annonce en attente de validation de %{name} !"
 
-#: web/helpers/format.ex:51 web/views/dashboard_admin/classified_view.ex:15
+#: web/helpers/format_helper.ex:51
+#: web/views/dashboard_admin/classified_view.ex:15
 msgid "No"
 msgstr "Non"
 
@@ -243,17 +244,17 @@ msgstr "Ancien mot de passe"
 msgid "Online"
 msgstr "En-Ligne"
 
-#: web/controllers/app/classified_controller.ex:45
-#: web/controllers/app/classified_controller.ex:73
+#: web/controllers/app/classified_controller.ex:46
+#: web/controllers/app/classified_controller.ex:74
 msgid "Oops, some errors are present in the form."
 msgstr "Oups, des erreurs sont présentes dans le formulaire."
 
-#: web/controllers/dashboard_user/security_controller.ex:30
+#: web/controllers/dashboard_user/security_controller.ex:33
 msgid "Password changed!"
 msgstr "Mot de passe édité!"
 
-#: web/templates/app/classified/show.html.eex:41
-#: web/templates/app/classified/show.html.eex:59
+#: web/templates/app/classified/show.html.eex:42
+#: web/templates/app/classified/show.html.eex:60
 #: web/templates/dashboard_user/classified/show.html.eex:89
 msgid "Phone"
 msgstr "Téléphone"
@@ -276,7 +277,7 @@ msgstr "Voir mon annonce"
 msgid "See my classified on the website"
 msgstr "Voir mon annonce sur le site"
 
-#: web/templates/app/classified/show.html.eex:70
+#: web/templates/app/classified/show.html.eex:71
 msgid "Send message"
 msgstr "Envoyer un message"
 
@@ -292,7 +293,7 @@ msgstr "Connexion"
 msgid "Sign out"
 msgstr "Se déconnecter"
 
-#: web/controllers/dashboard_user/classified_controller.ex:49
+#: web/controllers/dashboard_user/classified_controller.ex:46
 msgid "Since you updated your classified, we put it back in queue for validation by our team"
 msgstr "Tu viens d'éditer ton annonce, celle-ci est donc en attente de validation par notre équipe"
 
@@ -320,7 +321,8 @@ msgstr "En attente de validation"
 msgid "Want to see your classified in this list ?"
 msgstr "Envie de voir ton annonce dans cette liste ?"
 
-#: web/helpers/format.ex:50 web/views/dashboard_admin/classified_view.ex:14
+#: web/helpers/format_helper.ex:50
+#: web/views/dashboard_admin/classified_view.ex:14
 msgid "Yes"
 msgstr "Oui"
 
@@ -360,23 +362,23 @@ msgstr "Mettre à jour"
 msgid "Character count"
 msgstr "Nombre de caractères"
 
-#: web/templates/app/classified/show.html.eex:65
+#: web/templates/app/classified/show.html.eex:66
 msgid "Message"
 msgstr "Votre message"
 
-#: web/templates/app/classified/show.html.eex:52
+#: web/templates/app/classified/show.html.eex:53
 msgid "Your Email"
 msgstr "Votre email"
 
-#: web/templates/app/classified/show.html.eex:64
+#: web/templates/app/classified/show.html.eex:65
 msgid "Your Message"
 msgstr "Votre message"
 
-#: web/templates/app/classified/show.html.eex:58
+#: web/templates/app/classified/show.html.eex:59
 msgid "Your Phone"
 msgstr "Votre téléphone"
 
-#: web/templates/app/classified/show.html.eex:43
+#: web/templates/app/classified/show.html.eex:44
 msgid "Show Phone"
 msgstr "Voir téléphone"
 
@@ -388,7 +390,7 @@ msgstr ""
 msgid "See the classified on"
 msgstr "Voir son annonce sur"
 
-#: web/models/classified.ex:169
+#: web/changesets/classified_changeset.ex:153
 msgid "already taken"
 msgstr "est déjà pris"
 
@@ -396,10 +398,18 @@ msgstr "est déjà pris"
 msgid "Do you need a babysitter in %{town} ? Trust us, it's simple, free and effective!"
 msgstr "Besoin d'une baby sitter sur %{town} ? Faites nous confiance, c'est simple, gratuit et efficace!"
 
-#: web/controllers/dashboard_admin/classified_controller.ex:162
+#: web/controllers/dashboard_admin/classified_controller.ex:164
 msgid "A new baby sitter is available"
 msgstr "Une nouvelle baby sitter est disponible"
 
 #: web/templates/app/classified/new.html.eex:78
 msgid "Password confirmation"
 msgstr "Confirmation du mot de passe"
+
+#: web/templates/app/partials/footer.html.eex:3
+msgid "Not living in %{town}?"
+msgstr "Pas sur %{town}?"
+
+#: web/templates/app/partials/footer.html.eex:5
+msgid "You can find your next baby sitter in"
+msgstr "Vous pouvez trouver votre prochaine baby sitter sur"

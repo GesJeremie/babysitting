@@ -1,37 +1,24 @@
 +component(footer)
-  
+
   +part(container)
-    margin-top: 2em
+    margin-top: 7em
     width: 100%
     text-align: center
-    background-color: #60646D
-
-  +part(facebook)
-    display: inline-block
-    margin-top: 2em
-    padding: 1em
-    color: $color-white
-    font-size: 1em
-    font-style: bold
-    text-transform: uppercase
-    background-color: #007bc3
-    border: 2px solid #215997
-    border-radius: 3px
-
-    i
-      display: inline-block
-      font-size: 1.4em
-      vertical-align: middle
 
   +part(links)
-    padding-top: 3em
-    padding-bottom: 2.5em
-    color: lighten(#60646D, 10%)
+    width: 70%
+    margin: 0 auto
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.11)
+    min-height: 100px
+    margin-bottom: 10em
 
-    a
-      margin-right: 1em
-      margin-left: 1em
-      color: $color-white
-      font-size: 1em
-      font-style: normal
-      text-decoration: none
+  +part(link)
+    color: $color-dark
+    font-weight: bold
+
+    &:after
+      content: ','
+
+    &:last-of-type
+      &:after
+        content: ''

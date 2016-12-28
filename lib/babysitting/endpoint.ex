@@ -12,7 +12,7 @@ defmodule Babysitting.Endpoint do
     at: "/storage", from: Path.expand("storage")
 
   plug Plug.Static,
-    at: "/", from: :babysitting, gzip: false,
+    at: "/", from: :babysitting, gzip: true,
     only: ~w(stylesheets fonts images javascripts favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the

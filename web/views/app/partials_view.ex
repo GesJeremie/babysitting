@@ -27,4 +27,7 @@ defmodule Babysitting.App.PartialsView do
     end)
   end
 
+  def town(conn) do
+    AppHelper.current_tenant(conn).name |> String.capitalize
+  end
 end
