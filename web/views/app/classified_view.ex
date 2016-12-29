@@ -74,6 +74,17 @@ defmodule Babysitting.App.ClassifiedView do
   end
 
   @doc """
+  Generate url back listing
+  """
+  def url_back_listing(conn, classified) do
+    if conn.query_params|> Map.has_key?("from_page") do
+      "/?page=#{conn.query_params["from_page"]}#classified-#{classified.id}"
+    else
+      "/"
+    end
+  end
+
+  @doc """
   Return a short description for og:description property.
   """
   def og_short_description(%{:description => description}) do

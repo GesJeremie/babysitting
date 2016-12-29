@@ -11,11 +11,10 @@
 
 <%= if length(@classifieds.entries) > 0 do %>
 
-
   <div class="container">
     <div class="post__container">
       <%= for classified <- @classifieds do %>
-        <a id="classified-<%= classified.id %>" href="<%= app_classified_path(@conn, :show, classified.id) %>" class="post__item">
+        <a id="classified-<%= classified.id %>" href="<%= app_classified_path(@conn, :show, classified.id, from_page: @classifieds.page_number) %>" class="post__item">
           <div class="grid-3">
             <div class="post__avatar">
               <img src="/<%= Babysitting.Avatar.url({classified.avatar, classified}, :thumb) %>" />
