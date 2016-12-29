@@ -12,8 +12,10 @@ FlashMessages = require 'initializers/flash-messages'
 Autosize = require 'initializers/autosize'
 Confirm = require 'initializers/confirm'
 
-# Init the initializers
-(new Noty).init()
-(new FlashMessages).init()
-(new Autosize).init()
-(new Confirm).init()
+module.exports = ->
+
+  # Init the initializers
+  (new Noty).init()
+  (new FlashMessages).init()
+  (new Autosize).init()
+  (new Confirm).init()

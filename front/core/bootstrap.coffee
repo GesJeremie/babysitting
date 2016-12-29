@@ -13,13 +13,13 @@ class Bootstrap
   run: ->
 
     # Load lo-dash helpers
-    require 'helpers'
+    require('helpers')()
 
     # Load custom validators
-    require 'validators'
+    require('validators')()
 
     # Load boot
-    require 'boot'
+    require('boot')()
 
     # Fetch the controller to execute
     controller = $('#app').data('controller')

@@ -10,16 +10,18 @@
 # @see http://gothamjs.iodocumentation/1.0.0/helpers
 ##
 
-##
-# Example
-#
-# Check if the user is batman
-#
-# @param [string] Name of the user
-##
-_.mixin isBatman: (name) ->
+module.exports = ->
 
-  if name.toLowerCase() is "batman"
-    return true
+  ##
+  # Example
+  #
+  # Check if the user is batman
+  #
+  # @param [string] Name of the user
+  ##
+  _.mixin isBatman: (name) ->
 
-  return false
+    if name.toLowerCase() is "batman"
+      return true
+
+    return false

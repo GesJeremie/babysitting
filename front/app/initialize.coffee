@@ -11,7 +11,6 @@ boot = ->
   bootstrap = new Bootstrap()
   bootstrap.run()
 
-# Hey sir, is the document ready ?
 $ ->
 
   ##
@@ -38,7 +37,7 @@ $ ->
 
       # Let's scroll back to the top
       $('html, body').animate({ scrollTop: 0 }, 0);
-      
+
       # The content just changed
       # let's reboot.
       boot()
