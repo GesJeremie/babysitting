@@ -4,7 +4,6 @@
 class Initializers_Noty
 
   init: ->
-    alert('init');
     $.noty.defaults.timeout = 2500
     $.noty.defaults.animation.open = 'animated flipInX'
     $.noty.defaults.animation.close = 'animated flipOutX'
