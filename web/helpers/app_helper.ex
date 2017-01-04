@@ -60,11 +60,21 @@ defmodule Babysitting.Helpers.AppHelper do
 
   @doc """
   Return the facebook id for the current tenant
+  """
+  def current_tenant_facebook_page_id(conn) do
+    conn
+    |> current_tenant
+    |> facebook_page_id_tenant
+  end
+
+  @doc """
+  Return the facebook page id for the tenant
+  given
   Note: In the future we should store the data
   directly in the tenant table.
   """
-  def current_tenant_facebook_page_id(conn) do
-    case current_tenant(conn).slug do
+  def facebook_page_id_tenant(tenant) do
+    case tenant.slug do
       "paris" -> "1638919713096605"
       "marseille" -> "184713158658939"
       "london" -> "552729038239860"

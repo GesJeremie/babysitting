@@ -140,7 +140,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   end
 
   defp maybe_post_on_facebook(conn, classified) do
-    if Mix.env == :prod && classified.posted_on_facebook == false do
+    if Mix.env == :dev && classified.posted_on_facebook == false do
       do_post_on_facebook(conn, classified)
     end
 
@@ -164,7 +164,8 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
     message = "#{gettext("A new baby sitter is available")} #{emoji}"
 
     # Get fan page id to post
-    facebook_page_id = AppHelper.current_tenant_facebook_page_id(conn)
+    classified = classified |> Repo.preload(:tenant)
+    facebook_page_id = AppHelper.facebook_page_id_tenant(classified.tenant)
 
     # Send Zapier request
     ZapierHelper.post_new_classified_on_facebook([
