@@ -29,7 +29,7 @@
         <%= gettext "Your classified" %>
       </h2>
       <p class="form__description">
-        <%= gettext "Tell us more about you, your scholarship, your schedule and why you are an awesome baby sitter"  %> 💪😉
+        <%= gettext "Tell us more about you, your scholarship, your schedule and why you are an awesome baby sitter"  %>
       </p>
       <%= textarea f, :description %>
       <%= error_tag f, :description %>
@@ -47,7 +47,7 @@
     <div class="form__container">
       <h2 class="form__title"><i class="icon-contact"></i> Contact</h2>
       <p class="form__description">
-        <%= gettext "Basic informations for the parents to reach you."  %> 📞😇
+        <%= gettext "Basic informations for the parents to reach you."  %>
       </p>
       <div class="row">
         <div class="grid-6">
@@ -67,7 +67,7 @@
         <%= gettext "Security" %>
       </h2>
       <p class="form__description">
-        <%= gettext "With this password you will be able to edit your classified in the future" %> 🔑🤐
+        <%= gettext "With this password you will be able to edit your classified in the future" %>
       </p>
       <div class="row">
         <div class="grid-6">
