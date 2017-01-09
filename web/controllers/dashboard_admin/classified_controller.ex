@@ -140,7 +140,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   end
 
   defp maybe_post_on_facebook(conn, classified) do
-    if Mix.env == :dev && classified.posted_on_facebook == false do
+    if Mix.env == :prod && classified.posted_on_facebook == false do
       do_post_on_facebook(conn, classified)
     end
 
