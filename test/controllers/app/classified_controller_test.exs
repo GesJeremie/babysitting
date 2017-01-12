@@ -1,4 +1,4 @@
-defmodule Babysitting.ClassifiedControllerTest do
+defmodule Babysitting.App.ClassifiedControllerTest do
   use Babysitting.ConnCase
   use Bamboo.Test, shared: :true
   import Babysitting.ConnCase
@@ -54,7 +54,7 @@ defmodule Babysitting.ClassifiedControllerTest do
       assert redirected?(conn)
       assert get_flash(conn, :info)
       assert_delivered_email Email.new_classified_admin(%{conn: conn, classified: classified})
-      
+
       # Clean file uploads
       path_avatars(params.email) |> File.rm_rf
 
@@ -83,12 +83,12 @@ defmodule Babysitting.ClassifiedControllerTest do
         get conn, app_classified_path(conn, :show, classified.id)
       end
     end
-    
+
   end
 
   describe "create_contact/2" do
     test "don't create resource when form invalid" do
-      
+
       tenant = insert(:tenant)
       classified = insert(:classified, %{tenant: tenant})
 
@@ -109,7 +109,7 @@ defmodule Babysitting.ClassifiedControllerTest do
         phone: FakerElixir.Helper.numerify("06########"),
         message: FakerElixir.Lorem.sentences(5..8)
       }
-      
+
       conn = build_conn() |> with_host(tenant.domain)
       conn = post conn, app_classified_path(conn, :create_contact, classified.id), classified_contact: classified_contact
 
@@ -119,10 +119,10 @@ defmodule Babysitting.ClassifiedControllerTest do
 
       # Check emails sent
       newly_classified_contact = Repo.one(ClassifiedContact) |> Repo.preload(:classified) |> Repo.preload(classified: :tenant)
-      
+
       assert_delivered_email Email.new_contact_admin(%{conn: conn, contact: newly_classified_contact})
       assert_delivered_email Email.new_contact(%{conn: conn, contact: newly_classified_contact})
-      
+
     end
   end
 

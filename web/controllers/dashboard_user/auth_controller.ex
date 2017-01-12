@@ -14,7 +14,7 @@ defmodule Babysitting.DashboardUser.AuthController do
   """
   def login(conn, %{"login" => %{"email" => email, "password" => password}}) do
 
-    case can_login_with(email, password, conn) do 
+    case can_login_with(email, password, conn) do
       {:error} ->
         conn
         |> put_flash(:error, gettext("Unable to connect with this email / password"))
@@ -34,7 +34,6 @@ defmodule Babysitting.DashboardUser.AuthController do
   def logout(conn, _params) do
     conn
     |> fetch_session
-    |> delete_session(:is_user)
     |> delete_session(:current_user)
     |> redirect(to: app_page_path(conn, :home))
   end
@@ -63,7 +62,7 @@ defmodule Babysitting.DashboardUser.AuthController do
       false -> {:error}
       true -> {:ok, classified.id}
     end
-  end 
+  end
 
 
 end

@@ -1,11 +1,11 @@
-defmodule Babysitting.SitemapControllerTest do
+defmodule Babysitting.App.SitemapControllerTest do
   use Babysitting.ConnCase
   import Babysitting.ConnCase
   import Babysitting.Factory
 
   describe "home/2" do
 
-    setup do 
+    setup do
       tenant = insert(:tenant, [domain: "www.babysittingtest.fr"])
       classified = insert(:classified, %{tenant: tenant})
 
