@@ -86,7 +86,7 @@ defmodule Babysitting.Helpers.AppHelper do
   Return the logo of babysitting
   """
   def logo(conn) do
-    "/images/logo.png"
+    "/images/logo.svg"
   end
 
 end
