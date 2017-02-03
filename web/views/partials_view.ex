@@ -12,8 +12,7 @@ defmodule Babysitting.PartialsView do
   end
 
   def user_logged?(conn) do
-
-    IO.inspect conn
+    conn
     |> fetch_session
     |> get_session(:current_user)
     |> do_user_logged(conn)
