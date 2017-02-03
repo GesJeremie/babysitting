@@ -155,10 +155,6 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   # or code our thing with the API of facebook (what a nightmare...)
   ###
   defp do_post_on_facebook(conn, classified) do
-    # Get url to post
-    segment = Babysitting.Router.Helpers.app_classified_path(conn, :show, classified)
-    url = AppHelper.current_tenant_url(conn, segment)
-
     # Get message to post
     emoji = Enum.random(["😇", "😃", "😁", "😍👍", "💪😉"])
     message = "#{gettext("A new baby sitter is available")} #{emoji}"
@@ -166,6 +162,10 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
     # Get fan page id to post
     classified = classified |> Repo.preload(:tenant)
     facebook_page_id = AppHelper.facebook_page_id_tenant(classified.tenant)
+
+    # Get url to post
+    segment = Babysitting.Router.Helpers.app_classified_path(conn, :show, classified)
+    url = "http://#{classified.tenant.domain}#{segment}"
 
     # Send Zapier request
     ZapierHelper.post_new_classified_on_facebook([
