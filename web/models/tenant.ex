@@ -16,4 +16,12 @@ defmodule Babysitting.Tenant do
     has_many :contacts, Babysitting.Contact, on_delete: :delete_all
   end
 
+  @doc """
+  Global where filter
+  """
+  def where(query, field, condition) do
+    from tenant in query,
+      where: field(tenant, ^field) == ^condition
+  end
+
 end

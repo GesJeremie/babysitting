@@ -46,6 +46,32 @@ defmodule Babysitting.Changesets.ClassifiedChangeset do
   end
 
   @doc """
+  Changeset when a migration creates a classified
+  """
+  def create_by_migration(model, params \\ %{}) do
+    changeset =
+      model
+      |> cast(params, ~w(tenant_id valid inserted_at posted_on_facebook firstname lastname email password phone birthday description))
+      |> validate_required([:tenant_id, :valid, :inserted_at, :firstname, :lastname, :email, :password, :phone, :birthday, :description])
+      |> validate_length(:description, min: @min_length_description)
+      |> validate_format(:email, @valid_email)
+      |> validate_format(:birthday, @valid_birthday)
+      |> validate_length(:password, min: @min_length_password)
+      |> validate_unique_email
+      |> hash_password
+      |> make_token
+      |> make_search
+
+    if changeset.valid? do
+      changeset
+      |> cast_attachments(params, ~w(avatar), [])
+    else
+      changeset
+    end
+
+  end
+
+  @doc """
   Changeset when an user updates the classified
   """
   def update(model, params \\ %{}) do

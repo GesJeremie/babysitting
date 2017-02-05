@@ -3,17 +3,17 @@ defmodule Babysitting.Repo.Migrations.SetupTenantBordeaux do
 
   def change do
     # For production
-    create_tenant(:bordeaux, "www.babysittingbordeaux.fr")
+    create_tenant(:bordeaux, "www.babysittingbordeaux.fr", "bordeaux")
 
     # For development purposes
-    create_tenant(:bordeaux, "www.babysittingbordeaux.dev")
+    create_tenant(:bordeaux, "www.babysittingbordeaux.dev", "bordeaux-dev")
   end
 
-  defp create_tenant(:bordeaux, domain) do
+  defp create_tenant(:bordeaux, domain, slug) do
     Babysitting.Repo.insert!(%Babysitting.Tenant{
       :name => "Bordeaux",
       :domain => domain,
-      :slug => "bordeaux",
+      :slug => slug,
       :facebook => "https://www.facebook.com/babySittingBordeaux/",
       :locale => "fr_FR",
       :hotjar => "406723",
