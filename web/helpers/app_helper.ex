@@ -78,6 +78,7 @@ defmodule Babysitting.Helpers.AppHelper do
       "paris" -> "1638919713096605"
       "marseille" -> "184713158658939"
       "london" -> "552729038239860"
+      "bordeaux" -> "900752106675843"
       _ -> nil
     end
   end
