@@ -14,7 +14,7 @@
 
   <div class="grid-10@md push-1@md grid-12">
     <div class="post-show__avatar">
-      <img src="/<%= Babysitting.Avatar.url({@classified.avatar, @classified}, :thumb) %>" />
+      <img alt="<%= alt_thumb(@conn, @classified) %>" src="/<%= Babysitting.Avatar.url({@classified.avatar, @classified}, :thumb) %>" />
     </div>
 
     <div class="post-show__name"><%= fullname(@classified) %></div>

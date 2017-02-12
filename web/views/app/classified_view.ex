@@ -1,7 +1,7 @@
 defmodule Babysitting.App.ClassifiedView do
   use Babysitting.Web, :view
 
-  alias Babysitting.Helpers.{DateHelper, FormatHelper, AppHelper}
+  alias Babysitting.Helpers.{DateHelper, FormatHelper, AppHelper, AltHelper}
 
   @valid_phone_length 10
 
@@ -98,6 +98,13 @@ defmodule Babysitting.App.ClassifiedView do
   def short_description(%{:description => description}) do
     description
       |> FormatHelper.char_limit(160)
+  end
+
+  @doc """
+  Return alt text for the avatar of a classified
+  """
+  def alt_thumb(conn, classified) do
+    AltHelper.avatar_classified(conn, classified)
   end
 
 end

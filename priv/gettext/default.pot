@@ -428,3 +428,15 @@ msgstr ""
 #: web/templates/app/classified/title.show.html.eex:1
 msgid "%{fullname} - Baby Sitter in %{town}"
 msgstr ""
+
+#: web/helpers/alt_helper.ex:15
+msgid "Profile picture of baby sitter %{fullname} living in %{town}"
+msgstr ""
+
+#: web/helpers/alt_helper.ex:24
+msgid "Logo Baby Sitting %{town}"
+msgstr ""
+
+#: web/helpers/alt_helper.ex:33
+msgid "Mascot Baby Sitting %{town}"
+msgstr ""

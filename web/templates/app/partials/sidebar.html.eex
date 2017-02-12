@@ -2,7 +2,7 @@
   <div class="sidebar__container">
     <div class="sidebar__logo">
       <a href="/">
-        <img src="<%= logo(@conn) %>" />
+        <img alt="<%= alt_logo(@conn) %>" src="<%= logo(@conn) %>" />
       </a>
     </div>
     <div class="sidebar__divider"></div>

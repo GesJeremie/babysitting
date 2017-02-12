@@ -4,7 +4,7 @@ defmodule Babysitting.App.PageView do
 
   import Scrivener.HTML
 
-  alias Babysitting.Helpers.{DateHelper, FormatHelper, AppHelper}
+  alias Babysitting.Helpers.{DateHelper, FormatHelper, AppHelper, AltHelper}
 
   def cover(conn) do
     "/images/tenants/#{AppHelper.current_tenant_folder(conn)}/cover.jpg"
@@ -38,6 +38,20 @@ defmodule Babysitting.App.PageView do
 
   def url_thumbnail(conn) do
     "#{AppHelper.current_tenant_url(conn, "/images/tenants/")}#{AppHelper.current_tenant_folder(conn)}/thumbnail.jpg"
+  end
+
+  @doc """
+  Return alt text for the avatar of a classified
+  """
+  def alt_thumb(conn, classified) do
+    AltHelper.avatar_classified(conn, classified)
+  end
+
+  @doc """
+  Return alt text for the avatar of a classified
+  """
+  def alt_mascot(conn) do
+    AltHelper.mascot(conn)
   end
 
 end

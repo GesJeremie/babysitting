@@ -1,9 +1,13 @@
 defmodule Babysitting.App.PartialsView do
   use Babysitting.Web, :view
-  alias Babysitting.Helpers.{AppHelper}
+  alias Babysitting.Helpers.{AppHelper, AltHelper}
 
   def logo(conn) do
     AppHelper.logo(conn)
+  end
+
+  def alt_logo(conn) do
+    AltHelper.logo(conn)
   end
 
   def facebook_link(conn) do
