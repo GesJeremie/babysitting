@@ -1,8 +1,8 @@
 <div class="hero">
   <div class="hero__container" style="background-image: url('<%= cover(@conn) %>')">
     <div class="hero__overlay"></div>
-    <h2 class="hero__title"><%= gettext "Your Baby Sitter in %{tenant_name}", tenant_name: @tenant.name %></h2>
-    <p class="hero__description"><%= gettext "Simple, free and effective. Find your next baby sitter." %></p>
+    <h1 class="hero__title"><%= gettext "Your Baby Sitter in %{tenant_name}", tenant_name: @tenant.name %></h1>
+    <h2 class="hero__description"><%= gettext "Simple, free and effective. Find your next baby sitter." %></h2>
     <div class="facebook__container">
       <div class="fb-like" data-href="<%= @tenant.facebook %>" data-layout="button_count" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
     </div>
