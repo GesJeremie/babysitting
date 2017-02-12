@@ -1,0 +1,1 @@
+<%= gettext("%{fullname} - Baby Sitter in %{town}", [fullname: fullname(@classified), town: AppHelper.current_tenant(@conn).name]) %>

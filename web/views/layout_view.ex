@@ -3,7 +3,12 @@ defmodule Babysitting.LayoutView do
   alias Babysitting.Helpers.{AppHelper}
 
   def title(conn) do
-    "Baby Sitting " <> AppHelper.current_tenant(conn).name
+    town = AppHelper.current_tenant(conn).name
+    Babysitting.Gettext.gettext("Need a Baby Sitter in %{town} ?", [town: town])
+  end
+
+  def description(conn) do
+    Babysitting.Gettext.gettext("Free, no subscription, simple and effective!")
   end
 
   def current_tenant_stylesheet(conn) do

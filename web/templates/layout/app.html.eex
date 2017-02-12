@@ -4,8 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="<%= render_existing(@view_module, "description." <> @view_template, assigns) || description(@conn) %>">
 
     <%= render_existing(@view_module, "opengraph." <> @view_template, assigns) %>
 
@@ -20,7 +19,7 @@
     <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, "/stylesheets/app.css") %>">
     <link rel="stylesheet" type="text/css" href="<%= static_path(@conn, current_tenant_stylesheet(@conn)) %>">
 
-    <title><%= title(@conn) %></title>
+    <title><%= render_existing(@view_module, "title." <> @view_template, assigns) || title(@conn) %></title>
   </head>
 
   <body id="csstyle">

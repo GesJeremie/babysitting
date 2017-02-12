@@ -92,4 +92,12 @@ defmodule Babysitting.App.ClassifiedView do
       |> FormatHelper.char_limit(249)
   end
 
+  @doc """
+  Return a short description for meta description
+  """
+  def short_description(%{:description => description}) do
+    description
+      |> FormatHelper.char_limit(160)
+  end
+
 end
