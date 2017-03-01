@@ -140,7 +140,7 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   end
 
   defp maybe_post_on_facebook(conn, classified) do
-    if Mix.env == :prod && classified.posted_on_facebook == false do
+    if classified.posted_on_facebook == false do
       do_post_on_facebook(conn, classified)
     end
 
@@ -155,10 +155,6 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
   # or code our thing with the API of facebook (what a nightmare...)
   ###
   defp do_post_on_facebook(conn, classified) do
-    # Get message to post
-    emoji = Enum.random(["😇", "😃", "😁", "😍👍", "💪😉"])
-    message = "#{gettext("A new baby sitter is available")} #{emoji}"
-
     # Get fan page id to post
     classified = classified |> Repo.preload(:tenant)
     facebook_page_id = AppHelper.facebook_page_id_tenant(classified.tenant)
@@ -166,6 +162,10 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
     # Get url to post
     segment = Babysitting.Router.Helpers.app_classified_path(conn, :show, classified)
     url = "http://#{classified.tenant.domain}#{segment}"
+
+    # Get message to post
+    emoji = Enum.random(["😇", "😃", "😁", "😍👍", "💪😉"])
+    message = get_message_facebook(classified.tenant.locale, emoji)
 
     # Send Zapier request
     ZapierHelper.post_new_classified_on_facebook([
@@ -177,9 +177,21 @@ defmodule Babysitting.DashboardAdmin.ClassifiedController do
     # Update posted on facebook for the current classified to true
     classified
     |> ClassifiedChangeset.update_by_admin(%{posted_on_facebook: true})
-    |> Repo.update!
+    |> Repo.update
 
     conn
+  end
+
+  ##
+  # Return Facebook message to post depending
+  # the language
+  ##
+  defp get_message_facebook("fr_FR", emoji) do
+    "Une nouvelle baby sitter est disponible #{emoji}"
+  end
+
+  defp get_message_facebook(_, emoji) do
+    "A new baby sitter is available #{emoji}"
   end
 
 end

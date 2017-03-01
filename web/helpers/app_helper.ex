@@ -74,12 +74,16 @@ defmodule Babysitting.Helpers.AppHelper do
   directly in the tenant table.
   """
   def facebook_page_id_tenant(tenant) do
-    case tenant.slug do
-      "paris" -> "1638919713096605"
-      "marseille" -> "184713158658939"
-      "london" -> "552729038239860"
-      "bordeaux" -> "900752106675843"
-      _ -> nil
+    if Mix.env == :prod do
+      case tenant.slug do
+        "paris" -> "1638919713096605"
+        "marseille" -> "184713158658939"
+        "london" -> "552729038239860"
+        "bordeaux" -> "900752106675843"
+        _ -> nil
+      end
+    else
+      "857037391009504"
     end
   end
 
