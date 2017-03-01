@@ -5,6 +5,9 @@
 ></div>
 
 <div class="container">
+
+  <%= micro_data(@conn, :classified, @classified) %>
+
   <div>
     <div class="+spacer"></div>
     <a class="button --back" href="<%= url_back_listing(@conn, @classified) %>"><i class="icon-back"></i> <%= gettext("Back Listing") %></a>

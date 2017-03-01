@@ -14,6 +14,9 @@
   <div class="container">
     <div class="post__container">
       <%= for classified <- @classifieds do %>
+
+        <%= micro_data(@conn, :classified, classified) %>
+
         <a id="classified-<%= classified.id %>" href="<%= app_classified_path(@conn, :show, classified.id, from_page: @classifieds.page_number) %>" class="post__item">
           <div class="grid-3">
             <div class="post__avatar">
@@ -79,6 +82,7 @@
 
 <% end %>
 
+<!-- In the future inject that via JS and remove from the view -->
 <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];

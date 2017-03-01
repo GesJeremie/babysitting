@@ -4,7 +4,7 @@ defmodule Babysitting.App.PageView do
 
   import Scrivener.HTML
 
-  alias Babysitting.Helpers.{DateHelper, FormatHelper, AppHelper, AltHelper}
+  alias Babysitting.Helpers.{DateHelper, FormatHelper, AppHelper, AltHelper, MicroDataHelper}
 
   def cover(conn) do
     "/images/tenants/#{AppHelper.current_tenant_folder(conn)}/cover.jpg"
@@ -54,4 +54,10 @@ defmodule Babysitting.App.PageView do
     AltHelper.mascot(conn)
   end
 
+  @doc """
+  Render micro data json ld for a classified
+  """
+  def micro_data(conn, :classified, classified) do
+    MicroDataHelper.classified(conn, classified)
+  end
 end

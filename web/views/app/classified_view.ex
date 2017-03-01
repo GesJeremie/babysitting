@@ -1,7 +1,7 @@
 defmodule Babysitting.App.ClassifiedView do
   use Babysitting.Web, :view
 
-  alias Babysitting.Helpers.{DateHelper, FormatHelper, AppHelper, AltHelper}
+  alias Babysitting.Helpers.{DateHelper, FormatHelper, AppHelper, AltHelper, MicroDataHelper}
 
   @valid_phone_length 10
 
@@ -105,6 +105,13 @@ defmodule Babysitting.App.ClassifiedView do
   """
   def alt_thumb(conn, classified) do
     AltHelper.avatar_classified(conn, classified)
+  end
+
+  @doc """
+  Render micro data json ld for a classified
+  """
+  def micro_data(conn, :classified, classified) do
+    MicroDataHelper.classified(conn, classified)
   end
 
 end
