@@ -5,7 +5,7 @@ defmodule Babysitting.Helpers.MicroDataHelper do
   Render micro data json ld for a classified
   """
   def classified(conn, classified) do
-    Phoenix.HTML.raw '
+    Phoenix.HTML.raw ~s(
       <script type="application/ld+json">
         {
           "@context": "http://schema.org/",
@@ -13,19 +13,18 @@ defmodule Babysitting.Helpers.MicroDataHelper do
           "serviceType": "Baby Sitting",
           "provider": {
             "@type": "Person",
-            "givenName": "#{classified.firstname}",
-            "familyName": "#{classified.lastname}",
-            "birthDate": "#{classified.birthday}",
-            "email": "#{classified.email}",
-            "telephone": "#{classified.phone}"
+            "givenName": "#{Phoenix.HTML.escape_javascript(classified.firstname)}",
+            "familyName": "#{Phoenix.HTML.escape_javascript(classified.lastname)}",
+            "birthDate": "#{Phoenix.HTML.escape_javascript(classified.birthday)}",
+            "email": "#{Phoenix.HTML.escape_javascript(classified.email)}",
+            "telephone": "#{Phoenix.HTML.escape_javascript(classified.phone)}"
           },
           "areaServed": {
             "@type": "City",
             "name": "#{AppHelper.current_tenant(conn).name}"
           },
-          "description": "#{classified.description}"
+          "description": "#{Phoenix.HTML.escape_javascript(classified.description)}"
         }
-      </script>
-    '
+      </script>)
   end
 end
