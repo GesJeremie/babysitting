@@ -26,9 +26,16 @@ defmodule Babysitting.App.PartialsView do
   def tenants(conn) do
     conn
     |> AppHelper.tenants
-    |> Enum.filter(fn(tenant) ->
-      (tenant.domain |> String.slice(-3, 3)) !== "dev"
-    end)
+    |> Enum.filter(&is_production(&1))
+    |> Enum.filter(&is_not_current(conn, &1))
+  end
+
+  defp is_production(tenant) do
+    (tenant.domain |> String.slice(-3, 3)) !== "dev"
+  end
+
+  defp is_not_current(conn, tenant) do
+    AppHelper.current_tenant(conn).name !== tenant.name
   end
 
   def town(conn) do

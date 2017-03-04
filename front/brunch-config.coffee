@@ -72,6 +72,7 @@ exports.config =
         'stylesheets/paris.css': /^styles\/hooks\/tenants\/paris/
         'stylesheets/london.css': /^styles\/hooks\/tenants\/london/
         'stylesheets/marseille.css': /^styles\/hooks\/tenants\/marseille/
+        'stylesheets/philly.css': /^styles\/hooks\/tenants\/philly/
 
       order:
         before: []
