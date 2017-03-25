@@ -24,7 +24,7 @@
             </div>
             <%= if is_recent(classified) do %>
               <div class="post__badge-new">
-                <span>Nouveau</span>
+                <span><%= gettext "New" %></span>
               </div>
             <% end %>
 

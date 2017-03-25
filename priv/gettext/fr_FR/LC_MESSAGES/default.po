@@ -14,8 +14,8 @@ msgstr ""
 msgid "About"
 msgstr "A propos"
 
-#: web/templates/app/page/home.html.eex:57
-#: web/templates/app/page/home.html.eex:77
+#: web/templates/app/page/home.html.eex:65
+#: web/templates/app/page/home.html.eex:85
 msgid "Add my classifed for free"
 msgstr "Ajouter mon annonce gratuitement"
 
@@ -46,7 +46,7 @@ msgstr "Prénom"
 msgid "Lastname"
 msgstr "Nom de famille"
 
-#: web/templates/app/page/home.html.eex:76
+#: web/templates/app/page/home.html.eex:84
 msgid "No classified available yet. If you are a baby sitter you can add your classifed right now !"
 msgstr "Aucune annonce pour le moment. Si tu es une baby sitter tu peux ajouter ton annonce dès maintenant!"
 
@@ -63,7 +63,7 @@ msgstr "Simple, gratuit et efficace. Trouvez votre prochaine baby sitter"
 msgid "Tell us more about you, your scholarship, your schedule and why you are an awesome baby sitter"
 msgstr "Dis-nous en plus sur toi, ta scolarité, tes disponibilités et pourquoi tu es une super baby sitter"
 
-#: web/templates/app/page/home.html.eex:75
+#: web/templates/app/page/home.html.eex:83
 msgid "Waiting for classified"
 msgstr "En attente d'annonces"
 
@@ -185,7 +185,7 @@ msgstr "Bonjour %{name}!"
 msgid "Home"
 msgstr "Accueil"
 
-#: web/templates/app/page/home.html.eex:56
+#: web/templates/app/page/home.html.eex:64
 msgid "If you are a baby sitter you can add your classifed right now !"
 msgstr "Si tu es une baby sitter tu peux ajouter une annonce maintenant !"
 
@@ -319,7 +319,7 @@ msgstr "Impossible de se connecter avec cet email / mot de passe"
 msgid "Waiting validation"
 msgstr "En attente de validation"
 
-#: web/templates/app/page/home.html.eex:55
+#: web/templates/app/page/home.html.eex:63
 msgid "Want to see your classified in this list ?"
 msgstr "Envie de voir ton annonce dans cette liste ?"
 
@@ -477,3 +477,7 @@ msgid "Yesterday"
 msgid_plural "%{days} days ago"
 msgstr[0] "Hier"
 msgstr[1] "Il y a %{days} jours"
+
+#: web/templates/app/page/home.html.eex:27
+msgid "New"
+msgstr "Nouveau"

@@ -15,8 +15,8 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: web/templates/app/page/home.html.eex:57
-#: web/templates/app/page/home.html.eex:77
+#: web/templates/app/page/home.html.eex:65
+#: web/templates/app/page/home.html.eex:85
 msgid "Add my classifed for free"
 msgstr ""
 
@@ -47,7 +47,7 @@ msgstr ""
 msgid "Lastname"
 msgstr ""
 
-#: web/templates/app/page/home.html.eex:76
+#: web/templates/app/page/home.html.eex:84
 msgid "No classified available yet. If you are a baby sitter you can add your classifed right now !"
 msgstr ""
 
@@ -64,7 +64,7 @@ msgstr ""
 msgid "Tell us more about you, your scholarship, your schedule and why you are an awesome baby sitter"
 msgstr ""
 
-#: web/templates/app/page/home.html.eex:75
+#: web/templates/app/page/home.html.eex:83
 msgid "Waiting for classified"
 msgstr ""
 
@@ -186,7 +186,7 @@ msgstr ""
 msgid "Home"
 msgstr ""
 
-#: web/templates/app/page/home.html.eex:56
+#: web/templates/app/page/home.html.eex:64
 msgid "If you are a baby sitter you can add your classifed right now !"
 msgstr ""
 
@@ -320,7 +320,7 @@ msgstr ""
 msgid "Waiting validation"
 msgstr ""
 
-#: web/templates/app/page/home.html.eex:55
+#: web/templates/app/page/home.html.eex:63
 msgid "Want to see your classified in this list ?"
 msgstr ""
 
@@ -478,3 +478,7 @@ msgid "Yesterday"
 msgid_plural "%{days} days ago"
 msgstr[0] ""
 msgstr[1] ""
+
+#: web/templates/app/page/home.html.eex:27
+msgid "New"
+msgstr ""
