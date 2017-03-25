@@ -65,4 +65,15 @@ defmodule Babysitting.Helpers.DateHelper do
     end
   end
 
+  @doc """
+  Check the difference between two dates. It's a simple
+  alias of Timex.diff which support the ecto datetime
+  """
+  def diff(ecto_datetime, unit) do
+    now = Timex.now
+    timex_datetime = ecto_to_timex_datetime(ecto_datetime)
+
+    Timex.diff(now, timex_datetime, unit)
+  end
+
 end

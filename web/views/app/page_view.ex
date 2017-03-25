@@ -14,6 +14,10 @@ defmodule Babysitting.App.PageView do
     "#{DateHelper.age(birthday)} #{gettext("years old")}"
   end
 
+  def is_recent(%{:inserted_at => inserted_at}) do
+    DateHelper.diff(inserted_at, :weeks) <= 2
+  end
+
   def short_description(%{:description => description}) do
     description
       |> FormatHelper.word_limit

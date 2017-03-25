@@ -22,6 +22,12 @@
             <div class="post__avatar">
               <img alt="<%= alt_thumb(@conn, classified) %>" src="/<%= Babysitting.Avatar.url({classified.avatar, classified}, :thumb) %>" />
             </div>
+            <%= if is_recent(classified) do %>
+              <div class="post__badge-new">
+                <span>Nouveau</span>
+              </div>
+            <% end %>
+
             <div class="post__inserted-at">
               <%= inserted_at(classified) %>
             </div>
