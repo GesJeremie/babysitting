@@ -1,5 +1,5 @@
 +component(post)
-  
+
   +part(container)
     margin-top: 1em
     text-align: center
@@ -18,13 +18,17 @@
     padding-bottom: 1em
 
   +part(avatar)
-    padding-top: 1.5em
+    text-align: center
+
     img
       display: inline-block
       width: 180px
       height: 180px
       border-radius: 50%
 
+  +part(inserted-at)
+    padding-top: 1em
+    text-align: center
 
   +part(item)
     display: block
@@ -34,7 +38,7 @@
     padding-top: 2em
     padding-bottom: 2em
     outline: 0
-    
+
     &:hover
       background-color: darken($color-grey, 3%)
       cursor: pointer

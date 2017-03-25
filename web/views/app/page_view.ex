@@ -20,6 +20,10 @@ defmodule Babysitting.App.PageView do
       |> text_to_html
   end
 
+  def inserted_at(%{:inserted_at => inserted_at}) do
+    Babysitting.Helpers.DateHelper.humanize(inserted_at)
+  end
+
   def fullname(%{:firstname => firstname, :lastname => lastname}) do
     FormatHelper.fullname(firstname, lastname)
   end

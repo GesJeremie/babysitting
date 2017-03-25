@@ -14,8 +14,8 @@ msgstr ""
 msgid "About"
 msgstr "A propos"
 
-#: web/templates/app/page/home.html.eex:53
-#: web/templates/app/page/home.html.eex:73
+#: web/templates/app/page/home.html.eex:57
+#: web/templates/app/page/home.html.eex:77
 msgid "Add my classifed for free"
 msgstr "Ajouter mon annonce gratuitement"
 
@@ -46,7 +46,7 @@ msgstr "Prénom"
 msgid "Lastname"
 msgstr "Nom de famille"
 
-#: web/templates/app/page/home.html.eex:72
+#: web/templates/app/page/home.html.eex:76
 msgid "No classified available yet. If you are a baby sitter you can add your classifed right now !"
 msgstr "Aucune annonce pour le moment. Si tu es une baby sitter tu peux ajouter ton annonce dès maintenant!"
 
@@ -63,7 +63,7 @@ msgstr "Simple, gratuit et efficace. Trouvez votre prochaine baby sitter"
 msgid "Tell us more about you, your scholarship, your schedule and why you are an awesome baby sitter"
 msgstr "Dis-nous en plus sur toi, ta scolarité, tes disponibilités et pourquoi tu es une super baby sitter"
 
-#: web/templates/app/page/home.html.eex:71
+#: web/templates/app/page/home.html.eex:75
 msgid "Waiting for classified"
 msgstr "En attente d'annonces"
 
@@ -123,7 +123,7 @@ msgstr "Baby Sitting %{name} - Nouvelle demande de contact"
 msgid "Baby Sitting %{name} - Welcome"
 msgstr "Baby Sitting %{name} - Bonjour"
 
-#: web/templates/app/classified/show.html.eex:10
+#: web/templates/app/classified/show.html.eex:13
 msgid "Back Listing"
 msgstr "Retour liste"
 
@@ -152,8 +152,8 @@ msgstr "Annonce en attente de validation de %{name} !"
 msgid "Edit my classified"
 msgstr "Editer mon annonce"
 
-#: web/templates/app/classified/show.html.eex:48
-#: web/templates/app/classified/show.html.eex:54
+#: web/templates/app/classified/show.html.eex:51
+#: web/templates/app/classified/show.html.eex:57
 #: web/templates/dashboard_user/auth/index.html.eex:8
 #: web/templates/dashboard_user/classified/show.html.eex:75
 msgid "Email"
@@ -185,7 +185,7 @@ msgstr "Bonjour %{name}!"
 msgid "Home"
 msgstr "Accueil"
 
-#: web/templates/app/page/home.html.eex:52
+#: web/templates/app/page/home.html.eex:56
 msgid "If you are a baby sitter you can add your classifed right now !"
 msgstr "Si tu es une baby sitter tu peux ajouter une annonce maintenant !"
 
@@ -255,8 +255,8 @@ msgstr "Oups, des erreurs sont présentes dans le formulaire."
 msgid "Password changed!"
 msgstr "Mot de passe édité!"
 
-#: web/templates/app/classified/show.html.eex:42
-#: web/templates/app/classified/show.html.eex:60
+#: web/templates/app/classified/show.html.eex:45
+#: web/templates/app/classified/show.html.eex:63
 #: web/templates/dashboard_user/classified/show.html.eex:89
 msgid "Phone"
 msgstr "Téléphone"
@@ -279,7 +279,7 @@ msgstr "Voir mon annonce"
 msgid "See my classified on the website"
 msgstr "Voir mon annonce sur le site"
 
-#: web/templates/app/classified/show.html.eex:71
+#: web/templates/app/classified/show.html.eex:74
 msgid "Send message"
 msgstr "Envoyer un message"
 
@@ -319,7 +319,7 @@ msgstr "Impossible de se connecter avec cet email / mot de passe"
 msgid "Waiting validation"
 msgstr "En attente de validation"
 
-#: web/templates/app/page/home.html.eex:51
+#: web/templates/app/page/home.html.eex:55
 msgid "Want to see your classified in this list ?"
 msgstr "Envie de voir ton annonce dans cette liste ?"
 
@@ -364,23 +364,23 @@ msgstr "Mettre à jour"
 msgid "Character count"
 msgstr "Nombre de caractères"
 
-#: web/templates/app/classified/show.html.eex:66
+#: web/templates/app/classified/show.html.eex:69
 msgid "Message"
 msgstr "Votre message"
 
-#: web/templates/app/classified/show.html.eex:53
+#: web/templates/app/classified/show.html.eex:56
 msgid "Your Email"
 msgstr "Votre email"
 
-#: web/templates/app/classified/show.html.eex:65
+#: web/templates/app/classified/show.html.eex:68
 msgid "Your Message"
 msgstr "Votre message"
 
-#: web/templates/app/classified/show.html.eex:59
+#: web/templates/app/classified/show.html.eex:62
 msgid "Your Phone"
 msgstr "Votre téléphone"
 
-#: web/templates/app/classified/show.html.eex:44
+#: web/templates/app/classified/show.html.eex:47
 msgid "Show Phone"
 msgstr "Voir téléphone"
 
@@ -399,10 +399,6 @@ msgstr "est déjà pris"
 #: web/templates/app/page/opengraph.home.html.eex:2
 msgid "Do you need a babysitter in %{town} ? Trust us, it's simple, free and effective!"
 msgstr "Besoin d'une baby sitter sur %{town} ? Faites nous confiance, c'est simple, gratuit et efficace!"
-
-#: web/controllers/dashboard_admin/classified_controller.ex:160
-msgid "A new baby sitter is available"
-msgstr "Une nouvelle baby sitter est disponible"
 
 #: web/templates/app/classified/new.html.eex:78
 msgid "Password confirmation"
@@ -439,3 +435,45 @@ msgstr ""
 #: web/helpers/alt_helper.ex:33
 msgid "Mascot Baby Sitting %{town}"
 msgstr "Mascotte Baby Sitting %{town}"
+
+#: web/helpers/date_helper.ex:60
+msgid "%{hours} hour ago"
+msgid_plural "%{hours} hours ago"
+msgstr[0] "Il y a %{hours} heure"
+msgstr[1] "Il y a %{hours} heures"
+
+#: web/helpers/date_helper.ex:59
+msgid "%{minutes} minute ago"
+msgid_plural "%{minutes} minutes ago"
+msgstr[0] "Il y a %{minutes} minute"
+msgstr[1] "Il y a %{minutes} minutes"
+
+#: web/helpers/date_helper.ex:63
+msgid "%{months} month ago"
+msgid_plural "%{months} months ago"
+msgstr[0] "Il y a %{months} mois"
+msgstr[1] "Il y a %{months} mois"
+
+#: web/helpers/date_helper.ex:58
+msgid "%{seconds} second ago"
+msgid_plural "%{seconds} seconds ago"
+msgstr[0] "Il y a %{seconds} seconde"
+msgstr[1] "Il y a %{seconds} secondes"
+
+#: web/helpers/date_helper.ex:62
+msgid "%{weeks} week ago"
+msgid_plural "%{weeks} weeks ago"
+msgstr[0] "Il y a %{weeks} semaine"
+msgstr[1] "Il y a %{weeks} semaines"
+
+#: web/helpers/date_helper.ex:64
+msgid "%{years} year ago"
+msgid_plural "%{years} years ago"
+msgstr[0] "Il y a %{years} an"
+msgstr[1] "Il y a %{years} ans"
+
+#: web/helpers/date_helper.ex:61
+msgid "Yesterday"
+msgid_plural "%{days} days ago"
+msgstr[0] "Hier"
+msgstr[1] "Il y a %{days} jours"

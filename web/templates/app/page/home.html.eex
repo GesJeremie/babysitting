@@ -22,6 +22,9 @@
             <div class="post__avatar">
               <img alt="<%= alt_thumb(@conn, classified) %>" src="/<%= Babysitting.Avatar.url({classified.avatar, classified}, :thumb) %>" />
             </div>
+            <div class="post__inserted-at">
+              <%= inserted_at(classified) %>
+            </div>
           </div>
           <div class="grid-9">
             <h3 class="post__name"><%= fullname(classified) %></h3>
