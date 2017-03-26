@@ -1,4 +1,5 @@
 defmodule Babysitting.App.PageView do
+  import Babysitting.ClassifiedView, only: [fullname: 1, age: 1, phone: 1, url_classified: 2, url_avatar: 2]
   use Babysitting.Web, :view
   use Phoenix.HTML
 
@@ -8,10 +9,6 @@ defmodule Babysitting.App.PageView do
 
   def cover(conn) do
     "/images/tenants/#{AppHelper.current_tenant_folder(conn)}/cover.jpg"
-  end
-
-  def age(%{:birthday => birthday}) do
-    "#{DateHelper.age(birthday)} #{gettext("years old")}"
   end
 
   def is_recent(%{:inserted_at => inserted_at}) do
@@ -26,10 +23,6 @@ defmodule Babysitting.App.PageView do
 
   def inserted_at(%{:inserted_at => inserted_at}) do
     Babysitting.Helpers.DateHelper.humanize(inserted_at)
-  end
-
-  def fullname(%{:firstname => firstname, :lastname => lastname}) do
-    FormatHelper.fullname(firstname, lastname)
   end
 
   def site_name(conn) do

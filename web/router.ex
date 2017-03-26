@@ -63,6 +63,9 @@ defmodule Babysitting.Router do
     put "/classifieds/:id/edit", ClassifiedController, :update
     get "/classifieds/:id/delete", ClassifiedController, :delete
 
+    # Messages
+    get "/messages", MessageController, :index
+
     # Auth
     get "/auth", AuthController, :index
     post "/auth/login", AuthController, :login
@@ -87,6 +90,9 @@ defmodule Babysitting.Router do
     get "/security", SecurityController, :index
     get "/security/password", SecurityController, :password
     put "/security/password", SecurityController, :update_password
+
+    # Message
+    get "/messages", MessageController, :index
 
     # Auth
     get "/auth", AuthController, :index

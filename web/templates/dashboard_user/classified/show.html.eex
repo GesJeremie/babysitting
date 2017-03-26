@@ -16,7 +16,8 @@
   </div>
 
   <div class="container-fluid">
-    
+    <div class="+spacer"></div>
+
     <%= if info = get_flash(@conn, :warning) do %>
 
       <div class="alert --warning">

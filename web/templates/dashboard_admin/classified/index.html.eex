@@ -1,87 +1,95 @@
 <div id="content-wrapper">
   <div class="header__container">
-    <div class="header__title">Classified</div>
+    <div class="header__title">Classifieds</div>
     <div class="header__description">Every classified added.</div>
   </div>
 
   <div class="container-fluid">
     <div class="+spacer"></div>
     <div class="stack__container">
-      <a href="?" class="stack__item <%= unless @state do %>--active<% end %>">All</a>
       <a href="?state=waiting" class='stack__item <%= if @state == "waiting" do %>--active<% end %>'>Waiting for validation</a>
+      <a href="?" class="stack__item <%= unless @state do %>--active<% end %>">All</a>
       <a href="?state=valid" class='stack__item <%= if @state == "valid" do %>--active<% end %>''>Validated</a>
       <a href="?state=invalid" class='stack__item <%= if @state == "invalid" do %>--active<% end %>'>Rejected</a>
     </div>
 
+    <%= if length(@classifieds) === 0 do %>
+      <div class="panel">
+        <div class="panel__container">
+          No results
+        </div>
+      </div>
+    <% else %>
 
-    <div class="container-fluid">
-      <div class="listing__container">
-        <div class="listing__result --header">
-          <div class="listing__content">
-            <div class="grid-1">
-              <h3 class="listing__header">ID</h3>
+      <div class="container-fluid">
+        <div class="listing__container">
+          <div class="listing__result --header">
+            <div class="listing__content">
+              <div class="grid-1">
+                <h3 class="listing__header">ID</h3>
+              </div>
+              <div class="grid-2">
+                <p class="listing__header">Name</p>
+              </div>
+              <div class="grid-3">
+                <p class="listing__header">Email</p>
+              </div>
+              <div class="grid-2">
+                <p class="listing__header">Tenant</p>
+              </div>
+              <div class="grid-4">
+                <p class="listing__header">Actions</p>
+              </div>
+              <div class="clear"></div>
             </div>
-            <div class="grid-2">
-              <p class="listing__header">Name</p>
-            </div>
-            <div class="grid-3">
-              <p class="listing__header">Email</p>
-            </div>
-            <div class="grid-2">
-              <p class="listing__header">Tenant</p>
-            </div>
-            <div class="grid-4">
-              <p class="listing__header">Actions</p>
-            </div>
-            <div class="clear"></div>
+
+            <%= for classified <- @classifieds do %>
+
+              <div class="listing__result">
+                <div class="listing__content">
+                  <div class="grid-1">
+                    <h3 class="listing__detail"><%= classified.id %></h3>
+                  </div>
+                  <div class="grid-2">
+                    <p class="listing__detail"><%= fullname(classified) %></p>
+                  </div>
+                  <div class="grid-3">
+                    <p class="listing__detail"><%= classified.email %></p>
+                  </div>
+                  <div class="grid-2">
+                    <p class="listing__detail"><%= classified.tenant.name %></p>
+                  </div>
+                  <div class="grid-4">
+                    <p class="listing__detail">
+                      <a class="button --primary" href="<%= admin_classified_path(@conn, :show, classified.id) %>">Show</a>
+                      <a class="button --warning" href="<%= admin_classified_path(@conn, :edit, classified.id) %>">Edit</a>
+                      <%= if classified.valid === true do %>
+                        <a data-confirm="<%= gettext("It will reject the classified") %>" class="button --danger js-no-smoothstate" href="<%= admin_classified_path(@conn, :invalidate, classified.id) %>">Reject</a>
+                      <% end %>
+
+                      <%= if classified.valid === false do %>
+                        <a data-confirm="<%= gettext("It will validate the classified") %>" class="button --success js-no-smoothstate" href="<%= admin_classified_path(@conn, :validate, classified.id) %>">Validate</a>
+                      <% end %>
+
+                      <%= if classified.valid === nil do %>
+                        <a data-confirm="<%= gettext("It will reject the classified") %>" class="button --danger js-no-smoothstate" href="<%= admin_classified_path(@conn, :invalidate, classified.id) %>">Reject</a>
+                        <a data-confirm="<%= gettext("It will validate the classified") %>" class="button --success js-no-smoothstate" href="<%= admin_classified_path(@conn, :validate, classified.id) %>">Validate</a>
+                      <% end %>
+
+
+                      <a data-confirm="It will delete the classified" class="button --danger js-no-smoothstate" href="<%= admin_classified_path(@conn, :delete, classified.id) %>"><i class="icon-page-delete"></i>Delete</a>
+                    </p>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+
+            <% end %>
           </div>
 
-          <%= for classified <- @classifieds do %>
-
-            <div class="listing__result">
-              <div class="listing__content">
-                <div class="grid-1">
-                  <h3 class="listing__detail"><%= classified.id %></h3>
-                </div>
-                <div class="grid-2">
-                  <p class="listing__detail"><%= fullname(classified) %></p>
-                </div>
-                <div class="grid-3">
-                  <p class="listing__detail"><%= classified.email %></p>
-                </div>
-                <div class="grid-2">
-                  <p class="listing__detail"><%= classified.tenant.name %></p>
-                </div>
-                <div class="grid-4">
-                  <p class="listing__detail">
-                    <a class="button --primary" href="<%= admin_classified_path(@conn, :show, classified.id) %>">Show</a>
-                    <a class="button --warning" href="<%= admin_classified_path(@conn, :edit, classified.id) %>">Edit</a>
-                    <%= if classified.valid === true do %>
-                      <a data-confirm="<%= gettext("It will reject the classified") %>" class="button --danger js-no-smoothstate" href="<%= admin_classified_path(@conn, :invalidate, classified.id) %>">Reject</a>
-                    <% end %>
-
-                    <%= if classified.valid === false do %>
-                      <a data-confirm="<%= gettext("It will validate the classified") %>" class="button --success js-no-smoothstate" href="<%= admin_classified_path(@conn, :validate, classified.id) %>">Validate</a>
-                    <% end %>
-
-                    <%= if classified.valid === nil do %>
-                      <a data-confirm="<%= gettext("It will reject the classified") %>" class="button --danger js-no-smoothstate" href="<%= admin_classified_path(@conn, :invalidate, classified.id) %>">Reject</a>
-                      <a data-confirm="<%= gettext("It will validate the classified") %>" class="button --success js-no-smoothstate" href="<%= admin_classified_path(@conn, :validate, classified.id) %>">Validate</a>
-                    <% end %>
-
-
-                    <a data-confirm="It will delete the classified" class="button --danger js-no-smoothstate" href="<%= admin_classified_path(@conn, :delete, classified.id) %>"><i class="icon-page-delete"></i>Delete</a>
-                  </p>
-                </div>
-                <div class="clear"></div>
-              </div>
-            </div>
-
-          <% end %>
         </div>
-
       </div>
-    </div>
+    <% end %>
 
 
   </div>

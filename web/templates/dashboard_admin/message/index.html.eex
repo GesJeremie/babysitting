@@ -1,0 +1,61 @@
+<div id="content-wrapper">
+  <div class="header__container">
+    <div class="header__title">Messages</div>
+    <div class="header__description">Every messages sent by families</div>
+  </div>
+
+  <div class="container-fluid">
+    <div class="+spacer"></div>
+
+      <div class="container-fluid">
+        <div class="listing__container">
+          <div class="listing__result --header">
+            <div class="listing__content">
+              <div class="grid-1">
+                <h3 class="listing__header">ID</h3>
+              </div>
+              <div class="grid-3">
+                <h3 class="listing__header">From</h3>
+              </div>
+              <div class="grid-5">
+                <p class="listing__header">Message</p>
+              </div>
+              <div class="grid-1">
+                <p class="listing__header">Tenant</p>
+              </div>
+              <div class="grid-2">
+                <p class="listing__header">Classified</p>
+              </div>
+              <div class="clear"></div>
+            </div>
+
+            <%= for message <- @messages do %>
+
+              <div class="listing__result">
+                <div class="listing__content">
+                  <div class="grid-1">
+                    <h3 class="listing__detail"><%= message.id %></h3>
+                  </div>
+                  <div class="grid-3">
+                    <h3 class="listing__detail"><%= "#{message.email} / #{message.phone}" %></h3>
+                  </div>
+                  <div class="grid-5">
+                    <div class="listing__detail"><%= text_to_html(message.message) %></div>
+                  </div>
+                  <div class="grid-1">
+                    <p class="listing__detail"><%= message.classified.tenant.name %></p>
+                  </div>
+                  <div class="grid-2">
+                    <p class="listing__detail"><a href="<%= admin_classified_path(@conn, :show, message.classified.id) %>" class="button --primary"><%= fullname(message.classified) %></a></p>
+                  </div>
+                  <div class="clear"></div>
+                </div>
+              </div>
+
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

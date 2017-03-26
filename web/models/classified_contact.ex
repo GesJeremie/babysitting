@@ -12,4 +12,19 @@ defmodule Babysitting.ClassifiedContact do
     belongs_to :classified, Babysitting.Classified
   end
 
+  @doc """
+  Sort the messages by recent
+  """
+  def sort_by_recent(query) do
+    from contact in query,
+      order_by: [desc: contact.inserted_at]
+  end
+
+  @doc """
+  Global where filter
+  """
+  def where(query, field, condition) do
+    from contact in query,
+      where: field(contact, ^field) == ^condition
+  end
 end

@@ -1,0 +1,34 @@
+<div id="content-wrapper">
+  <div class="header__container">
+    <div class="header__title"><%= gettext "Messages" %></div>
+    <div class="header__description"><%= gettext "Messages from the families" %></div>
+  </div>
+
+
+  <div class="container-fluid">
+    <div class="+spacer"></div>
+    <div class="alert --info"><strong><%= gettext "Tip" %></strong> - <%= gettext "When you receive a new message, we notify you directly by email! (Don't forget to check your spam)" %></div>
+    <%= if length(@messages) === 0 do %>
+      <div class="panel">
+        <div class="panel__container">
+          <%= gettext "No messages yet <3" %>
+        </div>
+      </div>
+    <% else %>
+      <%= for message <- @messages do %>
+
+        <div class="panel">
+          <div class="panel__container">
+            <h3 class="panel__title"><%= inserted_at(message) %></h3>
+            <div class="panel__content">
+              <%= gettext "From" %> <%= mailto(message.email) %> / <%= phone(message) %>
+              <div class="+spacer"></div>
+              <%= text_to_html(message.message) %>
+            </div>
+          </div>
+        </div>
+
+      <% end %>
+    <% end %>
+  </div>
+</div>
