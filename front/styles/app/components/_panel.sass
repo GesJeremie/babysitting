@@ -1,0 +1,50 @@
++component(panel)
+
+  +option(payment)
+    padding-top: 20px
+
+  +part(title)
+    position: relative
+    font-size: $font-size + 5px
+    margin-bottom: 20px
+    font-weight: 500
+
+  +part(body)
+    position: relative
+    max-width: 80%
+
+    strong
+      font-weight: bold
+
+  +part(container)
+    position: relative
+    color: white
+    background-size: cover
+    background-position: center center
+    background-image: url('/images/coffee.png')
+    //background-image: url('https://images.unsplash.com/photo-1447347974530-d7c185559683?dpr=2&auto=format&fit=crop&w=1500&h=771&q=80&cs=tinysrgb&crop=&bg=')
+    border-radius: 5px
+    padding: 20px
+
+  +part(overlay)
+    border-radius: 5px
+    display: block
+    opacity: 0.3
+    position: absolute
+    background: black
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+
+  +part(note)
+    list-style: disc
+    margin-top: 10px
+    padding-left: 20px
+
+  +part(strike)
+    text-decoration: line-through
+    font-style: italic
+
+
+
