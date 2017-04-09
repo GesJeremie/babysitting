@@ -20,7 +20,7 @@ msgstr ""
 msgid "Add my classifed for free"
 msgstr ""
 
-#: web/templates/app/classified/new.html.eex:106
+#: web/templates/app/classified/new.html.eex:116
 msgid "Add my classified"
 msgstr ""
 
@@ -28,7 +28,7 @@ msgstr ""
 msgid "Add my classified!"
 msgstr ""
 
-#: web/templates/app/classified/new.html.eex:38
+#: web/templates/app/classified/new.html.eex:43
 #: web/templates/dashboard_user/classified/show.html.eex:102
 msgid "Birthday"
 msgstr ""
@@ -37,12 +37,12 @@ msgstr ""
 msgid "Contact"
 msgstr ""
 
-#: web/templates/app/classified/new.html.eex:30
+#: web/templates/app/classified/new.html.eex:35
 #: web/templates/dashboard_user/classified/show.html.eex:52
 msgid "Firstname"
 msgstr ""
 
-#: web/templates/app/classified/new.html.eex:34
+#: web/templates/app/classified/new.html.eex:39
 #: web/templates/dashboard_user/classified/show.html.eex:64
 msgid "Lastname"
 msgstr ""
@@ -51,7 +51,7 @@ msgstr ""
 msgid "No classified available yet. If you are a baby sitter you can add your classifed right now !"
 msgstr ""
 
-#: web/templates/app/classified/new.html.eex:92
+#: web/templates/app/classified/new.html.eex:97
 #: web/templates/dashboard_user/auth/index.html.eex:15
 msgid "Password"
 msgstr ""
@@ -60,7 +60,7 @@ msgstr ""
 msgid "Simple, free and effective. Find your next baby sitter."
 msgstr ""
 
-#: web/templates/app/classified/new.html.eex:50
+#: web/templates/app/classified/new.html.eex:55
 msgid "Tell us more about you, your scholarship, your schedule and why you are an awesome baby sitter"
 msgstr ""
 
@@ -68,7 +68,7 @@ msgstr ""
 msgid "Waiting for classified"
 msgstr ""
 
-#: web/templates/app/classified/new.html.eex:88
+#: web/templates/app/classified/new.html.eex:93
 msgid "With this password you will be able to edit your classified in the future"
 msgstr ""
 
@@ -76,7 +76,7 @@ msgstr ""
 msgid "Your Baby Sitter in %{tenant_name}"
 msgstr ""
 
-#: web/templates/app/classified/new.html.eex:47
+#: web/templates/app/classified/new.html.eex:52
 msgid "Your classified"
 msgstr ""
 
@@ -92,7 +92,7 @@ msgstr ""
 msgid "Are you sure"
 msgstr ""
 
-#: web/templates/app/classified/new.html.eex:60
+#: web/templates/app/classified/new.html.eex:65
 msgid "Avatar"
 msgstr ""
 
@@ -128,11 +128,11 @@ msgstr ""
 msgid "Back Listing"
 msgstr ""
 
-#: web/templates/app/classified/new.html.eex:68
+#: web/templates/app/classified/new.html.eex:73
 msgid "Basic informations for the parents to reach you."
 msgstr ""
 
-#: web/controllers/app/classified_controller.ex:69
+#: web/controllers/app/classified_controller.ex:71
 msgid "Classifed created successfully."
 msgstr ""
 
@@ -209,7 +209,7 @@ msgstr ""
 msgid "Message:"
 msgstr ""
 
-#: web/templates/app/classified/new.html.eex:54
+#: web/templates/app/classified/new.html.eex:59
 msgid "Minimum"
 msgstr ""
 
@@ -248,7 +248,8 @@ msgid "Online"
 msgstr ""
 
 #: web/controllers/app/classified_controller.ex:46
-#: web/controllers/app/classified_controller.ex:74
+#: web/controllers/app/classified_controller.ex:84
+#: web/templates/partials/app_config.html.eex:4
 msgid "Oops, some errors are present in the form."
 msgstr ""
 
@@ -266,7 +267,7 @@ msgstr ""
 msgid "Phone: %{phone}"
 msgstr ""
 
-#: web/templates/app/classified/new.html.eex:85
+#: web/templates/app/classified/new.html.eex:90
 #: web/templates/dashboard_user/partials/sidebar.html.eex:10
 #: web/templates/dashboard_user/security/password.html.eex:5
 msgid "Security"
@@ -349,7 +350,7 @@ msgstr ""
 msgid "years old"
 msgstr ""
 
-#: web/templates/app/classified/new.html.eex:26
+#: web/templates/app/classified/new.html.eex:31
 msgid "About you"
 msgstr ""
 
@@ -361,7 +362,7 @@ msgstr ""
 msgid "Save changes"
 msgstr ""
 
-#: web/templates/app/classified/new.html.eex:54
+#: web/templates/app/classified/new.html.eex:59
 msgid "Character count"
 msgstr ""
 
@@ -393,7 +394,7 @@ msgstr ""
 msgid "See the classified on"
 msgstr ""
 
-#: web/changesets/classified_changeset.ex:179
+#: web/changesets/classified_changeset.ex:180
 msgid "already taken"
 msgstr ""
 
@@ -401,7 +402,7 @@ msgstr ""
 msgid "Do you need a babysitter in %{town} ? Trust us, it's simple, free and effective!"
 msgstr ""
 
-#: web/templates/app/classified/new.html.eex:96
+#: web/templates/app/classified/new.html.eex:101
 msgid "Password confirmation"
 msgstr ""
 
@@ -508,6 +509,10 @@ msgstr ""
 msgid "From"
 msgstr ""
 
-#: web/templates/app/classified/new.html.eex:38
+#: web/templates/app/classified/new.html.eex:43
 msgid "jj/mm/aaaa"
+msgstr ""
+
+#: web/helpers/stripe_helper.ex:35
+msgid "Ooops, the payment system returned an error."
 msgstr ""

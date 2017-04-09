@@ -68,6 +68,13 @@ defmodule Babysitting.Helpers.AppHelper do
   end
 
   @doc """
+  Check if the current tenant is bordeaux
+  """
+  def is_current_tenant(:bordeaux, conn) do
+    current_tenant(conn).slug in ["bordeaux", "bordeaux-dev"]
+  end
+
+  @doc """
   Return the facebook page id for the tenant
   given
   Note: In the future we should store the data

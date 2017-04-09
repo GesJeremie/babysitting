@@ -6,7 +6,7 @@ defmodule Babysitting.App.ClassifiedController do
   alias Babysitting.{Classified, ClassifiedContact}
   alias Babysitting.{Email, Mailer}
   alias Babysitting.Changesets.{ClassifiedChangeset, ClassifiedContactChangeset}
-  alias Babysitting.Helpers.{AppHelper}
+  alias Babysitting.Helpers.{AppHelper, StripeHelper}
 
   # Plugs
   plug :scrub_params, "classified" when action in [:create, :update]
@@ -61,13 +61,25 @@ defmodule Babysitting.App.ClassifiedController do
     case Repo.insert(changeset) do
       {:ok, classified} ->
 
-        classified = classified |> Repo.preload(:tenant)
+        case StripeHelper.maybe_charge_classified(classified_params, conn) do
+          {:ok, :charge} ->
+            classified = classified |> Repo.preload(:tenant)
 
-        conn
-        |> trigger_success_events(classified)
-        |> send_email(:new_classified_admin, classified)
-        |> put_flash(:info, gettext("Classifed created successfully."))
-        |> redirect(to: app_classified_path(conn, :thankyou))
+            conn
+            |> trigger_success_events(classified)
+            |> send_email(:new_classified_admin, classified)
+            |> put_flash(:info, gettext("Classifed created successfully."))
+            |> redirect(to: app_classified_path(conn, :thankyou))
+
+          {:error, :charge, message} ->
+
+            # The charge failed, let's remove the classified from the db
+            Repo.get(Classified, classified.id) |> Repo.delete
+
+            conn
+            |> put_flash(:error, message)
+            |> render("new.html", changeset: changeset)
+        end
 
       {:error, changeset} ->
         conn

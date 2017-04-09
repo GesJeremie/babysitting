@@ -33,7 +33,8 @@ config :babysitting, Babysitting.Repo,
 
 config :babysitting,
        email_address: "group.babysitting@gmail.com",
-       admin_password: System.get_env("ADMIN_PASSWORD")
+       admin_password: System.get_env("ADMIN_PASSWORD"),
+       stripe_key: System.get_env("STRIPE_KEY")
 
 config :babysitting, Babysitting.Mailer,
   adapter: Bamboo.SMTPAdapter,
@@ -44,6 +45,7 @@ config :babysitting, Babysitting.Mailer,
   tls: :if_available, # can be `:always` or `:never`
   ssl: false, # can be `true`
   retries: 1
+
 
 # ## SSL Support
 #

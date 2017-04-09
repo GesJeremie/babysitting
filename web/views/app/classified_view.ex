@@ -5,6 +5,13 @@ defmodule Babysitting.App.ClassifiedView do
   alias Babysitting.Helpers.{DateHelper, FormatHelper, AppHelper, AltHelper, MicroDataHelper}
 
   @doc """
+  Check if the current tenant is bordeaux
+  """
+  def is_tenant_bordeaux(conn) do
+    AppHelper.is_current_tenant(:bordeaux, conn)
+  end
+
+  @doc """
   Return the phone obfuscated
   """
   def phone_hidden(%{:phone => phone}) do

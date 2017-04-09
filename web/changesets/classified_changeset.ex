@@ -37,8 +37,9 @@ defmodule Babysitting.Changesets.ClassifiedChangeset do
 
     if changeset.valid? do
       # Handle picture upload
-      changeset
-      |> cast_attachments(params, ~w(avatar), [])
+      changeset =
+        changeset
+        |> cast_attachments(params, ~w(avatar), [])
     else
       changeset
     end

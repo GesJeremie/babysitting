@@ -1,5 +1,6 @@
 # Require the controller library of Gotham
 Controller = require 'core/controller'
+Config = require 'config'
 
 class Classified_New extends Controller
 
@@ -14,7 +15,7 @@ class Classified_New extends Controller
   before: ->
 
     @on 'keyup', '#classified_description', @changeCharsCount
-    @on 'submit', '#classified-form', @onSubmitClassifiedForm
+    @on 'submit', '#classified-form', @onSubmitForm
 
   ##
   # Run
@@ -32,7 +33,9 @@ class Classified_New extends Controller
   ##
   # When classified form is submitted
   ##
-  onSubmitClassifiedForm: (e) =>
+  onSubmitForm: (e) =>
+    e.preventDefault()
+
     $this = $(e.currentTarget)
     e.preventDefault()
 
@@ -45,10 +48,47 @@ class Classified_New extends Controller
       this.showErrorsForm(validation)
       return
 
+    if $('#app').data('is-tenant-bordeaux')
+      this.askPayment()
+      return
+
+    this.submitFormBackend()
+
+  ##
+  # Open the stripe modal to ask for the card
+  # details of the customer
+  ##
+  askPayment: =>
+    handler = StripeCheckout.configure({
+      key: Config.stripe[Config.env()]
+      image: '/images/tenants/bordeaux/thumbnail.jpg'
+      locale: 'fr_FR'
+      token: (token) =>
+        $('[name="classified[stripe_token]"]').val(token.id)
+        this.submitFormBackend()
+    })
+
+    handler.open({
+      name: 'Baby Sitting Bordeaux',
+      description: 'Nouvelle annonce',
+      currency: 'EUR',
+      amount: 250,
+      email: $('[name="classified[email]"').val()
+    })
+
+  ##
+  # Shutdown the listener submit and
+  # submit to the backend
+  ##
+  submitFormBackend: ->
     this.addLoaderButton()
+    $('#classified-form').off('submit').submit()
 
-    $this.off('submit').submit()
-
+  ##
+  # Add a simple loading button to the submit
+  # button to avoid the user to double click and
+  # let him know it's processing
+  ##
   addLoaderButton: ->
     $('#classified-submit')
         .attr('disabled', 'disabled')

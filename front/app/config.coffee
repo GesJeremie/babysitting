@@ -21,6 +21,10 @@ module.exports =
       writeKey: "154376d19d2ec08fcdffb865e0359b49e137c60b117ae1f10dcf842490c9ebe3ca224029d360535d9ede8ad547e2809ed4f2bb5388c015767ca0c0f9242a64b3074233588b6d2b8ecdbb480e404f68a2bb5d83c45144be4d2d0cdcd3e3bdcf7f"
       readKey: "da66e4ebebd9520fcfb415a842c81e3cfc8df1686c1123ed640895a3a948f8544c6ca226e5cc252b22f7047768380d41793b9a01c0aa47592fae3c7db83797e4f30ade0adbaae72c3e584ab7619e8c5b472edefec7458d8f368ac348ca342551"
 
+  stripe:
+    dev: "pk_test_IJL5Hy2VT21d7eOcrko35zwV"
+    prod: "pk_live_M0t3EHeGlwnfySvMBz7h6Z2c"
+
   ##
   # Return current environment
   ##

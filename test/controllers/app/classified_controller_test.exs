@@ -11,6 +11,22 @@ defmodule Babysitting.App.ClassifiedControllerTest do
       conn = get conn, app_classified_path(conn, :new)
       assert html_response(conn, 200)
     end
+
+    test "Display the payment description when the city is bordeaux" do
+      tenant = insert(:tenant, %{slug: "bordeaux"})
+      conn = build_conn() |> with_host(tenant.domain)
+      conn = get conn, app_classified_path(conn, :new)
+
+      assert html_response(conn, 200) =~ "panel --payment"
+    end
+
+    test "Doesn't display the payment description when the city isn't bordeaux" do
+      tenant = insert(:tenant, %{slug: "paris"})
+      conn = build_conn() |> with_host(tenant.domain)
+      conn = get conn, app_classified_path(conn, :new)
+
+      refute html_response(conn, 200) |> String.contains?("panel --payment")
+    end
   end
 
   describe "create/2" do

@@ -45,7 +45,8 @@ config :babysitting, Babysitting.Repo,
 
 config :babysitting,
        email_address: "group.babysitting@gmail.com",
-       admin_password: "admin"
+       admin_password: "admin",
+       stripe_key: "sk_test_0AnnutaWqFGizdL8INnggsab"
 
 config :babysitting, Babysitting.Mailer,
   adapter: Bamboo.SMTPAdapter,

@@ -59,7 +59,7 @@ defmodule Babysitting.Mixfile do
       {:scrivener_html, "~> 1.1"},
       {:ex_machina, "~> 1.0"},
       {:faker_elixir_octopus, "> 0.0.0"},
-      {:credo, "~> 0.4", only: [:dev, :test]}
+      {:credo, "~> 0.4", only: [:dev, :test]},
     ]
   end
 
