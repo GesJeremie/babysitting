@@ -6,20 +6,20 @@
     <div class="panel__container">
       <div class="panel__overlay"></div>
       <div class="panel__title">
-        <i class="icon-cup"></i> Ajoute ton annonce pour le prix d'un grand café!
+        <i class="icon-cup"></i> Ajoute ton annonce pour le prix d'un café!
       </div>
       <div class="panel__body">
-        <p>Rejoins les <strong>98 baby sitters</strong> qui nous font déjà confiance!</p>
+        <p>Rejoins notre communauté de <strong>+ de 500 personnes</strong> qui nous font déjà confiance!</p>
         <ul class="panel__note">
-          <li>L'ajout d'annonce coûte <span class="panel__strike">9.99&euro;</span> <strong>4.99&euro;</strong></li>
-          <li>Si tu ne trouve pas des enfants à garder <strong>1 mois</strong> après la publication de ton annonce, <strong>on te rembourse</strong> et tu peux <strong>la laisser en ligne</strong>!</li>
+          <li>L'ajout d'annonce coûte <strong>2.50&euro;</strong></li>
+          <li>Si tu ne trouves pas des enfants à garder <strong>1 mois</strong> après la publication de ton annonce, <strong>on te rembourse</strong> et tu peux <strong>la laisser en ligne</strong>!</li>
           </ul>
         </p>
         </div>
     </div>
   </div>
 
-  <%= form_for @changeset, app_classified_path(@conn, :create), [multipart: true, class:  "js-no-smoothstate"], fn f -> %>
+  <%= form_for @changeset, app_classified_path(@conn, :create), [multipart: true, class: "js-no-smoothstate", id: "classified-form"], fn f -> %>
 
     <div class="form__container">
       <h2 class="form__title"><i class="icon-user"></i>
@@ -35,7 +35,7 @@
             <%= error_tag f, :lastname %>
         </div>
         <div class="grid-4">
-          <%= text_input f, :birthday, placeholder: gettext "Birthday" %>
+          <%= text_input f, :birthday, [{:data, [placeholder: gettext("jj/mm/aaaa")]}, placeholder: gettext("Birthday")] %>
             <%= error_tag f, :birthday %>
         </div>
       </div>
@@ -103,7 +103,7 @@
     <div class="+spacer"></div>
 
     <div class="form__actions">
-      <button type="submit" class="button --primary --large"><i class="icon-file-add"></i> <%= gettext "Add my classified" %></button>
+      <button id="classified-submit" type="submit" class="button --primary --large"><i class="icon-file-add"></i> <%= gettext "Add my classified" %></button>
     </div>
     <% end %>
 

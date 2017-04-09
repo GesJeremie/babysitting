@@ -12,7 +12,13 @@ FlashMessages = require 'initializers/flash-messages'
 Autosize = require 'initializers/autosize'
 Confirm = require 'initializers/confirm'
 
+
 module.exports = ->
+
+  # Init validators
+  require 'validators/min-length'
+  require 'validators/birthday'
+  require 'validators/confirmation'
 
   # Init the initializers
   (new Noty).init()

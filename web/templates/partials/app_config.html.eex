@@ -1,5 +1,7 @@
 <div id="app-config"
   data-environment="<%= Mix.env %>"
   data-confirm-title="<%= gettext("Are you sure") %>"
+  data-error-form="<%= gettext("Oops, some errors are present in the form.") %>"
+  data-locale="<%= Babysitting.Helpers.AppHelper.current_tenant(@conn).locale %>"
 >
 </div>

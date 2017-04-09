@@ -9,6 +9,6 @@ class Initializers_Noty
     $.noty.defaults.animation.close = 'animated flipOutX'
     $.noty.defaults.maxVisible = 1
     $.noty.defaults.killer = true
-    $.noty.defaults.dismissQueue = false
+    $.noty.defaults.dismissQueue = true
 
 module.exports = Initializers_Noty

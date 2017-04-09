@@ -25,10 +25,20 @@ module.exports =
   # Return current environment
   ##
   env: () =>
-    $app = $('#app-config[data-environment]')
+    $app = $('#app-config')
 
-    if $app.length
+    if $app.length && $app.data('environment')
       return $app.data('environment')
 
     console.log("[WARNING] Environment not specified, fallback to prod")
     return 'prod'
+
+  locale: () =>
+    $app = $('#app-config')
+
+    if $app.length && $app.data('locale')
+      return $app.data('locale')
+
+    console.log("[WARNING] Locale not specified, fallback to prod")
+    return 'en_US'
+
