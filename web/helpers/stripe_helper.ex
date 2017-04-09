@@ -9,9 +9,9 @@ defmodule Babysitting.Helpers.StripeHelper do
   In the future we will create a full system for every cities
   based on options (on/off payment system).
   """
-  def maybe_charge_classified(classified, conn) do
+  def maybe_charge_classified(classified, token, conn) do
     if AppHelper.is_current_tenant(:bordeaux, conn) do
-      charge(classified["stripe_token"])
+      charge(classified, token)
     else
       {:ok, :charge}
     end
@@ -20,7 +20,7 @@ defmodule Babysitting.Helpers.StripeHelper do
   @doc """
   Charge the card (the card details are stored via the token in the stripe's server)
   """
-  def charge(token) do
+  def charge(classified, token) do
     charged = HTTPoison.post("https://api.stripe.com/v1/charges", [], [], params: %{
       key: @stripe_key,
       amount: "250",

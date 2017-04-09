@@ -61,7 +61,7 @@ defmodule Babysitting.App.ClassifiedController do
     case Repo.insert(changeset) do
       {:ok, classified} ->
 
-        case StripeHelper.maybe_charge_classified(classified_params, conn) do
+        case StripeHelper.maybe_charge_classified(classified, classified_params["stripe_token"], conn) do
           {:ok, :charge} ->
             classified = classified |> Repo.preload(:tenant)
 
