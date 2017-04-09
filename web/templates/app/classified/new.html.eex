@@ -14,12 +14,13 @@
         </div>
         <div class="panel__body">
           <p>Rejoins notre communauté de <strong>+ de 500 personnes</strong> qui nous font déjà confiance!</p>
-          <ul class="panel__note">
-            <li>L'ajout d'annonce coûte <strong>2.50&euro;</strong></li>
-            <li>Si tu ne trouves pas des enfants à garder <strong>1 mois</strong> après la publication de ton annonce, <strong>on te rembourse</strong> et tu peux <strong>la laisser en ligne</strong>!</li>
+            <ul class="panel__note">
+              <li>L'ajout d'annonce coûte <strong>2.50&euro;</strong></li>
+              <li>Si tu ne trouves pas des enfants à garder <strong>1 mois</strong> après la publication de ton annonce, <strong>on te rembourse</strong> et tu peux <strong>la laisser en ligne</strong>!</li>
             </ul>
           </p>
-          </div>
+          <p class="panel__stripe">Paiement sécurisé par <img src="/images/stripe.png" /></p>
+        </div>
       </div>
     </div>
   <% end %>

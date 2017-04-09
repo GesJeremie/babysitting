@@ -1,5 +1,6 @@
 defmodule Babysitting.App.PartialsView do
   use Babysitting.Web, :view
+  import Babysitting.TenantView, only: [is_tenant_bordeaux: 1]
   alias Babysitting.Helpers.{AppHelper, AltHelper}
 
   def logo(conn) do

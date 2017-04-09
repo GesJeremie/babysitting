@@ -1,15 +1,9 @@
 defmodule Babysitting.App.ClassifiedView do
 
   import Babysitting.ClassifiedView, only: [fullname: 1, age: 1, phone: 1, url_classified: 2, url_avatar: 2]
+  import Babysitting.TenantView, only: [is_tenant_bordeaux: 1]
   use Babysitting.Web, :view
   alias Babysitting.Helpers.{DateHelper, FormatHelper, AppHelper, AltHelper, MicroDataHelper}
-
-  @doc """
-  Check if the current tenant is bordeaux
-  """
-  def is_tenant_bordeaux(conn) do
-    AppHelper.is_current_tenant(:bordeaux, conn)
-  end
 
   @doc """
   Return the phone obfuscated
