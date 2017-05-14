@@ -42,7 +42,12 @@ defmodule Babysitting.Router do
     post "/classifieds", ClassifiedController, :create
     post "/classifieds/:id/contact", ClassifiedController, :create_contact
     get "/classifieds/thankyou", ClassifiedController, :thankyou
+  end
 
+  scope "/", Babysitting.App, as: :fr_app do
+    pipe_through :browser
+
+    get "/annonces/ajout", ClassifiedController, :new
   end
 
   ##

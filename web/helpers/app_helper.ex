@@ -102,4 +102,22 @@ defmodule Babysitting.Helpers.AppHelper do
     "/images/logo.svg"
   end
 
+  ##### REFACTO! IN PROGRESS
+  def localized_path(conn, path, action) do
+    current_locale = current_tenant(conn).locale |> String.slice(0, 2) |> String.downcase
+
+    if current_locale != "en" do
+      localized_path = path |> Atom.to_string
+      localized_path = "#{current_locale}_#{localized_path}" |> String.to_atom
+
+      if Keyword.has_key?(Babysitting.Router.Helpers.__info__(:functions), localized_path) do
+        apply(Babysitting.Router.Helpers, localized_path, [conn, action])
+      else
+        apply(Babysitting.Router.Helpers, path, [conn, action])
+      end
+    else
+      apply(Babysitting.Router.Helpers, path, [conn, action])
+    end
+  end
+
 end
