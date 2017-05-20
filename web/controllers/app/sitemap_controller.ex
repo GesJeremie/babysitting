@@ -2,6 +2,8 @@ defmodule Babysitting.App.SitemapController do
   # Uses
   use Babysitting.Web, :controller
 
+  import Babysitting.ClassifiedView, only: [get_slug_classified: 2]
+
   # Aliases
   alias Babysitting.{Classified, Repo}
   alias Babysitting.Helpers.{AppHelper}
@@ -37,7 +39,7 @@ defmodule Babysitting.App.SitemapController do
     classifieds = fetch_classifieds(conn)
 
     for classified <- classifieds do
-      segment = Babysitting.Router.Helpers.app_classified_path(conn, :show, classified)
+      segment = Babysitting.Router.Helpers.app_classified_path(conn, :show, get_slug_classified(conn,  classified))
       AppHelper.current_tenant_url(conn, segment)
     end
   end

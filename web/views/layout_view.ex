@@ -14,4 +14,9 @@ defmodule Babysitting.LayoutView do
   def current_tenant_stylesheet(conn) do
     "/stylesheets/#{AppHelper.current_tenant_folder(conn)}.css"
   end
+
+  def html_current_lang(conn) do
+    AppHelper.current_tenant(conn).locale |> String.slice(0, 2)
+  end
+
 end
