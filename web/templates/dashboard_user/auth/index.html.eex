@@ -1,7 +1,9 @@
 <div class="auth__container">
   <div class="container">
     <div class="grid-6 push-3">
-      <div class="auth__logo"><img src="<%= logo(@conn) %>" /></div>
+      <div class="auth__logo">
+        <a href="/" class="js-no-smoothstate"><img src="<%= logo(@conn) %>" /></a>
+      </div>
       <%= form_for @conn, user_auth_path(@conn, :login), [as: :login, class: "js-no-smoothstate"], fn f -> %>
 
         <div class="auth__input --radius-top --radius-bottom">
