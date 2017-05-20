@@ -1,5 +1,4 @@
 defmodule Babysitting.App.ClassifiedController do
-  require IEx;
 
   # Uses
   use Babysitting.Web, :controller
