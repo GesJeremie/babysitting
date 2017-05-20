@@ -42,4 +42,16 @@ defmodule Babysitting.App.PartialsView do
   def town(conn) do
     AppHelper.current_tenant(conn).name |> String.capitalize
   end
+
+  @doc """
+  Generate mailto: contact link depending the
+  current tenant.
+  """
+  def contact_mailto(conn) do
+    town = town(conn)
+    contact_us = gettext("Contact us")
+    subject = "[Baby Sitting #{town}] #{contact_us}"
+
+    "mailto:group.babysitting@gmail.com?subject=#{subject}"
+  end
 end

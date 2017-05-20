@@ -14,7 +14,7 @@
       </li>
       <li><a href="<%= facebook_link(@conn) %>" target="_blank" class="js-no-smoothstate"><i class="icon-facebook"></i> Facebook</a></li>
       <li>
-        <a href="mailto:group.babysitting@gmail.com" class="js-no-smoothstate">
+        <a href="<%= contact_mailto(@conn) %>" class="js-no-smoothstate">
           <%= gettext("Contact") %>
         </a>
       </li>
