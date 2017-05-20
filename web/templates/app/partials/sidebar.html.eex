@@ -26,7 +26,7 @@
     </ul>
     <div class="sidebar__divider"></div>
     <div class="sidebar__add">
-      <a class="button --sidebar" href="<%= Babysitting.Helpers.AppHelper.localized_path(@conn, :app_classified_path, :new) %>">
+      <a class="button --sidebar" href="<%= app_classified_path(@conn, :new) %>">
         <%= gettext("Add my classified for free") %>
       </a>
     </div>

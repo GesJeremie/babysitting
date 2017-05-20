@@ -30,24 +30,13 @@ defmodule Babysitting.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :home
-    get "/about", PageController, :about
-    get "/legal", PageController, :legal
-    get "/contact", PageController, :contact
-    get "/press", PageController, :press
-    get "/faq", PageController, :faq
     get "/sitemap.xml", SitemapController, :index
 
-    get "/classifieds/new", ClassifiedController, :new
-    get "/classifieds/:id/show", ClassifiedController, :show
     post "/classifieds", ClassifiedController, :create
-    post "/classifieds/:id/contact", ClassifiedController, :create_contact
+    get "/classifieds/new", ClassifiedController, :new
     get "/classifieds/thankyou", ClassifiedController, :thankyou
-  end
-
-  scope "/", Babysitting.App, as: :fr_app do
-    pipe_through :browser
-
-    get "/annonces/ajout", ClassifiedController, :new
+    get "/classifieds/:slug", ClassifiedController, :show
+    post "/classifieds/:id/contact", ClassifiedController, :create_contact
   end
 
   ##

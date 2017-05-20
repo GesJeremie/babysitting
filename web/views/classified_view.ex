@@ -34,6 +34,19 @@ defmodule Babysitting.ClassifiedView do
   end
 
   @doc """
+  Given a classified, we extract a slug from it
+  """
+  def get_slug_classified(conn, classified) do
+    baby_sitter = "Baby sitter"
+    town = AppHelper.current_tenant(conn).name
+    firstname = classified.firstname
+    lastname = classified.lastname
+    id = classified.id
+
+    Slugger.slugify_downcase("#{baby_sitter} #{town} #{firstname} #{lastname} #{id}")
+  end
+
+  @doc """
   Generate full url for the classified given
   """
   def url_classified(conn, classified) do

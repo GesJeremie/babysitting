@@ -60,6 +60,7 @@ defmodule Babysitting.Mixfile do
       {:ex_machina, "~> 1.0"},
       {:faker_elixir_octopus, "> 0.0.0"},
       {:credo, "~> 0.4", only: [:dev, :test]},
+      {:slugger, "~> 0.1.0"}
     ]
   end
 

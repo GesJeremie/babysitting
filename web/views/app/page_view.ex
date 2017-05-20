@@ -1,5 +1,5 @@
 defmodule Babysitting.App.PageView do
-  import Babysitting.ClassifiedView, only: [fullname: 1, age: 1, phone: 1, url_classified: 2, url_avatar: 2]
+  import Babysitting.ClassifiedView, only: [fullname: 1, age: 1, phone: 1, url_classified: 2, url_avatar: 2, get_slug_classified: 2]
   use Babysitting.Web, :view
   use Phoenix.HTML
 

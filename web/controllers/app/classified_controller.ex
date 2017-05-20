@@ -1,4 +1,6 @@
 defmodule Babysitting.App.ClassifiedController do
+  require IEx;
+
   # Uses
   use Babysitting.Web, :controller
 
@@ -44,7 +46,7 @@ defmodule Babysitting.App.ClassifiedController do
       {:error, changeset} ->
         conn
         |> put_flash(:error, gettext("Oops, some errors are present in the form."))
-        |> show(%{"id" => id, "changeset" => changeset})
+        |> show(%{"slug" => id, "changeset" => changeset})
     end
   end
 
@@ -92,10 +94,14 @@ defmodule Babysitting.App.ClassifiedController do
   Show classified by the given id
   """
   def show(conn, params) do
+
+    slug = Map.get(params, "slug")
+    id = slug |> String.split("-") |> Enum.take(-1) |> Enum.join()
+
     classified =
       Classified
       |> Classified.of_current_tenant(conn)
-      |> Classified.where(:id, Map.get(params, "id"))
+      |> Classified.where(:id, id)
       |> Repo.one!
       |> Repo.preload(:tenant)
 
