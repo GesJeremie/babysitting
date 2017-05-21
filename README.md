@@ -2,7 +2,7 @@
 
 [![Screenshot 2017-05-21 03.35.14.png](https://s15.postimg.org/bi7bkzqvv/Screenshot_2017-05-21_03.35.14.png)](https://postimg.org/image/asoj8mqc7/)
 
-Baby Sitting is an application to **create connections** between **families** and **babysitters** in different **cities**(Bordeaux, Marseille, Paris, London, Philly).
+Baby Sitting is an application to **create connections** between **families** and **babysitters** in different **cities**    (Bordeaux, Marseille, Paris, London, Philly).
 
 I have a huge interest about **Elixir and Phoenix** and I wanted to try them on a **simple CRUD app** with some fancy features (multi-locale / multi-domain / payment system / etc ...).
 
