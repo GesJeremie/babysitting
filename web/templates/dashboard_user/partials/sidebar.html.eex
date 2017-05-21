@@ -5,9 +5,15 @@
     </div>
 
     <ul class="sidebar__links">
-      <li class="sidebar__link"><a href="<%= user_classified_path(@conn, :show) %>"><i class="icon-file"></i> <%= gettext "Classified" %></a></li>
-      <li class="sidebar__link"><a href="<%= user_message_path(@conn, :index) %>"><i class="icon-envelope-o"></i> <%= gettext "Messages" %></a></li>
-      <li class="sidebar__link "><a href="<%= user_security_path(@conn, :index) %>"><i class="icon-key"></i> <%= gettext "Security" %></a></li>
+      <li class="sidebar__link"><a href="<%= user_classified_path(@conn, :show) %>"><i class="icon-file"></i>
+        <span><%= gettext "Classified" %></span>
+      </a></li>
+      <li class="sidebar__link"><a href="<%= user_message_path(@conn, :index) %>"><i class="icon-envelope-o"></i>
+        <span><%= gettext "Messages" %></span>
+      </a></li>
+      <li class="sidebar__link "><a href="<%= user_security_path(@conn, :index) %>"><i class="icon-key"></i>
+        <span><%= gettext "Security" %></span>
+      </a></li>
     </ul>
   </div>
 </div>

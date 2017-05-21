@@ -1,13 +1,13 @@
 // ===========================================================
 // Fonts
 // ===========================================================
-// 
+//
 +use-font-proxima
 
 // ===========================================================
 // General html overrides
 // ===========================================================
-// 
+//
 
 html
   box-sizing: border-box
@@ -16,16 +16,25 @@ html
   box-sizing: inherit
 
 #sidebar-wrapper
-  position: fixed
-  width: 15%
-  height: 100%
-  overflow-y: auto
+  text-align: center
+
+  +gridle_state(md)
+    position: fixed
+    width: 15%
+    height: 100%
+    overflow-y: auto
+    text-align: left
 
 #content-wrapper
-  width: 85%
+  width: 100%
   float: left
-  margin-left: 15%
-  margin-bottom: 3em
+  margin-bottom: 5em
+
+  +gridle_state(md)
+    width: 85%
+    margin-bottom: 3em
+    margin-left: 15%
+
 
 // Reset ember margin body
 body
@@ -51,4 +60,4 @@ input:-webkit-autofill
 input:-webkit-autofill:focus
     -webkit-box-shadow: 0 0 0 50px white inset
     -webkit-text-fill-color: #333
- 
+

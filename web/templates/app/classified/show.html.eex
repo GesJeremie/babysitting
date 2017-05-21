@@ -15,7 +15,7 @@
 
   <div class="divider"></div>
 
-  <div class="grid-10@md push-1@md grid-12">
+  <div class="grid-md-10 push-md-1 grid-12">
     <div class="post-show__avatar">
       <img alt="<%= alt_thumb(@conn, @classified) %>" src="/<%= Babysitting.Avatar.url({@classified.avatar, @classified}, :thumb) %>" />
     </div>

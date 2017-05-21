@@ -1,32 +1,59 @@
 +component(sidebar)
-  
+
   +part(container)
     background: #f9fafc
     width: 100%
     height: 100%
     border-right: 1px solid darken(#f9fafc, 4%)
-    
+
   +part(signout)
     text-align: center
     padding-top: 1em
+    padding-bottom: 1em
+
+    +gridle_state(md)
+      padding-bottom: 0
 
   +part(links)
-    padding-top: 1.9em
+    position: fixed
+    bottom: 0
+    background: #f9fafc
+    border-top: 1px solid $color-dark
+    width: 100%
+
+    +gridle_state(md)
+      position: relative
+      padding-top: 1.9em
+      border-top: 0
 
   +part(link)
+    display: inline-block
     text-transform: uppercase
+
+    +gridle_state(md)
+      display: block
 
     &:hover
       background-color: darken(#f9fafc, 2%)
 
       a
-        border-left: 4px solid $color-warning
+        +gridle_state(md)
+          border-left: 4px solid $color-warning
+
+    span
+      display: none
+
+      +gridle_state(md)
+        display: inline-block
 
     i
-      vertical-align: middle
-      font-size: 1.4em
-      padding-left: 0.3em
       padding-right: 0.3em
+      padding-left: 0.3em
+      vertical-align: middle
+      font-size: 1.8em
+
+      +gridle_state(md)
+        font-size: 1.4em
 
     a
       color: $color-dark

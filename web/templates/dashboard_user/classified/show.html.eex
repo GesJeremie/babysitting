@@ -123,7 +123,7 @@
         </div>
       </div>
 
-  <button type="submit" class="button --primary"><%= gettext "Save changes" %></button>
+  <button type="submit" class="button --primary --extend-on-mobile"><%= gettext "Save changes" %></button>
 
   </div>
 </div>

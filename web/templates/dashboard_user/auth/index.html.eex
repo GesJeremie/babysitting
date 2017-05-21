@@ -1,6 +1,6 @@
 <div class="auth__container">
   <div class="container">
-    <div class="grid-6 push-3">
+    <div class="grid-12 grid-md-6 push-md-3">
       <div class="auth__logo">
         <a href="/" class="js-no-smoothstate"><img src="<%= logo(@conn) %>" /></a>
       </div>

@@ -16,6 +16,7 @@
     white-space: nowrap
     vertical-align: middle
     cursor: pointer
+
     i
         vertical-align: middle
 
@@ -73,6 +74,14 @@
     +option(inline-form)
         padding: 0.5em
         height: 2.5em
+
+    +option(extend-on-mobile)
+        width: 100%
+        font-size: 18px
+
+        +gridle_state(md)
+            width: auto
+            font-size: 14px
 
 
 
