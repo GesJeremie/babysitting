@@ -1,19 +1,17 @@
 # Babysitting
 
-To start your Phoenix app:
+[![Screenshot 2017-05-21 03.35.14.png](https://s15.postimg.org/bi7bkzqvv/Screenshot_2017-05-21_03.35.14.png)](https://postimg.org/image/asoj8mqc7/)
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  * Start Phoenix endpoint with `mix phoenix.server`
+Baby Sitting is an application to **create connections** between **families** and **babysitters** in different **cities**    (Bordeaux, Marseille, Paris, London, Philly).
 
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+I have a huge interest about **Elixir and Phoenix** and I wanted to try them on a **simple CRUD app** with some fancy features (multi-locale / multi-domain / payment system / etc ...).
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+This was the **very first app** I created with these languages, you'll not find **"quality"** nor **"good practices"** in this repo (the architecture cries for abstraction and a better organisation).
 
-## Learn more
+## Websites
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: http://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+  * London: https://www.babysittinglondon.com/
+  * Bordeaux: https://www.babysittingbordeaux.fr/
+  * Paris: https://www.babysittingparis.fr/
+  * Marseille: http://www.babysittingmarseille.fr/.
+  * Philly: http://babysittingphilly.com/
