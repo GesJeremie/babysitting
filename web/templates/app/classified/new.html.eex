@@ -17,6 +17,7 @@
             <ul class="panel__note">
               <li>L'ajout d'annonce coûte <strong>2.50&euro;</strong></li>
               <li>Si tu ne trouves pas des enfants à garder <strong>1 mois</strong> après la publication de ton annonce, <strong>on te rembourse</strong> et tu peux <strong>la laisser en ligne</strong>!</li>
+              <li>Ton annonce est aussi publiée sur notre <strong>fan page Facebook</strong></li>
             </ul>
           </p>
           <p class="panel__stripe">Paiement sécurisé par <img src="/images/stripe.png" /></p>
